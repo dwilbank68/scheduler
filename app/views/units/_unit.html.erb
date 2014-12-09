@@ -1,0 +1,31 @@
+<%= div_for unit, class:'machine-container' do %>
+    <div class="unit group">
+      <header class="quicksand"><%= unit.screenName %><span id="show-queue">></span></header>
+      <img src="unit.imagePath" alt="unit.screenName"/>
+      <div class="numbers countdown" data-duration="<%= unit.total_duration %>">
+        <div class="val remaining">
+          <li class="hours"></li>   <li class="colon1">:</li>
+          <li class="minutes"></li> <li class="colon2">:</li>
+          <li class="secs"></li>
+          <li class="time-label remaining">remaining</li>
+        </div>
+        <div class="val complete">
+          <li class="hours"></li>   <li class="colon1">:</li>
+          <li class="minutes"></li> <li class="colon2">:</li>
+          <li class="secs"></li>
+          <li class="time-label completed">est time of</li>
+          <li class="time-label completed2">completion</li>
+        </div>
+      </div>
+
+      <section class="user-queue"><!--user queue-->
+        <ul><%= render unit_users(unit) %></ul>
+        <div class="addToQueue"><button>+</button></div>
+      </section> <!-- end user queue -->
+
+
+    </div> <!-- end unit -->
+
+
+
+<% end %>
