@@ -14,8 +14,11 @@
  *= require_self
  */
 
-//@import "bootstrap";
+@import "bootstrap";
 @import "../fonts/font";
+
+.user-info { margin-top: 9px; }
+.nav { margin-top: 5px; }
 
 
 .quicksand {
@@ -91,7 +94,7 @@ table {
 
     margin-top: 10px;
 }
-.name,.phone,.SMS,.email,.start_time,.duration,.note,.label {
+.name,.phone,.SMS,.email_,.start_time,.duration,.note,.label {
     width: 150px;
     font-family:'quicksandregular';
     font-size: 10px;

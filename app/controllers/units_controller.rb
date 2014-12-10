@@ -1,7 +1,7 @@
 class UnitsController < ApplicationController
   def index
     @units = Unit.all
-
+    @user = User.new
   end
 
   def create

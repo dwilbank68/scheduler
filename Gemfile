@@ -1,6 +1,11 @@
 source 'https://rubygems.org'
 
 
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
 # Use sqlite3 as the database for Active Record
@@ -37,8 +42,20 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'bootstrap-sass', '~> 3.1.1'
+gem 'faker'
+gem 'devise'
+gem 'figaro'
+gem 'tzinfo-data', platforms: [:mingw, :mswin]
+gem 'pundit'
+gem 'simple_form'
+#gem 'carrierwave'
+#gem 'mini_magick'
+#gem 'fog'
+
 group :development do
   gem 'sqlite3'
+  gem 'quiet_assets'
   gem "better_errors"
   gem "binding_of_caller" #if you use better_errors
   gem 'hirb'
