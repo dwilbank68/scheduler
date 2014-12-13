@@ -20,6 +20,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -48,10 +49,17 @@ gem 'devise'
 gem 'figaro'
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'pundit'
-gem 'simple_form'
+gem 'simple_form', '~> 3.1.0.rc2'
 #gem 'carrierwave'
 #gem 'mini_magick'
 #gem 'fog'
+
+gem 'momentjs-rails', '>= 2.8.1', :github => 'derekprior/momentjs-rails'
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+
+gem 'jquery-ui-rails'
+
+# gem 'font-awesome-sass' didn't work
 
 group :development do
   gem 'sqlite3'

@@ -1,10 +1,12 @@
 class UnitsController < ApplicationController
   def index
     @units = Unit.all
-    @user = User.new
+    @user = User.first
+    @unit_user = UnitUser.new
   end
 
   def create
+
   end
 
   def edit

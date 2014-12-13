@@ -12,8 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require turbolinks
 //= require bootstrap
+
+//= require moment
+//= require bootstrap-datetimepicker
+//= require pickers
+
 //= require_tree .
 
 //$(document).ready(function() {

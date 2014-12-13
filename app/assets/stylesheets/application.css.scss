@@ -10,6 +10,8 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require jquery-ui
+ *= require bootstrap-datetimepicker.min
  *= require_tree .
  *= require_self
  */
@@ -33,11 +35,17 @@ body {
     background-color: gray;
 }
 
+li { list-style-type: none; }
+
 .unit {
     /*height: 100px;*/
     display: inline-block;
     width: 200px;
     border: solid black;
+}
+
+img, .start_time {
+ width: 200px;
 }
 
 #show-queue {
@@ -48,6 +56,64 @@ body {
     display: inline;
     position: absolute;
 }
+/////////////////// form /////////////////////
+
+.unit_user_form {
+  position: absolute;
+  top: 262px;
+}
+
+
+/////////////////////////////////////////////
+
+/////////////////// unit-user ///////////////////
+
+li {
+  padding-bottom: 1px;
+}
+
+.unit-user {
+  width: 200px;
+//  color: #6DD6E3;
+//  margin-top: -263px;
+//  margin-left: 160px;
+  border-width: 2px 8px;
+  border-style: solid;
+  border-color: #6DD6E3;
+  border-radius: 15px ;
+  -moz-border-radius: 15px ;
+  -webkit-border-radius: 15px ;
+
+  table {
+    margin: 0;
+  }
+
+  .name {
+    width: 200px;
+    background: #6DD6E3;
+    color: black;
+    text-align: center;
+    font-size: 1.5em;
+  }
+
+  .note { border-top: 1px solid #6DD6E3 }
+
+}
+/////////////////////////////////////////////////
+
+
+////////////////// user-queue ////////////////////
+
+.user-queue {
+  position: relative;
+  left: 161px;
+  top: -49px;
+}
+
+
+//////////////////////////////////////////////////
+
+
 
 .numbers {
     width:200px;  height: 40px;
@@ -95,22 +161,19 @@ table {
     margin-top: 10px;
 }
 .name,.phone,.SMS,.email_,.start_time,.duration,.note,.label {
-    width: 150px;
+//    width: 150px;
     font-family:'quicksandregular';
     font-size: 10px;
-    padding-left: 5px;
-    border-style: solid;
-    border-width: thin;
-    border-color: #333;
+//    padding-left: 5px;
+//    border-style: solid;
+//    border-width: thin;
+//    border-color: #333;
 }
 
-.label { width: 30px; }
+//.label { width: 30px; }
 
 .user-queue {
-    position: absolute;
-    display: inline-block;
-    float: right;
-    background-color: yellow;
+
 }
 
 a {

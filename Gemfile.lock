@@ -1,3 +1,18 @@
+GIT
+  remote: git://github.com/derekprior/momentjs-rails.git
+  revision: b3ed842ff862a12fa82979c0b629cbd6be8b1151
+  specs:
+    momentjs-rails (2.8.3)
+      railties (>= 3.1)
+
+GIT
+  remote: git://github.com/zpaulovics/datetimepicker-rails.git
+  revision: d0f8a68f30d7ffb34e505845a693df27467424f3
+  branch: master
+  submodules: true
+  specs:
+    datetimepicker-rails (3.1.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -69,6 +84,8 @@ GEM
     jquery-rails (3.1.2)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (5.0.3)
+      railties (>= 3.2.16)
     json (1.8.1)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -120,7 +137,7 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    simple_form (3.0.2)
+    simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
     sprockets (2.12.3)
@@ -157,12 +174,15 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass (~> 3.1.1)
   coffee-rails (~> 4.0.0)
+  datetimepicker-rails!
   devise
   faker
   figaro
   hirb
   jbuilder (~> 2.0)
   jquery-rails
+  jquery-ui-rails
+  momentjs-rails (>= 2.8.1)!
   pg
   pundit
   quiet_assets
@@ -170,7 +190,7 @@ DEPENDENCIES
   rails_12factor
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
-  simple_form
+  simple_form (~> 3.1.0.rc2)
   sqlite3
   turbolinks
   tzinfo-data

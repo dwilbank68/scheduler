@@ -1,7 +1,7 @@
 module UnitsHelper
 
   def unit_users(unit)
-    unit.users
+    unit.unit_users
   end
 
 end
