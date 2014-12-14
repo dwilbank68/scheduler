@@ -19,10 +19,12 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require pickers
-
+//= require best_in_place
 //= require_tree .
 
-//$(document).ready(function() {
+$(document).ready(function() {
+
+    $('.best_in_place').best_in_place();
     //var unitTemplate = $('#unit-template').innerHTML;
     //console.log("unitTemplate is " + unitTemplate);
 
@@ -84,7 +86,7 @@
 //    $('.complete .hours').text(completedHours);
 //    $('.complete .minutes').text(completedMinutes);
 //    $('.complete .secs').text(completedSeconds);
-//});
+});
 
 ////////////////// queue flyout //////////////////
 

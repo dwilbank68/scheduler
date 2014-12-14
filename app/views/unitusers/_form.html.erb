@@ -1,0 +1,12 @@
+<%= minimal_form_for([unit, @unit_user], html: {class: 'form-vertical'}) do |f| %>
+    <%= f.error_notification %>
+    <%= f.input :name, :input_html => {:value => @user.name} %>
+    <%= f.input :phone, :input_html => {:value => @user.phone} %>
+    <%= f.input :SMS, :input_html => {:value => @user.SMS} %>
+    <%= f.input :email, :input_html => {:value => @user.email} %>
+    <%= f.input :duration %>
+    <%= f.input :note %>
+    <%= f.hidden_field :user_id, :value => @user.id %>
+    <%= f.error :base %>
+    <%= f.button :submit %>
+<% end %>

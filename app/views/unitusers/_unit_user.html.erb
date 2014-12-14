@@ -2,7 +2,10 @@
   <div class="unit-user">
     <table>
       <tr>
-        <td class="name" colspan="2" BGCOLOR="red"><%= user.name %><%= user.id %></td>
+        <td>unituser #<%= unituser.id %></td>
+      </tr>
+      <tr>
+        <td class="name" colspan="2" BGCOLOR="red"><%= user.name %> <%= user.id %></td>
       </tr>
       <tr>
       <tr>
@@ -18,14 +21,15 @@
       </tr>
       <tr>
         <td><span class="fa fa-clock-o"></span></td>
-        <td class="duration"><%= unituser.duration %></td>
+        <!--<td class="duration"><%#= unituser.duration %></td>-->
+        <td class="duration"> <%= best_in_place unituser, :duration, :as => :input, :place_holder => 'click to edit' %> </td>
       </tr>
       <tr>
-        <td class="note" colspan="2"><%= unituser.note %></td>
+        <!--<td class="note" colspan="2"><%#= unituser.note %></td>-->
+        <td class="note" colspan="2"><%= best_in_place unituser, :note, :as => :textarea, :place_holder => 'click to edit' %></td>
       </tr>
 
       <tr>
-        <td> <%= link_to "Edit",   edit_unit_unit_user_path(user, unituser), remote: true, class: "btn" %> </td>
         <td> <%#= link_to "Delete", product_delete_path(product),       remote: true, class: "btn btn-danger" %> </td>
       </tr>
     </table>

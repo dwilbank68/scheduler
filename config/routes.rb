@@ -18,6 +18,8 @@ Rails.application.routes.draw do
      resources :unit_users
    end
 
+  resources :unit_users, only: [:update, :destroy]
+
   # Example resource route with options:
   #   resources :products do
   #     member do

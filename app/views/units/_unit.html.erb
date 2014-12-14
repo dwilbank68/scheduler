@@ -25,7 +25,7 @@
     <section class="user-queue"><!--user queue-->
       <ul>
         <% unit.users.each do |user| %>
-            <%= render :partial => '/users/user', :locals => { user:user, unituser: user.unit_users.where(unit_id: unit.id).first }%>
+            <%= render :partial => '/unitusers/unit_user', :locals => { user:user, unituser: user.unit_users.where(unit_id: unit.id).first }%>
         <% end %>
       </ul>
     </section> <!-- end user queue -->
