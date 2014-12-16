@@ -1,9 +1,9 @@
 class UnitUsersController < ApplicationController
   respond_to :html, :js
 
-  before_action :find_unit, except: [:edit, :update, :delete]
-  before_action :find_user, except: [:edit, :update, :delete]
-  before_action :find_unituser, only: [:update]
+  before_action :find_unit, except: [:edit, :update, :destroy]
+  before_action :find_user, except: [:edit, :update, :destroy]
+  before_action :find_unituser, only: [:update, :destroy]
   # before_action :authenticate_user!
 
   def index
@@ -41,8 +41,18 @@ class UnitUsersController < ApplicationController
     end
   end
 
+  def destroy
+    if @unituser.destroy
+      flash[:notice] = "unit user removed"
+    else
+      flash[:error] = "unit user not removed"
+    end
 
-    # render :nothing => true
+    respond_with(@unituser) do |format|
+      format.html { redirect_to @units }
+    end
+
+  end
 
 
   ##################################

@@ -30,7 +30,7 @@
       </ul>
     </section> <!-- end user queue -->
 
-    <section class="unit_user_form">
+    <div id="unit_user_form_<%= unit.id %>" class="unit_user_form">
       <%= minimal_form_for([unit, @unit_user], html: {class: 'form-vertical'}) do |f| %>
           <%= f.error_notification %>
           <%= f.input :name, :input_html => {:value => @user.name} %>
@@ -43,7 +43,7 @@
           <%= f.error :base %>
           <%= f.button :submit %>
       <% end %>
-    </section>
+    </div>
 
 <% end %>
 
@@ -53,6 +53,10 @@
     $(document).ready(function(){
         //var machine<%#= unit.id %> = $('#Unit_<%#= unit.id %>');
         //machine<%#= unit.id %>.draggable();
+        console.log(<%= unit.id %>);
         $('#unit_<%= unit.id %>').draggable();
+        $('#unit_user_form_<%= unit.id %>').hide();
+
     });
 </script>
+

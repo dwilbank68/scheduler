@@ -1,37 +1,37 @@
-<li>
-  <div class="unit-user">
-    <table>
-      <tr>
-        <td>unituser #<%= unituser.id %></td>
-      </tr>
-      <tr>
-        <td class="name" colspan="2" BGCOLOR="red"><%= user.name %> <%= user.id %></td>
-      </tr>
-      <tr>
-      <tr>
-        <td><span class="fa fa-envelope"></span></td>
-        <td class="email"><%= user.email %></td>
-      </tr>
+<%= content_tag_for :li, unituser do %>
+    <div class="unit-user">
+      <table>
+        <tr>
+          <td>unituser #<%= unituser.id %></td>
+        </tr>
+        <tr>
+          <td class="name" colspan="2" BGCOLOR="red"><%= user.name %> <%= user.id %></td>
+        </tr>
+        <tr>
+        <tr>
+          <td><span class="fa fa-envelope"></span></td>
+          <td class="email"><%= user.email %></td>
+        </tr>
         <td><span class="fa fa-phone-square"></span></td>
         <td class="phone"><%= user.phone %></td>
-      </tr>
-      <tr>
-        <td><span class="fa fa-mobile fa-2x"></span></td>
-        <td class="SMS"><%= user.SMS %></td>
-      </tr>
-      <tr>
-        <td><span class="fa fa-clock-o"></span></td>
-        <!--<td class="duration"><%#= unituser.duration %></td>-->
-        <td class="duration"> <%= best_in_place unituser, :duration, :as => :input, :place_holder => 'click to edit' %> </td>
-      </tr>
-      <tr>
-        <!--<td class="note" colspan="2"><%#= unituser.note %></td>-->
-        <td class="note" colspan="2"><%= best_in_place unituser, :note, :as => :textarea, :place_holder => 'click to edit' %></td>
-      </tr>
+        </tr>
+        <tr>
+          <td><span class="fa fa-mobile fa-2x"></span></td>
+          <td class="SMS"><%= user.SMS %></td>
+        </tr>
+        <tr>
+          <td><span class="fa fa-clock-o"></span></td>
+          <!--<td class="duration"><%#= unituser.duration %></td>-->
+          <td class="duration"> <%= best_in_place unituser, :duration, :as => :input, :place_holder => 'click to edit' %> </td>
+        </tr>
+        <tr>
+          <!--<td class="note" colspan="2"><%#= unituser.note %></td>-->
+          <td class="note" colspan="2"><%= best_in_place unituser, :note, :as => :textarea, :place_holder => 'click to edit' %></td>
+        </tr>
 
-      <tr>
-        <td> <%#= link_to "Delete", product_delete_path(product),       remote: true, class: "btn btn-danger" %> </td>
-      </tr>
-    </table>
-  </div>
-</li>
+        <tr>
+          <td> <%= link_to "X", unituser, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-danger" %> </td>
+        </tr>
+      </table>
+    </div>
+<% end %>
