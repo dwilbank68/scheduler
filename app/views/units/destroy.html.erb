@@ -1,0 +1,8 @@
+
+
+
+
+<script src='http://localhost:3000/blocmetrics.js' type='text/javascript'></script>
+<script>
+    Blocmetrics.send(<%= @event.name %>, {date: <%= @event.data %>});
+</script>

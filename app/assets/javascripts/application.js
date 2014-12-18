@@ -24,6 +24,7 @@
 
 $(document).ready(function() {
 
+    $('#overlay').hide();
     $('.best_in_place').best_in_place();
     //var unitTemplate = $('#unit-template').innerHTML;
     //console.log("unitTemplate is " + unitTemplate);

@@ -6,18 +6,27 @@
       </div>
       <div class="numbers countdown" data-duration="<%= unit.total_duration %>">
         <div class="val remaining">
-          <li class="hours"></li>   <li class="colon1">:</li>
-          <li class="minutes"></li> <li class="colon2">:</li>
-          <li class="secs"></li>
-          <li class="time-label remaining">remaining</li>
+          <ul>
+            <li class="hours"></li>
+            <li class="colon1">:</li>
+            <li class="minutes"></li>
+            <li class="colon2">:</li>
+            <li class="secs"></li>
+            <li class="time-label remaining">remaining</li>
+          </ul>
         </div>
         <div class="val complete">
-          <li class="hours"></li>   <li class="colon1">:</li>
-          <li class="minutes"></li> <li class="colon2">:</li>
-          <li class="secs"></li>
-          <li class="time-label completed">est time of</li>
-          <li class="time-label completed2">completion</li>
+          <ul>
+            <li class="hours"></li>
+            <li class="colon1">:</li>
+            <li class="minutes"></li>
+            <li class="colon2">:</li>
+            <li class="secs"></li>
+            <li class="time-label completed">est time of</li>
+            <li class="time-label completed2">completion</li>
+          </ul>
         </div>
+        <button id="new-user-for-unit-<%= unit.id %>"></button>
       </div>
 
     </div> <!-- end unit -->
@@ -51,12 +60,30 @@
 
 <script>
     $(document).ready(function(){
-        //var machine<%#= unit.id %> = $('#Unit_<%#= unit.id %>');
-        //machine<%#= unit.id %>.draggable();
+
         console.log(<%= unit.id %>);
         $('#unit_<%= unit.id %>').draggable();
+
         $('#unit_user_form_<%= unit.id %>').hide();
 
+        $('#new-user-for-unit-<%= unit.id %>').on('click', function(){
+
+            var $form = $('#unit_user_form_<%= unit.id %>');
+
+            // detach form from washing machine unit and reattach it to non-blurring layer, which is z-index 2
+            $('#non-blur-layer').append($form);
+
+            // blur the container which holds all the machines ( z-index 0)
+            $('#blur-layer').addClass('blur-in');
+
+            // bring in the tinted overlay to prevent click-through
+            $('#overlay').fadeIn();
+
+            // bring in the form, which SHOULD BE Z-INDEX 2
+            $($form).fadeIn().css({top:($(window).height()/2)-107, left:($(window).width()/2)-200, zIndex:3});
+
+        });
     });
 </script>
+
 

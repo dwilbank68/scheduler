@@ -8,8 +8,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+    <div id="blur-layer">
+      <%= yield %>
+    </div>
 
-<%= yield %>
+    <div id="overlay"></div>
+
+    <div id="non-blur-layer"></div> <!-- where the modal form attaches -->
+
 
 </body>
 </html>
