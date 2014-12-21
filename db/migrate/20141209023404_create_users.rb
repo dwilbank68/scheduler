@@ -1,10 +1,10 @@
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
-      t.string :name
+      t.string :name,  :required => true
       t.string :phone
       t.string :SMS
-      t.string :email
+      t.string :email, :required => true
 
       t.timestamps
     end

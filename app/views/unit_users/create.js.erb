@@ -1,0 +1,17 @@
+var $unit = $('#unit_' + <%= params[:unit_id] %>)
+//console.log('unit id is <%= params[:unit_id] %>');
+//console.log( $unit );
+<% if @uu.valid? %>
+    $unit.find('.user-queue > ul').append("<%= escape_javascript(render(:partial => 'unitusers/unit_user', locals: { unituser: @uu, user:@user })) %>");
+    //console.log('and @like.valid? is true');
+
+    $('#blur-layer').removeClass('blur-in');
+    $('#blur-layer').addClass('blur-out');
+
+    // remove the tinted overlay
+    $('#overlay').fadeOut();
+
+    $('.unit_user_form').fadeOut();
+<% else %>
+   alert('something went bad');
+<% end %>

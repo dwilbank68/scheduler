@@ -10,15 +10,23 @@ class UnitUsersController < ApplicationController
   end
 
   def create
-    uu = UnitUser.new(user_id:@user.id, unit_id:@unit.id)
-    # uu.start_time = params[:unit_user][:start_time] - will be Time.now()
-    uu.duration = params[:unit_user][:duration]
-    uu.note = params[:unit_user][:note]
-    if uu.save
-      redirect_to :back
-    else
+    @uu = UnitUser.new(user_id:@user.id, unit_id:@unit.id)
+    # @uu.start_time = params[:unit_user][:start_time] - will be Time.now()
+    @uu.duration = params[:unit_user][:duration]
+    @uu.note = params[:unit_user][:note]
+
+
+    respond_with(@uu) do |format|
+      if @uu.save
+        format.html { redirect_to @units }
+      else
+        flash[:error] = "unit_user not created"
+      end
 
     end
+
+
+
   end
 
   def edit
