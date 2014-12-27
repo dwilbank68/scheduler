@@ -1,36 +1,38 @@
+<!--fed by unit.html.erb-->
+<!--<p>unit.id in _unit_user is <%#= unit.id %></p>-->
+
+<p>unit id is <%= unit.id %></p>
+
+
 <%= content_tag_for :li, unituser do %>
     <div class="unit-user">
       <table>
-        <tr>
-          <td>unituser #<%= unituser.id %></td>
-        </tr>
-        <tr>
-          <td class="name" colspan="2" BGCOLOR="red"><%= user.name %> <%= user.id %></td>
-        </tr>
-        <tr>
-        <tr>
-          <td><span class="fa fa-envelope"></span></td>
-          <td class="email"><%= user.email %></td>
-        </tr>
-        <td><span class="fa fa-phone-square"></span></td>
-        <td class="phone"><%= user.phone %></td>
-        </tr>
-        <tr>
-          <td><span class="fa fa-mobile fa-2x"></span></td>
-          <td class="SMS"><%= user.SMS %></td>
-        </tr>
+        <!--<tr> <td>unituser_<%#= unituser.id %></td> </tr>-->
+        <tr> <td class="name quicksand-reg" colspan="2" ><%= user.name.truncate(12) %> <%= user.id %></td> </tr>
+
+        <tr> <td ><span class="fa fa-envelope"></span></td>        <td class="email quicksand-reg">  <%= user.email.truncate(20) %></td> </tr>
+
+        <tr> <td><span class="fa fa-envelope"></span></td>        <td class="email2 quicksand-reg"> <%= user.email2.truncate(20) if user.email2 %></td> </tr>
+
+        <tr> <td><span class="fa fa-phone-square"></span></td>    <td class="phone quicksand-reg">  <%= user.phone %></td> </tr>
+
+        <tr> <td><span class="fa fa-phone-square"></span></td>    <td class="phone2 quicksand-reg"> <%= user.phone2 %></td> </tr>
+
+        <tr> <td><span class="fa fa-mobile fa-2x"></span></td>    <td class="sms quicksand-reg"> <%= user.sms %> </td> </tr>
+<!--TODO - fix best_in_place input field width, and make tabbing between inputs work correctly-->
         <tr>
           <td><span class="fa fa-clock-o"></span></td>
-          <!--<td class="duration"><%#= unituser.duration %></td>-->
-          <td class="duration"> <%= best_in_place unituser, :duration, :as => :input, :place_holder => 'click to edit' %> </td>
+          <td class="duration_hrs quicksand-reg" > <%= best_in_place [unit, unituser], :duration_hrs, :as => :input, :place_holder => 'click to edit' %> </td>
+          <td class="colon"><span>:</span></td>
+          <td class="duration_min quicksand-reg" > <%= best_in_place [unit, unituser], :duration_min, :as => :input, :place_holder => 'click to edit' %> </td>
         </tr>
         <tr>
           <!--<td class="note" colspan="2"><%#= unituser.note %></td>-->
-          <td class="note" colspan="2"><%= best_in_place unituser, :note, :as => :textarea, :place_holder => 'click to edit' %></td>
+          <td class="note quicksand-reg" colspan="2"><%= best_in_place [unituser], :note, :as => :textarea, :place_holder => 'click to edit' %></td>
         </tr>
 
         <tr>
-          <td> <%= link_to "X", unituser, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-danger" %> </td>
+          <td> <%= link_to "X", [unit,unituser], method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-danger" %> </td>
         </tr>
       </table>
     </div>

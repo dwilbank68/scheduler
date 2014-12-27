@@ -1,24 +1,28 @@
-# t.string   "name"
-# t.string   "phone"
-# t.string   "SMS"
-# t.string   "email"
+# t.string :name, :null => false
+# t.string :phone
+# t.string :phone2
+# t.string :email
+# t.string :email2
+# t.string :sms
+# t.string :role
 
 class User < ActiveRecord::Base
   has_many :unit_users
   belongs_to :unit
   has_many :units, :through => :unit_users
 
+  validates :name, :email, :presence => true
+
   validates :name,
-            :presence => true,
-            # :length => { :minimum => 2, :maximum => 30 },
-            :length => { in: 2..30 },
-            :format => { :with => /^\w+$/ },
-            :uniqueness => { :case_sensitive => false }
+            :length => { :minimum => 2, :maximum => 30 },
+            # :length => { in: 2..30 },
+            :format => { :with => /\A[\w\s]+\z/ }
 
   validates :email,
-            :presence => true,
-            :format => {:with => /^[\w+\-.]+@[a-z\d\-.]+\.[a-z]+$/i},
-            :uniqueness => {:case_sensitive => false}
+            :format => {:with => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i}
+
+  validates :name, :phone, :email,
+            :uniqueness => true
 
 end
 

@@ -1,7 +1,7 @@
 class UnitsController < ApplicationController
   def index
     @units = Unit.all
-    @user = User.first
+    @user = User.last #until current_user arrives with Devise
     @unit_user = UnitUser.new
   end
 
@@ -17,4 +17,9 @@ class UnitsController < ApplicationController
 
   def update
   end
+
+  private ########################
+
+
+
 end

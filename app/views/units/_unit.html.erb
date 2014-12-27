@@ -1,3 +1,5 @@
+# from units/index.html.erb
+
 <%= div_for unit, class:'machine-container' do %>
     <div class="unit group">
       <header class="quicksand"><%= unit.screenName %></header>
@@ -9,7 +11,8 @@
           <ul>
             <li class="hours"></li>
             <li class="colon1">:</li>
-            <li class="minutes"></li>
+            <!--<li class="minutes"></li>-->
+            <li class="minutes"><%= unit.duration %></li>
             <li class="colon2">:</li>
             <li class="secs"></li>
             <li class="time-label remaining">remaining</li>
@@ -34,7 +37,7 @@
     <section class="user-queue"><!--user queue-->
       <ul>
         <% unit.users.each do |user| %>
-            <%= render :partial => '/unitusers/unit_user', :locals => { user:user, unituser: user.unit_users.where(unit_id: unit.id).first }%>
+            <%= render :partial => '/unitusers/unit_user', :locals => { user:user, unit:unit, unituser: user.unit_users.where(unit_id: unit.id).first }%>
         <% end %>
       </ul>
     </section> <!-- end user queue -->
@@ -42,11 +45,14 @@
     <div id="unit_user_form_<%= unit.id %>" class="unit_user_form">
       <%= minimal_form_for([unit, @unit_user], :remote => true, html: {class: 'form-vertical'}) do |f| %>
           <%= f.error_notification %>
-          <%= f.input :name, :input_html => {:value => @user.name} %>
+          <%= f.input :name, :input_html => {:value => User.last.name} %>
           <%= f.input :phone, :input_html => {:value => @user.phone} %>
-          <%= f.input :SMS, :input_html => {:value => @user.SMS} %>
+          <%= f.input :phone2, :input_html => {:value => @user.phone2} %>
+          <%= f.input :sms, :input_html => {:value => @user.sms} %>
           <%= f.input :email, :input_html => {:value => @user.email} %>
-          <%= f.input :duration %>
+          <%= f.input :email2, :input_html => {:value => @user.email2} %>
+          <%= f.input :duration_hrs %>
+          <%= f.input :duration_min %>
           <%= f.input :note %>
           <%= f.hidden_field :user_id, :value => @user.id %>
           <%= f.error :base %>
@@ -63,6 +69,7 @@
 
         console.log(<%= unit.id %>);
         $('#unit_<%= unit.id %>').draggable();
+        $('#unit_<%= unit.id %>').offset({ top:<%= unit.pos_y %>, left:<%= unit.pos_x %> });
 
         $('#unit_user_form_<%= unit.id %>').hide();
 

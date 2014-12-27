@@ -48,6 +48,7 @@ li { list-style-type: none; }
 
 .unit {
     /*height: 100px;*/
+  position: absolute;
     display: inline-block;
     width: 200px;
     height: 200px;
@@ -304,8 +305,8 @@ li {
 
 .user-queue {
   position: relative;
-  left: 166px;
-  top: -49px;
+  left: -36px;
+  top: 259px;
 }
 
 
@@ -353,21 +354,42 @@ div.complete {
 /******************** Queue styling **********************/
 
 table {
+    table-layout:fixed;
+
     margin-left: 5px;
     margin-right: 5px;
-
     margin-top: 10px;
 }
-.name,.phone,.SMS,.email_,.start_time,.duration,.note,.label {
-//    width: 150px;
-    font-family:'quicksandregular';
-    font-size: 10px;
-//    padding-left: 5px;
-//    border-style: solid;
-//    border-width: thin;
-//    border-color: #333;
+
+.quicksand-bold {
+  font-family:'quicksandbold';
+
 }
 
+.quicksand-reg {
+    font-family:'quicksandregular';
+    font-size: 12px;
+}
+
+.icon {
+  display: inline-block;
+  width: 10px;
+}
+
+.colon {
+  display: inline-block;
+  width: 6px;
+}
+
+.duration_hrs, .duration_min {
+  display:inline-block;
+  width: 15px;
+  text-align: right;
+}
+
+.bip_input_field {
+  width: 15px;
+}
 //.label { width: 30px; }
 
 .user-queue {
