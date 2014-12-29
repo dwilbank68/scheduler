@@ -295,6 +295,11 @@ li {
     font-size: 1.5em;
   }
 
+  .start-time {
+    color:black;
+    background-color: white;
+  }
+
   .note { border-top: 1px solid #6DD6E3 }
 
 }
@@ -331,12 +336,14 @@ li {
 div.remaining {
     margin-top: 3px;
 }
-.hours { left: 12px; }
+.hours, .time-remaining { left: 12px; }
+.time-remaining { top: 1px; }
 .colon1 { left: 36px;}
 .minutes { left: 42px; }
 .colon2 { left: 65px;}
 .secs { left: 72px; }
 .remaining { left: 110px; top: 5px;}
+
 div.complete {
     margin-top: 22px;
     opacity: .5;

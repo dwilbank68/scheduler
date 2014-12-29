@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
   validates :name, :phone, :email,
             :uniqueness => true
 
+  def timezone
+    'Brisbane'
+  end
+
 end
 
 # class Unit < ActiveRecord::Base

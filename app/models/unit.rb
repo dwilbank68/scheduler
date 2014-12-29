@@ -25,5 +25,18 @@ class Unit < ActiveRecord::Base
     446 # placeholder till later
   end
 
+  def time_available
+    # @unit = self.unit
+    if unit_users.length == 0
+      return Time.now
+    else
+      return Time.now + self.duration.minute
+    end
+  end
+
+  def calculated_start_time
+
+  end
+
 
 end

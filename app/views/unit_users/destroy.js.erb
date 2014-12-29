@@ -1,3 +1,7 @@
+var $unit = $('#unit_' + <%= params[:unit_id] %>);
+<%  unit = Unit.find( params[:unit_id] )%>
+
 <% if @unituser.destroyed? %>
     $('#unit_user_' + <%= @unituser.id %>).fadeOut();
+    $unit.find('.remaining').find('.time-remaining').html(<%= unit.duration %>);
 <% end %>

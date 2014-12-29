@@ -26,6 +26,17 @@ $(document).ready(function() {
 
     $('#overlay').hide();
     $('.best_in_place').best_in_place();
+
+    // for closing forms with esc key
+    $(document).keyup(function(e) {
+        if(e.which == 27) {
+            $('#blur-layer').removeClass('blur-in');
+            $('#blur-layer').addClass('blur-out');
+            $('#overlay').fadeOut();
+            $('.unit_user_form').fadeOut();
+        }
+    });
+
     //var unitTemplate = $('#unit-template').innerHTML;
     //console.log("unitTemplate is " + unitTemplate);
 
