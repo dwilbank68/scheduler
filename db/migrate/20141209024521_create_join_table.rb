@@ -4,8 +4,7 @@ class CreateJoinTable < ActiveRecord::Migration
       t.integer :unit_id
       t.integer :user_id
       t.timestamp :start_time
-      t.integer :duration_hrs, :default => 0
-      t.integer :duration_min, :default => 5
+      t.integer :duration, :default => 0
       t.text :note
     end
     add_index :unit_users, :unit_id

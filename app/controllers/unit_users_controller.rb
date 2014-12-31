@@ -14,41 +14,19 @@ class UnitUsersController < ApplicationController
     @unit = Unit.find(params[:unit_id])
     @uu = UnitUser.new(user_id:@user.id, unit_id:@unit.id)
     # @uu.start_time = params[:unit_user][:start_time] - will be Time.now()
-    @uu.duration_hrs = params[:unit_user][:duration_hrs].to_i + (params[:unit_user][:duration_min].to_i / 60)
-    @uu.duration_min = params[:unit_user][:duration_min].to_i % 60
+    @uu.duration = params[:unit_user][:duration]
     @uu.note = params[:unit_user][:note]
 
-
-    respond_with(@uu) do |format|
-      if @uu.save
-        format.html { redirect_to @units }
-      else
-        flash[:error] = "unit_user not created"
-      end
-
-    end
-
-  end
-
-  def edit
+    respond_with(@uu)
 
 
-  end
-
-  def new
   end
 
   def update
     @unit = Unit.find(params[:unit_id])
-    if params[:unit_user][:duration_hrs]
-      dur_hrs = params[:unit_user][:duration_hrs].to_i
-      dur_min = @unit.duration % 60
-    else
-      dur_hrs = @unit.duration / 60
-    end
-    dur_min = params[:unit_user][:duration_min].to_i % 60
+
     respond_to do |format|
-      if @unituser.update(duration_hrs: dur_hrs) || @unituser.update(duration_min: dur_min)
+      if @unituser.update(unit_user_params)
         # format.html { redirect_to(:back, :notice => 'User was successfully updated.') }
         format.json { respond_with_bip(@unituser) }
       else
@@ -87,7 +65,7 @@ class UnitUsersController < ApplicationController
   end
 
   def unit_user_params
-    params.require(:unit_user).permit(:duration_hrs, :duration_min, :note, :id, :unit_id, :user_id)
+    params.require(:unit_user).permit(:duration, :duration, :note, :id, :unit_id, :user_id)
   end
 
 

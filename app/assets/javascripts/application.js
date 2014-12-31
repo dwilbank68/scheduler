@@ -17,15 +17,15 @@
 //= require bootstrap
 
 //= require moment
-//= require bootstrap-datetimepicker
-//= require pickers
 //= require best_in_place
+//= require jquery_ujs
 //= require_tree .
 
 $(document).ready(function() {
 
     $('#overlay').hide();
     $('.best_in_place').best_in_place();
+
 
     // for closing forms with esc key
     $(document).keyup(function(e) {
@@ -35,6 +35,10 @@ $(document).ready(function() {
             $('#overlay').fadeOut();
             $('.unit_user_form').fadeOut();
         }
+    });
+
+    $('.duration-input:visible').on('input', function() {
+        console.log('oowop');
     });
 
     //var unitTemplate = $('#unit-template').innerHTML;

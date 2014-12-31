@@ -19,13 +19,14 @@
         <tr><td><span class="fa fa-calendar"></span></td>       <td class="quicksand-reg calendar"> <%= unituser.start_time.in_time_zone(user.timezone).strftime('%b %e, %l:%M %p') if unituser.start_time %> </td></tr>
         <tr>
           <td><span class="fa fa-clock-o"></span></td>
-          <td class="duration_hrs quicksand-reg" > <%= best_in_place [unit, unituser], :duration_hrs, :as => :input, :place_holder => 'click to edit' %> </td>
-          <td class="colon"><span>:</span></td>
-          <td class="duration_min quicksand-reg" > <%= best_in_place [unit, unituser], :duration_min, :as => :input, :place_holder => 'click to edit' %> </td>
+          <td id="duration<%= unituser.id %>" class="quicksand-reg bip-duration-field">
+            <%= best_in_place [unit, unituser], :duration, :inner_class => "duration-input" , :as => :input, :display_as => :hrs_min %>
+          </td>
+          <!--<td class="quicksand-reg duration-string">hr min</td>-->
         </tr>
         <tr>
           <!--<td class="note" colspan="2"><%#= unituser.note %></td>-->
-          <td class="note quicksand-reg" colspan="2"><%= best_in_place [unituser], :note, :as => :textarea, :place_holder => 'click to edit' %></td>
+          <td class="note quicksand-reg" colspan="2"><%= best_in_place [unit, unituser], :note, :as => :textarea, :place_holder => 'click to edit' %></td>
         </tr>
 
         <tr>
@@ -37,18 +38,23 @@
 
 <script>
 
-//    $('.best_in_place').bind("ajax:success", function () {
-//        var $unit = $('#unit_' + <%#= params[:unit_id] %>);
+  $('#duration<%= unituser.id %>').find('span').on('input', function() {
+      console.log(this);
+  });
+//    $('.best_in_place').on('input', function() { console.log($('.best_in_place').html()); });
+
+    $('.best_in_place').bind("ajax:success", function () {
+    //        var $unit = $('#unit_' + <%#= params[:unit_id] %>);
         <!--<%#  unit = Unit.find( params[:unit_id] )%>-->
-//        $unit.find('.remaining').find('.time-remaining').html(<%#= unit.duration %>);
-//    });
+    //        $unit.find('.remaining').find('.time-remaining').html(<%#= unit.duration %>);
+    //    });
 
 
-//    $('.best_in_place').bind("ajax:success", function () {
-//        $(this).closest.('div .unit').html('highlight');
-//        console.log($(this).closest('div .unit').find('.time-remaining'));
-//        $(this).closest('div .unit').find('div .countdown').find('.time-remaining').html(<%#= unit.duration %>);
-//    });
+    //    $('.best_in_place').bind("ajax:success", function () {
+        $('.duration-string').html('woohoo');
+    //        console.log($(this).closest('div .unit').find('.time-remaining'));
+    //        $(this).closest('div .unit').find('div .countdown').find('.time-remaining').html(<%#= unit.duration %>);
+    });
 
 
 

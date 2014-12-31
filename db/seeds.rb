@@ -11,11 +11,15 @@ require 'faker'
 
 ####### UNITS #######
 
-# t.string   "name"
-# t.string   "screenName"
-# t.string   "position"
-# t.string   "imagePath"
-# t.string   "state"
+# t.string :name
+# t.string :screenName
+# t.string :position
+# t.string :imagePath
+# t.string :state
+# t.integer :duration, :default => 0 # minutes
+# t.timestamp :time_available
+#
+# t.timestamps
 
 machine_names = ['vtr32', 'vtr33', 'vtr35', 'vtr37', 'vtr38']
 machine_screen_names = ['VTR 32', 'VTR 33', 'VTR 35', 'VTR 37', 'VTR 38']
@@ -64,16 +68,15 @@ end
 # t.integer  "duration",   default: 5
 # t.text     "note"
 
-UnitUser.destroy_all
-8.times do
- unit_user = UnitUser.new(
-    unit_id:    Unit.all.sample.id,
-    user_id:    User.all.sample.id,
-    start_time: Time.now,
-    duration_hrs:   rand(0..8),
-    duration_min:   rand(0..59),
-    note:       Faker::Lorem.sentence(rand(0..8))
- )
-  unit_user.save
-
-end
+# UnitUser.destroy_all
+# 8.times do
+#  unit_user = UnitUser.new(
+#     unit_id:    Unit.all.sample.id,
+#     user_id:    User.all.sample.id,
+#     start_time: Time.now,
+#     duration:   rand(0..480),
+#     note:       Faker::Lorem.sentence(rand(0..8))
+#  )
+#   unit_user.save
+#
+# end

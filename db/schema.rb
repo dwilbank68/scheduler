@@ -17,8 +17,7 @@ ActiveRecord::Schema.define(version: 20141221130927) do
     t.integer  "unit_id"
     t.integer  "user_id"
     t.datetime "start_time"
-    t.integer  "duration_hrs", default: 0
-    t.integer  "duration_min", default: 5
+    t.integer  "duration",   default: 0
     t.text     "note"
   end
 
@@ -31,7 +30,8 @@ ActiveRecord::Schema.define(version: 20141221130927) do
     t.string   "position"
     t.string   "imagePath"
     t.string   "state"
-    t.integer  "duration",   default: 0
+    t.integer  "duration",       default: 0
+    t.datetime "time_available"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

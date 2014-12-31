@@ -19,6 +19,20 @@
 @import "bootstrap";
 @import "../fonts/font";
 
+a { text-decoration: none; }
+
+/////////// Fonts /////////////
+
+.quicksand-bold {  font-family:'quicksandbold'; }
+
+.quicksand-reg {
+  font-family:'quicksandregular';
+  font-size: 12px;
+}
+
+.smaller { font-size: 8px; }
+.relative { position: relative; }
+.raised { bottom: 2px; }
 .centered {
   position: fixed;
   top: 50%;
@@ -30,11 +44,6 @@
 
 .user-info { margin-top: 9px; }
 .nav { margin-top: 5px; }
-
-
-.quicksand {
-    font-family: 'quicksandregular';
-}
 
 header {
     text-align: center;
@@ -49,10 +58,10 @@ li { list-style-type: none; }
 .unit {
     /*height: 100px;*/
   position: absolute;
-    display: inline-block;
-    width: 200px;
-    height: 200px;
-    border: solid black;
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border: solid black;
 }
 
 img, .start_time {
@@ -104,17 +113,17 @@ img, .start_time {
 
 
 .blur-in {
-  -webkit-animation: blur 2s forwards;
-  -moz-animation: blur 2s forwards;
-  -o-animation: blur 2s forwards;
-  animation: blur 2s forwards;
+  -webkit-animation: blur 1s forwards;
+  -moz-animation: blur 1s forwards;
+  -o-animation: blur 1s forwards;
+  animation: blur 1s forwards;
 }
 
 .blur-out {
-  -webkit-animation: blur-out 2s forwards;
-  -moz-animation: blur-out 2s forwards;
-  -o-animation: blur-out 2s forwards;
-  animation: blur-out 2s forwards;
+  -webkit-animation: blur-out 1s forwards;
+  -moz-animation: blur-out 1s forwards;
+  -o-animation: blur-out 1s forwards;
+  animation: blur-out 1s forwards;
 }
 
 @-webkit-keyframes blur {
@@ -300,6 +309,23 @@ li {
     background-color: white;
   }
 
+  .bip-duration-field {
+    display: inline-block;
+//    width: 40px;
+  }
+
+  //best_in_place field
+  .duration-input {
+    display: inline-block;
+    width: 40px;
+  }
+
+  .duration-string {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+  }
+
   .note { border-top: 1px solid #6DD6E3 }
 
 }
@@ -350,32 +376,22 @@ div.complete {
 }
 .completed { left: 110px; top: 20px;}
 .completed2 {left: 110px; top: 28px;}
-.time-label {color:#fefffd; font-family:'quicksandregular';
-    font-size:8px; letter-spacing: 2.2px;
-    text-shadow: 0px 0px 6px rgba(141,220,224,1),
-    0px 0px 12px rgba(141,220,224,1),
-    0px 0px 24px rgba(141,220,224,1);
-    /*filter: dropshadow(color=#8ddce0, offx=0, offy=0);*/
+.time-label {
+  color:#fefffd; font-family:'quicksandregular';
+  font-size:8px; letter-spacing: 2.2px;
+  text-shadow: 0px 0px 6px rgba(141,220,224,1),
+  0px 0px 12px rgba(141,220,224,1),
+  0px 0px 24px rgba(141,220,224,1);
+  /*filter: dropshadow(color=#8ddce0, offx=0, offy=0);*/
 }
 
 /******************** Queue styling **********************/
 
 table {
-    table-layout:fixed;
-
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-top: 10px;
-}
-
-.quicksand-bold {
-  font-family:'quicksandbold';
-
-}
-
-.quicksand-reg {
-    font-family:'quicksandregular';
-    font-size: 12px;
+  table-layout:fixed;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 10px;
 }
 
 .icon {
@@ -387,23 +403,3 @@ table {
   display: inline-block;
   width: 6px;
 }
-
-.duration_hrs, .duration_min {
-  display:inline-block;
-  width: 15px;
-  text-align: right;
-}
-
-.bip_input_field {
-  width: 15px;
-}
-//.label { width: 30px; }
-
-.user-queue {
-
-}
-
-a {
-    text-decoration: none;
-}
-

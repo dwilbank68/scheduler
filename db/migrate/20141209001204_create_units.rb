@@ -6,7 +6,8 @@ class CreateUnits < ActiveRecord::Migration
       t.string :position
       t.string :imagePath
       t.string :state
-      t.integer :duration, :default => 0
+      t.integer :duration, :default => 0 # minutes
+      t.timestamp :time_available
 
       t.timestamps
     end
