@@ -28,7 +28,7 @@ class UnitUsersController < ApplicationController
     respond_to do |format|
       if @unituser.update(unit_user_params)
         # format.html { redirect_to(:back, :notice => 'User was successfully updated.') }
-        format.json { respond_with_bip(@unituser) }
+        format.json {respond_with_bip(@unituser) }
       else
         # format.html { render :action => 'edit' }
         format.json { respond_with_bip(@unituser) }

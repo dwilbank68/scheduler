@@ -38,24 +38,11 @@
 
 <script>
 
-  $('#duration<%= unituser.id %>').find('span').on('input', function() {
-      console.log(this);
-  });
-//    $('.best_in_place').on('input', function() { console.log($('.best_in_place').html()); });
-
-    $('.best_in_place').bind("ajax:success", function () {
-    //        var $unit = $('#unit_' + <%#= params[:unit_id] %>);
-        <!--<%#  unit = Unit.find( params[:unit_id] )%>-->
-    //        $unit.find('.remaining').find('.time-remaining').html(<%#= unit.duration %>);
-    //    });
-
-
-    //    $('.best_in_place').bind("ajax:success", function () {
-        $('.duration-string').html('woohoo');
-    //        console.log($(this).closest('div .unit').find('.time-remaining'));
-    //        $(this).closest('div .unit').find('div .countdown').find('.time-remaining').html(<%#= unit.duration %>);
-    });
-
-
+//    $('#unit_user_<%#= unituser.id %> .best_in_place').bind("ajax:success", function () {
+//        console.log(<%#= unit.duration %>);
+//        console.log(<%#= Unit.find(1).unit_users.pluck(:duration).sum %>);
+//        var $unit = $('#unit_' + <%#= unit.id %>);
+//        $unit.find('.remaining').find('.time-remaining').html(<%#=unit.duration / 60%>+"<span class='smaller raised'>hrs</span> "+<%#=unit.duration % 60%> + "<span class='smaller raised'>min</span>");
+//    });
 
 </script>

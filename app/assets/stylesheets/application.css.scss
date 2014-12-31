@@ -30,7 +30,7 @@ a { text-decoration: none; }
   font-size: 12px;
 }
 
-.smaller { font-size: 8px; }
+.smaller { font-size: 8px; position: relative;} // because class="relative raised smaller" kept causing errors
 .relative { position: relative; }
 .raised { bottom: 2px; }
 .centered {
