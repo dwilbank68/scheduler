@@ -1,4 +1,7 @@
 class UnitsController < ApplicationController
+
+  # before_action :authenticate_user!
+
   def index
     @units = Unit.all
     @user = User.last #until current_user arrives with Devise
