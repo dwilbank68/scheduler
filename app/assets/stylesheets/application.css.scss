@@ -12,11 +12,13 @@
  *
  *= require jquery-ui
  *= require bootstrap-datetimepicker.min
+ *= require font-awesome
  *= require_tree .
  *= require_self
  */
 
 @import "bootstrap";
+@import "../font-awesome-4.2.0/css/font-awesome.css";
 @import "../fonts/font";
 @import "signin";
 
@@ -55,6 +57,14 @@ body {
 }
 
 li { list-style-type: none; }
+
+////////////////////// menu ////////////////////
+
+
+
+////////////////////////////////////////////////
+
+
 
 .unit {
     /*height: 100px;*/
