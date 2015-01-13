@@ -51,9 +51,9 @@ gem 'figaro'
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'pundit'
 gem 'simple_form', '~> 3.1.0.rc2'
-#gem 'carrierwave'
-#gem 'mini_magick'
-#gem 'fog'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
 
 gem 'momentjs-rails', '>= 2.8.1', :github => 'derekprior/momentjs-rails'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true

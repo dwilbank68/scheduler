@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :unit_users
   belongs_to :unit
@@ -23,8 +23,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable, :timeoutable,# :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
+  # phony_normalize :phone, :default_country_code => 'US'
+  # phony_normalize :phone2, :default_country_code => 'US'
+
+  mount_uploader :avatar, AvatarUploader
+
   def timezone
-    "Brisbane"
+    "US/Pacific"
   end
 
 end

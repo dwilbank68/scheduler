@@ -18,11 +18,54 @@
  */
 
 @import "bootstrap";
-@import "../font-awesome-4.2.0/css/font-awesome.css";
+@import "font-awesome.css";
 @import "../fonts/font";
 @import "signin";
+@import "flags";
+@import "intlTelInput";
 
 a { text-decoration: none; }
+
+#user-edit {
+  background-color: black;
+  color: white;
+}
+
+/////////////// Global Style //////////////
+
+input {
+  background-color: black;
+  color: white;
+}
+
+.country{
+  background-color: black;
+  color: white;
+}
+
+.highlight {
+  background-color: #333;
+}
+
+.light-blue { color: #6DD6E3; }
+
+.white-glow-dim {
+  color:#fff; display:inline-block;
+  text-shadow: 0px 0px 3px rgba(141,220,224,1),
+               0px 0px 6px rgba(141,220,224,1);
+}
+
+.white-glow {
+  color:#fff; display:inline-block;
+  text-shadow: 0px 0px 6px rgba(141,220,224,1),
+  0px 0px 12px rgba(141,220,224,1),
+  0px 0px 24px rgba(141,220,224,1);
+}
+
+.smaller { font-size: .75em; }
+
+//row to create space
+.spacer {  height: 5px; }
 
 /////////// Fonts /////////////
 
@@ -31,6 +74,26 @@ a { text-decoration: none; }
 .quicksand-reg {
   font-family:'quicksandregular';
   font-size: 12px;
+}
+
+.ocra {
+  font-family: 'ufonts_com_ocra';
+  font-size: 12px;
+}
+
+.vitro-reg-3 {
+  font-family:'VitroRegular3';
+  font-size: 12px;
+}
+
+.korataki-ext-bold {
+  font-family: 'KoratakiExtraBold';
+  font-size: 10px;
+}
+
+.nedian-bold {
+  font-family: 'NedianBold';
+  font-size: 14px;
 }
 
 .smaller { font-size: 8px; position: relative;} // because class="relative raised smaller" kept causing errors
@@ -53,7 +116,7 @@ header {
     height: 50px;
 }
 body {
-  background-color: gray;
+  background-color: #061526;
 }
 
 li { list-style-type: none; }
@@ -62,9 +125,7 @@ li { list-style-type: none; }
 
 
 
-////////////////////////////////////////////////
-
-
+////////////////////// unit /////////////////////
 
 .unit {
     /*height: 100px;*/
@@ -75,7 +136,11 @@ li { list-style-type: none; }
   border: solid black;
 }
 
-img, .start_time {
+.unit-image {
+  width: 190px;
+}
+
+.start_time {
  width: 200px;
 }
 
@@ -100,7 +165,7 @@ img, .start_time {
   height: 100%;
   width: 100%;
   position: fixed;
-  z-index: 1;
+//  z-index: 1;
 }
 
 #non-blur-layer {
@@ -291,11 +356,16 @@ li {
   padding-bottom: 1px;
 }
 
+.fa-column {
+  width: 30px;
+}
+
+.fa {
+  margin-left: 5px;
+}
+
 .unit-user {
   width: 200px;
-//  color: #6DD6E3;
-//  margin-top: -263px;
-//  margin-left: 160px;
   border-width: 2px 8px;
   border-style: solid;
   border-color: #6DD6E3;
@@ -313,12 +383,13 @@ li {
     color: black;
     text-align: center;
     font-size: 1.5em;
+//    margin-left: -8px;  // if grid is not set in container class
+    margin-left: -23px; // if grid is set in container class
+    border-radius: 15px 15px 0 0;
+    -moz-border-radius: 15px 15px 0 0;
+    -webkit-border-radius: 15px 15px 0 0;
   }
 
-  .start-time {
-    color:black;
-    background-color: white;
-  }
 
   .bip-duration-field {
     display: inline-block;
@@ -337,10 +408,12 @@ li {
     text-align: right;
   }
 
-  .note { border-top: 1px solid #6DD6E3 }
+  .note {
+    border-top: 1px solid #6DD6E3;
+  }
 
 }
-/////////////////////////////////////////////////
+/////////////////end unit-user ///////////////////
 
 
 ////////////////// user-queue ////////////////////
@@ -351,9 +424,7 @@ li {
   top: 259px;
 }
 
-
 //////////////////////////////////////////////////
-
 
 
 .numbers {
@@ -361,18 +432,16 @@ li {
     position: relative;
     background-color: #112;
     /*background:url(../img/led-bg.png) 0px 6px no-repeat;*/
-    color:#fff; display:inline-block;
+    display:inline-block;
     /*text-align:right; float:right;*/
     font-family: 'quicksandregular';
     font-size:14px; letter-spacing:3px; margin:12px 6px 0 0;
-    text-shadow: 0px 0px 6px rgba(141,220,224,1),
-    0px 0px 12px rgba(141,220,224,1),
-    0px 0px 24px rgba(141,220,224,1);
-    /*filter: dropshadow(color=#8ddce0, offx=0, offy=0);*/
 }
+
 div.remaining {
     margin-top: 3px;
 }
+
 .hours, .time-remaining { left: 12px; }
 .time-remaining { top: 1px; }
 .colon1 { left: 36px;}

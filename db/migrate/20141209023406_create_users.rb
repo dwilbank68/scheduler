@@ -2,6 +2,7 @@ class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
       t.string :name, :null => false
+      t.string :country
       t.string :phone
       t.string :phone2
       t.string :email

@@ -4,4 +4,9 @@ var $unit = $('#unit_' + <%= params[:unit_id] %>);
 <% if @unituser.destroyed? %>
     $('#unit_user_' + <%= @unituser.id %>).fadeOut();
     $unit.find('.remaining').find('.time-remaining').html(<%=unit.duration / 60%>+"<span class='smaller relative raised'>hrs</span> " + <%= unit.duration % 60 %> + "<span class='smaller relative raised'>min</span>");
+//    refresh all unitusers start and end times
+    <% unit.unit_users.each do |unit_user| %>
+        $('#start_time_<%= unit_user.id %>').html('<%= unit_user.start_time.in_time_zone(unit_user.user.timezone).strftime('%b %e, %l:%M %p') if unit_user.start_time %>')
+        $('#end_time_<%= unit_user.id %>').html('<%= unit_user.end_time.in_time_zone(unit_user.user.timezone).strftime('%b %e, %l:%M %p') if unit_user.end_time %>')
+    <% end %>
 <% end %>

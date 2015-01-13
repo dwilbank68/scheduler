@@ -2,47 +2,95 @@
 <!--<p>unit.id in _unit_user is <%#= unit.id %></p>-->
 <!--TODO - fix best_in_place input field width, and make tabbing between inputs work correctly-->
 
-
-<p>unit id is <%= unit.id %></p>
-
-
 <%= content_tag_for :li, unituser do %>
-    <div class="unit-user">
-      <table>
-        <!--<tr> <td>unituser_<%#= unituser.id %></td> </tr>-->
-        <tr><td class="name quicksand-reg" colspan="2" ><%= user.name.truncate(12) %> <%= user.id %></td></tr>
-        <tr><td><span class="fa fa-envelope"></span></td>       <td class="quicksand-reg email">    <%= user.email.truncate(20) %></td></tr>
-        <tr><td><span class="fa fa-envelope"></span></td>       <td class="quicksand-reg email2">   <%= user.email2.truncate(20) if user.email2 %></td></tr>
-        <tr><td><span class="fa fa-phone-square"></span></td>   <td class="quicksand-reg phone">    <%= user.phone %></td></tr>
-        <tr><td><span class="fa fa-phone-square"></span></td>   <td class="quicksand-reg phone2">   <%= user.phone2 %></td></tr>
-        <tr><td><span class="fa fa-mobile fa-2x"></span></td>   <td class="quicksand-reg sms">      <%= user.sms %> </td></tr>
-        <tr><td><span class="fa fa-calendar"></span></td>       <td class="quicksand-reg calendar"> <%= unituser.start_time.in_time_zone(user.timezone).strftime('%b %e, %l:%M %p') if unituser.start_time %> </td></tr>
-        <tr>
-          <td><span class="fa fa-clock-o"></span></td>
-          <td id="duration<%= unituser.id %>" class="quicksand-reg bip-duration-field">
-            <%= best_in_place [unit, unituser], :duration, :inner_class => "duration-input" , :as => :input, :display_as => :hrs_min %>
-          </td>
-          <!--<td class="quicksand-reg duration-string">hr min</td>-->
-        </tr>
-        <tr>
-          <!--<td class="note" colspan="2"><%#= unituser.note %></td>-->
-          <td class="note quicksand-reg" colspan="2"><%= best_in_place [unit, unituser], :note, :as => :textarea, :place_holder => 'click to edit' %></td>
-        </tr>
 
-        <tr>
-          <td> <%= link_to "X", [unit,unituser], method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-danger" %> </td>
-        </tr>
-      </table>
+    <div class="container unit-user">
+
+        <!--<div class="row name quicksand-reg"><%#= user.id %> <%#= user.name.truncate(12) %> <%#= unituser.id %></div>-->
+        <!--<div class="row">-->
+          <!--<div class="col-xs-2 fa-column"><span class="fa fa-envelope white-glow"></span></div> <div class="col-xs-10 quicksand-reg email white-glow"><%#= user.email.truncate(20) %></div>-->
+        <!--</div>-->
+        <!--<div class="row">-->
+          <!--<div class="col-xs-2 fa-column"><span class="fa fa-envelope white-glow"></span></div> <div class="col-xs-10 quicksand-reg email2 white-glow"><%#= user.email2.truncate(20) %></div>-->
+        <!--</div>-->
+        <!--<div class="row">-->
+          <!--<div class="col-xs-2 fa-column"><span class="fa fa-phone-square white-glow"></span></div> <div class="col-xs-10 quicksand-reg phone white-glow"><%#= user.phone %></div>-->
+        <!--</div>-->
+        <!--<div class="row">-->
+          <!--<div class="col-xs-2 fa-column"><span class="fa fa-phone-square white-glow"></span></div> <div class="col-xs-10 quicksand-reg phone2 white-glow"><%#= user.phone2 %></div>-->
+        <!--</div>-->
+        <!--<div class="row">-->
+          <!--<div class="col-xs-2 fa-column"><span class="fa fa-mobile white-glow"></span></div> <div class="col-xs-10 quicksand-reg sms white-glow"><%#= user.phone2 %></div>-->
+        <!--</div>-->
+
+      <div class="row name nedian-bold"><%= user.id %> <%= user.name.truncate(12) %> <%= unituser.id %></div>
+      <div class="spacer"></div>
+      <div class="row">
+        <div class="col-xs-3"><%= image_tag(current_user.avatar.profile.url, :class => 'img-rounded') if current_user.avatar? %></div>
+        <div class="col-xs-9">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-10 quicksand-reg email white-glow smaller"><%= user.email.truncate(20) %></div>
+            </div>
+            <div class="row">
+              <div class="col-xs-10 quicksand-reg email2 white-glow smaller"><%= user.email2.truncate(20) %></div>
+            </div>
+            <div class="row">
+              <div class="col-xs-10 quicksand-reg phone white-glow smaller"><%= formatted_phone(user.phone) %></div>
+            </div>
+            <div class="row">
+              <div class="col-xs-10 quicksand-reg phone2 white-glow smaller"><%= formatted_phone(user.phone2) %></div>
+            </div>
+            <!-- delete this line, assuming sms will always be the same as phone number -->
+            <!--<div class="row">-->
+              <!--<div class="col-xs-10 quicksand-reg sms white-glow"><%#= formatted_phone(user.sms) %></div>-->
+            <!--</div>-->
+          </div>
+        </div>
+      </div>
+
+      <div class="spacer">----------</div>
+
+
+
+
+        <div class="row">
+          <div class="col-xs-3 nedian-bold white-glow-dim" id="start_time_<%= unituser.id %>">BEG</div> <div class="col-xs-9 quicksand-reg white-glow"><%= unituser.start_time.in_time_zone(user.timezone).strftime('%b %e, %l:%M %p') if unituser.start_time %></div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-3 nedian-bold white-glow-dim" id="duration_<%= unituser.id %>">DUR</div>
+          <div class="col-xs-9 quicksand-reg bip-duration-field white-glow">
+            <%= best_in_place [unit, unituser], :duration, :inner_class => "duration-input" , :as => :input, :display_as => :hrs_min %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-3 nedian-bold white-glow-dim" id="end_time_<%= unituser.id %>">END</div> <div class="col-xs-9 quicksand-reg white-glow"><%= unituser.end_time.in_time_zone(user.timezone).strftime('%b %e, %l:%M %p') if unituser.end_time %></div>
+        </div>
+
+        <div>
+          <div class="note quicksand-reg white-glow">
+            <%= best_in_place [unit, unituser], :note, :as => :textarea, :place_holder => 'click to edit' %>
+          </div>
+        </div>
+
+        <div>
+          <%= link_to "X", [unit,unituser], method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>
+        </div>
+
+
     </div>
+
 <% end %>
 
 <script>
 
-//    $('#unit_user_<%#= unituser.id %> .best_in_place').bind("ajax:success", function () {
-//        console.log(<%#= unit.duration %>);
+    $('#unit_user_<%#= unituser.id %> .best_in_place').bind("ajax:success", function () {
+        console.log(<%#= unit.duration %>);
 //        console.log(<%#= Unit.find(1).unit_users.pluck(:duration).sum %>);
 //        var $unit = $('#unit_' + <%#= unit.id %>);
 //        $unit.find('.remaining').find('.time-remaining').html(<%#=unit.duration / 60%>+"<span class='smaller raised'>hrs</span> "+<%#=unit.duration % 60%> + "<span class='smaller raised'>min</span>");
-//    });
+    });
 
 </script>

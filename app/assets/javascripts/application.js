@@ -19,11 +19,14 @@
 //= require moment
 //= require best_in_place
 //= require jquery_ujs
+//= require intlTelInput
+//= require data
 //= require_tree .
 
 $(document).ready(function() {
 
     $('#overlay').hide();
+    $('#user-edit-form').hide();
     $('.best_in_place').best_in_place();
 
 
@@ -34,6 +37,7 @@ $(document).ready(function() {
             $('#blur-layer').addClass('blur-out');
             $('#overlay').fadeOut();
             $('.unit_user_form').fadeOut();
+            $('#user-edit-form').fadeOut();
         }
     });
 

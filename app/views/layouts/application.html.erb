@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <meta http-equiv="refresh" content="30">
 </head>
 <body>
 
@@ -17,8 +18,9 @@
 
   <div class="pull-right user-info">
     <% if current_user %>
-        <%#= image_tag(current_user.avatar.tiny.url) if current_user.avatar? %>
-        Hello <%= link_to (current_user.name || current_user.email), current_user %>!
+        <%= image_tag(current_user.avatar.tiny.url) if current_user.avatar? %>
+        <!--Hello <%#= link_to (current_user.name || current_user.email), edit_user_path(current_user) %>!-->
+        Hello <button id="<%= current_user.id %>"><%= current_user.name %></button>!
         <%= link_to edit_user_registration_path, class: 'btn btn-primary btn-sm' do %>
             <span class="glyphicon glyphicon-user"></span>
         <% end %>
@@ -40,8 +42,69 @@
     <p class="alert"><%= alert %></p>
     <div id="overlay"></div>
 
-    <div id="non-blur-layer"></div> <!-- where the modal form attaches -->
+    <div id="non-blur-layer">
+      <div id="user-edit-form">
+        <div class="row">
+          <div id="user-edit" class="col-sm-4 col-sm-offset-4 col-xs-12 bordered glow ">
+            <h1 class="ocra ">User Information</h1>
+            <%= simple_form_for current_user, defaults: {input_html: {class: 'ocra', color: 'white'}} do |f| %>
+                <%= f.error_notification %>
+                <%= f.input :name, label: 'Screen Name', wrapper_html: {class: 'ocra'} %>
+                <%= f.input :email, label: 'Email' %>
+                <%= f.input :email2, label: 'Email - Alternate' %>
+                <%= f.input :phone, label: 'Phone', input_html: {id: 'phone'} %>
+                <%= f.input :phone2, label: 'Phone - Alternate', input_html: {id: 'phone2'} %>
+                <% if current_user.avatar? %>
+                <p>Current Avatar</p>-->
+                <%= image_tag( current_user.avatar.profile.url ) %>
+                <% end %>
+                <%= f.file_field :avatar %>
+                <%= f.hidden_field :avatar_cache %>
+                <%= f.error :base %>
+                <%= f.button :submit %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div> <!-- where the modal form attaches -->
 
 
 </body>
 </html>
+
+
+<script>
+
+  $(document).ready(function() {
+      var $user_form = $('#user-edit-form');
+      $('#overlay').hide();
+      $("#phone").intlTelInput();
+      $("#phone2").intlTelInput();
+
+      $('#<%= current_user.id %>').on('click', function(){
+
+          // detach form from machine unit and reattach it to non-blurring layer, which is z-index 2
+          $('#non-blur-layer').append($user_form);
+
+          // blur the container which holds all the machines ( z-index 0)
+          $('#blur-layer').removeClass('blur-out');
+          $('#blur-layer').addClass('blur-in');
+
+          // bring in the tinted overlay to prevent click-through
+          $('#overlay').fadeIn();
+
+          // bring in the form, which SHOULD BE Z-INDEX 3
+          $user_form.fadeIn().css({top:($(window).height()/2)-107, left:($(window).width()/2)-200, zIndex:999});
+
+      });
+
+
+
+
+
+  });
+
+
+
+
+</script>

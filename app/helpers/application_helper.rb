@@ -5,4 +5,9 @@ module ApplicationHelper
     hrsmin.html_safe
   end
 
+  def formatted_phone(number) #US Numbers only, for now
+    digits = number.gsub(/\D/, '')#.split(//)
+    "#{digits[0]} (#{digits[1,3]}) #{digits[4,3]}-#{digits[7,4]}"# % [ digits[0,3], digits[3,3], digits[6,4] ]
+  end
+
 end

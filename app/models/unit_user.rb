@@ -7,7 +7,7 @@ class UnitUser < ActiveRecord::Base
   after_commit :update_total_time
   after_destroy :update_total_time
 
-  default_scope {order('start_time DESC')}
+  default_scope {order('created_at ASC')}
 
   def hrs_min
     "#{self.duration / 60} hrs #{self.duration % 60} min"
@@ -22,16 +22,16 @@ private
     @unit = self.unit
     @unit.duration = get_total_time
     @unit.save
-    puts "*"*30
-    puts "@unit.duration is #{@unit.duration}"
-    puts "*"*30
+    # puts "*"*30
+    # puts "@unit.duration is #{@unit.duration}"
+    # puts "*"*30
   end
 
   def get_total_time
     total_queue_duration = @unit.unit_users.pluck(:duration).sum
-    puts "*"*30
-    puts "total_queue_duration is #{total_queue_duration} - #{@unit.unit_users.count} in queue"
-    puts "*"*30
+    # puts "*"*30
+    # puts "total_queue_duration is #{total_queue_duration} - #{@unit.unit_users.count} in queue"
+    # puts "*"*30
     total_queue_duration
   end
 
