@@ -14,7 +14,6 @@ class UnitUsersController < ApplicationController
     @unit = Unit.find(params[:unit_id])
     @uu = UnitUser.new(user_id:@user.id, unit_id:@unit.id)
     @uu.duration = params[:unit_user][:duration]
-
     # @uu.start_time = params[:unit_user][:start_time] - will be Time.now()
     @uu.note = params[:unit_user][:note]
     @uu.save
@@ -28,15 +27,18 @@ class UnitUsersController < ApplicationController
     @uu.end_time = @uu.start_time + @uu.duration.minutes
     @uu.save
     respond_with(@uu)
-
-
   end
 
   def update
-    @unit = Unit.find(params[:unit_id])
+    # @unit = Unit.find(params[:unit_id])
+    @unit = @unituser.unit
 
     respond_to do |format|
       if @unituser.update(unit_user_params)
+        @unit.reload
+        logger.info('-----------------------------------------------------------------')
+        logger.info('@unit.duration in the controller is ' + @unit.duration.to_s)
+        logger.info('-----------------------------------------------------------------')
         format.json {respond_with_bip(@unituser) }
       else
         # format.html { render :action => 'edit' }
@@ -98,7 +100,8 @@ class UnitUsersController < ApplicationController
 
   def find_user
     # @user = User.find(params[:unit_user][:user_id].to_i)
-    @user = User.last # until current_user is available from Devise
+    # @user = User.last # until current_user is available from Devise
+    @user = current_user
   end
 
   def unit_user_params

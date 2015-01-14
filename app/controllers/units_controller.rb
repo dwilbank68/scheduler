@@ -4,7 +4,8 @@ class UnitsController < ApplicationController
 
   def index
     @units = Unit.all
-    @user = User.last #until current_user arrives with Devise
+    # @user = User.last #until current_user arrives with Devise
+    @user = current_user #until current_user arrives with Devise
     @unit_user = UnitUser.new
   end
 

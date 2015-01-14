@@ -133,7 +133,7 @@ li { list-style-type: none; }
   display: inline-block;
   width: 200px;
   height: 200px;
-  border: solid black;
+  border: solid white 1px;
 }
 
 .unit-image {
@@ -368,7 +368,7 @@ li {
   width: 200px;
   border-width: 2px 8px;
   border-style: solid;
-  border-color: #6DD6E3;
+  border-color: white;
   border-radius: 15px ;
   -moz-border-radius: 15px ;
   -webkit-border-radius: 15px ;
@@ -379,7 +379,7 @@ li {
 
   .name {
     width: 200px;
-    background: #6DD6E3;
+    background: white;
     color: black;
     text-align: center;
     font-size: 1.5em;
@@ -409,7 +409,7 @@ li {
   }
 
   .note {
-    border-top: 1px solid #6DD6E3;
+    border-top: 1px solid white;
   }
 
 }
