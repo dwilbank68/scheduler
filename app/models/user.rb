@@ -28,6 +28,8 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
+
+
   def timezone
     "US/Pacific"
   end

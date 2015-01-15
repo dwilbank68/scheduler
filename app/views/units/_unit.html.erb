@@ -42,7 +42,6 @@
           <%= f.input :name, :input_html => {:value => User.last.name}, disabled: true %>
           <%= f.input :phone, :input_html => {:value => @user.phone}, disabled: true %>
           <%= f.input :phone2, :input_html => {:value => @user.phone2}, disabled: true %>
-          <%= f.input :sms, :input_html => {:value => @user.sms}, disabled: true %>
           <%= f.input :email, :input_html => {:value => @user.email}, disabled: true %>
           <%= f.input :email2, :input_html => {:value => @user.email2}, disabled: true %>
           <span class = 'start-time'><%= unit.time_available.in_time_zone(@user.timezone).strftime('%b %e, %l:%M %p') %></span>
@@ -83,7 +82,7 @@
             // bring in the tinted overlay to prevent click-through
             $('#overlay').fadeIn();
 
-            // bring in the form, which SHOULD BE Z-INDEX 2
+            // bring in the form, at a higher z-index
             $($form).fadeIn().css({top:($(window).height()/2)-107, left:($(window).width()/2)-200, zIndex:3});
 
             // set up listener to convert minutes into a convenient hrs and minutes string

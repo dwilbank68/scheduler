@@ -1,13 +1,3 @@
-# t.string :name
-# t.string :screenName
-# t.string :position
-# t.string :imagePath
-# t.string :state
-# t.integer :duration, :default => 0 # minutes
-# t.timestamp :time_available
-#
-# t.timestamps
-
 class Unit < ActiveRecord::Base
 
   belongs_to :owner
@@ -33,8 +23,10 @@ class Unit < ActiveRecord::Base
     end
   end
 
-  def total_duration
-
+  def duration_hrs_min
+    # "#{self.duration / 60} hrs #{self.duration % 60} min"
+    hrsmin = "<span>#{self.duration / 60}</span><span class='smaller relative raised'>hrs</span> <span>#{self.duration % 60}</span><span class='smaller relative raised'>min</span>"
+    hrsmin.html_safe
   end
 
   def calculated_start_time

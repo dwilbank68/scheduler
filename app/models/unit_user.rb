@@ -9,8 +9,10 @@ class UnitUser < ActiveRecord::Base
 
   default_scope {order('created_at ASC')}
 
-  def hrs_min
-    "#{self.duration / 60} hrs #{self.duration % 60} min"
+  def duration_hrs_min
+    # "#{self.duration / 60} hrs #{self.duration % 60} min"
+    hrsmin = "<span>#{self.duration / 60}</span><span class='smaller relative raised'>hrs</span> <span>#{self.duration % 60}</span><span class='smaller relative raised'>min</span>"
+    hrsmin.html_safe
   end
 
 private
