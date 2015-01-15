@@ -56,7 +56,11 @@ class UnitUsersController < ApplicationController
         end
 
         # format.json {respond_with_bip(@unituser) } # got rid of this and mimicked the functionality in the ajax callback
-        format.json { render :json => {:unit_duration => @unit.duration_hrs_min, :unit_user_duration => @unituser.duration_hrs_min, :unit_user_end => @unituser.end_time.in_time_zone(@unituser.user.timezone).strftime('%b %e, %l:%M %p') }}
+        format.json { render :json => {:unit_duration => @unit.duration_hrs_min,
+                                       :unit_user_duration => @unituser.duration_hrs_min,
+                                       :unit_user_end => @unituser.end_time.in_time_zone(@unituser.user.timezone).strftime('%b %e, %l:%M %p'),
+                                       :unit_user_queue => @unit.unit_users }
+        }
       else
         # format.html { render :action => 'edit' }
         format.json { respond_with_bip(@unituser) }

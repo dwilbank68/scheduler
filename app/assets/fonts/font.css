@@ -106,3 +106,13 @@
     url('NedianBold.ttf') format('truetype'),
     url('NedianBold.svg#NedianBold') format('svg');
 }
+
+@font-face {
+    font-family: 'HighlandGothicFLFBold';
+    src: url('HighlandGothicFLFBold.eot');
+    src: url('HighlandGothicFLFBold.eot') format('embedded-opentype'),
+    url('HighlandGothicFLFBold.woff2') format('woff2'),
+    url('HighlandGothicFLFBold.woff') format('woff'),
+    url('HighlandGothicFLFBold.ttf') format('truetype'),
+    url('HighlandGothicFLFBold.svg#HighlandGothicFLFBold') format('svg');
+}

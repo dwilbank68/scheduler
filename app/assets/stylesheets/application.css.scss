@@ -86,6 +86,11 @@ input {
   font-size: 12px;
 }
 
+.highland-goth-bold {
+  font-family: 'HighlandGothicFLFBold';
+  font-size: 12px;
+}
+
 .korataki-ext-bold {
   font-family: 'KoratakiExtraBold';
   font-size: 10px;
@@ -380,16 +385,20 @@ li {
   .name {
     width: 200px;
     background: white;
-    color: black;
+    color: #061526;
     text-align: center;
-    font-size: 1.5em;
-//    margin-left: -8px;  // if grid is not set in container class
-    margin-left: -23px; // if grid is set in container class
+    font-size: 1em;
+    margin-left: -8px;  // if grid is not set in container class
+//    margin-left: -23px; // if grid is set in container class
     border-radius: 15px 15px 0 0;
     -moz-border-radius: 15px 15px 0 0;
     -webkit-border-radius: 15px 15px 0 0;
   }
 
+  .beg-dur-end {
+    margin-top: 6px;
+    line-height: 1em;
+  }
 
   .bip-duration-field {
     display: inline-block;
