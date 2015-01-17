@@ -29,9 +29,18 @@ class Unit < ActiveRecord::Base
     hrsmin.html_safe
   end
 
-  def calculated_start_time
-
+  def unit_users_time_formatted
+    new_arr = []
+    self.unit_users.each do |uu|
+      obj = {}
+      obj["id"] = uu.id
+      obj["start_time"] = uu.start_time_formatted
+      obj["end_time"] = uu.end_time_formatted
+      obj["duration"] = uu.duration_hrs_min
+      # puts obj.inspect
+      new_arr << obj
+    end
+    new_arr
   end
-
 
 end

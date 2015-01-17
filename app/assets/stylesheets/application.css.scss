@@ -49,10 +49,11 @@ input {
 
 .light-blue { color: #6DD6E3; }
 
+.black { color: black; display: inline-block;}
+
 .white-glow-dim {
   color:#fff; display:inline-block;
-  text-shadow: 0px 0px 3px rgba(141,220,224,1),
-               0px 0px 6px rgba(141,220,224,1);
+  text-shadow: 0px 0px 6px rgba(141,220,224,1);
 }
 
 .white-glow {
@@ -67,9 +68,31 @@ input {
 //row to create space
 .spacer {  height: 5px; }
 
+.border-bottom {
+  border-bottom-width: 1px;
+  border-style: solid;
+  border-color: #AAA;
+}
+
+.lowered {
+  margin-top: 2px;
+}
+
+.border-right {
+  border-right: 1px solid white;
+}
+
 /////////// Fonts /////////////
 
-.quicksand-bold {  font-family:'quicksandbold'; }
+.arame-bold {
+  font-family:'ArameBold';
+  font-size: 12px;
+}
+
+.quicksand-bold {
+  font-family:'quicksandbold';
+  font-size: 12px;
+}
 
 .quicksand-reg {
   font-family:'quicksandregular';
@@ -81,29 +104,30 @@ input {
   font-size: 12px;
 }
 
-.vitro-reg-3 {
-  font-family:'VitroRegular3';
-  font-size: 12px;
+.microgramma-bold {
+  font-family: 'MicrogrammaDBolExt_3';
 }
 
-.highland-goth-bold {
-  font-family: 'HighlandGothicFLFBold';
-  font-size: 12px;
+.microgramma {
+  font-family: 'MicrogrammaDMediumExtended';
+  font-size: .8em;
 }
 
-.korataki-ext-bold {
-  font-family: 'KoratakiExtraBold';
-  font-size: 10px;
+
+.neotech-ultra {
+  font-family: 'NeoTechProUltra';
 }
 
-.nedian-bold {
-  font-family: 'NedianBold';
-  font-size: 14px;
+.neotech-black {
+  font-family: 'NeoTechStdBlack';
+  font-size: 1em;
 }
-
+.spaced { letter-spacing: 7px; }
 .smaller { font-size: 8px; position: relative;} // because class="relative raised smaller" kept causing errors
+.larger { font-size: 1.4em; }
 .relative { position: relative; }
-.raised { bottom: 2px; }
+.raised { bottom: 1px; }
+.txt-centered { text-align: center }
 .centered {
   position: fixed;
   top: 50%;
@@ -380,6 +404,11 @@ li {
 
   table {
     margin: 0;
+  }
+
+  .unit-name {
+    background-color: white;
+    color: #061526;
   }
 
   .name {

@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'MicrogrammaDMediumExtended';
+    src: url('fonts/MicrogrammaDMediumExtended.eot');
+    src: url('fonts/MicrogrammaDMediumExtended.eot') format('embedded-opentype'),
+         url('fonts/MicrogrammaDMediumExtended.woff2') format('woff2'),
+         url('fonts/MicrogrammaDMediumExtended.woff') format('woff'),
+         url('fonts/MicrogrammaDMediumExtended.ttf') format('truetype'),
+         url('fonts/MicrogrammaDMediumExtended.svg#MicrogrammaDMediumExtended') format('svg');
+}

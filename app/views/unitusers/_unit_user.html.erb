@@ -7,8 +7,9 @@
     <div class="container unit-user">
 
       <div class="row">
-        <div class="col-xs-12 name highland-goth-bold">sdf <%= user.id %> <%= user.name.truncate(12) %> <%= unituser.id %> </div>
+        <div class="col-xs-12 microgramma-bold larger name"><%= user.id %> <%= user.name.truncate(12) %> <%= unituser.id %> </div>
       </div>
+      <div class="spacer"></div>
       <div class="spacer"></div>
       <div class="row">
         <div class="col-xs-3"><%= image_tag(current_user.avatar.profile.url, :class => 'img-rounded') if current_user.avatar? %></div>
@@ -34,22 +35,21 @@
 
 
         <div class="row">
-          <div class="col-xs-3 highland-goth-bold white-glow-dim beg-dur-end" >BEG</div>
-          <div class="col-xs-9 quicksand-reg white-glow" id="start_time_<%= unituser.id %>"><%= unituser.start_time.in_time_zone(user.timezone).strftime('%b %e, %l:%M %p') if unituser.start_time %></div>
+          <div class="col-xs-3 microgramma white-glow lowered spaced" >BEG</div>
+          <div class="col-xs-9 quicksand-reg white-glow txt-centered" id="start_time_<%= unituser.id %>"><%= unituser.start_time.in_time_zone(user.timezone).strftime('%b %e, %l:%M %p') if unituser.start_time %></div>
         </div>
 
         <div class="row">
-          <div class="col-xs-3 highland-goth-bold white-glow-dim beg-dur-end" id="duration_<%= unituser.id %>">DUR</div>
-          <div class="col-xs-9 quicksand-reg bip-duration-field white-glow">
+          <div class="col-xs-3 microgramma white-glow lowered spaced" id="duration_<%= unituser.id %>">DUR</div>
+          <div class="col-xs-9 quicksand-reg bip-duration-field white-glow txt-centered">
             <!-- #hrs_min is a method in the unit_user class - returns a formatted duration string -->
             <%= best_in_place [unit, unituser], :duration, :inner_class => "duration-input" , :as => :input, :data => { :unit_duration => unit.duration }, :display_as => :duration_hrs_min %>
           </div>
         </div>
 
         <div class="row">
-          <!--<div class="col-xs-3 highland-goth-bold white-glow-dim" id="end_time_<%#= unituser.id %>">END</div>-->
-          <div class="col-xs-3 highland-goth-bold white-glow-dim beg-dur-end">END</div>
-          <div class="col-xs-9 quicksand-reg white-glow" id="end_time_<%= unituser.id %>"><%= unituser.end_time.in_time_zone(user.timezone).strftime('%b %e, %l:%M %p') if unituser.end_time %></div>
+          <div class="col-xs-3 microgramma white-glow lowered spaced">END</div>
+          <div class="col-xs-9 quicksand-reg white-glow txt-centered" id="end_time_<%= unituser.id %>"><%= unituser.end_time.in_time_zone(user.timezone).strftime('%b %e, %l:%M %p') if unituser.end_time %></div>
         </div>
 
         <div>
@@ -75,28 +75,31 @@
 
 //        console.log(JSON.parse(data)['unit_user_end']);
         var unit_users = JSON.parse(data)['unit_user_queue'];
-        console.log('unit_users is ' + unit_users);
-        console.log('typeof unit_users is ' + typeof unit_users);
+//        console.dir('unit_users is ');
+//        console.dir(unit_users);
+//        console.log('typeof unit_users is ' + typeof unit_users);
 
         // update the best_in_place duration field
-        $('#best_in_place_unit_user_' + uuid + '_duration').html(JSON.parse(data)['unit_user_duration']);
+        // $('#best_in_place_unit_user_' + uuid + '_duration').html(JSON.parse(data)['unit_user_duration']);
+
         // update the unit_user's end time
         $('#end_time_' + uuid).html(JSON.parse(data)['unit_user_end']);
 
         // update the unit's total duration field
         unit_to_update.find($('.time-remaining')).html(JSON.parse(data)['unit_duration']);
 
-
-
-
         //    refresh all unitusers start and end times
-        for (unit_user in unit_users) {
-            console.dir(unit_user);
-//            console.log(Object.keys(unit_user));
-        };
-//            $('#start_time_<%#= unit_user.id %>').html('<%#= unit_user.start_time.in_time_zone(unit_user.user.timezone).strftime('%b %e, %l:%M %p') if unit_user.start_time %>')
-//            $('#end_time_<%#= unit_user.id %>').html('<%#= unit_user.end_time.in_time_zone(unit_user.user.timezone).strftime('%b %e, %l:%M %p') if unit_user.end_time %>')
 
+        for(var i=0; i<unit_users.length; i++) {
+            //console.log(i);
+            console.log(unit_users[i]['id']);
+            console.log(unit_users[i]['start_time']);
+            console.log(unit_users[i]['duration']);
+            console.log(unit_users[i]['end_time']);
+            $('#start_time_' + unit_users[i]["id"] ).html(unit_users[i]["start_time"]);
+            $('#end_time_' + unit_users[i]["id"] ).html(unit_users[i]["end_time"]);
+            $('#best_in_place_unit_user_' + unit_users[i]["id"] + '_duration').html(unit_users[i]["duration"]);
+        }
 
 
     });

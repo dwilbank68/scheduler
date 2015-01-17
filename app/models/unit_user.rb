@@ -15,7 +15,15 @@ class UnitUser < ActiveRecord::Base
     hrsmin.html_safe
   end
 
-private
+  def start_time_formatted # as a local time string
+    self.start_time.in_time_zone(self.user.timezone).strftime('%b %e, %l:%M %p')
+  end
+
+  def end_time_formatted # as a local time string
+    self.end_time.in_time_zone(self.user.timezone).strftime('%b %e, %l:%M %p')
+  end
+
+  private
 
 
 # TODO - move this into unit.rb because it belongs there, right? But they're triggered by UnitUser after_commit... ???

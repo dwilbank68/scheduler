@@ -37,14 +37,13 @@ class UnitUsersController < ApplicationController
         @unituser.end_time = @unituser.start_time + @unituser.duration.minutes
         @unituser.save
 
-        # update the start/end times of the rest of the queue
+        # update the start/end times of the rest of the queue,
+        # meaning to only change those who are LATER in the queue
         idx_of_updated = @unit.unit_users.index(@unituser)
         queue_after_update = @unit.unit_users
         queue_after_update.each_with_index do |unituser, idx|
           if idx >= idx_of_updated
             if unituser == unituser.unit.unit_users.first
-              logger.info('----------------- ' + unituser.id.to_s + ' will be set to Time.now')# the element id
-              unituser.start_time = Time.now
               unituser.end_time = unituser.start_time + unituser.duration * 60
             else
               logger.info('----------------- ' + unituser.id.to_s + ' will be set based on ' + queue_after_update[idx-1].id.to_s)# the previous element id
@@ -58,8 +57,9 @@ class UnitUsersController < ApplicationController
         # format.json {respond_with_bip(@unituser) } # got rid of this and mimicked the functionality in the ajax callback
         format.json { render :json => {:unit_duration => @unit.duration_hrs_min,
                                        :unit_user_duration => @unituser.duration_hrs_min,
-                                       :unit_user_end => @unituser.end_time.in_time_zone(@unituser.user.timezone).strftime('%b %e, %l:%M %p'),
-                                       :unit_user_queue => @unit.unit_users }
+                                       # :unit_user_end => @unituser.end_time.in_time_zone(@unituser.user.timezone).strftime('%b %e, %l:%M %p'),
+                                       :unit_user_end => @unituser.end_time_formatted,
+                                       :unit_user_queue => @unit.unit_users_time_formatted }
         }
       else
         # format.html { render :action => 'edit' }
