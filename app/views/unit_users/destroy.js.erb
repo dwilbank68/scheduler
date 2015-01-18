@@ -3,7 +3,7 @@ var $unit = $('#unit_' + <%= params[:unit_id] %>);
 
 <% if @unituser.destroyed? %>
     $('#unit_user_' + <%= @unituser.id %>).fadeOut();
-    $unit.find('.remaining').find('.time-remaining').html("<%= escape_javascript(min_to_hrs_min(unit.duration)) %>");
+    $unit.find('.time-remaining').html("<%= escape_javascript(min_to_hrs_min(unit.duration)) %>");
 //    refresh all unitusers start and end times
     <% unit.unit_users.each do |unit_user| %>
         $('#start_time_<%= unit_user.id %>').html('<%= unit_user.start_time.in_time_zone(unit_user.user.timezone).strftime('%b %e, %l:%M %p') if unit_user.start_time %>')
