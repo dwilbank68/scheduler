@@ -51,6 +51,10 @@ input {
 
 .black { color: black; display: inline-block;}
 
+.white {
+  background: #FFF;
+}
+
 .white-glow-dim {
   color:#fff; display:inline-block;
   text-shadow: 0px 0px 6px rgba(141,220,224,1);
@@ -128,6 +132,8 @@ input {
 .relative { position: relative; }
 .raised { bottom: 1px; }
 .txt-centered { text-align: center }
+.txt-right { text-align: right }
+.spaced {  letter-spacing: 2.2px; }
 .centered {
   position: fixed;
   top: 50%;
@@ -161,7 +167,7 @@ li { list-style-type: none; }
   position: absolute;
   display: inline-block;
   width: 200px;
-  height: 200px;
+  height: 220px;
   border: solid white 1px;
 }
 
@@ -177,10 +183,8 @@ li { list-style-type: none; }
     float: right;
 }
 
-.val li {
-    display: inline;
-    position: absolute;
-}
+.est-time-of-completion { padding-right: 6px; }
+
 
 /////////////////// form /////////////////////
 
@@ -413,7 +417,7 @@ li {
 
   .name {
     width: 200px;
-    background: white;
+    background-color: white;
     color: #061526;
     text-align: center;
     font-size: 1em;
@@ -465,59 +469,36 @@ li {
 //////////////////////////////////////////////////
 
 
-.numbers {
-    width:200px;  height: 40px;
-    position: relative;
-    background-color: #112;
-    /*background:url(../img/led-bg.png) 0px 6px no-repeat;*/
-    display:inline-block;
-    /*text-align:right; float:right;*/
-    font-family: 'quicksandregular';
-    font-size:14px; letter-spacing:3px; margin:12px 6px 0 0;
-}
-
 div.remaining {
     margin-top: 3px;
 }
 
-.hours, .time-remaining { left: 12px; }
-.time-remaining { top: 1px; }
-.colon1 { left: 36px;}
-.minutes { left: 42px; }
-.colon2 { left: 65px;}
-.secs { left: 72px; }
-.remaining { left: 110px; top: 5px;}
+
 
 div.complete {
     margin-top: 22px;
     opacity: .5;
 }
-.completed { left: 110px; top: 20px;}
-.completed2 {left: 110px; top: 28px;}
-.time-label {
-  color:#fefffd; font-family:'quicksandregular';
-  font-size:8px; letter-spacing: 2.2px;
-  text-shadow: 0px 0px 6px rgba(141,220,224,1),
-  0px 0px 12px rgba(141,220,224,1),
-  0px 0px 24px rgba(141,220,224,1);
-  /*filter: dropshadow(color=#8ddce0, offx=0, offy=0);*/
+
+.tiny {
+  font-size:8px;
 }
 
 /******************** Queue styling **********************/
 
-table {
-  table-layout:fixed;
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-top: 10px;
-}
+//table {
+//  table-layout:fixed;
+//  margin-left: 5px;
+//  margin-right: 5px;
+//  margin-top: 10px;
+//}
 
 .icon {
   display: inline-block;
   width: 10px;
 }
 
-.colon {
-  display: inline-block;
-  width: 6px;
-}
+//.colon {
+//  display: inline-block;
+//  width: 6px;
+//}

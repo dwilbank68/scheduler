@@ -7,7 +7,8 @@ var $unit = $('#unit_' + <%= params[:unit_id] %>);
     $unit.find('.user-queue > ul').append("<%= escape_javascript(render(:partial => 'unitusers/unit_user', locals: { unituser: @uu, user:@user, unit:unit })) %>");
 
     //alert('total unit duration is <%= unit.duration %>');
-    $unit.find('.remaining').find('.time-remaining').html("<%= escape_javascript(min_to_hrs_min(unit.duration)) %>");
+//    $unit.find('.remaining').find('.time-remaining').html("<%#= escape_javascript(min_to_hrs_min(unit.duration)) %>");
+    $unit.find('.time-remaining').html("<%= escape_javascript(min_to_hrs_min(unit.duration)) %>");
 
     $('#blur-layer').removeClass('blur-in');
     $('#blur-layer').addClass('blur-out');

@@ -1,65 +1,58 @@
  <!--from units/index.html.erb-->
 
- <%= div_for unit, class:'container' do %>
-    <div class="unit">
-      <div class="row unit-name microgramma-bold txt-centered larger"><div class="col-xs-12 unit-name"><%= unit.screenName %> (id <%= unit.id %>)</div></div>
-      <div class="row">
-        <div class="col-xs-12"><img src="data:image/jpeg;base64,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" alt="unit.screenName" class="unit-image"/></div>
-      </div>
-      <div class="numbers countdown" data-duration="">
-        <div class="val remaining">
-          <ul>
-            <li class="time-remaining white-glow"><%= min_to_hrs_min(unit.duration) %> </li>
-            <li class="time-label remaining">remaining</li>
-          </ul>
+ <%= div_for unit do %>
+    <div class=" container unit">
+        <div class="row">
+            <div class="col-xs-12 unit-name microgramma-bold txt-centered larger" bgcolor="#FFF"><%= unit.screenName %></div>
         </div>
-        <div class="val complete">
-          <ul>
-            <li class="hours"></li> <li class="colon1">:</li> <li class="minutes"></li> <li class="colon2">:</li> <li class="secs"></li>
-            <li class="time-label completed">est time of</li>
-            <li class="time-label completed2">completion</li>
-          </ul>
+
+        <div class="row">
+            <div class="col-xs-12"><img src="data:image/jpeg;base64,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" alt="unit.screenName" class="unit-image"/></div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-7 quicksand-reg            white-glow spaced time-remaining"><%= min_to_hrs_min(unit.duration) %> </div>
+            <div class="col-xs-5 quicksand-reg txt-right  white-glow spaced tiny">remaining</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 quicksand-reg txt-centered white-glow spaced"></div>
+            <div class="col-xs-6 quicksand-reg txt-right    white-glow spaced tiny est-time-of-completion">est time of completion</div>
         </div>
         <button id="new-user-for-unit-<%= unit.id %>"></button>
-      </div>
-      <span id="show-queue">></span>
     </div> <!-- end unit -->
 
     <section class="user-queue"><!--user queue-->
-      <ul id="unit-user-ul-<%= unit.id %>">
-        <%# unit.unit_users.each do |user| %>
-            <%#= render :partial => '/unitusers/unit_user', :locals => { user:user, unit:unit, unituser: user.unit_users.where(unit_id: unit.id).first }%>
-        <%# end %>
-        <% unit.unit_users.each do |unituser| %>
-            <%= render :partial => '/unitusers/unit_user', :locals => { user:unituser.user, unit:unit, unituser: unituser }%>
-        <% end %>
-      </ul>
+        <ul id="unit-user-ul-<%= unit.id %>">
+            <% unit.unit_users.each do |unituser| %>
+                <%= render :partial => '/unitusers/unit_user', :locals => { user:unituser.user, unit:unit, unituser: unituser }%>
+            <% end %>
+        </ul>
     </section> <!-- end user queue -->
 
     <div id="unit_user_form_<%= unit.id %>" class="unit_user_form">
-      <%= minimal_form_for([unit, @unit_user], :remote => true, html: {class: 'form-vertical'}) do |f| %>
-          <%= f.error_notification %>
-          <%= f.input :name, :input_html => {:value => User.last.name}, disabled: true %>
-          <%= f.input :phone, :input_html => {:value => @user.phone}, disabled: true %>
-          <%= f.input :phone2, :input_html => {:value => @user.phone2}, disabled: true %>
-          <%= f.input :email, :input_html => {:value => @user.email}, disabled: true %>
-          <%= f.input :email2, :input_html => {:value => @user.email2}, disabled: true %>
-          <span class = 'start-time'><%= unit.time_available.in_time_zone(@user.timezone).strftime('%b %e, %l:%M %p') %></span>
-          <%= f.input :duration, :input_html => { :min => '5', :max => '1440', :step => '5' } %>
-          <span class="formatted-duration white-glow">hrs min</span>
-          <%= f.input :note %>
-          <%= f.hidden_field :user_id, :value => @user.id %>
-          <%= f.hidden_field :start_time, :value => unit.time_available %>
-          <%= f.error :base %>
-          <%= f.button :submit %>
-      <% end %>
+        <%= minimal_form_for([unit, @unit_user], :remote => true, html: {class: 'form-vertical'}) do |f| %>
+            <%= f.error_notification %>
+            <%= f.input :name, :input_html => {:value => User.last.name}, disabled: true %>
+            <%= f.input :phone, :input_html => {:value => @user.phone}, disabled: true %>
+            <%= f.input :phone2, :input_html => {:value => @user.phone2}, disabled: true %>
+            <%= f.input :email, :input_html => {:value => @user.email}, disabled: true %>
+            <%= f.input :email2, :input_html => {:value => @user.email2}, disabled: true %>
+            <span class = 'start-time'><%= unit.time_available.in_time_zone(@user.timezone).strftime('%b %e, %l:%M %p') %></span>
+            <%= f.input :duration, :input_html => { :min => '5', :max => '1440', :step => '5' } %>
+            <span class="formatted-duration white-glow">hrs min</span>
+            <%= f.input :note %>
+            <%= f.hidden_field :user_id, :value => @user.id %>
+            <%= f.hidden_field :start_time, :value => unit.time_available %>
+            <%= f.error :base %>
+            <%= f.button :submit %>
+        <% end %>
     </div>
 
 <% end %>
 
 
 
-<script>
+<script> // click 'new unituser' button on the unit, you get a modal form, which creates a new unituser in the queue
     $(document).ready(function(){
 
         //console.log(<%= unit.id %>);
