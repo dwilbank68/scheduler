@@ -19,7 +19,9 @@ class Unit < ActiveRecord::Base
       return Time.now
     else
       # current time + total duration of queue
-      return Time.now + self.duration.minute
+      # return Time.now + self.duration.minute
+    #   no - this should be end time of last user in queue
+      self.unit_users.last.end_time
     end
   end
 

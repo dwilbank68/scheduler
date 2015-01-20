@@ -33,7 +33,6 @@
 
       <div class="spacer"></div>
 
-
         <div class="row">
           <div class="col-xs-3 microgramma white-glow lowered spaced" >BEG</div>
           <div class="col-xs-9 quicksand-reg white-glow txt-centered" id="start_time_<%= unituser.id %>"><%= unituser.start_time.in_time_zone(user.timezone).strftime('%b %e, %l:%M %p') if unituser.start_time %></div>
@@ -89,7 +88,6 @@
         unit_to_update.find($('.time-remaining')).html(JSON.parse(data)['unit_duration']);
 
         //    refresh all unitusers start and end times
-
         for(var i=0; i<unit_users.length; i++) {
             //console.log(i);
             console.log(unit_users[i]['id']);
@@ -100,7 +98,6 @@
             $('#end_time_' + unit_users[i]["id"] ).html(unit_users[i]["end_time"]);
             $('#best_in_place_unit_user_' + unit_users[i]["id"] + '_duration').html(unit_users[i]["duration"]);
         }
-
 
     });
 

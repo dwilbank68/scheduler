@@ -86,6 +86,46 @@ input {
   border-right: 1px solid white;
 }
 
+/////////// devise styles /////////////
+
+.signin {
+  background-color: black;
+  color: white;
+  top: 150px;
+}
+
+//////////// blinker //////////
+
+.scale-y-up {
+  transform: scaleY(1);
+}
+
+.neon {
+  -webkit-animation:pulse 1.5s ease-in-out infinite alternate;
+  -webkit-backface-visibility: hidden;
+}
+
+
+@-webkit-keyframes pulse {
+  from {
+    text-shadow: 0 0 10px #fff,
+    0 0 20px #fff,
+    0 0 30px #fff,
+    0 0 40px #ff00de,
+    0 0 70px #ff00de;
+  }
+  to {
+    text-shadow: 0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 15px #fff,
+    0 0 20px #ff00de,
+    0 0 35px #ff00de;
+  }
+}
+
+///////////////////////////////
+
+
 /////////// Fonts /////////////
 
 .arame-bold {
@@ -117,15 +157,6 @@ input {
   font-size: .8em;
 }
 
-
-.neotech-ultra {
-  font-family: 'NeoTechProUltra';
-}
-
-.neotech-black {
-  font-family: 'NeoTechStdBlack';
-  font-size: 1em;
-}
 .spaced { letter-spacing: 7px; }
 .smaller { font-size: 8px; position: relative;} // because class="relative raised smaller" kept causing errors
 .larger { font-size: 1.4em; }
@@ -141,7 +172,7 @@ input {
   margin-top: -50px;
   margin-left: -100px;
 }
-
+/////////////////////////////////////////////////
 
 .user-info { margin-top: 9px; }
 .nav { margin-top: 5px; }
@@ -218,8 +249,6 @@ li { list-style-type: none; }
 }
 
 ////////////// blur stuff ///////////////////
-
-
 
 .blur-in {
   -webkit-animation: blur 1s forwards;
