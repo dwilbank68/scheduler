@@ -19,6 +19,7 @@
 //= require best_in_place
 //= require jquery_ujs
 //= require intlTelInput
+//= require jquery.transit.min
 //= require data
 //= require_tree .
 

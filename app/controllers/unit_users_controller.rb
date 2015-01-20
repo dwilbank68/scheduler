@@ -5,11 +5,6 @@ class UnitUsersController < ApplicationController
   before_action :find_unituser, only: [:update, :destroy]
   # before_action :authenticate_user!
 
-
-
-  def index
-  end
-
   def create
     @unit = Unit.find(params[:unit_id])
     @uu = UnitUser.new(user_id:@user.id, unit_id:@unit.id)
