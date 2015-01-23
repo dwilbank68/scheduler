@@ -20,3 +20,7 @@ development:
   AWS_BUCKET: scheduler-development-wilbanks
 production:
   AWS_BUCKET: scheduler-production-wilbanks
+
+TWILIO_ACCOUNT_SID: 'ACd7c0591256b00094cf9f60c41b7a5d51'
+TWILIO_AUTH_TOKEN: 'edc5cd8e9f6164cf6dbd0fa0735a1014'
+TWILIO_PHONE_NUMBER: '14246723527'

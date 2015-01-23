@@ -64,6 +64,7 @@ class UnitUsersController < ApplicationController
   end
 
   def destroy
+
     @unit = @unituser.unit
     idx_of_deleted = @unit.unit_users.index(@unituser)
 
@@ -76,6 +77,7 @@ class UnitUsersController < ApplicationController
        # logger.info('-----------------------------------------------------------------')
        # logger.info(elements_to_update.inspect)
        # logger.info('-----------------------------------------------------------------')
+
 
 
       queue_after_deletion.each_with_index do |unituser, idx|

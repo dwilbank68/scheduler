@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   resources :unit_users, only: [:update, :destroy]
 
+  post 'twilio/voice' => 'twilio#voice'
+
   # Example resource route with options:
   #   resources :products do
   #     member do
