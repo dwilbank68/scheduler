@@ -51,40 +51,39 @@ input {
 
 .black { color: black; display: inline-block;}
 
-.white {
-  background: #FFF;
-}
+.white { background: #FFF; }
 
 .white-glow-dim {
   color:#fff; display:inline-block;
-  text-shadow: 0px 0px 6px rgba(141,220,224,1);
+  text-shadow: 0px 0px 6px rgba(141,220,224,1),
+               0px 0px 10px rgba(101,180,184,1);
 }
 
 .white-glow {
   color:#fff; display:inline-block;
   text-shadow: 0px 0px 6px rgba(141,220,224,1),
-  0px 0px 12px rgba(141,220,224,1),
-  0px 0px 24px rgba(141,220,224,1);
+               0px 0px 12px rgba(141,220,224,1),
+               0px 0px 24px rgba(141,220,224,1);
 }
+
+.green-glow {
+  color:#0f0; display:inline-block;
+  text-shadow: 0px 0px  6px rgba(0,220,4,1),
+               0px 0px 12px rgba(50,220,94,1),
+               0px 0px 24px rgba(100,220,124,1);
+}
+
+.grayed-out { color:gray; }
 
 .smaller { font-size: .75em; }
 
-//row to create space
 .spacer {  height: 5px; }
 
-.border-bottom {
-  border-bottom-width: 1px;
-  border-style: solid;
-  border-color: #AAA;
-}
+.border-bottom { border-bottom: 1px solid gray;  }
 
-.lowered {
-  margin-top: 2px;
-}
+.lowered { margin-top: 2px; }
 
-.border-right {
-  border-right: 1px solid white;
-}
+.border-right { border-right: 1px solid white; }
 
 /////////// devise styles /////////////
 
@@ -150,6 +149,7 @@ input {
 
 .microgramma-bold {
   font-family: 'MicrogrammaDBolExt_3';
+  font-size: .9em;
 }
 
 .microgramma {
@@ -157,14 +157,16 @@ input {
   font-size: .8em;
 }
 
-.spaced { letter-spacing: 7px; }
 .smaller { font-size: 8px; position: relative;} // because class="relative raised smaller" kept causing errors
 .larger { font-size: 1.4em; }
+.slightly-larger { font-size: 1.2em; }
+
 .relative { position: relative; }
 .raised { bottom: 1px; }
 .txt-centered { text-align: center }
 .txt-right { text-align: right }
 .spaced {  letter-spacing: 2.2px; }
+.spaced7 { letter-spacing: 7px; }
 .centered {
   position: fixed;
   top: 50%;
@@ -204,10 +206,6 @@ li { list-style-type: none; }
 
 .unit-image {
   width: 190px;
-}
-
-.start_time {
- width: 200px;
 }
 
 #show-queue {
@@ -373,21 +371,9 @@ li { list-style-type: none; }
 }
 
 @-o-keyframes blur-out {
-  0% {
-    -webkit-filter: blur(4px);
-    -moz-filter: blur(4px);
-    -o-filter: blur(4px);
-    -ms-filter: blur(4px);
-    filter: blur(4px);
-  }
+  0% { -webkit-filter: blur(4px); -moz-filter: blur(4px); -o-filter: blur(4px); -ms-filter: blur(4px); filter: blur(4px); }
 
-  100% {
-    -webkit-filter: blur(0px);
-    -moz-filter: blur(0px);
-    -o-filter: blur(0px);
-    -ms-filter: blur(0px);
-    filter: blur(0px);
-  }
+  100% { -webkit-filter: blur(0px); -moz-filter: blur(0px); -o-filter: blur(0px); -ms-filter: blur(0px); filter: blur(0px); }
 }
 
 @keyframes blur-out {
@@ -413,6 +399,43 @@ li { list-style-type: none; }
 
 
 /////////////////// unit-user ///////////////////
+
+  /// form ///
+
+  .unit_user_form {
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow:0 0 11px white;
+  }
+
+  hr { margin: 6px; }
+
+  .time-input { border: 1px solid gray;
+    width: 370px;
+    padding: 6px;
+  }
+
+  textarea {
+    background: black;
+    padding: 6px;
+  }
+
+  input[type=submit] {
+    border-style: solid;
+    border-color: white;
+    -webkit-border-radius: 10px ;
+       -moz-border-radius: 10px ;
+            border-radius: 10px ;
+  }
+
+  .nfo-visible, .contact-active {
+
+  }
+
+  ////////////
+
+
+
 
 li {
   padding-bottom: 1px;

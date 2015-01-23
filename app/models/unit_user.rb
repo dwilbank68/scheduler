@@ -23,6 +23,13 @@ class UnitUser < ActiveRecord::Base
     self.end_time.in_time_zone(self.user.timezone).strftime('%b %e, %l:%M %p')
   end
 
+  def next_unit_user
+    unit = self.unit
+    queue = unit.unit_users
+    idx = queue.index(self)
+    queue[idx+1]
+  end
+
   private
 
 
@@ -45,4 +52,14 @@ class UnitUser < ActiveRecord::Base
     total_queue_duration
   end
 
+
+
 end
+
+
+
+# curl -X POST https://api.twilio.com/2010-04-01/Accounts/ACd7c0591256b00094cf9f60c41b7a5d51/SMS/Messages.json \
+#     -u ACd7c0591256b00094cf9f60c41b7a5d51:edc5cd8e9f6164cf6dbd0fa0735a1014 \
+#     --data-urlencode "From=+14246723527" \
+#     --data-urlencode "To=+18186489466" \
+#     --data-urlencode 'Body=VTR 44 will be available in 5 minutes. Press 1 to confirm, or press 0 to remove yourself from the queue.'
