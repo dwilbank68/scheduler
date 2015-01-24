@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
 
   validates :name,
             :length => { :minimum => 2, :maximum => 30 },
-            # :length => { in: 2..30 },
             :format => { :with => /\A[\w\s]+\z/ }
 
   validates :email,

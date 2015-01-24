@@ -18,9 +18,10 @@
 
   <div class="pull-right user-info">
     <% if current_user %>
+        <div class="microgramma spaced white-glow-dim"><%= current_user.name %></div>
         <%= image_tag(current_user.avatar.tiny.url) if current_user.avatar? %>
         <!--Hello <%#= link_to (current_user.name || current_user.email), edit_user_path(current_user) %>!-->
-        Hello <button id="<%= current_user.id %>"><%= current_user.name %></button>!
+        <button id="<%= current_user.id %>" class="header-button microgramma spaced white-glow-dim">Edit Contact Information</button>
         <%= link_to edit_user_registration_path, class: 'btn btn-primary btn-sm' do %>
             <span class="glyphicon glyphicon-user"></span>
         <% end %>
@@ -43,28 +44,45 @@
     <div id="overlay"></div>
 
     <div id="non-blur-layer">
-      <div id="user-edit-form">
+      <div class="container microgramma-bold spaced" id="user-edit-form">
         <div class="row">
-          <div id="user-edit" class="col-sm-4 col-sm-offset-4 col-xs-12 bordered glow ">
-            <h1 class="ocra ">User Information</h1>
-            <%= simple_form_for current_user, defaults: {input_html: {class: 'ocra', color: 'white'}} do |f| %>
-                <%= f.error_notification %>
-                <%= f.input :name, label: 'Screen Name', wrapper_html: {class: 'ocra'} %>
-                <%= f.input :email, label: 'Email' %>
-                <%= f.input :email2, label: 'Email - Alternate' %>
-                <%= f.input :phone, label: 'Phone', input_html: {id: 'phone'} %>
-                <%= f.input :phone2, label: 'Phone - Alternate', input_html: {id: 'phone2'} %>
-                <% if current_user.avatar? %>
-                <p>Current Avatar</p>-->
-                <%= image_tag( current_user.avatar.profile.url ) %>
-                <% end %>
-                <%= f.file_field :avatar %>
-                <%= f.hidden_field :avatar_cache %>
-                <%= f.error :base %>
-                <%= f.button :submit %>
-            <% end %>
-          </div>
+          <div class="col-xs-12 spaced3-6"> <h2>Contact Information</h2> </div>
         </div>
+        <%= simple_form_for current_user, defaults: {input_html: {class: 'quicksand-reg white-glow-dim', color: 'white'}} do |f| %>
+            <div class="row"><div class="col-xs-12"><%= f.error_notification %></div></div>
+            <div class="row">
+              <div class="col-xs-6">Screen Name</div><div class="col-xs-6"><%= f.input :name, label: false, input_html: { :style => 'width: 177px'} %></div>
+            </div>
+            <div class="row">
+              <div class="col-xs-6">Email</div><div class="col-xs-6"> <%= f.input :email, label: false, input_html: { :style => 'width: 177px' } %> </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-6">Email - Alternate</div><div class="col-xs-6"> <%= f.input :email2, label: false, input_html: {id: 'email2', :style => 'width: 177px'} %> </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-6">Phone</div><div class="col-xs-6"> <%= f.input :phone, label: false, input_html: {id: 'phone', :style => 'width: 177px'} %> </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-6">Phone - Alternate</div><div class="col-xs-6"> <%= f.input :phone2, label: false, input_html: {id: 'phone2', :style => 'width: 177px'} %> </div>
+            </div>
+            <div class="spacer"></div>
+            <% if current_user.avatar? %>
+                <div class="row">
+                  <div class="col-xs-6 current-avatar-label"> Current Avatar </div>
+                  <div class="col-xs-6"> <%= image_tag( current_user.avatar.profile.url ) %> </div>
+                </div>
+            <% end %>
+            <div class="row">
+              <div class="col-xs-6 microgramma spaced white-glow-dim"> <%= f.file_field :avatar %> </div>
+            </div>
+                <%= f.hidden_field :avatar_cache %>
+            <div class="row">
+              <div class="col-xs-12"> <%= f.error :base %> </div>
+            </div>
+            <div class="spacer"></div>
+            <div class="row div col-xs-12 txt-centered spaced"><%= f.button :submit, :class => 'update-user spaced' %></div>
+
+      <% end %>
       </div>
     </div> <!-- where the modal form attaches -->
 

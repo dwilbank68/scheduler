@@ -35,7 +35,7 @@
         <%= minimal_form_for([unit, @unit_user], :remote => true, html: {class: 'form-vertical'}) do |f| %>
             <%= f.error_notification %>
             <div class="row border-bottom">
-              <div class="col-xs-12 larger white-glow-dim spaced7 txt-centered"><%= unit.screenName %></div>
+              <div class="col-xs-12 larger white-glow-dim spaced7 txt-centered">Schedule <%= unit.screenName %></div>
             </div>
             <div class="row">
               <div class="col-xs-12"></div>
@@ -69,7 +69,7 @@
               <div class="col-xs-6 microgramma-bold spaced white-glow-dim">Unit Available</div>
               <div class="col-xs-6 quicksand-reg white-glow start_time txt-right" data-start="<%= unit.time_available %>"><%= unit.time_available.in_time_zone(@user.timezone).strftime('%b %e, %l:%M %p') %></div>
             </div>
-            <div class="spacer"></div>
+            <hr/>
             <div class="spacer"></div>
             <div class="row">
               <div class="col-xs-7 microgramma-bold spaced white-glow-dim">Set Duration</div>
@@ -83,6 +83,7 @@
               </div>
             </div>
             <div class="spacer"></div>
+            <hr/>
             <div class="row">
               <div class="col-xs-7 microgramma-bold white-glow-dim spaced">Projected End Time</div>
               <div class="col-xs-5 quicksand-reg white-glow formatted-end-time txt-right"><%= unit.time_available.in_time_zone(@user.timezone).strftime('%b %e, %l:%M %p') %></div>
@@ -94,7 +95,7 @@
           <%= f.hidden_field :start_time, :value => unit.time_available %>
           <div class="spacer"></div>
           <%= f.error :base %>
-          <%= f.button :submit, 'Join Queue', :class => 'white-glow spaced' %>
+          <%= f.button :submit, 'Join Queue', :class => 'white-glow-dim spaced join-queue' %>
         <% end %>
     </div>
 
