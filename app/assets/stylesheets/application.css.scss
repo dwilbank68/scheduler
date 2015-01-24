@@ -24,12 +24,74 @@
 @import "flags";
 @import "intlTelInput";
 
+$link-color: #666;
+
+.nav {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.btn-sm {
+  color: dimgray;
+  background-color: white;
+}
+
+.btn-sm:hover {
+  color: aqua;
+  background-color: white;
+}
+
+.update-user:hover {
+  color: white;
+  outline: none;
+  text-shadow: 0px 0px 6px rgba(141,220,224,1);
+}
+
+.update-user:focus {
+  color: white;
+  outline: none;
+  text-shadow: 0px 0px 6px rgba(141,220,224,1),
+  0px 0px 12px rgba(41,120,224,1);
+}
+
+.join-queue:hover {
+  color: white;
+  outline: none;
+  text-shadow: 0px 0px 6px rgba(200,220,224,1),
+  0px 0px 12px rgba(141,220,224,1),
+  0px 0px 18px rgba(41,120,224,1);
+}
+
+.join-queue:active {
+  color: white;
+  outline: none;
+  text-shadow: 0px 0px 6px rgba(141,220,224,1),
+  0px 0px 12px rgba(41,120,224,1);
+}
+
+.header-button {
+  border: none;
+  background-color: black;
+}
+
+.header-button:hover {
+  color: aqua;
+  text-shadow: 0px 0px 6px rgba(141,220,224,1),
+  0px 0px 12px rgba(141,220,224,1),
+  0px 0px 24px rgba(141,220,224,1);
+}
+
+.header-button:focus {
+  box-shadow: none;
+  outline: none;
+}
+
 a { text-decoration: none; }
 
-#user-edit {
-  background-color: black;
-  color: white;
-}
+//.btn.active, .btn:active {
+//  background-color: #F00;
+//}
+
+
 
 /////////////// Global Style //////////////
 
@@ -165,7 +227,8 @@ input {
 .raised { bottom: 1px; }
 .txt-centered { text-align: center }
 .txt-right { text-align: right }
-.spaced {  letter-spacing: 2.2px; }
+.spaced {  letter-spacing: 2px; }
+.spaced3-6 {  letter-spacing: 3.6px; }
 .spaced7 { letter-spacing: 7px; }
 .centered {
   position: fixed;
@@ -192,6 +255,22 @@ li { list-style-type: none; }
 ////////////////////// menu ////////////////////
 
 
+////////////////////// user form //////////////
+
+
+#user-edit-form {
+  width: 500px;
+  color: white;
+  background: transparent;
+}
+
+#user-email, #user-email2 { width: 177px; }
+
+#user-avatar {
+  background:transparent;
+}
+
+.current-avatar-label { top: 10px; }
 
 ////////////////////// unit /////////////////////
 
@@ -212,6 +291,8 @@ li { list-style-type: none; }
     float: right;
 }
 
+input { background: transparent; }
+
 .est-time-of-completion { padding-right: 6px; }
 
 
@@ -221,7 +302,7 @@ li { list-style-type: none; }
 
 #overlay {
   background:#000;
-  background:rgba(0,0,0,0.5);
+  background:rgba(0,0,0,0.7);
   top: 0px;
   left: 0px;
   height: 100%;
@@ -241,9 +322,12 @@ li { list-style-type: none; }
 
 .unit_user_form {
   position: fixed;
-  background-color: black;
+  background-color: transparent;
   display: block;
   width: 400px;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow:0 0 11px white;
 }
 
 ////////////// blur stuff ///////////////////
@@ -401,12 +485,6 @@ li { list-style-type: none; }
 /////////////////// unit-user ///////////////////
 
   /// form ///
-
-  .unit_user_form {
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow:0 0 11px white;
-  }
 
   hr { margin: 6px; }
 

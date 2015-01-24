@@ -5,7 +5,7 @@ class UserMailer < ActionMailer::Base
     @user = user
     @msg = msg
     mail( :to => @user.email,
-          :subject => 'Thanks for signing up for our amazing app' )
+          :subject => 'Hello from Scheduler' )
   end
 
 end

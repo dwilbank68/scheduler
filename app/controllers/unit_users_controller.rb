@@ -9,6 +9,7 @@ class UnitUsersController < ApplicationController
     @unit = Unit.find(params[:unit_id])
     @uu = UnitUser.new(user_id:@user.id, unit_id:@unit.id)
     @uu.duration = params[:unit_user][:duration]
+    @uu.duration = 10 if @uu.duration == 0
     @uu.note = params[:unit_user][:note]
     @uu.save
     if @uu == @unit.unit_users.first
@@ -67,31 +68,27 @@ class UnitUsersController < ApplicationController
 
     @unit = @unituser.unit
     idx_of_deleted = @unit.unit_users.index(@unituser)
-
+    deleted_unitusers_name = @unituser.user.name
     if @unituser.destroy
-      # @unituser.destroy
       @unit.reload
-      #logger.info('idx of deleted el, queue.length is ' + idx_of_deleted.to_s + ', ' + queue.length.to_s)
-       queue_after_deletion = @unit.unit_users
-       elements_to_update = queue_after_deletion[idx_of_deleted..-1]
-       # logger.info('-----------------------------------------------------------------')
-       # logger.info(elements_to_update.inspect)
-       # logger.info('-----------------------------------------------------------------')
-
-
-
+      queue_after_deletion = @unit.unit_users
       queue_after_deletion.each_with_index do |unituser, idx|
         if idx >= idx_of_deleted
            if unituser == unituser.unit.unit_users.first
-             logger.info('----------------- ' + unituser.id.to_s + ' will be set to Time.now')# the element id
                unituser.start_time = Time.now
-               unituser.end_time = unituser.start_time + unituser.duration * 60
+               unituser.end_time = unituser.start_time + (unituser.duration * 60)
            else
-             logger.info('----------------- ' + unituser.id.to_s + ' will be set based on ' + queue_after_deletion[idx-1].id.to_s)# the previous element id
               unituser.start_time = queue_after_deletion[idx-1].end_time
-              unituser.end_time = unituser.start_time + unituser.duration * 60
+              unituser.end_time = unituser.start_time + (unituser.duration * 60)
            end
           unituser.save
+          message = "#{deleted_unitusers_name} has left the queue. Your new start time is #{unituser.start_time_formatted}"
+          send_notifications(unituser,message)
+          # puts '*****************************************'
+          # puts message
+          # puts '*****************************************'
+          # unituser.user.send_msg(message)
+          # UserMailer.send_email(unituser.user, message).deliver
         end
 
       end
@@ -111,6 +108,13 @@ class UnitUsersController < ApplicationController
 # - - - - - - - - -
   private
 
+  def send_notifications(unituser, msg)
+    puts '*****************************************'
+    puts "#{msg} was sent to #{unituser.user.name} #{unituser.id}"
+    puts '*****************************************'
+    unituser.user.send_msg(msg)
+    UserMailer.send_email(unituser.user, msg).deliver
+  end
 
   def find_unituser
     @unituser = UnitUser.find(params[:id])
