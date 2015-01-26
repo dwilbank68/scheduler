@@ -297,7 +297,11 @@ li { list-style-type: none; }
 
 input { background: transparent; }
 
-.est-time-of-completion { padding-right: 6px; }
+.est-time-of-completion { padding-right: 0px; }
+.est-time-of-completion-label {
+  padding-left: 0px;
+  padding-right: 8px;
+}
 
 
 /////////////////// form /////////////////////
