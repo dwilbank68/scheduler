@@ -30,6 +30,10 @@ $link-color: #666;
   background: rgba(0, 0, 0, 0.5);
 }
 
+#clock, #timezone { width: 94px; }
+
+#clock { margin-left: 10px; }
+
 .btn-sm {
   color: dimgray;
   background-color: white;
