@@ -31604,3 +31604,553 @@ Tasks: TOP => update
 (See full trace by running task with --trace)
 Time.current is 2015-01-24 07:21:33 UTC
 destroyed #<ActiveRecord::Relation []>
+SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:39:09.796695')  ORDER BY created_at ASC
+rake aborted!
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:39:09.796695')  ORDER BY created_at ASC
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `initialize'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `new'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `prepare'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:301:in `block in exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:373:in `block in log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activesupport-4.1.4/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:367:in `log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:298:in `exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:510:in `select'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/database_statements.rb:24:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/query_cache.rb:70:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/querying.rb:39:in `find_by_sql'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:604:in `exec_queries'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:486:in `load'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:231:in `to_a'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation/delegation.rb:46:in `each'
+/Users/davidwilbanks/Dropbox/bloc-io/code/scheduler/scheduler/lib/tasks/scheduler.rake:5:in `block in <top (required)>'
+Tasks: TOP => update
+(See full trace by running task with --trace)
+Time.current is 2015-01-26 00:39:09 UTC
+UnitUser.first.end_time is 2015-01-26 01:07:56 UTC
+destroyed #<ActiveRecord::Relation []>
+SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:40:22.845506')  ORDER BY created_at ASC
+rake aborted!
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:40:22.845506')  ORDER BY created_at ASC
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `initialize'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `new'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `prepare'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:301:in `block in exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:373:in `block in log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activesupport-4.1.4/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:367:in `log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:298:in `exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:510:in `select'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/database_statements.rb:24:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/query_cache.rb:70:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/querying.rb:39:in `find_by_sql'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:604:in `exec_queries'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:486:in `load'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:231:in `to_a'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation/delegation.rb:46:in `each'
+/Users/davidwilbanks/Dropbox/bloc-io/code/scheduler/scheduler/lib/tasks/scheduler.rake:5:in `block in <top (required)>'
+Tasks: TOP => update
+(See full trace by running task with --trace)
+Time.current is 2015-01-26 00:40:22 UTC
+UnitUser.first.end_time is 2015-01-26 01:07:56 UTC
+destroyed #<ActiveRecord::Relation []>
+SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:41:09.467594')  ORDER BY created_at ASC
+rake aborted!
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:41:09.467594')  ORDER BY created_at ASC
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `initialize'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `new'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `prepare'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:301:in `block in exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:373:in `block in log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activesupport-4.1.4/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:367:in `log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:298:in `exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:510:in `select'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/database_statements.rb:24:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/query_cache.rb:70:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/querying.rb:39:in `find_by_sql'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:604:in `exec_queries'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:486:in `load'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:231:in `to_a'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation/delegation.rb:46:in `each'
+/Users/davidwilbanks/Dropbox/bloc-io/code/scheduler/scheduler/lib/tasks/scheduler.rake:5:in `block in <top (required)>'
+Tasks: TOP => update
+(See full trace by running task with --trace)
+Time.current is 2015-01-26 00:41:09 UTC
+UnitUser.first.end_time is 2015-01-26 01:07:56 UTC
+destroyed #<ActiveRecord::Relation []>
+SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:42:14.481133')  ORDER BY created_at ASC
+rake aborted!
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:42:14.481133')  ORDER BY created_at ASC
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `initialize'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `new'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `prepare'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:301:in `block in exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:373:in `block in log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activesupport-4.1.4/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:367:in `log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:298:in `exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:510:in `select'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/database_statements.rb:24:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/query_cache.rb:70:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/querying.rb:39:in `find_by_sql'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:604:in `exec_queries'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:486:in `load'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:231:in `to_a'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation/delegation.rb:46:in `each'
+/Users/davidwilbanks/Dropbox/bloc-io/code/scheduler/scheduler/lib/tasks/scheduler.rake:5:in `block in <top (required)>'
+Tasks: TOP => update
+(See full trace by running task with --trace)
+Time.current is 2015-01-26 00:42:14 UTC
+UnitUser.first.end_time is 2015-01-26 01:07:56 UTC
+destroyed #<ActiveRecord::Relation []>
+SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:43:13.375773')  ORDER BY created_at ASC
+rake aborted!
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:43:13.375773')  ORDER BY created_at ASC
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `initialize'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `new'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `prepare'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:301:in `block in exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:373:in `block in log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activesupport-4.1.4/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:367:in `log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:298:in `exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:510:in `select'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/database_statements.rb:24:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/query_cache.rb:70:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/querying.rb:39:in `find_by_sql'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:604:in `exec_queries'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:486:in `load'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:231:in `to_a'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation/delegation.rb:46:in `each'
+/Users/davidwilbanks/Dropbox/bloc-io/code/scheduler/scheduler/lib/tasks/scheduler.rake:5:in `block in <top (required)>'
+Tasks: TOP => update
+(See full trace by running task with --trace)
+Time.current is 2015-01-26 00:43:13 UTC
+UnitUser.first.end_time is 2015-01-26 01:07:56 UTC
+destroyed #<ActiveRecord::Relation []>
+SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:44:10.311993')  ORDER BY created_at ASC
+rake aborted!
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:44:10.311993')  ORDER BY created_at ASC
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `initialize'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `new'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `prepare'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:301:in `block in exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:373:in `block in log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activesupport-4.1.4/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:367:in `log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:298:in `exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:510:in `select'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/database_statements.rb:24:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/query_cache.rb:70:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/querying.rb:39:in `find_by_sql'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:604:in `exec_queries'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:486:in `load'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:231:in `to_a'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation/delegation.rb:46:in `each'
+/Users/davidwilbanks/Dropbox/bloc-io/code/scheduler/scheduler/lib/tasks/scheduler.rake:5:in `block in <top (required)>'
+Tasks: TOP => update
+(See full trace by running task with --trace)
+Time.current is 2015-01-26 00:44:10 UTC
+UnitUser.first.end_time is 2015-01-26 01:07:56 UTC
+destroyed #<ActiveRecord::Relation []>
+SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:45:18.837338')  ORDER BY created_at ASC
+rake aborted!
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:45:18.837338')  ORDER BY created_at ASC
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `initialize'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `new'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `prepare'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:301:in `block in exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:373:in `block in log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activesupport-4.1.4/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:367:in `log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:298:in `exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:510:in `select'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/database_statements.rb:24:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/query_cache.rb:70:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/querying.rb:39:in `find_by_sql'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:604:in `exec_queries'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:486:in `load'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:231:in `to_a'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation/delegation.rb:46:in `each'
+/Users/davidwilbanks/Dropbox/bloc-io/code/scheduler/scheduler/lib/tasks/scheduler.rake:5:in `block in <top (required)>'
+Tasks: TOP => update
+(See full trace by running task with --trace)
+Time.current is 2015-01-26 00:45:18 UTC
+UnitUser.first.end_time is 2015-01-26 01:07:56 UTC
+destroyed #<ActiveRecord::Relation []>
+SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:46:12.143346')  ORDER BY created_at ASC
+rake aborted!
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:46:12.143346')  ORDER BY created_at ASC
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `initialize'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `new'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `prepare'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:301:in `block in exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:373:in `block in log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activesupport-4.1.4/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:367:in `log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:298:in `exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:510:in `select'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/database_statements.rb:24:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/query_cache.rb:70:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/querying.rb:39:in `find_by_sql'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:604:in `exec_queries'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:486:in `load'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:231:in `to_a'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation/delegation.rb:46:in `each'
+/Users/davidwilbanks/Dropbox/bloc-io/code/scheduler/scheduler/lib/tasks/scheduler.rake:5:in `block in <top (required)>'
+Tasks: TOP => update
+(See full trace by running task with --trace)
+Time.current is 2015-01-26 00:46:12 UTC
+UnitUser.first.end_time is 2015-01-26 01:07:56 UTC
+destroyed #<ActiveRecord::Relation []>
+SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:47:11.366821')  ORDER BY created_at ASC
+rake aborted!
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:47:11.366821')  ORDER BY created_at ASC
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `initialize'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `new'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `prepare'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:301:in `block in exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:373:in `block in log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activesupport-4.1.4/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:367:in `log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:298:in `exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:510:in `select'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/database_statements.rb:24:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/query_cache.rb:70:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/querying.rb:39:in `find_by_sql'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:604:in `exec_queries'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:486:in `load'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:231:in `to_a'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation/delegation.rb:46:in `each'
+/Users/davidwilbanks/Dropbox/bloc-io/code/scheduler/scheduler/lib/tasks/scheduler.rake:5:in `block in <top (required)>'
+Tasks: TOP => update
+(See full trace by running task with --trace)
+Time.current is 2015-01-26 00:47:11 UTC
+UnitUser.first.end_time is 2015-01-26 01:07:56 UTC
+destroyed #<ActiveRecord::Relation []>
+SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:48:23.633483')  ORDER BY created_at ASC
+rake aborted!
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:48:23.633483')  ORDER BY created_at ASC
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `initialize'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `new'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `prepare'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:301:in `block in exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:373:in `block in log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activesupport-4.1.4/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:367:in `log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:298:in `exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:510:in `select'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/database_statements.rb:24:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/query_cache.rb:70:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/querying.rb:39:in `find_by_sql'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:604:in `exec_queries'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:486:in `load'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:231:in `to_a'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation/delegation.rb:46:in `each'
+/Users/davidwilbanks/Dropbox/bloc-io/code/scheduler/scheduler/lib/tasks/scheduler.rake:5:in `block in <top (required)>'
+Tasks: TOP => update
+(See full trace by running task with --trace)
+Time.current is 2015-01-26 00:48:23 UTC
+UnitUser.first.end_time is 2015-01-26 01:07:56 UTC
+destroyed #<ActiveRecord::Relation []>
+SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:49:27.604676')  ORDER BY created_at ASC
+rake aborted!
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:49:27.604676')  ORDER BY created_at ASC
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `initialize'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `new'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `prepare'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:301:in `block in exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:373:in `block in log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activesupport-4.1.4/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:367:in `log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:298:in `exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:510:in `select'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/database_statements.rb:24:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/query_cache.rb:70:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/querying.rb:39:in `find_by_sql'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:604:in `exec_queries'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:486:in `load'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:231:in `to_a'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation/delegation.rb:46:in `each'
+/Users/davidwilbanks/Dropbox/bloc-io/code/scheduler/scheduler/lib/tasks/scheduler.rake:5:in `block in <top (required)>'
+Tasks: TOP => update
+(See full trace by running task with --trace)
+Time.current is 2015-01-26 00:49:27 UTC
+UnitUser.first.end_time is 2015-01-26 01:07:56 UTC
+destroyed #<ActiveRecord::Relation []>
+SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:50:10.386374')  ORDER BY created_at ASC
+rake aborted!
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:50:10.386374')  ORDER BY created_at ASC
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `initialize'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `new'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `prepare'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:301:in `block in exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:373:in `block in log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activesupport-4.1.4/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:367:in `log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:298:in `exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:510:in `select'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/database_statements.rb:24:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/query_cache.rb:70:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/querying.rb:39:in `find_by_sql'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:604:in `exec_queries'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:486:in `load'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:231:in `to_a'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation/delegation.rb:46:in `each'
+/Users/davidwilbanks/Dropbox/bloc-io/code/scheduler/scheduler/lib/tasks/scheduler.rake:5:in `block in <top (required)>'
+Tasks: TOP => update
+(See full trace by running task with --trace)
+Time.current is 2015-01-26 00:50:10 UTC
+UnitUser.first.end_time is 2015-01-26 01:07:56 UTC
+destroyed #<ActiveRecord::Relation []>
+SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:51:13.494019')  ORDER BY created_at ASC
+rake aborted!
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:51:13.494019')  ORDER BY created_at ASC
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `initialize'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `new'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `prepare'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:301:in `block in exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:373:in `block in log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activesupport-4.1.4/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:367:in `log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:298:in `exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:510:in `select'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/database_statements.rb:24:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/query_cache.rb:70:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/querying.rb:39:in `find_by_sql'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:604:in `exec_queries'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:486:in `load'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:231:in `to_a'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation/delegation.rb:46:in `each'
+/Users/davidwilbanks/Dropbox/bloc-io/code/scheduler/scheduler/lib/tasks/scheduler.rake:5:in `block in <top (required)>'
+Tasks: TOP => update
+(See full trace by running task with --trace)
+Time.current is 2015-01-26 00:51:13 UTC
+UnitUser.first.end_time is 2015-01-26 01:07:56 UTC
+destroyed #<ActiveRecord::Relation []>
+SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:52:12.936864')  ORDER BY created_at ASC
+rake aborted!
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:52:12.936864')  ORDER BY created_at ASC
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `initialize'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `new'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `prepare'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:301:in `block in exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:373:in `block in log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activesupport-4.1.4/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:367:in `log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:298:in `exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:510:in `select'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/database_statements.rb:24:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/query_cache.rb:70:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/querying.rb:39:in `find_by_sql'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:604:in `exec_queries'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:486:in `load'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:231:in `to_a'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation/delegation.rb:46:in `each'
+/Users/davidwilbanks/Dropbox/bloc-io/code/scheduler/scheduler/lib/tasks/scheduler.rake:5:in `block in <top (required)>'
+Tasks: TOP => update
+(See full trace by running task with --trace)
+Time.current is 2015-01-26 00:52:12 UTC
+UnitUser.first.end_time is 2015-01-26 01:07:56 UTC
+destroyed #<ActiveRecord::Relation []>
+SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:53:08.939173')  ORDER BY created_at ASC
+rake aborted!
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:53:08.939173')  ORDER BY created_at ASC
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `initialize'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `new'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `prepare'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:301:in `block in exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:373:in `block in log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activesupport-4.1.4/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:367:in `log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:298:in `exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:510:in `select'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/database_statements.rb:24:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/query_cache.rb:70:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/querying.rb:39:in `find_by_sql'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:604:in `exec_queries'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:486:in `load'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:231:in `to_a'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation/delegation.rb:46:in `each'
+/Users/davidwilbanks/Dropbox/bloc-io/code/scheduler/scheduler/lib/tasks/scheduler.rake:5:in `block in <top (required)>'
+Tasks: TOP => update
+(See full trace by running task with --trace)
+Time.current is 2015-01-26 00:53:08 UTC
+UnitUser.first.end_time is 2015-01-26 01:07:56 UTC
+destroyed #<ActiveRecord::Relation []>
+SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:54:09.412385')  ORDER BY created_at ASC
+rake aborted!
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:54:09.412385')  ORDER BY created_at ASC
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `initialize'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `new'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `prepare'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:301:in `block in exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:373:in `block in log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activesupport-4.1.4/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:367:in `log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:298:in `exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:510:in `select'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/database_statements.rb:24:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/query_cache.rb:70:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/querying.rb:39:in `find_by_sql'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:604:in `exec_queries'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:486:in `load'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:231:in `to_a'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation/delegation.rb:46:in `each'
+/Users/davidwilbanks/Dropbox/bloc-io/code/scheduler/scheduler/lib/tasks/scheduler.rake:5:in `block in <top (required)>'
+Tasks: TOP => update
+(See full trace by running task with --trace)
+Time.current is 2015-01-26 00:54:09 UTC
+UnitUser.first.end_time is 2015-01-26 01:07:56 UTC
+destroyed #<ActiveRecord::Relation []>
+SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:55:10.429644')  ORDER BY created_at ASC
+rake aborted!
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:55:10.429644')  ORDER BY created_at ASC
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `initialize'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `new'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `prepare'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:301:in `block in exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:373:in `block in log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activesupport-4.1.4/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:367:in `log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:298:in `exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:510:in `select'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/database_statements.rb:24:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/query_cache.rb:70:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/querying.rb:39:in `find_by_sql'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:604:in `exec_queries'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:486:in `load'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:231:in `to_a'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation/delegation.rb:46:in `each'
+/Users/davidwilbanks/Dropbox/bloc-io/code/scheduler/scheduler/lib/tasks/scheduler.rake:5:in `block in <top (required)>'
+Tasks: TOP => update
+(See full trace by running task with --trace)
+Time.current is 2015-01-26 00:55:10 UTC
+UnitUser.first.end_time is 2015-01-26 01:07:56 UTC
+destroyed #<ActiveRecord::Relation []>
+SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:56:08.990206')  ORDER BY created_at ASC
+rake aborted!
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:56:08.990206')  ORDER BY created_at ASC
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `initialize'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `new'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `prepare'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:301:in `block in exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:373:in `block in log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activesupport-4.1.4/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:367:in `log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:298:in `exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:510:in `select'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/database_statements.rb:24:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/query_cache.rb:70:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/querying.rb:39:in `find_by_sql'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:604:in `exec_queries'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:486:in `load'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:231:in `to_a'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation/delegation.rb:46:in `each'
+/Users/davidwilbanks/Dropbox/bloc-io/code/scheduler/scheduler/lib/tasks/scheduler.rake:5:in `block in <top (required)>'
+Tasks: TOP => update
+(See full trace by running task with --trace)
+Time.current is 2015-01-26 00:56:09 UTC
+UnitUser.first.end_time is 2015-01-26 01:07:56 UTC
+destroyed #<ActiveRecord::Relation []>
+SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:57:16.023160')  ORDER BY created_at ASC
+rake aborted!
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:57:16.023160')  ORDER BY created_at ASC
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `initialize'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `new'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `prepare'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:301:in `block in exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:373:in `block in log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activesupport-4.1.4/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:367:in `log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:298:in `exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:510:in `select'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/database_statements.rb:24:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/query_cache.rb:70:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/querying.rb:39:in `find_by_sql'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:604:in `exec_queries'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:486:in `load'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:231:in `to_a'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation/delegation.rb:46:in `each'
+/Users/davidwilbanks/Dropbox/bloc-io/code/scheduler/scheduler/lib/tasks/scheduler.rake:5:in `block in <top (required)>'
+Tasks: TOP => update
+(See full trace by running task with --trace)
+Time.current is 2015-01-26 00:57:16 UTC
+UnitUser.first.end_time is 2015-01-26 01:07:56 UTC
+destroyed #<ActiveRecord::Relation []>
+SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:58:15.374377')  ORDER BY created_at ASC
+rake aborted!
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:58:15.374377')  ORDER BY created_at ASC
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `initialize'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `new'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `prepare'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:301:in `block in exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:373:in `block in log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activesupport-4.1.4/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:367:in `log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:298:in `exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:510:in `select'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/database_statements.rb:24:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/query_cache.rb:70:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/querying.rb:39:in `find_by_sql'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:604:in `exec_queries'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:486:in `load'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:231:in `to_a'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation/delegation.rb:46:in `each'
+/Users/davidwilbanks/Dropbox/bloc-io/code/scheduler/scheduler/lib/tasks/scheduler.rake:5:in `block in <top (required)>'
+Tasks: TOP => update
+(See full trace by running task with --trace)
+Time.current is 2015-01-26 00:58:15 UTC
+UnitUser.first.end_time is 2015-01-26 01:07:56 UTC
+destroyed #<ActiveRecord::Relation []>
+SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:59:09.923383')  ORDER BY created_at ASC
+rake aborted!
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 00:59:09.923383')  ORDER BY created_at ASC
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `initialize'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `new'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `prepare'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:301:in `block in exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:373:in `block in log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activesupport-4.1.4/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:367:in `log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:298:in `exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:510:in `select'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/database_statements.rb:24:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/query_cache.rb:70:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/querying.rb:39:in `find_by_sql'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:604:in `exec_queries'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:486:in `load'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:231:in `to_a'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation/delegation.rb:46:in `each'
+/Users/davidwilbanks/Dropbox/bloc-io/code/scheduler/scheduler/lib/tasks/scheduler.rake:5:in `block in <top (required)>'
+Tasks: TOP => update
+(See full trace by running task with --trace)
+Time.current is 2015-01-26 00:59:09 UTC
+UnitUser.first.end_time is 2015-01-26 01:07:56 UTC
+destroyed #<ActiveRecord::Relation []>
+SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 01:00:13.266028')  ORDER BY created_at ASC
+rake aborted!
+ActiveRecord::StatementInvalid: SQLite3::SQLException: no such table: unit_users: SELECT "unit_users".* FROM "unit_users"  WHERE (end_time <= '2015-01-26 01:00:13.266028')  ORDER BY created_at ASC
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `initialize'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `new'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/sqlite3-1.3.10/lib/sqlite3/database.rb:91:in `prepare'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:301:in `block in exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:373:in `block in log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activesupport-4.1.4/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract_adapter.rb:367:in `log'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:298:in `exec_query'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/sqlite3_adapter.rb:510:in `select'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/database_statements.rb:24:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/connection_adapters/abstract/query_cache.rb:70:in `select_all'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/querying.rb:39:in `find_by_sql'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:604:in `exec_queries'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:486:in `load'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation.rb:231:in `to_a'
+/Users/davidwilbanks/.rvm/gems/ruby-2.0.0-p451@railstutorial_rails_4_0/gems/activerecord-4.1.4/lib/active_record/relation/delegation.rb:46:in `each'
+/Users/davidwilbanks/Dropbox/bloc-io/code/scheduler/scheduler/lib/tasks/scheduler.rake:5:in `block in <top (required)>'
+Tasks: TOP => update
+(See full trace by running task with --trace)
+Time.current is 2015-01-26 01:00:13 UTC
+UnitUser.first.end_time is 2015-01-26 01:07:56 UTC
+destroyed #<ActiveRecord::Relation []>

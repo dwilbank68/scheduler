@@ -18,9 +18,18 @@
 //= require moment
 //= require best_in_place
 //= require jquery_ujs
-//= require intlTelInput
-//= require jquery.transit.min
+
+// for the clock in the nav bar - http://www.tcpweb.com.br/JS-Clock/
+//= require jsclock-0.8.min
+
+// for the countdown in all the units
+//= require countdown.min
+
+// for the country flag input in the user update form
 //= require data
+//= require intlTelInput
+
+//= require jquery.transit.min
 //= require_tree .
 
 $(document).ready(function() {
