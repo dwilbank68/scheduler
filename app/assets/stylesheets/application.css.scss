@@ -30,6 +30,10 @@ $link-color: #666;
   background: rgba(0, 0, 0, 0.5);
 }
 
+.nav-tabs {
+  border-bottom: 1px solid #222;
+}
+
 #clock, #timezone { width: 94px; }
 
 #clock { margin-left: 10px; }
@@ -495,6 +499,8 @@ input { background: transparent; }
   /// form ///
 
   hr { margin: 6px; }
+
+  .uu-avatar { border: 3px double gray; }
 
   .time-input { border: 1px solid gray;
     width: 370px;
