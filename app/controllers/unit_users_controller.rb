@@ -10,7 +10,8 @@ class UnitUsersController < ApplicationController
     @uu = UnitUser.new(user_id:@user.id, unit_id:@unit.id)
     @uu.duration = params[:unit_user][:duration]
     @uu.duration = 10 if @uu.duration == 0
-    @uu.note = params[:unit_user][:note]
+    @uu.note = params[:unit_user][:note] == "" ? "click to edit" : params[:unit_user][:note]
+    puts params
     @uu.save
     if @uu == @unit.unit_users.first
       @uu.start_time = Time.now
