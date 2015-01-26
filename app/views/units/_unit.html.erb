@@ -17,8 +17,10 @@
             <div class="col-xs-5 quicksand-reg txt-right  white-glow spaced tiny">remaining</div>
         </div>
         <div class="row">
-            <div class="col-xs-6 quicksand-reg txt-centered white-glow spaced"></div>
-            <div class="col-xs-6 quicksand-reg txt-right    white-glow spaced tiny est-time-of-completion">est time of completion</div>
+            <div class="col-xs-7 quicksand-reg white-glow est-time-of-completion">
+              <%= unit.time_available.in_time_zone(current_user.timezone).strftime('%b %e, %l:%M %p') %>
+            </div>
+            <div class="col-xs-5 quicksand-reg txt-right    white-glow spaced tiny est-time-of-completion-label">est time of completion</div>
         </div>
         <button id="new-user-for-unit-<%= unit.id %>"></button>
     </div> <!-- end unit -->
