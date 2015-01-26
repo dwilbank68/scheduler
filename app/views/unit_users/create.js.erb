@@ -4,11 +4,13 @@ var $unit = $('#unit_' + <%= params[:unit_id] %>);
 <% if @uu.save %>
     <%  unit = Unit.find( params[:unit_id] )%>
 
+    // add unit_user to the queue
     $unit.find('.user-queue > ul').append("<%= escape_javascript(render(:partial => 'unitusers/unit_user', locals: { unituser: @uu, user:@user, unit:unit })) %>");
 
-    //alert('total unit duration is <%= unit.duration %>');
-//    $unit.find('.remaining').find('.time-remaining').html("<%#= escape_javascript(min_to_hrs_min(unit.duration)) %>");
+    // update both fields on the parent unit
     $unit.find('.time-remaining').html("<%= escape_javascript(min_to_hrs_min(unit.duration)) %>");
+    $unit.find('.est-time-of-completion').html('<%= @uu.end_time.in_time_zone(@uu.user.timezone).strftime('%b %e, %l:%M %p') %>');
+
 
     $('#blur-layer').removeClass('blur-in');
     $('#blur-layer').addClass('blur-out');

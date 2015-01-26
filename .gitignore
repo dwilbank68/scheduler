@@ -22,3 +22,5 @@
 /config/application.yml
 # Ignore carrierwave images
 public/uploads
+
+/scheduler.log
