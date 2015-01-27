@@ -28,7 +28,7 @@ task :update => :environment do
       if next_user
         begin_soon_message = "Sent at #{Time.now}. Your time on #{unit_name} will begin in 5 minutes"
         next_user.send_msg(begin_soon_message)
-        UserMailer.send_email(next_user, "Sent at #{Time.now}. Your time on #{unit_name} will begin in 5 minutes").deliver
+        UserMailer.send_email(next_user, begin_soon_message).deliver
       end
     end
   end

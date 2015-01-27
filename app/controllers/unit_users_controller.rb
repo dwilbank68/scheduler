@@ -85,11 +85,7 @@ class UnitUsersController < ApplicationController
           unituser.save
           message = "#{deleted_unitusers_name} has left the queue. Your new start time is #{unituser.start_time_formatted}"
           send_notifications(unituser,message)
-          # puts '*****************************************'
-          # puts message
-          # puts '*****************************************'
-          # unituser.user.send_msg(message)
-          # UserMailer.send_email(unituser.user, message).deliver
+
         end
 
       end

@@ -147,7 +147,7 @@
             $.ajax({
                 url: "/units/<%= unit.id %>/report_status",
                 type: "GET",
-//                dataType: "json",
+                dataType: "json",
 //                complete: function() {},
                 success: function(data, textStatus, xhr) {
                     unit_available_string = moment(data).format('MMM D, hh:mm A');
@@ -158,6 +158,9 @@
                 error: function() { console.log("Ajax error") }
             });
 
+            // zero out the duration field
+            $('.numeric:visible').val(0);
+            $('.formatted-duration:visible').html('0 hrs 00 min');
 
             // Set up listener to convert duration (in minutes) into a convenient hrs and minutes string
             // With every input change on the unit_user form, the duration field updates, and the end_time field updates
