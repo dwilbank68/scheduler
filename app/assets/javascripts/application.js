@@ -50,9 +50,9 @@ $(document).ready(function() {
         }
     });
 
-    $('.duration-input:visible').on('input', function() {
-        console.log('oowop');
-    });
+    //$('.duration-input:visible').on('input', function() {
+    //    console.log('oowop');
+    //});
 
     //var unitTemplate = $('#unit-template').innerHTML;
     //console.log("unitTemplate is " + unitTemplate);
@@ -102,29 +102,6 @@ $(document).ready(function() {
 //        }
 //    },100 );
 
-    //////////countdown end //////////////
 
-//    $('#local').text(localTime);
-//    var finished = new Date(localTime.getTime() + (durMinutes*1000*60));
-//    var completedHours = finished.getHours();
-//    var completedMinutes = finished.getMinutes();
-//    if (completedMinutes < 10) { completedMinutes = '0'+completedMinutes}
-//    var completedSeconds = finished.getSeconds();
-//    if (completedSeconds < 10) { completedSeconds = '0'+completedSeconds}
-//
-//    $('.complete .hours').text(completedHours);
-//    $('.complete .minutes').text(completedMinutes);
-//    $('.complete .secs').text(completedSeconds);
 });
 
-////////////////// queue flyout //////////////////
-
-//$("#show-queue").mouseenter(function(){
-//    console.log('mouseenter');
-//    $(this).closest('div').siblings($('section')).fadeTo(500,1);
-//});
-//
-//$("#show-queue").mouseleave(function(){
-//    console.log('mouseleave');
-//    $(this).closest('div').siblings($('section')).fadeTo(500,0);
-//});

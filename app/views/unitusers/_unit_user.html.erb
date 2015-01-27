@@ -96,6 +96,7 @@
             console.log(unit_users[i]['end_time']);
             $('#start_time_' + unit_users[i]["id"] ).html(unit_users[i]["start_time"]);
             $('#end_time_' + unit_users[i]["id"] ).html(unit_users[i]["end_time"]);
+            unit_to_update.find($('.est-time-of-completion')).html(unit_users[i]["end_time"]);
             $('#best_in_place_unit_user_' + unit_users[i]["id"] + '_duration').html(unit_users[i]["duration"]);
         }
 

@@ -23,4 +23,4 @@
 # Ignore carrierwave images
 public/uploads
 
-/scheduler.log
+scheduler.log
