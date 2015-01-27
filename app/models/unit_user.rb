@@ -38,6 +38,7 @@ class UnitUser < ActiveRecord::Base
   def update_total_time
     @unit = self.unit
     @unit.duration = get_total_time
+    @unit.time_available = @unit.unit_users.last.end_time
     @unit.save
     # puts "*"*30
     # puts "@unit.duration is #{@unit.duration}"

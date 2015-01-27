@@ -18,7 +18,11 @@
         </div>
         <div class="row">
             <div class="col-xs-7 quicksand-reg white-glow est-time-of-completion">
-              <%= unit.time_available.in_time_zone(current_user.timezone).strftime('%b %e, %l:%M %p') %>
+              <% if unit.duration > 0 %>
+                <%= unit.time_available.in_time_zone(current_user.timezone).strftime('%b %e, %l:%M %p') if unit.time_available %>
+              <% else %>
+                Unit Available
+              <% end %>
             </div>
             <div class="col-xs-5 quicksand-reg txt-right    white-glow spaced tiny est-time-of-completion-label">est time of completion</div>
         </div>
@@ -33,6 +37,8 @@
         </ul>
     </section> <!-- end user queue -->
 
+     <!-- unit user form-->
+
     <div id="unit_user_form_<%= unit.id %>" class="container unit_user_form microgramma-bold">
         <%= minimal_form_for([unit, @unit_user], :remote => true, html: {class: 'form-vertical'}) do |f| %>
             <%= f.error_notification %>
@@ -42,7 +48,7 @@
             <div class="row">
               <div class="col-xs-12"></div>
             </div>
-            <div class="row">
+            <div class="row border-bottom">
               <div class="col-xs-12 quicksand-reg white-glow"><%= current_user.name %></div>
             </div>
             <div class="row border-bottom">
@@ -52,47 +58,48 @@
             </div>
             <div class="row border-bottom">
               <div class="col-xs-8 quicksand-reg white-glow"><%= formatted_phone(current_user.phone2) %></div>
-              <div class="col-xs-2 quicksand-reg nfo-visible grayed-out txt-right">visible</div>
+              <div class="col-xs-2 quicksand-reg nfo-visible green-glow txt-right">visible</div>
               <div class="col-xs-2 quicksand-reg contact-active grayed-out txt-right">active</div>
             </div>
             <div class="row border-bottom">
               <div class="col-xs-8 quicksand-reg white-glow"><%= current_user.email %></div>
-              <div class="col-xs-2 quicksand-reg nfo-visible grayed-out txt-right">visible</div>
-              <div class="col-xs-2 quicksand-reg contact-active grayed-out txt-right">active</div>
+              <div class="col-xs-2 quicksand-reg nfo-visible green-glow txt-right">visible</div>
+              <div class="col-xs-2 quicksand-reg contact-active green-glow txt-right">active</div>
             </div>
             <div class="row">
               <div class="col-xs-8 quicksand-reg white-glow"><%= current_user.email2 %></div>
-              <div class="col-xs-2 quicksand-reg nfo-visible grayed-out txt-right">visible</div>
+              <div class="col-xs-2 quicksand-reg nfo-visible green-glow txt-right">visible</div>
               <div class="col-xs-2 quicksand-reg contact-active grayed-out txt-right">active</div>
             </div>
             <div class="spacer"></div>
           <div class="container time-input">
             <div class='row'>
               <div class="col-xs-6 microgramma-bold spaced white-glow-dim">Unit Available</div>
-              <div class="col-xs-6 quicksand-reg white-glow start_time txt-right" data-start="<%= unit.time_available %>"><%= unit.time_available.in_time_zone(@user.timezone).strftime('%b %e, %l:%M %p') %></div>
+              <div class="col-xs-6 quicksand-reg white-glow start_time txt-right uu-form-start-time">awaiting unit data</div>
             </div>
             <hr/>
             <div class="spacer"></div>
             <div class="row">
               <div class="col-xs-7 microgramma-bold spaced white-glow-dim">Set Duration</div>
-              <div class="col-xs-2 txt-right"><%= f.input :duration, :autofocus => true, :input_html => {:min => '5', :max => '1440', :step => '5', :class => 'quicksand-reg white-glow'} %> </div>
+              <div class="col-xs-2 txt-right"><%= f.input :duration, :autofocus => true, :input_html => {:min => '0', :max => '1440', :value => 5, :step => '5', :class => 'quicksand-reg white-glow'} %> </div>
               <div class="col-xs-3 quicksand-reg spaced white-glow txt-right">minutes</div>
             </div>
             <div class="spacer"></div>
             <div class="row">
               <div class="col-xs-12 txt-centered">
                 <div class="quicksand-reg white-glow formatted-duration slightly-larger txt-centered">0 hrs 0 min</div>
+                <div class="col-xs-12 quicksand-reg tiny spaced white-glow-dim txt-centered">selecting 0 will result in a 5 minute minimum being set</div>
               </div>
             </div>
             <div class="spacer"></div>
             <hr/>
             <div class="row">
               <div class="col-xs-7 microgramma-bold white-glow-dim spaced">Projected End Time</div>
-              <div class="col-xs-5 quicksand-reg white-glow formatted-end-time txt-right"><%= unit.time_available.in_time_zone(@user.timezone).strftime('%b %e, %l:%M %p') %></div>
+              <div class="col-xs-5 quicksand-reg white-glow formatted-end-time txt-right">---</div>
             </div>
           </div>
           <div class="spacer"></div>
-          <%= f.input :note, :input_html => { :class => 'quicksand-reg white-glow', :cols => 58 } %>
+          <%= f.input :note, :input_html => { :class => 'quicksand-reg white-glow', :cols => 57 } %>
           <%= f.hidden_field :user_id, :value => @user.id %>
           <%= f.hidden_field :start_time, :value => unit.time_available %>
           <div class="spacer"></div>
@@ -133,19 +140,49 @@
 
             $('#unit_user_duration').focus();
 
+            // AJAX call to server to get unit's time_available field, or Time.now if the field is nil
+
+            var unit_available, unit_available_string;
+
+            $.ajax({
+                url: "/units/<%= unit.id %>/report_status",
+                type: "GET",
+//                dataType: "json",
+//                complete: function() {},
+                success: function(data, textStatus, xhr) {
+                    unit_available_string = moment(data).format('MMM D, hh:mm A');
+                    console.log(unit_available_string);
+                    unit_available = moment(data);
+                    $('.uu-form-start-time').html(unit_available_string);
+                },
+                error: function() { console.log("Ajax error") }
+            });
+
+
             // Set up listener to convert duration (in minutes) into a convenient hrs and minutes string
             // With every input change on the unit_user form, the duration field updates, and the end_time field updates
+
+            var min, dur;
+
             $('.numeric:visible').on('input', function() {
 
-                var min = $('.numeric:visible').val();
-                var dur = parseInt(min/60) + ' hrs ' + (min % 60) + ' min' ;
+                // grab the minutes integer from the duration box
+                min = $('.numeric:visible').val();
+
+                // create a formatted hrs minutes duration string
+                dur = parseInt(min/60) + ' hrs ' + (min % 60) + ' min' ;
+
+                // insert that string into the field below
                 $('.formatted-duration:visible').html(dur);
 
-//                var startMoment = moment($('#unit_user_form_8').find($('.start_time')).attr('data-start'));
-                var startMoment = moment($('.start_time:visible').attr('data-start'));
+                var startMoment = moment(unit_available);
                 console.log('startMoment is ' + startMoment);
+
+                // end time is calculated by adding minutes to the start time
                 var endMoment = startMoment.add(min, 'minutes');
                 console.log('endMoment is   ' + endMoment);
+
+                // end time is inserted in the appropriate field
                 $('.formatted-end-time:visible').html(endMoment.format('MMM D, hh:mm A'));
             });
 
