@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
     puts "-twilio-"*20
   end
 
+  # this overrides the current user's timezone until I get everything fixed to handle timezones
   def timezone
     "US/Pacific"
   end

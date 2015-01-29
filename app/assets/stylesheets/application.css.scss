@@ -342,6 +342,26 @@ input { background: transparent; }
   box-shadow:0 0 11px white;
 }
 
+#user-edit-form {
+  position: fixed;
+  background-color: transparent;
+  display: block;
+  border-radius: 10px;
+  box-shadow:0 0 11px white;
+
+  .time-zone-selector {
+    width: 427px;
+    background-color: black;
+    color: white;
+
+    option {
+      background-color: black;
+      color: white;
+    }
+  }
+
+}
+
 ////////////// blur stuff ///////////////////
 
 .blur-in {
@@ -606,8 +626,8 @@ li {
 
 .user-queue {
   position: relative;
-  left: -36px;
-  top: 259px;
+  left: -28px;
+  top: 249px;
 }
 
 //////////////////////////////////////////////////

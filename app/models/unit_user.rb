@@ -7,7 +7,8 @@ class UnitUser < ActiveRecord::Base
   after_commit :update_total_time
   after_destroy :update_total_time
 
-  default_scope {order('created_at ASC')}
+  # default_scope {order('created_at ASC')}
+  default_scope {order('end_time ASC')}
 
   def duration_hrs_min
     # "#{self.duration / 60} hrs #{self.duration % 60} min"
@@ -35,10 +36,14 @@ class UnitUser < ActiveRecord::Base
 
 # TODO - move this into unit.rb because it belongs there, right? But they're triggered by UnitUser after_commit... ???
 
+  # this happens after every unit_user create, update, or destroy
   def update_total_time
     @unit = self.unit
     @unit.duration = get_total_time
-    @unit.time_available = @unit.unit_users.last.end_time
+    puts "*"*30
+    puts("inside update_total_time, calculated_time for unit #{@unit.id}, with #{@unit.unit_users.count} unitusers remaining, is #{@unit.calculated_time_available}")
+    puts "*"*30
+    @unit.time_available = @unit.calculated_time_available
     @unit.save
     # puts "*"*30
     # puts "@unit.duration is #{@unit.duration}"

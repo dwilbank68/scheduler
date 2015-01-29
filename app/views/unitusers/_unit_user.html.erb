@@ -72,16 +72,8 @@
         var $unit_user_clicked = $('#unit_user_' + uuid);
         var unit_to_update = $unit_user_clicked.closest($('.unit'));
 
-//        console.log(JSON.parse(data)['unit_user_end']);
         var unit_users = JSON.parse(data)['unit_user_queue'];
-//        console.dir('unit_users is ');
-//        console.dir(unit_users);
-//        console.log('typeof unit_users is ' + typeof unit_users);
 
-        // update the best_in_place duration field
-        // $('#best_in_place_unit_user_' + uuid + '_duration').html(JSON.parse(data)['unit_user_duration']);
-
-        // update the unit_user's end time
         $('#end_time_' + uuid).html(JSON.parse(data)['unit_user_end']);
 
         // update the unit's total duration field
