@@ -99,7 +99,7 @@
             </div>
           </div>
           <div class="spacer"></div>
-          <%= f.input :note, :input_html => { :class => 'quicksand-reg white-glow', :cols => 57 } %>
+          <%= f.input :note, :input_html => { :class => 'quicksand-reg white-glow', :cols => 48 } %>
           <%= f.hidden_field :user_id, :value => @user.id %>
           <%= f.hidden_field :start_time, :value => unit.time_available %>
           <div class="spacer"></div>
@@ -148,14 +148,16 @@
                 url: "/units/<%= unit.id %>/report_status",
                 type: "GET",
                 dataType: "json",
-//                complete: function() {},
                 success: function(data, textStatus, xhr) {
-                    unit_available_string = moment(data).format('MMM D, hh:mm A');
-                    console.log(unit_available_string);
-                    unit_available = moment(data);
+                    unit_available = moment(data['time_available']);
+                    unit_available_string = moment(data['time_available']).format('MMM D, hh:mm A');
+                    console.log("NEW data is " + JSON.stringify(data));
+                    console.log("NEW unit_available is " + unit_available);
+                    console.log("NEW unit_available_string is " + unit_available_string);
+                    console.log("NEW duration is " + data['duration']);
                     $('.uu-form-start-time').html(unit_available_string);
                 },
-                error: function() { console.log("Ajax error") }
+                error: function() { console.log("ajax error in call to report_status") }
             });
 
             // zero out the duration field

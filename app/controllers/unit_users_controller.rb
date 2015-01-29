@@ -2,7 +2,7 @@ class UnitUsersController < ApplicationController
   respond_to :html, :js
 
   before_action :find_user, except: [:edit, :update]
-  before_action :find_unituser, only: [:update, :destroy]
+  before_action :find_unituser, only: [:update, :destroy, :show]
   # before_action :authenticate_user!
 
   def create
@@ -11,9 +11,16 @@ class UnitUsersController < ApplicationController
     @uu.duration = params[:unit_user][:duration]
     @uu.duration = 5 if @uu.duration == 0
     @uu.note = params[:unit_user][:note] == '' ? 'click to edit' : params[:unit_user][:note]
-    puts params
+    # puts params
     @uu.save
-    if @uu == @unit.unit_users.first
+    # logger.info('-----------------------------------------------------------------')
+    # logger.info('uu count is ' + @unit.unit_users.count.to_s)
+    # logger.info('-----------------------------------------------------------------')
+    if @unit.unit_users.count == 1
+      # logger.info('-----------------------------------------------------------------')
+      # logger.info("in #create, @uu#{@uu.id} thinks it is the first unit_user")
+      # logger.info(@unit.unit_users.to_s)
+      # logger.info('-----------------------------------------------------------------')
       @uu.start_time = Time.now
     else
       queue = @unit.unit_users
@@ -23,6 +30,10 @@ class UnitUsersController < ApplicationController
     @uu.end_time = @uu.start_time + @uu.duration.minutes
     @uu.save
     respond_with(@uu)
+  end
+
+  def show
+    respond_with @unituser
   end
 
   def update
@@ -73,6 +84,7 @@ class UnitUsersController < ApplicationController
     if @unituser.destroy
       @unit.reload
       queue_after_deletion = @unit.unit_users
+
       queue_after_deletion.each_with_index do |unituser, idx|
         if idx >= idx_of_deleted
            if unituser == unituser.unit.unit_users.first
@@ -85,9 +97,7 @@ class UnitUsersController < ApplicationController
           unituser.save
           message = "#{deleted_unitusers_name} has left the queue. Your new start time is #{unituser.start_time_formatted}"
           send_notifications(unituser,message)
-
         end
-
       end
 
     else
@@ -106,9 +116,9 @@ class UnitUsersController < ApplicationController
   private
 
   def send_notifications(unituser, msg)
-    puts '*****************************************'
-    puts "#{msg} was sent to #{unituser.user.name} #{unituser.id}"
-    puts '*****************************************'
+    # puts '*****************************************'
+    # puts "#{msg} was sent to #{unituser.user.name} #{unituser.id}"
+    # puts '*****************************************'
     unituser.user.send_msg(msg)
     UserMailer.send_email(unituser.user, msg).deliver
   end
@@ -118,13 +128,11 @@ class UnitUsersController < ApplicationController
   end
 
   def find_user
-    # @user = User.find(params[:unit_user][:user_id].to_i)
-    # @user = User.last # until current_user is available from Devise
     @user = current_user
   end
 
   def unit_user_params
-    params.require(:unit_user).permit(:duration, :duration, :note, :id, :unit_id, :user_id)
+    params.require(:unit_user).permit(:duration, :note, :id, :unit_id, :user_id)
   end
 
 

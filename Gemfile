@@ -41,5 +41,7 @@ gem 'jquery-ui-rails'
 gem 'best_in_place', '~> 3.0.1'
 
 gem 'twilio-ruby'
+
+
 # gem 'font-awesome-sass' didn't work
 

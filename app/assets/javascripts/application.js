@@ -22,8 +22,9 @@
 // for the clock in the nav bar - http://www.tcpweb.com.br/JS-Clock/
 //= require jsclock-0.8.min
 
-// for the countdown in all the units
-//= require countdown.min
+// for the countdown in all the units - http://keith-wood.name/countdown.html
+//= require jquery.plugin.min.js
+//= require jquery.countdown.min
 
 // for the country flag input in the user update form
 //= require data

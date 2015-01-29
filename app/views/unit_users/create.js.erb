@@ -19,6 +19,12 @@ var $unit = $('#unit_' + <%= params[:unit_id] %>);
     $('#overlay').fadeOut();
 
     $('.unit_user_form').fadeOut();
+
+    // remove old countdown before attaching new countdown
+    $('#unit_' + <%= params[:unit_id] %>).find($('.time-remaining')).countdown('destroy');
+    startUnitCountdowns();
 <% else %>
    alert('error' <%= @uu.errors.full_messages %>);
 <% end %>
+
+<!--TODO REMOVE COUNTDOWN BEFORE ADDING NEW COUNTDOWN-->

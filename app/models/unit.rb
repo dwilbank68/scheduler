@@ -13,14 +13,17 @@ class Unit < ActiveRecord::Base
     self.position.split('x').last.to_i
   end
 
-  def time_available
-    # @unit = self.unit
-    if unit_users.length == 0
-      nil
-      # return Time.now
+  def calculated_time_available
+    if self.unit_users.count == 0
+      data = nil
     else
-      self.unit_users.last.end_time
+      data = self.unit_users.last.end_time
     end
+    puts "*"*30
+    puts "unit_users.count for unit #{self.id} is #{unit_users.count}"
+    puts "calculated_time_available is being called and returning " + data.to_s
+    puts "*"*30
+    data
   end
 
   def duration_hrs_min

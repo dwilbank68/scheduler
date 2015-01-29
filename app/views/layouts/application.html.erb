@@ -39,8 +39,8 @@
     <div id="blur-layer">
       <%= yield %>
     </div>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <p class="notice white-glow-dim microgramma"><%= notice %></p>
+    <p class="alert white-glow-dim microgramma"><%= alert %></p>
     <div id="overlay"></div>
 
     <div id="non-blur-layer">
@@ -65,6 +65,11 @@
             <div class="row">
               <div class="col-xs-6">Phone - Alternate</div><div class="col-xs-6"> <%= f.input :phone2, label: false, input_html: {id: 'phone2', :style => 'width: 177px'} %> </div>
             </div>
+            <div class="row">
+              <!--<div class="col-xs-12"><select class="time-zone-selector spaced"></select></div>-->
+              <div class="col-xs-12"><%= f.input :timezone, :collection => ActiveSupport::TimeZone.all, :label_method => :to_s, :value_method => :name, :include_blank => false %></div>
+            </div>
+            <div class="spacer"></div>
             <div class="spacer"></div>
             <% if current_user.avatar? %>
                 <div class="row">
@@ -102,40 +107,62 @@
       $("#phone").intlTelInput();
       $("#phone2").intlTelInput();
 
+//    the update user attributes form, triggered by "Edit Contact Information" in the upper right nav bar
       $('#<%= current_user.id %>').on('click', function(){
 
-          // detach form from machine unit and reattach it to non-blurring layer, which is z-index 2
-          $('#non-blur-layer').append($user_form);
+          if($('.signin').is(':visible')) {
+            console.log("not gonna show two forms at the same time, sir");
+          } else {
+              // detach form from machine unit and reattach it to non-blurring layer, which is z-index 2
+              $('#non-blur-layer').append($user_form);
 
-          // blur the container which holds all the machines ( z-index 0)
-          $('#blur-layer').removeClass('blur-out');
-          $('#blur-layer').addClass('blur-in');
+              // blur the container which holds all the machines ( z-index 0)
+              $('#blur-layer').removeClass('blur-out');
+              $('#blur-layer').addClass('blur-in');
 
-          // bring in the tinted overlay to prevent click-through
-          $('#overlay').fadeIn();
+              // bring in the tinted overlay to prevent click-through
+              $('#overlay').fadeIn();
 
-          // bring in the form, which SHOULD BE Z-INDEX 3
-          $user_form.fadeIn().css({top:($(window).height()/2)-107, left:($(window).width()/2)-200, zIndex:999});
+              // bring in the form, which SHOULD BE Z-INDEX 3
+              $user_form.fadeIn().css({top:($(window).height()/2)-107, left:($(window).width()/2)-200, zIndex:999});
+          }
 
       });
 
+      // start all the countdowns on the units - showing time till unit is free
+      startUnitCountdowns();
   });
 
   var startUnitCountdowns = function() {
       console.log('startUnitCountdowns is running');
-      $('.est-time-of-completion').each( function(idx, el) {
-          var endTime = $(el).data('time-available');
-          var endTimeMoment = moment(endTime);
-          console.log('endTime is ' + endTime);
-          console.log('endTimeMoment is ' + endTimeMoment);
-          if(endTime === "--:--:--") {
-              $(el).closest($('.container')).find($('.time-remaining')).html(endTime);
-          } else {
-              $(el).closest($('.container')).find($('.time-remaining')).countdown({
-                  until: endTimeMoment.toDate(), compact: true
-              });
-          }
+
+      $.ajax({
+          url: "/units/report_unit_statuses",
+          type: "GET",
+          dataType: "json",
+          success: function(data, textStatus, xhr) {
+              unit_arr = data;
+              for(var i=0; i<unit_arr.length; i++) {
+                console.log(unit_arr[i]);
+                var id = unit_arr[i]['id'];
+                var endTime = unit_arr[i]['time_available'];
+                var endTimeMoment = moment(endTime);
+                console.log('endTime is ' + endTime);
+                console.log('endTimeMoment is ' + endTimeMoment);
+
+                if(endTime === null) {
+                  console.log("endtime is null and unit is " + id);
+                  $('#unit_' + id).find($('.time-remaining')).html("--:--:--");
+                } else {
+                  $('#unit_' + id).find($('.time-remaining')).countdown({ until: endTimeMoment.toDate(), compact: true });
+                }
+              }
+          },
+          error: function() { console.log("ajax error in startUnitCountdowns") }
       });
+
+
+
   }
 
 
