@@ -22,6 +22,14 @@ class UnitsController < ApplicationController
   end
 
   def update
+    unit = Unit.find(params[:id])
+    if unit.update({ position: params[:_json] })
+      logger.info('-----------------------------------------------------------------')
+      logger.info('incoming params to Units#update are ' + params.to_s )
+      logger.info('unit position is ' + unit.position.to_s )
+      logger.info('-----------------------------------------------------------------')
+      respond_with(unit.to_json)
+    end
   end
 
 
@@ -52,8 +60,6 @@ class UnitsController < ApplicationController
 
   # called in application.html.erb on pageload
   def report_unit_statuses
-    # data = Unit.pluck(:id, :duration, :time_available)
-
     u_times = Unit.all.map do |u|
       { :id => u.id, :state => u.state, :duration => u.duration, :time_available => u.time_available }
     end
@@ -63,8 +69,6 @@ class UnitsController < ApplicationController
       format.js { respond_with(u_times) }
     end
 
-    # data = Unit.pluck(:id, :duration, :time_available)
-    # respond_with(data)
   end
 
   private ########################

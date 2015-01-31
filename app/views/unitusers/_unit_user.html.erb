@@ -16,10 +16,10 @@
         <div class="col-xs-9">
           <div class="container">
             <div class="row">
-              <div class="col-xs-10 quicksand-reg email white-glow smaller"><%= user.email.truncate(20) %></div>
+              <div class="col-xs-10 quicksand-reg email white-glow smaller"><%= user.email.truncate(20) if user.email%></div>
             </div>
             <div class="row">
-              <div class="col-xs-10 quicksand-reg email2 white-glow smaller"><%= user.email2.truncate(20) %></div>
+              <div class="col-xs-10 quicksand-reg email2 white-glow smaller"><%= user.email2.truncate(20) if user.email2%></div>
             </div>
             <div class="row">
               <div class="col-xs-10 quicksand-reg phone white-glow smaller"><%= formatted_phone(user.phone) %></div>

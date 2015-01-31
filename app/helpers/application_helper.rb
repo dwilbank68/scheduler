@@ -6,8 +6,8 @@ module ApplicationHelper
   end
 
   def formatted_phone(number) #US Numbers only, for now
-    digits = number.gsub(/\D/, '')#.split(//)
-    "#{digits[0]} (#{digits[1,3]}) #{digits[4,3]}-#{digits[7,4]}"# % [ digits[0,3], digits[3,3], digits[6,4] ]
+    digits = number.gsub(/\D/, '') if number #.split(//)
+    "#{digits[0]} (#{digits[1,3]}) #{digits[4,3]}-#{digits[7,4]}" if digits # % [ digits[0,3], digits[3,3], digits[6,4] ]
   end
 
 end
