@@ -23,7 +23,7 @@ require 'faker'
 
 machine_names = ['vtr32', 'vtr33', 'vtr35', 'vtr37', 'vtr38']
 machine_screen_names = ['VTR 32', 'VTR 33', 'VTR 35', 'VTR 37', 'VTR 38']
-machine_positions = ['24x5', '235x25', '455x26', '711x22', '658x291']
+machine_positions = ['13x56', '242x57', '478x51', '717x50', '965x107']
 
 Unit.destroy_all
 machine_names.each_with_index do |name, idx|
@@ -53,7 +53,9 @@ User.destroy_all
   user = User.new(
       name:  Faker::Name.name,
       email: Faker::Internet.email,
-      phone: Faker::PhoneNumber.cell_phone
+      email2: Faker::Internet.email,
+      phone: Faker::PhoneNumber.cell_phone,
+      phone2: Faker::PhoneNumber.cell_phone
   )
   user.save
 end

@@ -1,19 +1,19 @@
-<div class="col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2 well signin microgramma-bold spaced">
-    <h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2 well signin arame-bold">
+    <h3>Change Your Password</h3>
 
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= f.error_notification %>
 
       <div class="form-inputs">
-        <%= f.input :email, required: true, autofocus: true %>
+        <%#= f.input :email, required: true, autofocus: true, label: false, placeholder: 'email', :input_html => { :class => 'quicksand-reg' } %>
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
         <% end %>
 
-        <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
-        <%= f.input :password_confirmation, required: false %>
-        <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+        <%= f.input :password, autocomplete: "off", required: true, label: false, placeholder: 'new password',                                              :input_html => { :class => 'quicksand-reg', :style => 'width: 180px' } %>
+        <%= f.input :password_confirmation, required: true, label: false, placeholder: 'new password confirm',                                              :input_html => { :class => 'quicksand-reg', :style => 'width: 180px' } %>
+        <%= f.input :current_password, hint: "enter current password to confirm the change", required: true, label: false, placeholder: 'current password', :input_html => { :class => 'quicksand-reg', :style => 'width: 180px' } %>
 
       </div>
 

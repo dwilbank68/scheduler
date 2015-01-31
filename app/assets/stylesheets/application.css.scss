@@ -119,6 +119,10 @@ input {
 
 .light-blue { color: #6DD6E3; }
 
+.grayed-out {
+  color: gray;
+}
+
 .black { color: black; display: inline-block;}
 
 .white { background: #FFF; }
@@ -137,13 +141,19 @@ input {
 }
 
 .green-glow {
-  color:#0f0; display:inline-block;
+  color:#0f0;
+
   text-shadow: 0px 0px  6px rgba(0,220,4,1),
                0px 0px 12px rgba(50,220,94,1),
                0px 0px 24px rgba(100,220,124,1);
 }
 
-.grayed-out { color:gray; }
+.red-glow {
+  color:#f00; display:inline-block;
+  text-shadow: 0px 0px 6px rgba(255,100,100,1),
+  0px 0px 12px rgba(255,150,150,1),
+  0px 0px 24px rgba(255,200,200,1);
+}
 
 .smaller { font-size: .75em; }
 
@@ -157,7 +167,7 @@ input {
 
 /////////// devise styles /////////////
 
-.signin {
+.signin, .signup {
   background-color: black;
   color: white;
   top: 150px;
@@ -260,7 +270,7 @@ body {
 
 li { list-style-type: none; }
 
-////////////////////// menu ////////////////////
+
 
 
 ////////////////////// user form //////////////
@@ -287,12 +297,26 @@ li { list-style-type: none; }
   position: absolute;
   display: inline-block;
   width: 220px;
-  height: 220px;
-  border: solid white 1px;
+  height: 250px;
+  border: solid gray 1px;
+}
+
+.unit-header > div {
+  height: 28px;
+  background-color: white;
 }
 
 .unit-image {
   width: 190px;
+  border-radius: 5px;
+}
+
+.est-time-of-completion {
+  margin-top: 5px;
+}
+
+.est-time-of-completion-label {
+  margin-top: 2px;
 }
 
 #show-queue {
@@ -307,6 +331,31 @@ input { background: transparent; }
   padding-right: 14px;
 }
 
+.inactive {
+
+}
+
+.needs-service {
+
+}
+
+.pulse {
+  -webkit-animation: pulse .5s infinite linear;
+     -moz-animation: pulse .5s infinite linear;
+          animation: pulse .5s infinite linear;
+}
+
+@-moz-keyframes pulse {
+  0% { background-color: white; }
+  50% { background-color: aqua; }
+  100% { background-color: white; }
+}
+
+@-webkit-keyframes pulse {
+  0% { background-color: white; }
+  50% { background-color: aqua; }
+  100% { background-color: white; }
+}
 
 /////////////////// form /////////////////////
 
@@ -520,7 +569,7 @@ input { background: transparent; }
 
   hr { margin: 6px; }
 
-  .uu-avatar { border: 3px double gray; }
+  .uu-avatar, .unit-image { border: 3px double gray; }
 
   .time-input { border: 1px solid gray;
     width: 370px;
@@ -540,9 +589,6 @@ input { background: transparent; }
             border-radius: 10px ;
   }
 
-  .nfo-visible, .contact-active {
-
-  }
 
   ////////////
 
