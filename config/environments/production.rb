@@ -79,4 +79,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # added to try and get heroku to use my fonts
+  config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+  config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
+
 end
