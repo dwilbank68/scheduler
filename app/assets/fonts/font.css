@@ -57,12 +57,12 @@
 
 @font-face {
     font-family: 'ArameBold';
-    src: url('ArameBold.eot');
-    src: url('ArameBold.eot') format('embedded-opentype'),
-    url('ArameBold.woff2') format('woff2'),
-    url('ArameBold.woff') format('woff'),
-    url('ArameBold.ttf') format('truetype'),
-    url('ArameBold.svg#ArameBold') format('svg');
+    src: url('../ArameBold.eot');
+    src: url('../ArameBold.eot') format('embedded-opentype'),
+    url('../ArameBold.woff2') format('woff2'),
+    url('../ArameBold.woff') format('woff'),
+    url('../ArameBold.ttf') format('truetype'),
+    url('../ArameBold.svg#ArameBold') format('svg');
 }
 
 @font-face {
