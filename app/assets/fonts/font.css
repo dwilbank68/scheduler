@@ -2,43 +2,43 @@
 
 @font-face {
     font-family: 'ufonts_com_ocra';
-    src: url('ufonts_com_ocra.eot');
-    src: url('ufonts_com_ocra.eot') format('embedded-opentype'),
-         url('ufonts_com_ocra.woff2') format('woff2'),
-         url('ufonts_com_ocra.woff') format('woff'),
-         url('ufonts_com_ocra.ttf') format('truetype'),
-         url('ufonts_com_ocra.svg#ufonts_com_ocra') format('svg');
+    src: font-url('ufonts_com_ocra.eot');
+    src: font-url('ufonts_com_ocra.eot') format('embedded-opentype'),
+         font-url('ufonts_com_ocra.woff2') format('woff2'),
+         font-url('ufonts_com_ocra.woff') format('woff'),
+         font-url('ufonts_com_ocra.ttf') format('truetype'),
+         font-url('ufonts_com_ocra.svg#ufonts_com_ocra') format('svg');
 }
 
 @font-face {
     font-family: 'quicksandlight';
-    src: url('quicksand-light-webfont.eot');
-    src: url('quicksand-light-webfont.eot?#iefix') format('embedded-opentype'),
-         url('quicksand-light-webfont.woff') format('woff'),
-         url('quicksand-light-webfont.ttf') format('truetype'),
-         url('quicksand-light-webfont.svg#quicksandlight') format('svg');
+    src: font-url('quicksand-light-webfont.eot');
+    src: font-url('quicksand-light-webfont.eot?#iefix') format('embedded-opentype'),
+         font-url('quicksand-light-webfont.woff') format('woff'),
+         font-url('quicksand-light-webfont.ttf') format('truetype'),
+         font-url('quicksand-light-webfont.svg#quicksandlight') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'quicksandbold';
-    src: url('quicksand-bold-webfont.eot');
-    src: url('quicksand-bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('quicksand-bold-webfont.woff') format('woff'),
-         url('quicksand-bold-webfont.ttf') format('truetype'),
-         url('quicksand-bold-webfont.svg#quicksandbold') format('svg');
+    src: font-url('quicksand-bold-webfont.eot');
+    src: font-url('quicksand-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         font-url('quicksand-bold-webfont.woff') format('woff'),
+         font-url('quicksand-bold-webfont.ttf') format('truetype'),
+         font-url('quicksand-bold-webfont.svg#quicksandbold') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'quicksandregular';
-    src: url('quicksand-regular-webfont.eot');
-    src: url('quicksand-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('quicksand-regular-webfont.woff') format('woff'),
-         url('quicksand-regular-webfont.ttf') format('truetype'),
-         url('quicksand-regular-webfont.svg#quicksandregular') format('svg');
+    src: font-url('quicksand-regular-webfont.eot');
+    src: font-url('quicksand-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         font-url('quicksand-regular-webfont.woff') format('woff'),
+         font-url('quicksand-regular-webfont.ttf') format('truetype'),
+         font-url('quicksand-regular-webfont.svg#quicksandregular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -46,41 +46,41 @@
 
 @font-face {
     font-family: 'quicksanddash';
-    src: url('quicksand_dash-webfont.eot');
-    src: url('quicksand_dash-webfont.eot?#iefix') format('embedded-opentype'),
-         url('quicksand_dash-webfont.woff') format('woff'),
-         url('quicksand_dash-webfont.ttf') format('truetype'),
-         url('quicksand_dash-webfont.svg#quicksanddash') format('svg');
+    src: font-url('quicksand_dash-webfont.eot');
+    src: font-url('quicksand_dash-webfont.eot?#iefix') format('embedded-opentype'),
+         font-url('quicksand_dash-webfont.woff') format('woff'),
+         font-url('quicksand_dash-webfont.ttf') format('truetype'),
+         font-url('quicksand_dash-webfont.svg#quicksanddash') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'ArameBold';
-    src: url('../ArameBold.eot');
-    src: url('../ArameBold.eot') format('embedded-opentype'),
-    url('../ArameBold.woff2') format('woff2'),
-    url('../ArameBold.woff') format('woff'),
-    url('../ArameBold.ttf') format('truetype'),
-    url('../ArameBold.svg#ArameBold') format('svg');
+    src: font-url('ArameBold.eot');
+    src: font-url('ArameBold.eot') format('embedded-opentype'),
+    font-url('ArameBold.woff2') format('woff2'),
+    font-url('ArameBold.woff') format('woff'),
+    font-url('ArameBold.ttf') format('truetype'),
+    font-url('ArameBold.svg#ArameBold') format('svg');
 }
 
 @font-face {
     font-family: 'MicrogrammaDBolExt_3';
-    src: url('MicrogrammaDBolExt_3.eot');
-    src: url('MicrogrammaDBolExt_3.eot') format('embedded-opentype'),
-    url('MicrogrammaDBolExt_3.woff2') format('woff2'),
-    url('MicrogrammaDBolExt_3.woff') format('woff'),
-    url('MicrogrammaDBolExt_3.ttf') format('truetype'),
-    url('MicrogrammaDBolExt_3.svg#MicrogrammaDBolExt_3') format('svg');
+    src: font-url('MicrogrammaDBolExt_3.eot');
+    src: font-url('MicrogrammaDBolExt_3.eot') format('embedded-opentype'),
+    font-url('MicrogrammaDBolExt_3.woff2') format('woff2'),
+    font-url('MicrogrammaDBolExt_3.woff') format('woff'),
+    font-url('MicrogrammaDBolExt_3.ttf') format('truetype'),
+    font-url('MicrogrammaDBolExt_3.svg#MicrogrammaDBolExt_3') format('svg');
 }
 
 @font-face {
     font-family: 'MicrogrammaDMediumExtended';
-    src: url('MicrogrammaDMediumExtended.eot');
-    src: url('MicrogrammaDMediumExtended.eot') format('embedded-opentype'),
-    url('MicrogrammaDMediumExtended.woff2') format('woff2'),
-    url('MicrogrammaDMediumExtended.woff') format('woff'),
-    url('MicrogrammaDMediumExtended.ttf') format('truetype'),
-    url('MicrogrammaDMediumExtended.svg#MicrogrammaDMediumExtended') format('svg');
+    src: font-url('MicrogrammaDMediumExtended.eot');
+    src: font-url('MicrogrammaDMediumExtended.eot') format('embedded-opentype'),
+    font-url('MicrogrammaDMediumExtended.woff2') format('woff2'),
+    font-url('MicrogrammaDMediumExtended.woff') format('woff'),
+    font-url('MicrogrammaDMediumExtended.ttf') format('truetype'),
+    font-url('MicrogrammaDMediumExtended.svg#MicrogrammaDMediumExtended') format('svg');
 }
