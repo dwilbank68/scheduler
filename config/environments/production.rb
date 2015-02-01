@@ -84,4 +84,6 @@ Rails.application.configure do
   config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
   config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
 
+  config.action_mailer.default_url_options = { :host => 'scheduler-wilbanks.herokuapp.com' }
+
 end
