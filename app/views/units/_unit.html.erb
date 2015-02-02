@@ -159,10 +159,10 @@
                 success: function(data, textStatus, xhr) {
                     unit_available = moment(data['time_available']);
                     unit_available_string = moment(data['time_available']).format('MMM D, hh:mm A');
-                    console.log("NEW data is " + JSON.stringify(data));
-                    console.log("NEW unit_available is " + unit_available);
-                    console.log("NEW unit_available_string is " + unit_available_string);
-                    console.log("NEW duration is " + data['duration']);
+//                    console.log("NEW data is " + JSON.stringify(data));
+//                    console.log("NEW unit_available is " + unit_available);
+//                    console.log("NEW unit_available_string is " + unit_available_string);
+//                    console.log("NEW duration is " + data['duration']);
                     $('.uu-form-start-time').html(unit_available_string);
                 },
                 error: function() { console.log("ajax error in call to report_status") }
@@ -189,11 +189,11 @@
                 $('.formatted-duration:visible').html(dur);
 
                 var startMoment = moment(unit_available);
-                console.log('startMoment is ' + startMoment);
+//                console.log('startMoment is ' + startMoment);
 
                 // end time is calculated by adding minutes to the start time
                 var endMoment = startMoment.add(min, 'minutes');
-                console.log('endMoment is   ' + endMoment);
+//                console.log('endMoment is   ' + endMoment);
 
                 // end time is inserted in the appropriate field
                 $('.formatted-end-time:visible').html(endMoment.format('MMM D, hh:mm A'));
@@ -201,26 +201,26 @@
             $('.phone1-visible:visible').first().on('click', function(){
                 var formId = $(this).closest($('.unit_user_form')).attr('id');
                 var unitId = formId.replace( /^\D+/g, '');
-                console.log(unitId);
+//                console.log(unitId);
                 $(this).toggleClass('green-glow');
             });
 
             $('.phone1-active:visible').on('click', function(){
                 var formId = $(this).closest($('.unit_user_form')).attr('id');
                 var unitId = formId.replace( /^\D+/g, '');
-                console.log(unitId);
+//                console.log(unitId);
                 $(this).toggleClass('green-glow');
             });
             $('.phone2-visible:visible').on('click', function(){
                 var formId = $(this).closest($('.unit_user_form')).attr('id');
                 var unitId = formId.replace( /^\D+/g, '');
-                console.log(unitId);
+//                console.log(unitId);
                 $(this).toggleClass('green-glow');
             });
             $('.phone2-active:visible').on('click', function(){
                 var formId = $(this).closest($('.unit_user_form')).attr('id');
                 var unitId = formId.replace( /^\D+/g, '');
-                console.log(unitId);
+//                console.log(unitId);
                 $(this).toggleClass('green-glow');
             });
             $('.email1-visible:visible').on('click', function(){
@@ -232,19 +232,19 @@
             $('.email1-active:visible').on('click', function(){
                 var formId = $(this).closest($('.unit_user_form')).attr('id');
                 var unitId = formId.replace( /^\D+/g, '');
-                console.log(unitId);
+//                console.log(unitId);
                 $(this).toggleClass('green-glow');
             });
             $('.email2-visible:visible').on('click', function(){
                 var formId = $(this).closest($('.unit_user_form')).attr('id');
                 var unitId = formId.replace( /^\D+/g, '');
-                console.log(unitId);
+//                console.log(unitId);
                 $(this).toggleClass('green-glow');
             });
             $('.email2-active:visible').on('click', function(){
                 var formId = $(this).closest($('.unit_user_form')).attr('id');
                 var unitId = formId.replace( /^\D+/g, '');
-                console.log(unitId);
+//                console.log(unitId);
                 $(this).toggleClass('green-glow');
             });
         });
