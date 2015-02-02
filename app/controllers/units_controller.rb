@@ -55,10 +55,8 @@ class UnitsController < ApplicationController
   def report_status
       unit = Unit.find(params[:id])
       if unit.duration == 0
-        # data = Time.now
         data = { :time_available => Time.now, :duration => 0 }
       else
-        # data = unit.time_available
         min = unit.duration
         uu_times = unit.unit_users.map do |uu|
           { :id => uu.id, :start_time_formatted => uu.start_time_formatted, :end_time_formatted => uu.end_time_formatted, :duration => uu.duration, :note => uu.note }
@@ -66,13 +64,10 @@ class UnitsController < ApplicationController
         data = { :time_available => unit.time_available,
                  :duration => min,
                  :duration_string => "<span>#{min / 60}</span><span class='smaller relative raised'>hrs</span> <span>#{min % 60}</span><span class='smaller relative raised'>min</span>",
-                 # :uu_queue => unit.unit_users.to_json(:only => [:id, :start_time_formatted, :duration, :end_time_formatted, :note])
                  :uu_queue => uu_times.to_json
         }
       end
-      puts "*"*30
-      puts "data in 'report_status' is " + data.to_s
-      puts "*"*30
+      puts "********************* data in 'report_status' is " + data.to_s
       respond_with(data)
   end
 
