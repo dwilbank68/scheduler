@@ -2,14 +2,14 @@
 
 one:
   name: MyString
-  screenName: MyString
+  screen_name: MyString
   position: MyString
   imagePath: MyString
   state: MyString
 
 two:
   name: MyString
-  screenName: MyString
+  screen_name: MyString
   position: MyString
   imagePath: MyString
   state: MyString

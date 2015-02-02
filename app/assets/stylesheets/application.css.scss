@@ -34,9 +34,34 @@ $link-color: #666;
   border-bottom: 1px solid #222;
 }
 
-#clock, #timezone { width: 94px; }
+#clock, #timezone {
+  width: 100px;
 
-#clock { margin-left: 10px; }
+}
+
+#clock {
+  margin-left: 16px;
+  margin-right: 10px;
+}
+
+#timezone {
+  border-right: 1px solid white;
+}
+
+#new-unit {
+  display: inline-block;
+  margin-left: 16px;
+}
+
+#name-display {
+  margin-right: 8px;
+}
+
+.nav img {
+  border-right: 1px solid white;
+  margin-right: 10px;
+  padding-right: 15px;
+}
 
 .btn-sm {
   color: dimgray;
@@ -222,6 +247,11 @@ input {
   font-size: 12px;
 }
 
+.quicksand-light {
+  font-family:'quicksandlight';
+  font-size: 12px;
+}
+
 .ocra {
   font-family: 'ufonts_com_ocra';
   font-size: 12px;
@@ -275,13 +305,6 @@ li { list-style-type: none; }
 
 ////////////////////// user form //////////////
 
-
-#user-edit-form {
-  width: 500px;
-  color: white;
-  background: transparent;
-}
-
 #user-email, #user-email2 { width: 177px; }
 
 #user-avatar {
@@ -293,11 +316,10 @@ li { list-style-type: none; }
 ////////////////////// unit /////////////////////
 
 .unit {
-    /*height: 100px;*/
   position: absolute;
   display: inline-block;
   width: 220px;
-  height: 250px;
+  height: 245px;
   border: solid gray 1px;
 }
 
@@ -306,10 +328,10 @@ li { list-style-type: none; }
   background-color: white;
 }
 
-.unit-image {
-  width: 190px;
-  border-radius: 5px;
-}
+//.unit-image {
+//  width: 190px;
+//  border-radius: 5px;
+//}
 
 .est-time-of-completion {
   margin-top: 5px;
@@ -329,6 +351,19 @@ input { background: transparent; }
 .est-time-of-completion-label {
   padding-left: 0px;
   padding-right: 14px;
+}
+
+button[id*='new-user-for-unit'] {
+  background: transparent;
+  color: white;
+  border-top: none;
+  border-bottom: none;
+  border-right: 1px solid gray;
+  border-left: 1px solid gray;
+  position: absolute;
+  width: 29px;
+  bottom: -26px;
+  left: 94px;
 }
 
 .inactive {
@@ -355,6 +390,15 @@ input { background: transparent; }
   0% { background-color: white; }
   50% { background-color: aqua; }
   100% { background-color: white; }
+}
+
+.fa-plus-square {
+  margin-left: 0px !important;
+}
+
+.fa-trash-o {
+  color: black;
+  margin-left: -9px !important;
 }
 
 /////////////////// form /////////////////////
@@ -391,7 +435,9 @@ input { background: transparent; }
   box-shadow:0 0 11px white;
 }
 
-#user-edit-form {
+#user-edit-form, #new-unit-form {
+  width: 500px;
+  color: white;
   position: fixed;
   background-color: transparent;
   display: block;
@@ -569,7 +615,14 @@ input { background: transparent; }
 
   hr { margin: 6px; }
 
-  .uu-avatar, .unit-image { border: 3px double gray; }
+  .uu-avatar, .unit-image {
+    border: 3px double gray;
+  }
+
+  .unit-image {
+    margin-left: -9px;
+    margin-bottom: 5px;
+  }
 
   .time-input { border: 1px solid gray;
     width: 370px;
@@ -673,7 +726,7 @@ li {
 .user-queue {
   position: relative;
   left: -28px;
-  top: 249px;
+  top: 269px;
 }
 
 //////////////////////////////////////////////////
