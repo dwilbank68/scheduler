@@ -81,7 +81,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # added to try and get heroku to use my fonts
-  config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+  config.assets.paths << Rails.root.join('app', 'assets', 'fonts', 'font-awesome-4.2.0')
   config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
 
   config.action_mailer.default_url_options = { :host => 'scheduler-wilbanks.herokuapp.com' }
