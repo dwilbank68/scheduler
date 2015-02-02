@@ -1,9 +1,10 @@
 class Unit < ActiveRecord::Base
 
   belongs_to :owner
-  has_many :unit_users
+  has_many :unit_users, dependent: :destroy
   has_many :users, :through => :unit_users
 
+  mount_uploader :unit_pic, UnitPicUploader
 
   def pos_x
     self.position.split('x').first.to_i

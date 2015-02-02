@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150129023022) do
+ActiveRecord::Schema.define(version: 20150201214841) do
 
   create_table "unit_users", force: true do |t|
     t.integer  "unit_id"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20150129023022) do
 
   create_table "units", force: true do |t|
     t.string   "name"
-    t.string   "screenName"
+    t.string   "screen_name"
     t.string   "position"
     t.string   "imagePath"
     t.string   "state"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20150129023022) do
     t.datetime "time_available"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "unit_pic"
   end
 
   create_table "users", force: true do |t|

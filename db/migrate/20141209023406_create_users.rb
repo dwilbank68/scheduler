@@ -9,6 +9,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email2
       t.string :sms
       t.string :role
+      t.string :timezone
+      t.string :avatar
 
       t.timestamps
     end

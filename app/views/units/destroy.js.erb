@@ -1,0 +1,3 @@
+<% if @unit.destroyed? %>
+    $('#unit_' + <%= @unit.id %>).fadeOut();
+<% end %>
