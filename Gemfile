@@ -35,7 +35,7 @@ gem 'mini_magick'
 gem 'fog'
 
 gem 'momentjs-rails', '>= 2.8.1', :github => 'derekprior/momentjs-rails'
-gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+# gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 
 gem 'jquery-ui-rails'
 gem 'best_in_place', '~> 3.0.1'
