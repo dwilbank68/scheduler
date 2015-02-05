@@ -100,6 +100,8 @@ class UnitUsersController < ApplicationController
         end
       end
 
+      @data = {  }
+
     else
        flash[:error] = "unit user not removed"
     end
@@ -115,10 +117,8 @@ class UnitUsersController < ApplicationController
 # - - - - - - - - -
   private
 
+  # sends email & text (Sendgrid & Twilio)
   def send_notifications(unituser, msg)
-    # puts '*****************************************'
-    # puts "#{msg} was sent to #{unituser.user.name} #{unituser.id}"
-    # puts '*****************************************'
     unituser.user.send_msg(msg)
     UserMailer.send_email(unituser.user, msg).deliver
   end
