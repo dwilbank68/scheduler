@@ -2,13 +2,6 @@
     $('#unit_user_' + <%= @unituser.id %>).fadeOut();
     console.log("destroy.js.erb has been triggered");
 
-    setTimeout(function() {
-
-
-
-
-
-
         $.ajax({
                 url: "/units/<%= params[:unit_id] %>/report_status",
                 type: "GET",
@@ -44,8 +37,6 @@
                 },
                 error: function() { console.log("ajax error in call to report_status") }
             });
-
-    }, 60000);
 
 
 <% end %>
