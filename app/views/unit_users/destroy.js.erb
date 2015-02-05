@@ -1,43 +1,51 @@
 <% if @unituser.destroyed? %>
     $('#unit_user_' + <%= @unituser.id %>).fadeOut();
     console.log("destroy.js.erb has been triggered");
-    $.ajax({
-        url: "/units/<%= params[:unit_id] %>/report_status",
-        type: "GET",
-        dataType: "json",
-        success: function(data, textStatus, xhr) {
-            console.log("ajax success inside destroy.js.erb has been triggered");
-            var $unit = $('#unit_' + <%= params[:unit_id] %>);
-            var unit_available = moment(data['time_available']);
-            var unit_available_string = moment(data['time_available']).format('MMM D, hh:mm A');
-            var duration = data['duration'];
-            var duration_string = data['duration_string'];
 
-            if(data['uu_queue']) {
-                var uu_queue = JSON.parse(data['uu_queue']);
-            } else {
-                var uu_queue = "";
-            }
-
-            if(duration == 0) {
-                $unit.find('.time-remaining').html("<span>0</span><span class='smaller relative raised'>hrs</span> <span>0</span><span class='smaller relative raised'>min</span>");
-                $unit.find('.est-time-of-completion').html("Unit Available");
-            } else {
-                $unit.find('.est-time-of-completion').html(unit_available_string);
-            }
-            for(var i=0; i<uu_queue.length; i++) {
-                $('#start_time_' +uu_queue[i]['id']).html(uu_queue[i]['start_time_formatted']);
-                $('#end_time_'   +uu_queue[i]['id']).html(uu_queue[i]['end_time_formatted']);
-            }
-
-            // wipe out old unit countdown and start a new one with the new info
-            $('#unit_' + <%= params[:unit_id] %>).find($('.time-remaining')).countdown('destroy');
-            startUnitCountdowns();
-        },
-        error: function() { console.log("ajax error in call to report_status") }
-    });
+    setTimeOut(function() {
 
 
+
+
+
+
+        $.ajax({
+                url: "/units/<%= params[:unit_id] %>/report_status",
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    console.log("ajax success inside destroy.js.erb has been triggered");
+                    var $unit = $('#unit_' + <%= params[:unit_id] %>);
+        //            var unit_available = moment(data['time_available']);
+                    var unit_available_string = moment(data['time_available']).format('MMM D, hh:mm A');
+                    var duration = data['duration'];
+                    var duration_string = data['duration_string'];
+
+                    if(data['uu_queue']) {
+                        var uu_queue = JSON.parse(data['uu_queue']);
+                    } else {
+                        var uu_queue = "";
+                    }
+
+                    if(duration == 0) {
+                        $unit.find('.time-remaining').html("<span>0</span><span class='smaller relative raised'>hrs</span> <span>0</span><span class='smaller relative raised'>min</span>");
+                        $unit.find('.est-time-of-completion').html("Unit Available");
+                    } else {
+                        $unit.find('.est-time-of-completion').html(unit_available_string);
+                    }
+                    for(var i=0; i<uu_queue.length; i++) {
+                        $('#start_time_' +uu_queue[i]['id']).html(uu_queue[i]['start_time_formatted']);
+                        $('#end_time_'   +uu_queue[i]['id']).html(uu_queue[i]['end_time_formatted']);
+                    }
+
+                    // wipe out old unit countdown and start a new one with the new info
+                    $('#unit_' + <%= params[:unit_id] %>).find($('.time-remaining')).countdown('destroy');
+                    startUnitCountdowns();
+                },
+                error: function() { console.log("ajax error in call to report_status") }
+            });
+
+    }, 10000);
 
 
 <% end %>

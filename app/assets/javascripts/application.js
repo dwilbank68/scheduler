@@ -39,9 +39,6 @@ $(document).ready(function() {
     $('#user-edit-form').hide();
     $('.best_in_place').best_in_place();
 
-
-
-
     // for closing forms with esc key
     $(document).keyup(function(e) {
         if(e.which == 27) {
@@ -53,22 +50,6 @@ $(document).ready(function() {
         }
     });
 
-    //var unitTemplate = $('#unit-template').innerHTML;
-    //console.log("unitTemplate is " + unitTemplate);
-
-    //var winWidth = $(window).width();
-    //var winHeight = $(window).height();
-    //var machine = $('.machine-container');
-
-    //machine.offset({ top: 50, left: 100 })
-//    var ntop = machine.offset().left / machine.width();
-//    var nleft = machine.offset().top / machine.height();
-//    var nleft = machine.offset().left / winWidth;
-//    var ntop = machine.offset().top / winHeight;
-//    console.log(winWidth);
-//    console.log(winHeight);
-//    console.log(nleft);
-//    console.log(ntop);
 
 });
 
