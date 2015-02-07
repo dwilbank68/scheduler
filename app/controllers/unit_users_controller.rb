@@ -79,11 +79,11 @@ class UnitUsersController < ApplicationController
   def destroy
     @unit = @unituser.unit
     idx_of_deleted = @unit.unit_users.index(@unituser)
+    logger.info('------------------------ idx of deleted is ' + idx_of_deleted.to_s)
     deleted_unitusers_name = @unituser.user.name
     if @unituser.destroy
       @unit.reload
       queue_after_deletion = @unit.unit_users
-
       queue_after_deletion.each_with_index do |unituser, idx|
         if idx >= idx_of_deleted
            if unituser == unituser.unit.unit_users.first
@@ -100,6 +100,7 @@ class UnitUsersController < ApplicationController
       end
       @unit.reload
       @data = @unit.report_status
+      logger.info('------------------------in uu destroy, @data is ' + @data.to_s)
     else
        flash[:error] = "unit user not removed"
     end
