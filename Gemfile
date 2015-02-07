@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 group :development do
   gem 'sqlite3'
   gem 'quiet_assets'
-  gem "better_errors"
-  gem "binding_of_caller" #if you use better_errors
+  gem 'better_errors'
+  gem 'binding_of_caller' #if you use better_errors
   gem 'hirb'
 end
 
@@ -42,6 +42,6 @@ gem 'best_in_place', '~> 3.0.1'
 
 gem 'twilio-ruby'
 
-
+# gem 'gon'
 # gem 'font-awesome-sass' didn't work
 

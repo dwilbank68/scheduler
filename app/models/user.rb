@@ -36,9 +36,9 @@ class User < ActiveRecord::Base
         :to => number_to_send_to,
         :body => msg
     )
-    puts "-twilio-"*20
-    puts "#{msg} was sent"
-    puts "-twilio-"*20
+    # puts "-twilio-"*20
+    # puts "#{msg} was sent"
+    # puts "-twilio-"*20
   end
 
   # this overrides the current user's timezone until I get everything fixed to handle timezones
