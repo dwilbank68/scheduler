@@ -77,7 +77,6 @@ class UnitUsersController < ApplicationController
   end
 
   def destroy
-
     @unit = @unituser.unit
     idx_of_deleted = @unit.unit_users.index(@unituser)
     deleted_unitusers_name = @unituser.user.name
@@ -99,16 +98,18 @@ class UnitUsersController < ApplicationController
           send_notifications(unituser,message)
         end
       end
-
-      @data = {  }
-
+      @unit.reload
+      @data = @unit.report_status
     else
        flash[:error] = "unit user not removed"
     end
 
+    @response = { :unit_user => @unituser.to_json, :data => @data } # data is already json
 
-    respond_with(@unituser) do |format|
-      format.html { redirect_to @units }
+    #@response.to_json# - disabled while I try to return just @data
+    #respond_with(@data)
+    respond_with(@response) do |format|
+       format.html { redirect_to @units }
     end
 
   end

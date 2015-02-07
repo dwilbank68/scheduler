@@ -6,6 +6,7 @@ class Unit < ActiveRecord::Base
 
   mount_uploader :unit_pic, UnitPicUploader
 
+
   def pos_x
     self.position.split('x').first.to_i
   end
@@ -20,10 +21,10 @@ class Unit < ActiveRecord::Base
     else
       data = self.unit_users.last.end_time
     end
-    puts "*"*30
-    puts "unit_users.count for unit #{self.id} is #{unit_users.count}"
-    puts "calculated_time_available is being called and returning " + data.to_s
-    puts "*"*30
+    # puts "*"*30
+    # puts "unit_users.count for unit #{self.id} is #{unit_users.count}"
+    # puts "calculated_time_available is being called and returning " + data.to_s
+    # puts "*"*30
     data
   end
 
@@ -46,5 +47,32 @@ class Unit < ActiveRecord::Base
     end
     new_arr
   end
+
+  def report_status
+    if duration == 0
+      @data = { :time_available => Time.now,
+                :time_available_string => "--:--:--",
+                :duration => 0,
+                :uu_queue => [].to_json
+      }
+    else
+      min = duration
+      uu_times = unit_users.map do |uu|
+        { :id => uu.id,
+          :start_time_formatted => uu.start_time_formatted,
+          :end_time_formatted => uu.end_time_formatted,
+          :duration => uu.duration,
+          :note => uu.note }
+      end
+      @data = { :time_available => time_available,
+                :time_available_string => "hey",
+                :duration => min,
+                :uu_queue => uu_times.to_json
+      }
+    end
+    puts "********************* called by modal, returning @data.to_json, which  is " + @data.to_json
+    @data.to_json
+  end
+
 
 end
