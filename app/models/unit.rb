@@ -17,15 +17,17 @@ class Unit < ActiveRecord::Base
 
   def calculated_time_available
     if self.unit_users.count == 0
-      data = nil
+      time_avail = nil
     else
-      data = self.unit_users.last.end_time
+      self.reload
+      time_avail = self.unit_users.last.end_time
     end
     # puts "*"*30
     # puts "unit_users.count for unit #{self.id} is #{unit_users.count}"
-    # puts "calculated_time_available is being called and returning " + data.to_s
+    puts "----------------self.unit_users.count is returning " + self.unit_users.count.to_s
+    puts "----------------calculated_time_available is returning " + time_avail.to_s
     # puts "*"*30
-    data
+    time_avail
   end
 
   def duration_hrs_min
@@ -70,7 +72,6 @@ class Unit < ActiveRecord::Base
                 :uu_queue => uu_times.to_json
       }
     end
-    puts "********************* called by modal, returning @data.to_json, which  is " + @data.to_json
     @data.to_json
   end
 

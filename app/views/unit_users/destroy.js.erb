@@ -33,13 +33,13 @@
         $unit.find('.time-remaining').html("--:--:--");
         $unit.find('.est-time-of-completion').html("Unit Available");
     }
-//
+
     for(var i=0; i<uu_queue.length; i++) {
         $('#start_time_' +uu_queue[i]['id']).html(uu_queue[i]['start_time_formatted']);
         $('#end_time_'   +uu_queue[i]['id']).html(uu_queue[i]['end_time_formatted']);
     }
 
-//    // wipe out old unit countdown and start a new one with the new info
+    // wipe out old unit countdown and start a new one with the new info
     $('#unit_' + <%= params[:unit_id] %>).find($('.time-remaining')).countdown('destroy');
     startUnitCountdowns();
 
