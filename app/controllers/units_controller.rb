@@ -24,6 +24,7 @@ class UnitsController < ApplicationController
   end
 
   def new
+    render :layout => "devise"
   end
 
   def update
