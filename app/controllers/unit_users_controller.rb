@@ -104,6 +104,8 @@ class UnitUsersController < ApplicationController
     else
        flash[:error] = "unit user not removed"
     end
+    # @unit.duration = 8888 # this worked
+    # @unit.save!
 
     @response = { :unit_user => @unituser.to_json, :data => @data } # data is already json
 

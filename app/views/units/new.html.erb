@@ -2,7 +2,7 @@
   <div class="col-xs-4 col-xs-offset-4">
     <div class="container microgramma-bold spaced" id="new-unit-form">
       <div class="row">
-        <div class="col-xs-12 spaced3-6"><h2>New Unit</h2></div>
+        <div class="col-xs-12 spaced3-6 txt-centered"><h2>New Unit</h2></div>
       </div>
       <% if current_user %>
           <%= simple_form_for Unit.new, defaults: {input_html: {class: 'quicksand-reg white-glow-dim', color: 'white'}} do |f| %>
@@ -20,8 +20,9 @@
               <div class="spacer"></div>
               <div class="spacer"></div>
               <div class="row">
-                <div><h4>Upload A Picture</h4></div>
-                <div><h5>For best results, make sure it is a 4x3 ratio</h5></div>
+                <div class="col-xs-12 txt-centered">
+                  <h4>Upload A Picture</h4>
+                </div>
               </div>
               <div class="row">
                 <div class="col-xs-6 microgramma spaced white-glow-dim"> <%= f.file_field :unit_pic %> </div>
@@ -32,7 +33,8 @@
               </div>
               <div class="spacer"></div>
               <!-- TODO change the update-user classname below-->
-              <div class="row div col-xs-12 txt-centered spaced"><%= f.button :submit, :class => 'update-user spaced' %></div>
+              <div class="txt-centered spaced"><%= f.button :submit, :class => 'update-user spaced' %></div>
+                <div class="spacer"></div>
           <% end %>
       <% end %>
     </div>

@@ -6,6 +6,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller' #if you use better_errors
   gem 'hirb'
+  gem 'pry'
 end
 
 group :production do

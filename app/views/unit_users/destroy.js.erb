@@ -1,11 +1,11 @@
 <% if @unituser.destroyed? %>
     $('#unit_user_' + <%= @unituser.id %>).fadeOut();
-    console.log("@unituser <%= @unituser.id %>still exists here in destroy.js.erb");
-    console.log("destroy.js.erb has been triggered and @response[:unit_user] is <%= JSON.parse(@response[:unit_user]) %>");
-    console.log("destroy.js.erb has been triggered and @response[:unit_user].id is <%= JSON.parse(@response[:unit_user])['id'] %>");
-    console.log("destroy.js.erb has been triggered and @response[:data] is <%= JSON.parse(@response[:data]) %>");
-    console.log("destroy.js.erb has been triggered and @response[:data]['duration'] is <%= JSON.parse(@response[:data])['duration'] %>");
-    console.log("destroy.js.erb has been triggered and @response[:data]['uu_queue'] is <%= JSON.parse(@response[:data])['uu_queue'] %>");
+//    console.log("@unituser <%= @unituser.id %>still exists here in destroy.js.erb");
+//    console.log("destroy.js.erb has been triggered and @response[:unit_user] is <%= JSON.parse(@response[:unit_user]) %>");
+//    console.log("destroy.js.erb has been triggered and @response[:unit_user].id is <%= JSON.parse(@response[:unit_user])['id'] %>");
+//    console.log("destroy.js.erb has been triggered and @response[:data] is <%= JSON.parse(@response[:data]) %>");
+//    console.log("destroy.js.erb has been triggered and @response[:data]['duration'] is <%= JSON.parse(@response[:data])['duration'] %>");
+//    console.log("destroy.js.erb has been triggered and @response[:data]['uu_queue'] is <%= JSON.parse(@response[:data])['uu_queue'] %>");
 
     var $unit = $('#unit_' + <%= params[:unit_id] %>);
     var uu_queue = JSON.parse('<%= JSON.parse(@response[:data])['uu_queue'] %>'.replace(/&quot;/g,'"').replace(/&gt;/g,'>'));
@@ -13,10 +13,10 @@
     var unit_available = '<%= JSON.parse(@response[:data])['time_available'] %>'.replace(/&quot;/g,'"').replace(/&gt;/g,'>');
     var unit_available_string = moment(unit_available).format('MMM D, hh:mm A');
 
-    console.log("duration is " + duration);
-    console.log("uu_queue is " + uu_queue);
-    console.log("unit_available is " + unit_available);
-    console.log("unit_available_string is " + unit_available_string);
+//    console.log("duration is " + duration);
+//    console.log("uu_queue is " + uu_queue);
+//    console.log("unit_available is " + unit_available);
+//    console.log("unit_available_string is " + unit_available_string);
 
 //    if(uu_queue) {
 //        var uu_queue = uu_queue;
@@ -25,10 +25,10 @@
 //    }
 
     if(duration > 0) {
-        console.log("DURATION EXISTS");
+//        console.log("DURATION EXISTS");
         $unit.find('.est-time-of-completion').html(unit_available_string);
     } else {
-        console.log("DURATION DOES NOT EXIST");
+//        console.log("DURATION DOES NOT EXIST");
         $unit.find('.time-remaining').countdown('destroy');
         $unit.find('.time-remaining').html("--:--:--");
         $unit.find('.est-time-of-completion').html("Unit Available");

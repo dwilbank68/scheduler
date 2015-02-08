@@ -3,3 +3,23 @@
   form { margin-bottom: 20px; }
   .glyphicon { top: 0; }
 }
+
+// same as .spaced class
+.form-actions > .btn {
+  letter-spacing: 2px;
+}
+
+.form-actions > .btn:hover {
+  color:#fff;
+  text-shadow: 0px 0px 6px rgba(141,220,224,1),
+  0px 0px 12px rgba(141,220,224,1),
+  0px 0px 24px rgba(141,220,224,1);
+}
+
+#user_remember_me {
+  margin-left: 0px;
+}
+
+#remember-label {
+  margin-top: 14px;
+}

@@ -25,6 +25,8 @@
 
 $link-color: #666;
 
+
+
 .nav {
   background: rgba(0, 0, 0, 0.5);
 }
@@ -50,6 +52,14 @@ $link-color: #666;
 #new-unit {
   display: inline-block;
   margin-left: 16px;
+}
+
+#new-unit> a:hover {
+  text-decoration: none;
+  color:#fff;
+  text-shadow: 0px 0px 6px rgba(141,220,224,1),
+  0px 0px 12px rgba(141,220,224,1),
+  0px 0px 24px rgba(141,220,224,1);
 }
 
 #name-display {
@@ -287,7 +297,18 @@ input {
 /////////////////////////////////////////////////
 
 .user-info { margin-top: 9px; }
+
 .nav { margin-top: 5px; }
+
+#clock, #timezone {
+  margin-top: 6px;
+}
+
+
+
+input .update-user {
+  margin-bottom: 7px;
+}
 
 header {
     text-align: center;
@@ -299,7 +320,12 @@ body {
 
 li { list-style-type: none; }
 
-
+#new-user:hover {
+  color:#fff;
+  text-shadow: 0px 0px 6px rgba(141,220,224,1),
+  0px 0px 12px rgba(141,220,224,1),
+  0px 0px 24px rgba(141,220,224,1);
+}
 
 
 ////////////////////// user form //////////////
@@ -432,6 +458,10 @@ button[id*='new-user-for-unit'] {
   padding: 15px;
   border-radius: 10px;
   box-shadow:0 0 11px white;
+}
+
+#new-unit-form {
+  margin-top: 100px;
 }
 
 #user-edit-form, #new-unit-form {

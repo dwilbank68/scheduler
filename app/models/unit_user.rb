@@ -31,6 +31,7 @@ class UnitUser < ActiveRecord::Base
     queue[idx+1]
   end
 
+
   private
 
 
@@ -39,22 +40,12 @@ class UnitUser < ActiveRecord::Base
   # this happens after every unit_user create, update, or destroy
   def update_total_time
     @unit = self.unit
-    @unit.duration = get_total_time
-    puts "*"*30
-    puts("inside update_total_time, calculated_time for unit #{@unit.id}, with #{@unit.unit_users.count} unitusers remaining, is #{@unit.calculated_time_available}")
-    puts "*"*30
-    @unit.time_available = @unit.calculated_time_available
-    @unit.save
-    # puts "*"*30
-    # puts "@unit.duration is #{@unit.duration}"
-    # puts "*"*30
+    @unit.update(:duration => get_total_time, :time_available => @unit.calculated_time_available )
   end
 
   def get_total_time
     total_queue_duration = @unit.unit_users.pluck(:duration).sum
-    # puts "*"*30
-    # puts "total_queue_duration is #{total_queue_duration} - #{@unit.unit_users.count} in queue"
-    # puts "*"*30
+    logger.info('----------------unit#get_total_time is triggered, returning ' + total_queue_duration.to_s)
     total_queue_duration
   end
 
