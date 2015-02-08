@@ -51,7 +51,7 @@ class Unit < ActiveRecord::Base
   end
 
   def report_status
-    unit = Unit.find 20
+    unit = self
     if duration == 0
       logger.info('-------------in unit#report_status, duration equals zero')
       logger.info('-------------in unit#report_status, self.duration equals ' + self.duration.to_s)
