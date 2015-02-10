@@ -78,6 +78,7 @@
               <div class="col-xs-2 quicksand-reg txt-right grayed-out email2-active">active</div>
             </div>
             <div class="hidden-checkboxes">
+              <%= f.input :p1v, :as => :boolean, :label => false %>
               <input type="checkbox" id="p1v-<%= unit.id %>"/> <input type="checkbox" id="p1a-<%= unit.id %>"/>
               <input type="checkbox" id="p2v-<%= unit.id %>"/> <input type="checkbox" id="p2a-<%= unit.id %>"/>
               <input type="checkbox" id="e1v-<%= unit.id %>"/> <input type="checkbox" id="e1a-<%= unit.id %>"/>
