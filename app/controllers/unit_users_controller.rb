@@ -104,13 +104,14 @@ class UnitUsersController < ApplicationController
     else
        flash[:error] = "unit user not removed"
     end
-    # @unit.duration = 8888 # this worked
-    # @unit.save!
 
-    @response = { :unit_user => @unituser.to_json, :data => @data } # data is already json
+    @response = { :unit_user => @unituser,#.to_json,
+                  :data => @data,
+                  :unit_arr => Unit.report_unit_statuses#.to_json
+    }.to_json
 
-    #@response.to_json# - disabled while I try to return just @data
-    #respond_with(@data)
+    logger.info('--------------------------------- @response is ' + @response )
+
     respond_with(@response) do |format|
        format.html { redirect_to @units }
     end
