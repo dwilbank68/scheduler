@@ -11,17 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150201214841) do
+ActiveRecord::Schema.define(version: 20150210194818) do
 
   create_table "unit_users", force: true do |t|
     t.integer  "unit_id"
     t.integer  "user_id"
     t.datetime "start_time"
-    t.integer  "duration",   default: 0
+    t.integer  "duration",      default: 0
     t.datetime "end_time"
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "contact_flags"
   end
 
   add_index "unit_users", ["unit_id"], name: "index_unit_users_on_unit_id"
