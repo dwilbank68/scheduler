@@ -1,46 +1,40 @@
 <% if @unituser.destroyed? %>
     $('#unit_user_' + <%= @unituser.id %>).fadeOut();
-//    console.log("@unituser <%= @unituser.id %>still exists here in destroy.js.erb");
-//    console.log("destroy.js.erb has been triggered and @response[:unit_user] is <%= JSON.parse(@response[:unit_user]) %>");
-//    console.log("destroy.js.erb has been triggered and @response[:unit_user].id is <%= JSON.parse(@response[:unit_user])['id'] %>");
-//    console.log("destroy.js.erb has been triggered and @response[:data] is <%= JSON.parse(@response[:data]) %>");
-//    console.log("destroy.js.erb has been triggered and @response[:data]['duration'] is <%= JSON.parse(@response[:data])['duration'] %>");
-//    console.log("destroy.js.erb has been triggered and @response[:data]['uu_queue'] is <%= JSON.parse(@response[:data])['uu_queue'] %>");
 
     var $unit = $('#unit_' + <%= params[:unit_id] %>);
-    var uu_queue = JSON.parse('<%= JSON.parse(@response[:data])['uu_queue'] %>'.replace(/&quot;/g,'"').replace(/&gt;/g,'>'));
-    var duration = <%= JSON.parse(@response[:data])['duration'] %>;
-    var unit_available = '<%= JSON.parse(@response[:data])['time_available'] %>'.replace(/&quot;/g,'"').replace(/&gt;/g,'>');
-    var unit_available_string = moment(unit_available).format('MMM D, hh:mm A');
-
-//    console.log("duration is " + duration);
-//    console.log("uu_queue is " + uu_queue);
-//    console.log("unit_available is " + unit_available);
-//    console.log("unit_available_string is " + unit_available_string);
-
-//    if(uu_queue) {
-//        var uu_queue = uu_queue;
-//    } else {
-//        var uu_queue = [];
-//    }
+    var duration = <%= JSON.parse(@response)['data']['duration'] %>;
+    var unit_available = '<%= JSON.parse(@response)['data']['time_available'] %>'.replace(/&quot;/g,'"').replace(/&gt;/g,'>');
+    var uu_queue = '<%= JSON.parse(@response)['data']['uu_queue'] %>'.replace(/&quot;/g,'"').replace(/&gt;/g,'').replace(/=/g,':');
+    var uu_queue_arr = JSON.parse(uu_queue);
+    var unit_arr = '<%= JSON.parse(@response)['unit_arr'] %>'.replace(/&quot;/g,'"').replace(/&gt;/g,'').replace(/=/g,':');
+    var unit_arr_arr = JSON.parse(unit_arr);
 
     if(duration > 0) {
-//        console.log("DURATION EXISTS");
-        $unit.find('.est-time-of-completion').html(unit_available_string);
+        // this field will be updated with the countdown
+        $unit.find('.est-time-of-completion').html("stand by");
     } else {
-//        console.log("DURATION DOES NOT EXIST");
-        $unit.find('.time-remaining').countdown('destroy');
-        $unit.find('.time-remaining').html("--:--:--");
         $unit.find('.est-time-of-completion').html("Unit Available");
     }
 
-    for(var i=0; i<uu_queue.length; i++) {
-        $('#start_time_' +uu_queue[i]['id']).html(uu_queue[i]['start_time_formatted']);
-        $('#end_time_'   +uu_queue[i]['id']).html(uu_queue[i]['end_time_formatted']);
+    // update start and end times for the whole queue
+    for(var i=0; i<uu_queue_arr.length; i++) {
+        $('#start_time_' +uu_queue_arr[i]['id']).html(uu_queue_arr[i]['start_time_formatted']);
+        $('#end_time_'   +uu_queue_arr[i]['id']).html(uu_queue_arr[i]['end_time_formatted']);
     }
 
-    // wipe out old unit countdown and start a new one with the new info
+    // wipe out old unit countdown and then
     $('#unit_' + <%= params[:unit_id] %>).find($('.time-remaining')).countdown('destroy');
-    startUnitCountdowns();
+
+    // update all unit countdowns
+    for(var i=0; i<unit_arr_arr.length; i++) {
+        var id = unit_arr_arr[i]['id'];
+        var endTime = unit_arr_arr[i]['time_available'];
+        if(endTime === "") {
+            $('#unit_' + id).find($('.time-remaining')).html("--:--:--");
+        } else {
+            var endTimeMoment = moment(endTime);
+            $('#unit_' + id).find($('.time-remaining')).countdown({ until: endTimeMoment.toDate(), compact: true });
+        }
+    }
 
 <% end %>

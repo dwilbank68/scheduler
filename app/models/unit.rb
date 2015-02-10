@@ -76,10 +76,17 @@ class Unit < ActiveRecord::Base
       @data = { :time_available => time_available,
                 :time_available_string => "hey",
                 :duration => min,
-                :uu_queue => uu_times.to_json
+                :uu_queue => uu_times
       }
     end
-    @data.to_json
+    @data#.to_json
+  end
+
+  def self.report_unit_statuses
+    u_times = Unit.all.map do |u|
+      { :id => u.id, :state => u.state, :duration => u.duration, :time_available => u.time_available || ""}
+    end
+    u_times.to_json
   end
 
 
