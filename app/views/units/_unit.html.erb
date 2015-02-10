@@ -149,7 +149,6 @@
             $($form).fadeIn().css({top:($(window).height()/2)-107, left:($(window).width()/2)-200, zIndex:3});
 
             // AJAX call to server to get unit's time_available field, or Time.now if the field is nil
-
             var unit_available, unit_available_string;
 
             $.ajax({
@@ -189,11 +188,9 @@
                 $('.formatted-duration:visible').html(dur);
 
                 var startMoment = moment(unit_available);
-//                console.log('startMoment is ' + startMoment);
 
                 // end time is calculated by adding minutes to the start time
                 var endMoment = startMoment.add(min, 'minutes');
-//                console.log('endMoment is   ' + endMoment);
 
                 // end time is inserted in the appropriate field
                 $('.formatted-end-time:visible').html(endMoment.format('MMM D, hh:mm A'));
