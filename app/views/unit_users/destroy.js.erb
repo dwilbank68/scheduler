@@ -4,14 +4,14 @@
     var $unit = $('#unit_' + <%= params[:unit_id] %>);
     var duration = <%= JSON.parse(@response)['data']['duration'] %>;
     var unit_available = '<%= JSON.parse(@response)['data']['time_available'] %>'.replace(/&quot;/g,'"').replace(/&gt;/g,'>');
+    var unit_available_string = moment(unit_available).format('MMM D, hh:mm A');
     var uu_queue = '<%= JSON.parse(@response)['data']['uu_queue'] %>'.replace(/&quot;/g,'"').replace(/&gt;/g,'').replace(/=/g,':');
     var uu_queue_arr = JSON.parse(uu_queue);
     var unit_arr = '<%= JSON.parse(@response)['unit_arr'] %>'.replace(/&quot;/g,'"').replace(/&gt;/g,'').replace(/=/g,':');
     var unit_arr_arr = JSON.parse(unit_arr);
 
     if(duration > 0) {
-        // this field will be updated with the countdown
-        $unit.find('.est-time-of-completion').html("stand by");
+        $unit.find('.est-time-of-completion').html(unit_available_string);
     } else {
         $unit.find('.est-time-of-completion').html("Unit Available");
     }
@@ -36,5 +36,7 @@
             $('#unit_' + id).find($('.time-remaining')).countdown({ until: endTimeMoment.toDate(), compact: true });
         }
     }
+
+
 
 <% end %>
