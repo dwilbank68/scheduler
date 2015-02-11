@@ -10,6 +10,7 @@ class UnitUsersController < ApplicationController
     @uu = UnitUser.new(user_id:@user.id, unit_id:@unit.id)
     @uu.duration = params[:unit_user][:duration]
     @uu.duration = 5 if @uu.duration == 0
+    @uu.contact_flags = params[:unit_user][:contact_flags]
     @uu.note = params[:unit_user][:note] == '' ? 'click to edit' : params[:unit_user][:note]
     # puts params
     @uu.save

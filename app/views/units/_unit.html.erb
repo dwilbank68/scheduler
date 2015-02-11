@@ -48,7 +48,7 @@
         <%= minimal_form_for([unit, @unit_user], :remote => true, html: {class: 'form-vertical'}) do |f| %>
             <%= f.error_notification %>
             <div class="row">
-              <div class="col-xs-12 larger white-glow-dim spaced7 txt-centered">Schedule <%= unit.screen_name %></div>
+              <div class="col-xs-12 larger white-glow-dim spaced txt-centered">Schedule <%= unit.screen_name %></div>
             </div>
             <div class="spacer"></div>
             <div class="spacer"></div>
@@ -76,13 +76,6 @@
               <div class="col-xs-8 quicksand-reg white-glow"><%= current_user.email2 %></div>
               <div class="col-xs-2 quicksand-reg txt-right grayed-out email2-visible">visible</div>
               <div class="col-xs-2 quicksand-reg txt-right grayed-out email2-active">active</div>
-            </div>
-            <div class="hidden-checkboxes">
-              <%= f.input :p1v, :as => :boolean, :label => false %>
-              <input type="checkbox" id="p1v-<%= unit.id %>"/> <input type="checkbox" id="p1a-<%= unit.id %>"/>
-              <input type="checkbox" id="p2v-<%= unit.id %>"/> <input type="checkbox" id="p2a-<%= unit.id %>"/>
-              <input type="checkbox" id="e1v-<%= unit.id %>"/> <input type="checkbox" id="e1a-<%= unit.id %>"/>
-              <input type="checkbox" id="e2v-<%= unit.id %>"/> <input type="checkbox" id="e2a-<%= unit.id %>"/>
             </div>
             <div class="spacer"></div>
           <div class="container time-input">
@@ -115,6 +108,8 @@
           <%= f.input :note, :input_html => { :class => 'quicksand-reg white-glow', :cols => 48 } %>
           <%= f.hidden_field :user_id, :value => @user.id %>
           <%= f.hidden_field :start_time, :value => unit.time_available %>
+          <%#= f.hidden_field :contact_flags, :value => '' %>
+          <%= f.input :contact_flags, :as => :hidden, :input_html => { :value => '', :id => 'contact-flags-' + unit.id.to_s } %>
           <div class="spacer"></div>
           <%= f.error :base %>
           <div class="row">
@@ -127,8 +122,6 @@
     </div>
 
 <% end %>
-
-
 
 <script>
     $(document).ready(function(){
@@ -165,9 +158,9 @@
                 success: function(data) {
                     unit_available = moment(data['time_available']);
                     unit_available_string = moment(data['time_available']).format('MMM D, hh:mm A');
-                    console.log("NEW data is " + JSON.stringify(data));
-                    console.log("NEW unit_available is " + unit_available);
-                    console.log("NEW unit_available_string is " + unit_available_string);
+//                    console.log("NEW data is " + JSON.stringify(data));
+//                    console.log("NEW unit_available is " + unit_available);
+//                    console.log("NEW unit_available_string is " + unit_available_string);
 //                    console.log("NEW duration is " + data['duration']);
                     $('.uu-form-start-time').html(unit_available_string);
                 },
@@ -203,97 +196,102 @@
                 $('.formatted-end-time:visible').html(endMoment.format('MMM D, hh:mm A'));
             });
 
+            // create an array of flags which tells which pieces of contact data are going to be active and visible
+            // e.g., 0,1,1,0,0,0,1,1 or 1,1,1,1,0,0,0,0,
+
+            var contactFlags = "00000000".split('');
+
+            // set each element to 1 or 0 depending on which button user toggles
+
             $('.phone1-visible:visible').first().on('click', function(){
                 var formId = $(this).closest($('.unit_user_form')).attr('id');
                 var unitId = formId.replace( /^\D+/g, '');
                 $(this).toggleClass('green-glow');
-
-                if( $('#p1v-' + unitId).is(':checked') ){
-                    $('#p1v-' + unitId).prop('checked', false);
+                if( contactFlags[0] == "1"){
+                    contactFlags[0] = "0";
                 } else {
-                    $('#p1v-' + unitId).prop('checked', true);
+                    contactFlags[0] = "1";
                 }
+                $('#contact-flags-' + <%= unit.id %>).val(contactFlags.join(''));
             });
 
             $('.phone1-active:visible').on('click', function(){
                 var formId = $(this).closest($('.unit_user_form')).attr('id');
                 var unitId = formId.replace( /^\D+/g, '');
                 $(this).toggleClass('green-glow');
-                if( $('#p1a-' + unitId).is(':checked') ){
-                    $('#p1a-' + unitId).prop('checked', false);
+                if( contactFlags[1] == "1"){
+                    contactFlags[1] = "0";
                 } else {
-                    $('#p1a-' + unitId).prop('checked', true);
+                    contactFlags[1] = "1";
                 }
-
+                $('#contact-flags-' + <%= unit.id %>).val(contactFlags.join(''));
             });
             $('.phone2-visible:visible').on('click', function(){
                 var formId = $(this).closest($('.unit_user_form')).attr('id');
                 var unitId = formId.replace( /^\D+/g, '');
                 $(this).toggleClass('green-glow');
-                if( $('#p2v-' + unitId).is(':checked') ){
-                    $('#p2v-' + unitId).prop('checked', false);
+                if( contactFlags[2] == "1"){
+                    contactFlags[2] = "0";
                 } else {
-                    $('#p2v-' + unitId).prop('checked', true);
+                    contactFlags[2] = "1";
                 }
+                $('#contact-flags-' + <%= unit.id %>).val(contactFlags.join(''));
 
             });
             $('.phone2-active:visible').on('click', function(){
                 var formId = $(this).closest($('.unit_user_form')).attr('id');
                 var unitId = formId.replace( /^\D+/g, '');
                 $(this).toggleClass('green-glow');
-                if( $('#p2a-' + unitId).is(':checked') ){
-                    $('#p2a-' + unitId).prop('checked', false);
+                if( contactFlags[3] == "1"){
+                    contactFlags[3] = "0";
                 } else {
-                    $('#p2a-' + unitId).prop('checked', true);
+                    contactFlags[3] = "1";
                 }
-
+                $('#contact-flags-' + <%= unit.id %>).val(contactFlags.join(''));
             });
             $('.email1-visible:visible').on('click', function(){
                 var formId = $(this).closest($('.unit_user_form')).attr('id');
                 var unitId = formId.replace( /^\D+/g, '');
-                console.log(unitId);
                 $(this).toggleClass('green-glow');
-                if( $('#e1v-' + unitId).is(':checked') ){
-                    $('#e1v-' + unitId).prop('checked', false);
+                if( contactFlags[4] == "1"){
+                    contactFlags[4] = "0";
                 } else {
-                    $('#e1v-' + unitId).prop('checked', true);
+                    contactFlags[4] = "1";
                 }
-
+                $('#contact-flags-' + <%= unit.id %>).val(contactFlags.join(''));
             });
             $('.email1-active:visible').on('click', function(){
                 var formId = $(this).closest($('.unit_user_form')).attr('id');
                 var unitId = formId.replace( /^\D+/g, '');
-//                console.log(unitId);
                 $(this).toggleClass('green-glow');
-                if( $('#e1a-' + unitId).is(':checked') ){
-                    $('#e1a-' + unitId).prop('checked', false);
+                if( contactFlags[5] == "1"){
+                    contactFlags[5] = "0";
                 } else {
-                    $('#e1a-' + unitId).prop('checked', true);
+                    contactFlags[5] = "1";
                 }
-
+                $('#contact-flags-' + <%= unit.id %>).val(contactFlags.join(''));
             });
             $('.email2-visible:visible').on('click', function(){
                 var formId = $(this).closest($('.unit_user_form')).attr('id');
                 var unitId = formId.replace( /^\D+/g, '');
-//                console.log(unitId);
                 $(this).toggleClass('green-glow');
-                if( $('#e2v-' + unitId).is(':checked') ){
-                    $('#e2v-' + unitId).prop('checked', false);
+                if( contactFlags[6] == "1"){
+                    contactFlags[6] = "0";
                 } else {
-                    $('#e2v-' + unitId).prop('checked', true);
+                    contactFlags[6] = "1";
                 }
-
+                $('#contact-flags-' + <%= unit.id %>).val(contactFlags.join(''));
             });
             $('.email2-active:visible').on('click', function(){
                 var formId = $(this).closest($('.unit_user_form')).attr('id');
                 var unitId = formId.replace( /^\D+/g, '');
                 $(this).toggleClass('green-glow');
-                if( $('#e2a-' + unitId).is(':checked') ){
-                    $('#e2a-' + unitId).prop('checked', false);
+                if( contactFlags[7] == "1"){
+                    contactFlags[7] = "0";
                 } else {
-                    $('#e2a-' + unitId).prop('checked', true);
+                    contactFlags[7] = "1";
                 }
-
+                $('#contact-flags-' + <%= unit.id %>).val(contactFlags.join(''));
             });
         });
 
