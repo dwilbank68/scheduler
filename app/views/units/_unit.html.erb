@@ -48,7 +48,7 @@
         <%= minimal_form_for([unit, @unit_user], :remote => true, html: {class: 'form-vertical'}) do |f| %>
             <%= f.error_notification %>
             <div class="row">
-              <div class="col-xs-12 larger white-glow-dim spaced txt-centered">Schedule <%= unit.screen_name %></div>
+              <div class="col-xs-12 larger2 white-glow-dim spaced txt-centered">Schedule <%= unit.screen_name %></div>
             </div>
             <div class="spacer"></div>
             <div class="spacer"></div>
@@ -57,27 +57,67 @@
               <div class="col-xs-12 quicksand-reg white-glow"><%= current_user.name %></div>
             </div>
             <!-- colors will alternate between green-glow and grayed-out-->
+          <div id="contact-display-<%= unit.id %>">
+            <div class="row border-bottom">
+              <div class="col-xs-8 quicksand-reg white-glow"><%= current_user.email %></div>
+              <% if current_user.contact_flags[0] == "1" %>
+                  <div class="col-xs-2 quicksand-reg txt-right green-glow email1-visible-display">visible</div>
+              <% else %>
+                  <div class="col-xs-2 quicksand-reg txt-right grayed-out email1-visible-display">visible</div>
+              <% end %>
+              <% if current_user.contact_flags[1] == "1" %>
+                  <div class="col-xs-2 quicksand-reg txt-right green-glow email1-active-display">active</div>
+              <% else %>
+                  <div class="col-xs-2 quicksand-reg txt-right grayed-out email1-active-display">active</div>
+              <% end %>
+            </div>
+            <div class="row border-bottom">
+              <div class="col-xs-8 quicksand-reg white-glow"><%= current_user.email2 %></div>
+              <% if current_user.contact_flags[2] == "1" %>
+                  <div class="col-xs-2 quicksand-reg txt-right green-glow email2-visible-display">visible</div>
+              <% else %>
+                  <div class="col-xs-2 quicksand-reg txt-right grayed-out email2-visible-display">visible</div>
+              <% end %>
+              <% if current_user.contact_flags[3] == "1" %>
+                  <div class="col-xs-2 quicksand-reg txt-right green-glow email2-active-display">active</div>
+              <% else %>
+                  <div class="col-xs-2 quicksand-reg txt-right grayed-out email2-active-display">active</div>
+              <% end %>
+            </div>
+
             <div class="row border-bottom">
               <div class="col-xs-8 quicksand-reg white-glow"><%= formatted_phone(current_user.phone) %></div>
-              <div class="col-xs-2 quicksand-reg txt-right grayed-out phone1-visible">visible</div>
-              <div class="col-xs-2 quicksand-reg txt-right grayed-out phone1-active">active</div>
+              <% if current_user.contact_flags[4] == "1" %>
+                  <div class="col-xs-2 quicksand-reg txt-right green-glow phone1-visible-display">visible</div>
+              <% else %>
+                  <div class="col-xs-2 quicksand-reg txt-right grayed-out phone1-visible-display">visible</div>
+              <% end %>
+              <% if current_user.contact_flags[5] == "1" %>
+                  <div class="col-xs-2 quicksand-reg txt-right green-glow phone1-active-display">active</div>
+              <% else %>
+                  <div class="col-xs-2 quicksand-reg txt-right grayed-out phone1-active-display">active</div>
+              <% end %>
             </div>
             <div class="row border-bottom">
               <div class="col-xs-8 quicksand-reg white-glow"><%= formatted_phone(current_user.phone2) %></div>
-              <div class="col-xs-2 quicksand-reg txt-right grayed-out phone2-visible">visible</div>
-              <div class="col-xs-2 quicksand-reg txt-right grayed-out phone2-active">active</div>
+              <% if current_user.contact_flags[6] == "1" %>
+                  <div class="col-xs-2 quicksand-reg txt-right green-glow phone2-visible-display">visible</div>
+              <% else %>
+                  <div class="col-xs-2 quicksand-reg txt-right grayed-out phone2-visible-display">visible</div>
+              <% end %>
+              <% if current_user.contact_flags[7] == "1" %>
+                  <div class="col-xs-2 quicksand-reg txt-right green-glow phone2-active-display">active</div>
+              <% else %>
+                  <div class="col-xs-2 quicksand-reg txt-right grayed_out phone2-active-display">active</div>
+              <% end %>
             </div>
-            <div class="row border-bottom">
-              <div class="col-xs-8 quicksand-reg white-glow"><%= current_user.email %></div>
-              <div class="col-xs-2 quicksand-reg txt-right grayed-out email1-visible">visible</div>
-              <div class="col-xs-2 quicksand-reg txt-right grayed-out email1-active">active</div>
-            </div>
-            <div class="row">
-              <div class="col-xs-8 quicksand-reg white-glow"><%= current_user.email2 %></div>
-              <div class="col-xs-2 quicksand-reg txt-right grayed-out email2-visible">visible</div>
-              <div class="col-xs-2 quicksand-reg txt-right grayed-out email2-active">active</div>
-            </div>
+          </div>
+
             <div class="spacer"></div>
+
+          <div class="row">
+            <div class="col-xs-12 blue-glow txt-centered quicksand-reg" id="contact-pref-notice-<%= unit.id %>">To change your contact choices, click 'Edit Contact Preferences' in the Navigation Bar</div>
+          </div>
           <div class="container time-input">
             <div class='row'>
               <div class="col-xs-6 microgramma-bold spaced white-glow-dim">Unit Available</div>
@@ -86,9 +126,10 @@
             <hr/>
             <div class="spacer"></div>
             <div class="row">
-              <div class="col-xs-7 microgramma-bold spaced white-glow-dim">Set Duration</div>
-              <div class="col-xs-2 txt-right"><%= f.input :duration, :autofocus => true, :input_html => {:min => '0', :max => '1440', :value => 5, :step => '5', :class => 'quicksand-reg white-glow'} %> </div>
-              <div class="col-xs-3 quicksand-reg spaced white-glow txt-right">minutes</div>
+              <!--<div class="col-xs-7 microgramma-bold spaced white-glow-dim">Set Duration</div>-->
+              <div class="col-xs-12 larger txt-centered microgramma-bold spaced white-glow-dim">Set Duration</div>
+              <div class="col-xs-12 txt-centered"><%= f.input :duration, :autofocus => true, :input_html => {:min => '0', :max => '1440', :value => 5, :step => '5', :class => 'larger quicksand-reg white-glow'} %> </div>
+              <!--<div class="col-xs-3 quicksand-reg spaced white-glow txt-right">minutes</div>-->
             </div>
             <div class="spacer"></div>
             <div class="row">
@@ -108,15 +149,13 @@
           <%= f.input :note, :input_html => { :class => 'quicksand-reg white-glow', :cols => 48 } %>
           <%= f.hidden_field :user_id, :value => @user.id %>
           <%= f.hidden_field :start_time, :value => unit.time_available %>
-          <%#= f.hidden_field :contact_flags, :value => '' %>
-          <%= f.input :contact_flags, :as => :hidden, :input_html => { :value => '', :id => 'contact-flags-' + unit.id.to_s } %>
           <div class="spacer"></div>
           <%= f.error :base %>
           <div class="row">
             <div class="col-xs-5">
               <%= f.button :submit, 'Join Queue', :class => 'white-glow-dim spaced join-queue' %>
             </div>
-            <div class="col-xs-7 white-glow-dim lowered spaced">or press 'esc' to exit</div>
+            <div class="col-xs-7 white-glow-dim lowered spaced quicksand-reg">or press 'esc' to exit</div>
           </div>
         <% end %>
     </div>
@@ -196,103 +235,7 @@
                 $('.formatted-end-time:visible').html(endMoment.format('MMM D, hh:mm A'));
             });
 
-            // create an array of flags which tells which pieces of contact data are going to be active and visible
-            // e.g., 0,1,1,0,0,0,1,1 or 1,1,1,1,0,0,0,0,
 
-            var contactFlags = "00000000".split('');
-
-            // set each element to 1 or 0 depending on which button user toggles
-
-            $('.phone1-visible:visible').first().on('click', function(){
-                var formId = $(this).closest($('.unit_user_form')).attr('id');
-                var unitId = formId.replace( /^\D+/g, '');
-                $(this).toggleClass('green-glow');
-                if( contactFlags[0] == "1"){
-                    contactFlags[0] = "0";
-                } else {
-                    contactFlags[0] = "1";
-                }
-                $('#contact-flags-' + <%= unit.id %>).val(contactFlags.join(''));
-            });
-
-            $('.phone1-active:visible').on('click', function(){
-                var formId = $(this).closest($('.unit_user_form')).attr('id');
-                var unitId = formId.replace( /^\D+/g, '');
-                $(this).toggleClass('green-glow');
-                if( contactFlags[1] == "1"){
-                    contactFlags[1] = "0";
-                } else {
-                    contactFlags[1] = "1";
-                }
-                $('#contact-flags-' + <%= unit.id %>).val(contactFlags.join(''));
-            });
-            $('.phone2-visible:visible').on('click', function(){
-                var formId = $(this).closest($('.unit_user_form')).attr('id');
-                var unitId = formId.replace( /^\D+/g, '');
-                $(this).toggleClass('green-glow');
-                if( contactFlags[2] == "1"){
-                    contactFlags[2] = "0";
-                } else {
-                    contactFlags[2] = "1";
-                }
-                $('#contact-flags-' + <%= unit.id %>).val(contactFlags.join(''));
-
-            });
-            $('.phone2-active:visible').on('click', function(){
-                var formId = $(this).closest($('.unit_user_form')).attr('id');
-                var unitId = formId.replace( /^\D+/g, '');
-                $(this).toggleClass('green-glow');
-                if( contactFlags[3] == "1"){
-                    contactFlags[3] = "0";
-                } else {
-                    contactFlags[3] = "1";
-                }
-                $('#contact-flags-' + <%= unit.id %>).val(contactFlags.join(''));
-            });
-            $('.email1-visible:visible').on('click', function(){
-                var formId = $(this).closest($('.unit_user_form')).attr('id');
-                var unitId = formId.replace( /^\D+/g, '');
-                $(this).toggleClass('green-glow');
-                if( contactFlags[4] == "1"){
-                    contactFlags[4] = "0";
-                } else {
-                    contactFlags[4] = "1";
-                }
-                $('#contact-flags-' + <%= unit.id %>).val(contactFlags.join(''));
-            });
-            $('.email1-active:visible').on('click', function(){
-                var formId = $(this).closest($('.unit_user_form')).attr('id');
-                var unitId = formId.replace( /^\D+/g, '');
-                $(this).toggleClass('green-glow');
-                if( contactFlags[5] == "1"){
-                    contactFlags[5] = "0";
-                } else {
-                    contactFlags[5] = "1";
-                }
-                $('#contact-flags-' + <%= unit.id %>).val(contactFlags.join(''));
-            });
-            $('.email2-visible:visible').on('click', function(){
-                var formId = $(this).closest($('.unit_user_form')).attr('id');
-                var unitId = formId.replace( /^\D+/g, '');
-                $(this).toggleClass('green-glow');
-                if( contactFlags[6] == "1"){
-                    contactFlags[6] = "0";
-                } else {
-                    contactFlags[6] = "1";
-                }
-                $('#contact-flags-' + <%= unit.id %>).val(contactFlags.join(''));
-            });
-            $('.email2-active:visible').on('click', function(){
-                var formId = $(this).closest($('.unit_user_form')).attr('id');
-                var unitId = formId.replace( /^\D+/g, '');
-                $(this).toggleClass('green-glow');
-                if( contactFlags[7] == "1"){
-                    contactFlags[7] = "0";
-                } else {
-                    contactFlags[7] = "1";
-                }
-                $('#contact-flags-' + <%= unit.id %>).val(contactFlags.join(''));
-            });
         });
 
         $('#lock-pos-<%= unit.id %>').on('click', function() {
@@ -312,6 +255,13 @@
                 }
             });
         })
+
+        $("#contact-display-<%= unit.id %>").on('click', function() {
+            console.log('you clicked');
+            $('#contact-pref-notice-<%= unit.id %>').slideToggle();
+        })
+
+
     });
 </script>
 

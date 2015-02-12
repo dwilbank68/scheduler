@@ -17,12 +17,11 @@ ActiveRecord::Schema.define(version: 20150210194818) do
     t.integer  "unit_id"
     t.integer  "user_id"
     t.datetime "start_time"
-    t.integer  "duration",      default: 0
+    t.integer  "duration",   default: 0
     t.datetime "end_time"
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "contact_flags"
   end
 
   add_index "unit_users", ["unit_id"], name: "index_unit_users_on_unit_id"
@@ -67,6 +66,7 @@ ActiveRecord::Schema.define(version: 20150210194818) do
     t.string   "unconfirmed_email"
     t.string   "avatar"
     t.string   "timezone"
+    t.string   "contact_flags"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

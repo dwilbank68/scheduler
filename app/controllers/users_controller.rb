@@ -41,7 +41,7 @@ end
 private
 
 def user_params
-    params.require(:user).permit(:name, :email, :email2, :phone, :phone2, :timezone, :avatar, :avatar_cache )
+    params.require(:user).permit(:name, :email, :email2, :phone, :phone2, :timezone, :avatar, :avatar_cache, :contact_flags )
 end
 
 def get_user

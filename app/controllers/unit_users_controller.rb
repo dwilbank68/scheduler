@@ -10,7 +10,6 @@ class UnitUsersController < ApplicationController
     @uu = UnitUser.new(user_id:@user.id, unit_id:@unit.id)
     @uu.duration = params[:unit_user][:duration]
     @uu.duration = 5 if @uu.duration == 0
-    @uu.contact_flags = params[:unit_user][:contact_flags]
     @uu.note = params[:unit_user][:note] == '' ? 'click to edit' : params[:unit_user][:note]
     # puts params
     @uu.save
@@ -125,8 +124,10 @@ class UnitUsersController < ApplicationController
 
   # sends email & text (Sendgrid & Twilio)
   def send_notifications(unituser, msg)
-    unituser.user.send_msg(msg)
-    UserMailer.send_email(unituser.user, msg).deliver
+    user = unituser.user
+    user.send_sms(msg)
+    UserMailer.send_email(user, user.email,  msg).deliver if user.contact_flags[1] == "1"
+    UserMailer.send_email(user, user.email2, msg).deliver if user.contact_flags[3] == "1"
   end
 
   def find_unituser

@@ -176,10 +176,18 @@ input {
 
 .green-glow {
   color:#0f0;
-
+  background: rgba(0, 100, 0, 0.25);
   text-shadow: 0px 0px  6px rgba(0,220,4,1),
                0px 0px 12px rgba(50,220,94,1),
                0px 0px 24px rgba(100,220,124,1);
+}
+
+.blue-glow {
+  color:#0ff;
+  background: rgba(0, 0, 100, 0.25);
+  text-shadow: 0px 0px  6px rgba(0,4,220,1),
+  0px 0px 12px rgba(50,200,205,1),
+  0px 0px 24px rgba(100,220,225,1);
 }
 
 .red-glow {
@@ -278,6 +286,7 @@ input {
 
 .smaller { font-size: 8px; position: relative;} // because class="relative raised smaller" kept causing errors
 .larger { font-size: 1.4em; }
+.larger2 { font-size: 2em; }
 .slightly-larger { font-size: 1.2em; }
 
 .relative { position: relative; }
@@ -352,11 +361,6 @@ li { list-style-type: none; }
   height: 28px;
   background-color: white;
 }
-
-//.unit-image {
-//  width: 190px;
-//  border-radius: 5px;
-//}
 
 .est-time-of-completion {
   margin-top: 5px;
@@ -458,6 +462,23 @@ button[id*='new-user-for-unit'] {
   padding: 15px;
   border-radius: 10px;
   box-shadow:0 0 11px white;
+}
+
+.fa {
+  margin-top: 5px;
+} // for the user edit form
+
+.email1-visible, .email1-active, .email2-visible, .email2-active,
+.phone1-visible, .phone1-active, .phone2-visible, .phone2-active {
+  border: double 3px gray;
+  border-radius: 3px;
+}
+
+.email1-visible-display, .email1-active-display, .email2-visible-display, .email2-active-display,
+.phone1-visible-display, .phone1-active-display, .phone2-visible-display, .phone2-active-display {
+  border: solid 1px gray;
+  border-radius: 3px;
+  padding-left: 12px;
 }
 
 .hidden-checkboxes { display:none; }
@@ -673,6 +694,9 @@ button[id*='new-user-for-unit'] {
             border-radius: 10px ;
   }
 
+  div[id^='contact-pref-notice'] {
+    display:none;
+  }
 
   ////////////
 
