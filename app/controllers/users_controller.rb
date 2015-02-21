@@ -9,10 +9,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    if @unit
-      Unit.
-    else
-    end
+
   end
 
   def edit

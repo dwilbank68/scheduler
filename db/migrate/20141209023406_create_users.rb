@@ -11,6 +11,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :role
       t.string :timezone
       t.string :avatar
+      t.string :contact_flags, :default => '00000000'
 
       t.timestamps
     end

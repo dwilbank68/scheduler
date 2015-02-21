@@ -66,17 +66,24 @@ class Unit < ActiveRecord::Base
     else
       logger.info('-------------in unit#report_status, duration NOT equals zero')
       min = duration
-      uu_times = unit_users.map do |uu|
+      uu_queue = unit_users.map do |uu|
+        user = uu.user
         { :id => uu.id,
           :start_time_formatted => uu.start_time_formatted,
           :end_time_formatted => uu.end_time_formatted,
           :duration => uu.duration,
+          :duration_string => uu.duration_hrs_min,
+          :img => user.avatar.profile.url,
+          :email =>  user.formatted_email1,
+          :email2 => user.formatted_email2,
+          :phone =>  user.formatted_phone1,
+          :phone2 => user.formatted_phone2,
           :note => uu.note }
       end
       @data = { :time_available => time_available,
-                :time_available_string => "hey",
+                :time_available_string => "this will be replaced with a countdown",
                 :duration => min,
-                :uu_queue => uu_times
+                :uu_queue => uu_queue
       }
     end
     @data#.to_json

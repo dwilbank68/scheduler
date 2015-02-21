@@ -20,7 +20,8 @@
   <div id="new-unit">
     <%= link_to("New Unit", new_unit_path, class: 'quicksand-light white-glow-dim spaced') %>
   </div>
-
+  <div id="notice" class="notice gold-glow      quicksand-reg spaced"><%= notice %></div>
+  <div id="alert"  class="alert  red-glow-no-bg quicksand-reg spaced"><%= alert %></div>
   <div class="pull-right user-info">
     <% if current_user %>
         <div class="quicksand-light spaced white-glow-dim" id="name-display"><%= current_user.name %></div>
@@ -43,14 +44,13 @@
     <div id="blur-layer">
       <%= yield %>
     </div>
-    <p class="notice white-glow-dim microgramma spaced"><%= notice %></p>
-    <p class="alert white-glow-dim microgramma spaced"><%= alert %></p>
+
     <div id="overlay"></div>
 
     <div id="non-blur-layer">
       <div class="container microgramma-bold spaced" id="user-edit-form">
         <div class="row">
-          <div class="col-xs-12 spaced3-6 txt-centered"> <h2>Contact Information</h2> </div>
+          <div class="col-xs-12 spaced3-6 txt-centered"> <h2>Contact Preferences</h2> </div>
         </div>
         <% if current_user %>
             <%= simple_form_for current_user, defaults: {input_html: {class: 'quicksand-reg white-glow-dim', color: 'white'}} do |f| %>
@@ -58,66 +58,32 @@
                 <div class="row border-bottom">
                   <div class="col-xs-1"></div>
                   <div class="col-xs-7"><%= f.input :name, label: false, placeholder: 'name', input_html: { :style => 'width: 260px'} %></div>
+                      <div class="col-xs-2 quicksand-reg txt-right gold-glow                                        name-visible">visible</div>
+                      <div class="col-xs-2 quicksand-reg txt-right gold-glow                                        name-active">- - - -</div>
                 </div>
                 <div class="row border-bottom">
                   <div class="col-xs-1"><i class="fa fa-envelope-o"></i></div>
                   <div class="col-xs-7"> <%= f.input :email, label: false, placeholder: 'email', input_html: { :style => 'width: 260px' } %> </div>
-                  <!--<div class="col-xs-2 quicksand-reg txt-right grayed-out email1-visible">visible</div> -->
-                  <% if current_user.contact_flags[0] == "1" %>
-                      <div class="col-xs-2 quicksand-reg txt-right green-glow email1-visible">visible</div>
-                  <% else %>
-                      <div class="col-xs-2 quicksand-reg txt-right grayed-out email1-visible">visible</div>
-                  <% end %>
-                  <% if current_user.contact_flags[1] == "1" %>
-                      <div class="col-xs-2 quicksand-reg txt-right green-glow email1-active">active</div>
-                  <% else %>
-                      <div class="col-xs-2 quicksand-reg txt-right grayed-out email1-active">active</div>
-                  <% end %>
+                      <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email1_vis] %> email1-visible">visible</div>
+                      <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email1_act] %> email1-active">active</div>
                 </div>
                 <div class="row border-bottom">
                   <div class="col-xs-1"><i class="fa fa-envelope-o"></i></div>
                   <div class="col-xs-7"> <%= f.input :email2, label: false, placeholder: 'alternate email', input_html: {id: 'email2', :style => 'width: 260px'} %> </div>
-                  <!--<div class="col-xs-2 quicksand-reg txt-right grayed-out email2-visible">visible</div> -->
-                  <% if current_user.contact_flags[2] == "1" %>
-                      <div class="col-xs-2 quicksand-reg txt-right green-glow email2-visible">visible</div>
-                  <% else %>
-                      <div class="col-xs-2 quicksand-reg txt-right grayed-out email2-visible">visible</div>
-                  <% end %>
-                  <% if current_user.contact_flags[3] == "1" %>
-                      <div class="col-xs-2 quicksand-reg txt-right green-glow email2-active">active</div>
-                  <% else %>
-                      <div class="col-xs-2 quicksand-reg txt-right grayed-out email2-active">active</div>
-                  <% end %>
+                      <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email2_vis] %> email2-visible">visible</div>
+                      <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email2_act] %> email2-active">active</div>
                 </div>
                 <div class="row border-bottom">
                   <div class="col-xs-1"><i class="fa fa-phone-square"></i></div>
                   <div class="col-xs-7"> <%= f.input :phone, label: false, placeholder: 'phone', input_html: {id: 'phone', :style => 'width: 260px'} %> </div>
-                  <!--<div class="col-xs-2 quicksand-reg txt-right grayed-out phone1-visible">visible</div> -->
-                  <% if current_user.contact_flags[4] == "1" %>
-                      <div class="col-xs-2 quicksand-reg txt-right green-glow phone1-visible">visible</div>
-                  <% else %>
-                      <div class="col-xs-2 quicksand-reg txt-right grayed-out phone1-visible">visible</div>
-                  <% end %>
-                  <% if current_user.contact_flags[5] == "1" %>
-                      <div class="col-xs-2 quicksand-reg txt-right green-glow phone1-active">active</div>
-                  <% else %>
-                      <div class="col-xs-2 quicksand-reg txt-right grayed-out phone1-active">active</div>
-                  <% end %>
+                      <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone1_vis] %> phone1-visible">visible</div>
+                      <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone1_act] %> phone1-active">active</div>
                 </div>
                 <div class="row border-bottom">
                   <div class="col-xs-1"><i class="fa fa-phone-square"></i></div>
                   <div class="col-xs-7"> <%= f.input :phone2, label: false, placeholder: 'alternate phone', input_html: {id: 'phone2', :style => 'width: 260px'} %> </div>
-                  <!--<div class="col-xs-2 quicksand-reg txt-right grayed-out phone2-visible">visible</div> -->
-                  <% if current_user.contact_flags[6] == "1" %>
-                      <div class="col-xs-2 quicksand-reg txt-right green-glow phone2-visible">visible</div>
-                  <% else %>
-                      <div class="col-xs-2 quicksand-reg txt-right grayed-out phone2-visible">visible</div>
-                  <% end %>
-                  <% if current_user.contact_flags[7] == "1" %>
-                      <div class="col-xs-2 quicksand-reg txt-right green-glow phone2-active">active</div>
-                  <% else %>
-                      <div class="col-xs-2 quicksand-reg txt-right grayed-out phone2-active">active</div>
-                  <% end %>
+                      <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone2_vis] %> phone2-visible">visible</div>
+                      <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone2_act] %> phone2-active">active</div>
                 </div>
                 <div class="row border-bottom">
                   <div class="col-xs-12"><%= f.input :timezone, :collection => ActiveSupport::TimeZone.all, :label_method => :to_s, :value_method => :name, :include_blank => false %></div>
@@ -134,7 +100,7 @@
                   <div class="col-xs-6 microgramma spaced white-glow-dim"> <%= f.file_field :avatar %> </div>
                 </div>
                     <%= f.hidden_field :avatar_cache %>
-                    <%= f.input :contact_flags, :as => :hidden, :input_html => { :value => '', :id => 'contact-flags-' + current_user.id.to_s } %>
+                    <%= f.input :contact_flags, :as => :hidden, :input_html => { :value => current_user.contact_flags, :id => 'contact-flags-' + current_user.id.to_s } %>
                 <div class="row">
                   <div class="col-xs-12"> <%= f.error :base %> </div>
                 </div>
@@ -162,7 +128,7 @@
       $("#phone").intlTelInput();
       $("#phone2").intlTelInput();
 
-//    the update user attributes form, triggered by "Edit Contact Preferences" in the upper right nav bar
+      // the update user attributes form, triggered by "Edit Contact Preferences" in the upper right nav bar
       <% if current_user %>
           $('#<%= current_user.id %>').on('click', function(){
               if($('.signin').is(':visible')) {
@@ -177,13 +143,58 @@
                   $('#overlay').fadeIn();
                   // bring in the form, which SHOULD BE Z-INDEX 3
                   $user_form.fadeIn().css({top:($(window).height()/2)-107, left:($(window).width()/2)-200, zIndex:999});
+                  var contactFlags = '<%= current_user.contact_flags %>'.split('');
               }
           });
       <% end %>
 
       // start all the countdowns on the units - showing time till unit is free
       startUnitCountdowns();
+      setInterval(cleanUpUnitUsers,60000);
   });
+
+
+
+  var cleanUpUnitUsers = function() {
+      var $unitUserEndTimes = $("div[id^='end-time-hidden']");
+      for(var i=0; i<$unitUserEndTimes.length; i++) {
+          var endTimeStr = $unitUserEndTimes[i].innerHTML;
+          var endTime = moment(new Date(endTimeStr));
+          var now = moment();
+          if(now.isAfter(endTime)) {
+              var uuId = $unitUserEndTimes[i].id.replace( /^\D+/g, '');
+              var $uu = $('#unit_user_' + uuId);
+              var siblings = $uu.siblings('.unit_user').length;
+              console.log("siblings length is " + siblings);
+              var $unit = $uu.closest('.unit');
+              console.log("$unit is " + $unit);
+              $uu.fadeOut(function(){ $uu.remove()});
+              if(siblings === 0) {
+                  console.log("siblings apparently equals 0");
+                  $unit.find('.time-remaining').html("--:--:--");
+                  $unit.find('.est-time-of-completion').html("Unit Available");
+              }
+          }
+      }
+    // turn countdowns red once they fall below 00:05:00
+    var countdowns = $('.time-remaining');
+    for(var i=0; i<countdowns.length; i++) {
+        var countdownString = countdowns[i].innerHTML;
+        console.log(countdownString);
+        if (countdownString.indexOf('--:--:--') !== -1) {
+            console.log('there is no countdown');
+        } else {
+            if (countdownString.indexOf('00:05:') !== -1) {
+                console.log('going to change you red');
+                console.log($('countdowns[i]'));
+                $(countdowns[i]).removeClass('gold-glow');
+                $(countdowns[i]).addClass('red-glow');
+            }
+        }
+    }
+
+
+  }
 
   var startUnitCountdowns = function() {
       console.log('startUnitCountdowns is running');
@@ -214,7 +225,7 @@
   // create an array of flags which tells which pieces of contact data are going to be active and visible
   // e.g., 0,1,1,0,0,0,1,1 or 1,1,1,1,0,0,0,0,
 
-//  var contactFlags = "00000000".split('');
+  //
   var contactFlags = '<%= current_user.contact_flags %>'.split('');
 
   // set each element to 1 or 0 depending on which button user toggles
@@ -223,108 +234,108 @@
 
       if( contactFlags[0] == "1"){
           contactFlags[0] = "0";
-          $(this).removeClass('green-glow');
+          $(this).removeClass('gold-glow');
           $(this).addClass('grayed-out');
       } else {
           contactFlags[0] = "1";
           $(this).removeClass('grayed-out');
-          $(this).addClass('green-glow');
+          $(this).addClass('gold-glow');
       }
       $('#contact-flags-' + <%= current_user.id %>).val(contactFlags.join(''));
   });
   $('.email1-active').on('click', function(){
-      $(this).toggleClass('green-glow');
+      $(this).toggleClass('gold-glow');
       if( contactFlags[1] == "1"){
           contactFlags[1] = "0";
-          $(this).removeClass('green-glow');
+          $(this).removeClass('gold-glow');
           $(this).addClass('grayed-out');
       } else {
           contactFlags[1] = "1";
           $(this).removeClass('grayed-out');
-          $(this).addClass('green-glow');
+          $(this).addClass('gold-glow');
       }
       $('#contact-flags-' + <%= current_user.id %>).val(contactFlags.join(''));
   });
   $('.email2-visible').on('click', function(){
 //      var formId = $(this).closest($('.unit_user_form')).attr('id');
 //      var unitId = formId.replace( /^\D+/g, '');
-      $(this).toggleClass('green-glow');
+      $(this).toggleClass('gold-glow');
       if( contactFlags[2] == "1"){
           contactFlags[2] = "0";
-          $(this).removeClass('green-glow');
+          $(this).removeClass('gold-glow');
           $(this).addClass('grayed-out');
       } else {
           contactFlags[2] = "1";
           $(this).removeClass('grayed-out');
-          $(this).addClass('green-glow');
+          $(this).addClass('gold-glow');
       }
       $('#contact-flags-' + <%= current_user.id %>).val(contactFlags.join(''));
   });
   $('.email2-active').on('click', function(){
-      $(this).toggleClass('green-glow');
+      $(this).toggleClass('gold-glow');
       if( contactFlags[3] == "1"){
           contactFlags[3] = "0";
-          $(this).removeClass('green-glow');
+          $(this).removeClass('gold-glow');
           $(this).addClass('grayed-out');
       } else {
           contactFlags[3] = "1";
           $(this).removeClass('grayed-out');
-          $(this).addClass('green-glow');
+          $(this).addClass('gold-glow');
       }
       $('#contact-flags-' + <%= current_user.id %>).val(contactFlags.join(''));
   });
 
   $('.phone1-visible').on('click', function(){
-      $(this).toggleClass('green-glow');
+      $(this).toggleClass('gold-glow');
       if( contactFlags[4] == "1"){
           contactFlags[4] = "0";
-          $(this).removeClass('green-glow');
+          $(this).removeClass('gold-glow');
           $(this).addClass('grayed-out');
       } else {
           contactFlags[4] = "1";
           $(this).removeClass('grayed-out');
-          $(this).addClass('green-glow');
+          $(this).addClass('gold-glow');
       }
       $('#contact-flags-' + <%= current_user.id %>).val(contactFlags.join(''));
   });
 
   $('.phone1-active').on('click', function(){
-      $(this).toggleClass('green-glow');
+      $(this).toggleClass('gold-glow');
       if( contactFlags[5] == "1"){
           contactFlags[5] = "0";
-          $(this).removeClass('green-glow');
+          $(this).removeClass('gold-glow');
           $(this).addClass('grayed-out');
       } else {
           contactFlags[5] = "1";
           $(this).removeClass('grayed-out');
-          $(this).addClass('green-glow');
+          $(this).addClass('gold-glow');
       }
       $('#contact-flags-' + <%= current_user.id %>).val(contactFlags.join(''));
   });
   $('.phone2-visible').on('click', function(){
-      $(this).toggleClass('green-glow');
+      $(this).toggleClass('gold-glow');
       if( contactFlags[6] == "1"){
           contactFlags[6] = "0";
-          $(this).removeClass('green-glow');
+          $(this).removeClass('gold-glow');
           $(this).addClass('grayed-out');
       } else {
           contactFlags[6] = "1";
           $(this).removeClass('grayed-out');
-          $(this).addClass('green-glow');
+          $(this).addClass('gold-glow');
       }
       $('#contact-flags-' + <%= current_user.id %>).val(contactFlags.join(''));
 
   });
   $('.phone2-active').on('click', function(){
-      $(this).toggleClass('green-glow');
+      $(this).toggleClass('gold-glow');
       if( contactFlags[7] == "1"){
           contactFlags[7] = "0";
-          $(this).removeClass('green-glow');
+          $(this).removeClass('gold-glow');
           $(this).addClass('grayed-out');
       } else {
           contactFlags[7] = "1";
           $(this).removeClass('grayed-out');
-          $(this).addClass('green-glow');
+          $(this).addClass('gold-glow');
       }
       $('#contact-flags-' + <%= current_user.id %>).val(contactFlags.join(''));
   });

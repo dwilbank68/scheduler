@@ -28,14 +28,28 @@ class UnitsController < ApplicationController
   end
 
   def update
-    unit = Unit.find(params[:id])
-    if unit.update({ position: params[:_json] })
-      logger.info('-----------------------------------------------------------------')
-      logger.info('incoming params to Units#update are ' + params.to_s )
-      logger.info('unit position is ' + unit.position.to_s )
-      logger.info('-----------------------------------------------------------------')
-      respond_with(unit.to_json)
+    @unit = Unit.find(params[:id])
+
+    respond_to do |format|
+
+      format.html do
+        if params['position'] && @unit.update({ position: params['position'] })
+          respond_with(@unit.to_json)
+        end
+
+        if params['state'] && @unit.update({ state: params['state'], user_disabler: params['user_disabler'] })
+          logger.info('--------------------------------- unit state is changing')
+          @unit.update({ :note => '' }) if @unit.state == "active"
+          @unit.update({ :when_disabled => Time.now }) if @unit.state == "disabled"
+          respond_with(@unit.to_json)
+        end
+      end
+
+      if params['unit']['note'] && @unit.update({ note: params['unit']['note'] })
+        format.json {respond_with_bip(@unit) }
+      end
     end
+
   end
 
   def destroy
@@ -45,14 +59,10 @@ class UnitsController < ApplicationController
     else
       flash[:error] = "unit not removed"
     end
-    #
-    # respond_with(@unit) do |format|
-    #   format.html { redirect_to @units }
-    # end
+
 
   end
 
-  # what goes here to stop rails from trying to find a template?
   def report_status
       unit = Unit.find(params[:id])
       data = unit.report_status
