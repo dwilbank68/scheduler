@@ -20,6 +20,7 @@
 @import "bootstrap";
 @import "../fonts/font";
 @import "signin";
+@import "units";
 @import "flags";
 @import "intlTelInput";
 
@@ -56,10 +57,10 @@ $link-color: #666;
 
 #new-unit> a:hover {
   text-decoration: none;
-  color:#fff;
-  text-shadow: 0px 0px 6px rgba(141,220,224,1),
-  0px 0px 12px rgba(141,220,224,1),
-  0px 0px 24px rgba(141,220,224,1);
+  color: #feed00; display:inline-block;
+  text-shadow: 0px 0px 6px #DAA400,
+               0px 0px 12px #E99200,
+               0px 0px 24px #975A00;
 }
 
 #name-display {
@@ -74,25 +75,37 @@ $link-color: #666;
 
 .btn-sm {
   color: dimgray;
-  background-color: white;
+  background-color: black;
+  border: 1px solid gray;
+  &:hover {
+    border: 1px solid #FEED00;
+    background: rgb(43,18,13);
+    color: #FEED00;
+    text-shadow: 0px 0px 6px #DAA400,
+    0px 0px 12px #E99200,
+    0px 0px 24px #975A00;
+  }
 }
 
-.btn-sm:hover {
-  color: aqua;
-  background-color: white;
+input .update-user {
+  margin-bottom: 7px;
+  outline: white;
 }
 
 .update-user:hover {
-  color: white;
   outline: none;
-  text-shadow: 0px 0px 6px rgba(141,220,224,1);
+  color: #feed00;
+  text-shadow: 0px 0px 6px #DAA400,
+               0px 0px 12px #E99200,
+               0px 0px 24px #975A00;
 }
 
-.update-user:focus {
-  color: white;
-  outline: none;
-  text-shadow: 0px 0px 6px rgba(141,220,224,1),
-  0px 0px 12px rgba(41,120,224,1);
+.update-user:active:focus {
+  color: #feed00;
+  outline: #FEED00;
+  text-shadow: 0px 0px 6px #DAA400,
+               0px 0px 20px #E99200,
+               0px 0px 32px #975A00;
 }
 
 .join-queue:hover {
@@ -116,10 +129,10 @@ $link-color: #666;
 }
 
 .header-button:hover {
-  color: aqua;
-  text-shadow: 0px 0px 6px rgba(141,220,224,1),
-  0px 0px 12px rgba(141,220,224,1),
-  0px 0px 24px rgba(141,220,224,1);
+  color: #feed00;
+  text-shadow: 0px 0px 6px #DAA400,
+               0px 0px 12px #E99200,
+               0px 0px 24px #975A00;
 }
 
 .header-button:focus {
@@ -192,9 +205,25 @@ input {
 
 .red-glow {
   color:#f00; display:inline-block;
-  text-shadow: 0px 0px 6px rgba(255,100,100,1),
-  0px 0px 12px rgba(255,150,150,1),
-  0px 0px 24px rgba(255,200,200,1);
+  text-shadow: 0px 0px 6px rgba(226,0,0,.71),
+               0px 0px 12px #B50000,
+               0px 0px 24px #5A0000;
+  background: #300000;
+}
+
+.red-glow-no-bg {
+  color:#f00; display:inline-block;
+  text-shadow: 0px 0px 6px rgba(226,0,0,.71),
+  0px 0px 12px #B50000,
+  0px 0px 24px #5A0000;
+}
+
+.gold-glow {
+  color: #feed00; display:inline-block;
+  text-shadow: 0px 0px 6px #DAA400,
+               0px 0px 12px #E99200,
+               0px 0px 24px #975A00;
+  background: rgb(43,18,13);
 }
 
 .smaller { font-size: .75em; }
@@ -279,6 +308,11 @@ input {
   font-size: .9em;
 }
 
+.pfmech {
+  font-family: 'PFMechanicaAProBold';
+  font-size: 1.3em;
+}
+
 .microgramma {
   font-family: 'MicrogrammaDMediumExtended';
   font-size: .8em;
@@ -313,10 +347,12 @@ input {
   margin-top: 6px;
 }
 
+#notice {
+  margin-left: 45px;
+}
 
-
-input .update-user {
-  margin-bottom: 7px;
+#alert {
+  margin-bottom: 0px;
 }
 
 header {
@@ -353,13 +389,39 @@ li { list-style-type: none; }
   position: absolute;
   display: inline-block;
   width: 220px;
-  height: 245px;
-  border: solid gray 1px;
+  height: 255px;
+  border: solid white 1px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
 }
 
 .unit-header > div {
+  color: #061526;
   height: 28px;
-  background-color: white;
+  background-color: transparent;
+  border-bottom: 1px solid gray;
+  text-shadow: 1px  1px 0 gainsboro,
+              -1px -1px 0 gainsboro,
+               1px -1px 0 gainsboro,
+              -1px  1px 0 gainsboro,
+               1px  1px 0 gainsboro;
+}
+
+.fa-trash-o {
+  color: white;
+}
+
+.toggle {
+  left: 167px;
+  top: 250px;
+  position: absolute;
+  border-bottom: 1px solid rgb(100, 100, 100);
+  border-right:  1px solid rgb(100, 100, 100);
+  padding-left: 0px;
+  padding-top: 0px;
+  height: 20px;
+  width: 26px;
 }
 
 .est-time-of-completion {
@@ -368,6 +430,18 @@ li { list-style-type: none; }
 
 .est-time-of-completion-label {
   margin-top: 2px;
+}
+
+.time-remaining {
+  height: 22px;
+  border: 1px solid #333;
+  padding-left: 14px;
+}
+
+
+
+.remaining-label {
+  margin-top: 4px;
 }
 
 #show-queue {
@@ -382,17 +456,38 @@ input { background: transparent; }
   padding-right: 14px;
 }
 
-button[id*='new-user-for-unit'] {
-  background: transparent;
+div[id*='new-user-for-unit'] {
   color: white;
-  border-top: none;
-  border-bottom: none;
-  border-right: 1px solid gray;
-  border-left: 1px solid gray;
   position: absolute;
-  width: 29px;
-  bottom: -26px;
-  left: 94px;
+  height: 23px;
+  width: 119px;
+  bottom: -23px;
+  left: 49px;
+  padding-top: 3px;
+  border-radius: 0px 0px 7px 7px;
+  border: 1px solid gray;
+  
+  &:hover {
+    color: #feed00; display:inline-block;
+    text-shadow: 0px 0px 6px #DAA400,
+    0px 0px 12px #E99200,
+    0px 0px 24px #975A00;
+  }
+  
+}
+
+.unit-overlay {
+  position: absolute;
+  top: 0px;
+  height: 277px;
+  width: 220px;
+  background: rgba(0,0,0,.8);
+  -webkit-border-radius: 0px 0px 25px 25px;
+  -moz-border-radius: 0px 0px 25px 25px;
+  border-radius: 0px 0px 25px 25px;
+  -webkit-box-shadow: 0px 0px 41px 1px rgba(240,0,0,1);
+  -moz-box-shadow: 0px 0px 41px 1px rgba(240,0,0,1);
+  box-shadow: 0px 0px 41px 1px rgba(240,0,0,1);
 }
 
 .inactive {
@@ -410,15 +505,15 @@ button[id*='new-user-for-unit'] {
 }
 
 @-moz-keyframes pulse {
-  0% { background-color: white; }
-  50% { background-color: aqua; }
-  100% { background-color: white; }
+  0% { background-color: #061526; }
+  50% { background-color: #FEED00; }
+  100% { background-color: #061526; }
 }
 
 @-webkit-keyframes pulse {
-  0% { background-color: white; }
-  50% { background-color: aqua; }
-  100% { background-color: white; }
+  0% { background-color: #061526; }
+  50% { background-color: #FEED00; }
+  100% { background-color: #061526; }
 }
 
 .fa-plus-square {
@@ -468,7 +563,7 @@ button[id*='new-user-for-unit'] {
   margin-top: 5px;
 } // for the user edit form
 
-.email1-visible, .email1-active, .email2-visible, .email2-active,
+.email1-visible, .email1-active, .email2-visible, .email2-active, .name-visible, .name-active,
 .phone1-visible, .phone1-active, .phone2-visible, .phone2-active {
   border: double 3px gray;
   border-radius: 3px;
@@ -481,7 +576,7 @@ button[id*='new-user-for-unit'] {
   padding-left: 12px;
 }
 
-.hidden-checkboxes { display:none; }
+.hidden, .hidden-checkboxes, .hidden-end-times { display:none; }
 
 #new-unit-form {
   margin-top: 100px;
@@ -686,6 +781,23 @@ button[id*='new-user-for-unit'] {
     padding: 6px;
   }
 
+  .unit-user-hr {
+    margin: 0px;
+    margin-bottom: -2px;
+  }
+
+  .uu-delete {
+    border: 1px solid gray;
+
+    &:hover {
+      color: red;
+      text-decoration: none;
+      text-shadow: 0px 0px 6px rgba(226,0,0,.71),
+                   0px 0px 12px #B50000,
+                   0px 0px 24px #5A0000;
+    }
+  }
+
   input[type=submit] {
     border-style: solid;
     border-color: white;
@@ -715,11 +827,16 @@ li {
   margin-left: 5px;
 }
 
+.uu-wrapper {
+  width: 212px;
+  height: 100%;
+  border: 1px solid white;
+  border-radius: 15px;
+}
+
 .unit-user {
   width: 200px;
-  border-width: 2px 8px;
-  border-style: solid;
-  border-color: white;
+  border: 1px solid white;
   border-radius: 15px ;
   -moz-border-radius: 15px ;
   -webkit-border-radius: 15px ;
@@ -735,11 +852,11 @@ li {
 
   .name {
     width: 200px;
-    background-color: white;
-    color: #061526;
+    background-color: transparent;
+    color: white;
     text-align: center;
     font-size: 1em;
-    margin-left: -8px;  // if grid is not set in container class
+    margin-left: -1px;  // if grid is not set in container class
 //    margin-left: -23px; // if grid is set in container class
     border-radius: 15px 15px 0 0;
     -moz-border-radius: 15px 15px 0 0;
@@ -780,8 +897,8 @@ li {
 
 .user-queue {
   position: relative;
-  left: -28px;
-  top: 269px;
+  left: -38px;
+  top: 278px;
 }
 
 //////////////////////////////////////////////////

@@ -7,20 +7,13 @@ class UnitUsersController < ApplicationController
 
   def create
     @unit = Unit.find(params[:unit_id])
+    @units = Unit.all
     @uu = UnitUser.new(user_id:@user.id, unit_id:@unit.id)
     @uu.duration = params[:unit_user][:duration]
     @uu.duration = 5 if @uu.duration == 0
     @uu.note = params[:unit_user][:note] == '' ? 'click to edit' : params[:unit_user][:note]
-    # puts params
     @uu.save
-    # logger.info('-----------------------------------------------------------------')
-    # logger.info('uu count is ' + @unit.unit_users.count.to_s)
-    # logger.info('-----------------------------------------------------------------')
     if @unit.unit_users.count == 1
-      # logger.info('-----------------------------------------------------------------')
-      # logger.info("in #create, @uu#{@uu.id} thinks it is the first unit_user")
-      # logger.info(@unit.unit_users.to_s)
-      # logger.info('-----------------------------------------------------------------')
       @uu.start_time = Time.now
     else
       queue = @unit.unit_users
@@ -29,7 +22,11 @@ class UnitUsersController < ApplicationController
     end
     @uu.end_time = @uu.start_time + @uu.duration.minutes
     @uu.save
-    respond_with(@uu)
+
+    respond_with(@uu) do |format|
+        format.html { redirect_to @units }
+    end
+
   end
 
   def show

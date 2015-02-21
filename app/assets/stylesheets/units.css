@@ -1,0 +1,23 @@
+.out-of-service {
+    margin-top: 6px;
+    color: #061526;
+    border-bottom: 1px dashed rgb(144, 0, 0);
+    letter-spacing: 9px;
+    text-shadow: 1px  1px 0 red,
+    -1px -1px 0 red,
+    1px -1px 0 red,
+    -1px  1px 0 red,
+    1px  1px 0 red;
+}
+
+.unit-disabled-by {
+    border-bottom: 1px dashed rgb(144, 0, 0);
+}
+
+.unit-note {
+    overflow: auto;
+    border: 3px double red;
+    width: 204px;
+    height: 184px;
+    text-align: left;
+}

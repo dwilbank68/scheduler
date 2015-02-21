@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150210194818) do
+ActiveRecord::Schema.define(version: 20150220022816) do
 
   create_table "unit_users", force: true do |t|
     t.integer  "unit_id"
@@ -38,6 +38,9 @@ ActiveRecord::Schema.define(version: 20150210194818) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "unit_pic"
+    t.text     "note"
+    t.string   "user_disabler"
+    t.datetime "when_disabled"
   end
 
   create_table "users", force: true do |t|

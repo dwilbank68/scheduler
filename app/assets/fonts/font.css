@@ -74,3 +74,13 @@
     font-url('MicrogrammaDMediumExtended.ttf') format('truetype'),
     font-url('MicrogrammaDMediumExtended.svg#MicrogrammaDMediumExtended') format('svg');
 }
+
+@font-face {
+    font-family: 'PFMechanicaAProBold';
+    src: font-url('PFMechanicaAProBold.eot');
+    src: font-url('PFMechanicaAProBold.eot') format('embedded-opentype'),
+    font-url('PFMechanicaAProBold.woff2') format('woff2'),
+    font-url('PFMechanicaAProBold.woff') format('woff'),
+    font-url('PFMechanicaAProBold.ttf') format('truetype'),
+    font-url('PFMechanicaAProBold.svg#PFMechanicaAProBold') format('svg');
+}

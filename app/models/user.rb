@@ -43,5 +43,48 @@ class User < ActiveRecord::Base
     "US/Pacific"
   end
 
+  # def formatted_phone(number) #US Numbers only, for now
+  #   if number
+  #     digits = number.gsub(/\D/, '')
+  #     "#{digits[0]} (#{digits[1,3]}) #{digits[4,3]}-#{digits[7,4]}"
+  #   else
+  #     "- - - - - - - - - - - - -"
+  #   end
+  # end
+
+  def formatted_email1
+    if self.email && self.contact_flags[0] == "1"
+      self.email.truncate(20)
+    else
+      "- - - - - - - - - - - - - - - -"
+    end
+  end
+
+  def formatted_email2
+    if self.email2 && self.contact_flags[2] == "1"
+      self.email2.truncate(20)
+    else
+      "- - - - - - - - - - - - - - - -"
+    end
+  end
+
+  def formatted_phone1
+    if self.phone && self.contact_flags[4] == "1"
+      digits = self.phone.gsub(/\D/, '')
+      "#{digits[0]} (#{digits[1,3]}) #{digits[4,3]}-#{digits[7,4]}"
+    else
+      "- - - - - - - - - - - - - - - -"
+    end
+  end
+
+  def formatted_phone2
+    if self.phone2 && self.contact_flags[6] == "1"
+      digits = self.phone2.gsub(/\D/, '')
+      "#{digits[0]} (#{digits[1,3]}) #{digits[4,3]}-#{digits[7,4]}"
+    else
+      "- - - - - - - - - - - - - - - -"
+    end
+  end
+
 end
 

@@ -1,5 +1,5 @@
 <% if @unituser.destroyed? %>
-    $('#unit_user_' + <%= @unituser.id %>).fadeOut();
+    $('#unit_user_' + <%= @unituser.id %>).fadeOut().remove();
 
     var $unit = $('#unit_' + <%= params[:unit_id] %>);
     var duration = <%= JSON.parse(@response)['data']['duration'] %>;
