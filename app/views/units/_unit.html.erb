@@ -15,7 +15,7 @@
         </div>
         <div class="spacer"></div>
         <div class="row">
-            <div class="col-xs-7 pfmech                    gold-glow spaced time-remaining"><div><%= min_to_hrs_min(unit.duration) %></div> </div>
+            <div class="col-xs-7 pfmech                    gold-glow spaced time-remaining"><div><span>stand by</span></div> </div>
             <div class="col-xs-5 quicksand-reg txt-right  white-glow spaced tiny remaining-label">remaining</div>
         </div>
         <div class="row border-bottom spacer"></div>
@@ -72,81 +72,77 @@
         <%= minimal_form_for([unit, @unit_user], :remote => true, html: {class: 'form-vertical'}) do |f| %>
             <%= f.error_notification %>
             <div class="row">
-              <div class="col-xs-12 larger2 white-glow-dim spaced txt-centered">Schedule <%= unit.screen_name %></div>
+                <div class="col-xs-12 larger2 white-glow-dim spaced txt-centered">Schedule <%= unit.screen_name %></div>
             </div>
             <div class="spacer"></div>
             <div class="spacer"></div>
             <hr/>
             <div class="row border-bottom">
-              <div class="col-xs-12 quicksand-reg white-glow"><%= current_user.name %></div>
+                <div class="col-xs-12 quicksand-reg white-glow"><%= current_user.name %></div>
             </div>
-          <div id="contact-display-<%= unit.id %>">
+            <div id="contact-display-<%= unit.id %>">
             <div class="row border-bottom">
-              <div class="col-xs-8 quicksand-reg white-glow"><%= current_user.email %></div>
-                  <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email1_vis] %> email1-visible-display">visible</div>
-                  <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email1_act] %> email1-active-display">active</div>
-            </div>
-            <div class="row border-bottom">
-              <div class="col-xs-8 quicksand-reg white-glow"><%= current_user.email2 %></div>
-                  <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email2_vis] %> email2-visible-display">visible</div>
-                  <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email2_act] %> email2-active-display">active</div>
+                <div class="col-xs-8 quicksand-reg white-glow"><%= current_user.email %></div>
+                <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email1_vis] %> email1-visible-display">visible</div>
+                <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email1_act] %> email1-active-display">active</div>
             </div>
             <div class="row border-bottom">
-              <div class="col-xs-8 quicksand-reg white-glow"><%= formatted_phone(current_user.phone) %></div>
-                  <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone1_vis] %> phone1-visible-display">visible</div>
-                  <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone1_act] %> phone1-active-display">active</div>
+                <div class="col-xs-8 quicksand-reg white-glow"><%= current_user.email2 %></div>
+                <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email2_vis] %> email2-visible-display">visible</div>
+                <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email2_act] %> email2-active-display">active</div>
             </div>
             <div class="row border-bottom">
-              <div class="col-xs-8 quicksand-reg white-glow"><%= formatted_phone(current_user.phone2) %></div>
-                  <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone2_vis] %> phone2-visible-display">visible</div>
-                  <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone2_act] %> phone2-active-display">active</div>
+                <div class="col-xs-8 quicksand-reg white-glow"><%= formatted_phone(current_user.phone) %></div>
+                <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone1_vis] %> phone1-visible-display">visible</div>
+                <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone1_act] %> phone1-active-display">active</div>
             </div>
-          </div>
-
+            <div class="row border-bottom">
+                <div class="col-xs-8 quicksand-reg white-glow"><%= formatted_phone(current_user.phone2) %></div>
+                <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone2_vis] %> phone2-visible-display">visible</div>
+                <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone2_act] %> phone2-active-display">active</div>
+            </div>
+            </div>
             <div class="spacer"></div>
-
-          <div class="row">
-            <div class="col-xs-12 blue-glow txt-centered quicksand-reg" id="contact-pref-notice-<%= unit.id %>">To change your contact choices, click 'Edit Contact Preferences' in the Navigation Bar</div>
-          </div>
-          <div class="container time-input">
+            <div class="row">
+                <div class="col-xs-12 blue-glow txt-centered quicksand-reg" id="contact-pref-notice-<%= unit.id %>">To change your contact choices, click 'Edit Contact Preferences' in the Navigation Bar</div>
+            </div>
+            <div class="container time-input">
             <div class='row'>
-              <div class="col-xs-6 microgramma-bold spaced white-glow-dim">Unit Available</div>
-              <div class="col-xs-6 quicksand-reg white-glow start_time txt-right uu-form-start-time">awaiting unit data</div>
+                <div class="col-xs-6 microgramma-bold spaced white-glow-dim">Unit Available</div>
+                <div class="col-xs-6 quicksand-reg white-glow start_time txt-right uu-form-start-time">awaiting unit data</div>
             </div>
             <hr/>
             <div class="spacer"></div>
             <div class="row">
-              <!--<div class="col-xs-7 microgramma-bold spaced white-glow-dim">Set Duration</div>-->
-              <div class="col-xs-12 larger txt-centered microgramma-bold spaced white-glow-dim">Set Duration</div>
-              <div class="col-xs-12 txt-centered"><%= f.input :duration, :autofocus => true, :input_html => {:min => '0', :max => '1440', :value => 5, :step => '5', :class => 'larger quicksand-reg white-glow'} %> </div>
-              <!--<div class="col-xs-3 quicksand-reg spaced white-glow txt-right">minutes</div>-->
+                <div class="col-xs-12 larger txt-centered microgramma-bold spaced white-glow-dim">Set Duration</div>
+                <div class="col-xs-12 txt-centered"><%= f.input :duration, :autofocus => true, :input_html => {:min => '0', :max => '1440', :value => 5, :step => '5', :class => 'larger quicksand-reg white-glow'} %> </div>
             </div>
             <div class="spacer"></div>
             <div class="row">
-              <div class="col-xs-12 txt-centered">
-                <div class="quicksand-reg white-glow formatted-duration slightly-larger txt-centered">0 hrs 0 min</div>
-                <div class="col-xs-12 quicksand-reg tiny spaced white-glow-dim txt-centered">selecting 0 will set a 5 minute minimum</div>
-              </div>
+                <div class="col-xs-12 txt-centered">
+                    <div class="quicksand-reg white-glow formatted-duration slightly-larger txt-centered">0 hrs 0 min</div>
+                    <div class="col-xs-12 quicksand-reg tiny spaced white-glow-dim txt-centered">selecting 0 will set a 5 minute minimum</div>
+                </div>
             </div>
             <div class="spacer"></div>
             <hr/>
             <div class="row">
-              <div class="col-xs-7 microgramma-bold white-glow-dim spaced">Projected End Time</div>
-              <div class="col-xs-5 quicksand-reg white-glow formatted-end-time txt-right">set a duration</div>
+                <div class="col-xs-7 microgramma-bold white-glow-dim spaced">Projected End Time</div>
+                <div class="col-xs-5 quicksand-reg white-glow formatted-end-time txt-right">set a duration</div>
             </div>
-          </div>
-          <div class="spacer"></div>
-          <%= f.input :note, :input_html => { :class => 'quicksand-reg white-glow note-field', :cols => 48 } %>
-          <%= f.hidden_field :user_id, :value => @user.id %>
-          <%= f.hidden_field :start_time, :value => unit.time_available %>
-          <div class="spacer"></div>
-          <%= f.error :base %>
-          <div class="row">
-            <div class="col-xs-5">
-              <%= f.button :submit, 'Join Queue', :class => 'white-glow-dim spaced join-queue' %>
             </div>
-            <div class="col-xs-7 white-glow-dim lowered spaced quicksand-reg">or press 'esc' to exit</div>
-          </div>
+            <div class="spacer"></div>
+            <%= f.input :note, :input_html => { :class => 'quicksand-reg white-glow note-field', :cols => 48 } %>
+            <%= f.hidden_field :user_id, :value => @user.id %>
+            <%= f.hidden_field :start_time, :value => unit.time_available %>
+            <div class="spacer"></div>
+            <%= f.error :base %>
+            <div class="row">
+                <div class="col-xs-5">
+                    <%= f.button :submit, 'Join Queue', :class => 'white-glow-dim spaced join-queue' %>
+                </div>
+                <div class="col-xs-7 white-glow-dim lowered spaced quicksand-reg">or press 'esc' to exit</div>
+            </div>
         <% end %>
     </div>
 
@@ -187,25 +183,17 @@
                 success: function(data) {
                     unit_available = moment(data['time_available']);
                     unit_available_string = moment(data['time_available']).format('MMM D, hh:mm A');
-//                    console.log("data from unit#report_status is " + JSON.stringify(data));
-//                    console.log("NEW unit_available is " + unit_available);
-//                    console.log("NEW unit_available_string is " + unit_available_string);
-//                    console.log("NEW duration is " + data['duration']);
+
                     $('.uu-form-start-time').html(unit_available_string);
-//                    var $unitUserUL = $('#unit-user-ul-' + <%= unit.id %>);
-//                    console.log($unitUserUL);
-//                    $unitUserUL.empty();
-////                  rebuild the unit_user queue based on retrieved data
-////                    <ul id="unit-user-ul-<%#= unit.id %>">
-////                    <#% unit.unit_users.each do |unituser| %>
-////                    <#%= render :partial => '/unitusers/unit_user', :locals => { user:unituser.user, unit:unit, unituser: unituser }%>
-////                    <#% end %>
-////                    </ul>
-
-
-
-
-
+//                  var $unitUserUL = $('#unit-user-ul-' + <%#= unit.id %>);
+//                  console.log($unitUserUL);
+//                  $unitUserUL.empty();
+//                  rebuild the unit_user queue based on retrieved data
+//                  <ul id="unit-user-ul-<%#= unit.id %>">
+//                  <#% unit.unit_users.each do |unituser| %>
+//                  <#%= render :partial => '/unitusers/unit_user', :locals => { user:unituser.user, unit:unit, unituser: unituser }%>
+//                  <#% end %>
+//                  </ul>
                 },
                 error: function() { console.log("ajax error in call to report_status") }
             });
@@ -273,7 +261,7 @@
 
         $("#contact-display-<%= unit.id %>").on('click', function() {
             $('#contact-pref-notice-<%= unit.id %>').slideToggle();
-        })
+        });
 
 
         // if user deactivates the unit, a blocking overlay is applied
@@ -294,7 +282,7 @@
                    $('#unit-disabled-by-<%= unit.id %>').html('by ' + '<%= current_user.name %>' + ' -- ' + moment().format('MMM D, hh:mm A'));
                 }
             });
-        })
+        });
 
 
         // if user reactivates the unit, the blocking overlay is removed
