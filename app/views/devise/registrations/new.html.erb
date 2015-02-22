@@ -13,6 +13,7 @@
         <%= f.input :phone2,                required: true,                  label: false, placeholder: 'phone for receiving text messages (optional)', :input_html => { :class => 'quicksand-reg', :style => 'width: 330px', :id => 'phone2' } %>
         <%= f.input :password,              required: true,                  label: false, placeholder: 'password',                                     :input_html => { :class => 'quicksand-reg', :style => 'width: 330px' }, hint: ("#{@minimum_password_length} characters minimum" if @validatable) %>
         <%= f.input :password_confirmation, required: true,                  label: false, placeholder: 'password confirmation',                        :input_html => { :class => 'quicksand-reg', :style => 'width: 330px' } %>
+        <%= f.hidden_field :contact_flags, :value => '11000000' %>
       </div>
 
       <div class="form-actions">
@@ -28,41 +29,3 @@
     $("#phone").intlTelInput();
     $("#phone2").intlTelInput();
 </script>
-
-<%#= simple_form_for current_user, defaults: {input_html: {class: 'quicksand-reg white-glow-dim', color: 'white'}} do |f| %>
-    <!--<div class="row"><div class="col-xs-12"><%#= f.error_notification %></div></div>-->
-    <!--<div class="row">-->
-      <!--<div class="col-xs-6">Screen Name</div><div class="col-xs-6"><%#= f.input :name, label: false, input_html: { :style => 'width: 177px'} %></div>-->
-    <!--</div>-->
-    <!--<div class="row">-->
-      <!--<div class="col-xs-6">Email</div><div class="col-xs-6"> <%#= f.input :email, label: false, input_html: { :style => 'width: 177px' } %> </div>-->
-    <!--</div>-->
-    <!--<div class="row">-->
-      <!--<div class="col-xs-6">Email - Alternate</div><div class="col-xs-6"> <%#= f.input :email2, label: false, input_html: {id: 'email2', :style => 'width: 177px'} %> </div>-->
-    <!--</div>-->
-    <!--<div class="row">-->
-      <!--<div class="col-xs-6">Phone</div><div class="col-xs-6"> <%#= f.input :phone, label: false, input_html: {id: 'phone', :style => 'width: 177px'} %> </div>-->
-    <!--</div>-->
-    <!--<div class="row">-->
-      <!--<div class="col-xs-6">Phone - Alternate</div><div class="col-xs-6"> <%#= f.input :phone2, label: false, input_html: {id: 'phone2', :style => 'width: 177px'} %> </div>-->
-    <!--</div>-->
-    <!--<div class="row">-->
-      <!--&lt;!&ndash;<div class="col-xs-12"><select class="time-zone-selector spaced"></select></div>&ndash;&gt;-->
-      <!--<div class="col-xs-12"><%#= f.input :timezone, :collection => ActiveSupport::TimeZone.all, :label_method => :to_s, :value_method => :name, :include_blank => false %></div>-->
-    <!--</div>-->
-    <!--<%# if current_user.avatar? %>-->
-        <!--<div class="row">-->
-          <!--<div class="col-xs-6 current-avatar-label"> Current Avatar </div>-->
-          <!--<div class="col-xs-6"> <%#= image_tag( current_user.avatar.profile.url ) %> </div>-->
-        <!--</div>-->
-    <!--<%# end %>-->
-    <!--<div class="row">-->
-      <!--<div class="col-xs-6 microgramma spaced white-glow-dim"> <%#= f.file_field :avatar %> </div>-->
-    <!--</div>-->
-    <!--<%#= f.hidden_field :avatar_cache %>-->
-    <!--<div class="row">-->
-      <!--<div class="col-xs-12"> <%#= f.error :base %> </div>-->
-    <!--</div>-->
-    <!--<div class="spacer"></div>-->
-    <!--<div class="row div col-xs-12 txt-centered spaced"><%#= f.button :submit, :class => 'update-user spaced' %></div>-->
-<%# end %>

@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
             :length => { :minimum => 2, :maximum => 30 },
             :format => { :with => /\A[\w\s]+\z/ }
 
-  validates :email, :email2,
-            :format => {:with => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i}
+  validates :email,  :format => {:with => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i}
+  validates :email2, :format => {:with => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i}, if: 'email2.present?'
 
   validates :name, :phone, :email,
             :uniqueness => true
