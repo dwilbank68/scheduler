@@ -30,7 +30,7 @@
         var id = unit_arr_arr[i]['id'];
         var endTime = unit_arr_arr[i]['time_available'];
         if(endTime === "") {
-            $('#unit_' + id).find($('.time-remaining')).html("--:--:--");
+            $('#unit_' + id).find($('.time-remaining')).html("<span>--:--:--</span>");
         } else {
             var endTimeMoment = moment(endTime);
             $('#unit_' + id).find($('.time-remaining')).countdown({ until: endTimeMoment.toDate(), compact: true });

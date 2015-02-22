@@ -226,6 +226,13 @@ input {
   background: rgb(43,18,13);
 }
 
+.gold-glow-no-bg {
+  color: #feed00; display:inline-block;
+  text-shadow: 0px 0px 6px #DAA400,
+  0px 0px 12px #E99200,
+  0px 0px 24px #975A00;
+}
+
 .smaller { font-size: .75em; }
 
 .spacer {  height: 5px; }
