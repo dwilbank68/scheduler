@@ -162,9 +162,11 @@ $(document).ready(function() {
     var cleanUpUnitUsers = function() {
         var $unitUserEndTimes = $("div[id^='end-time-hidden']");
         for(var i=0; i<$unitUserEndTimes.length; i++) {
-            var endTimeStr = $unitUserEndTimes[i].innerHTML;
+            var endTimeStr = $unitUserEndTimes[i].innerHTML.replace(/-/g,"/");
             var endTime = moment(new Date(endTimeStr));
             var now = moment();
+            console.log('endTime is ' + endTime);
+            console.log('now is     ' + now);
             if(now.isAfter(endTime)) {
                 var uuId = $unitUserEndTimes[i].id.replace( /^\D+/g, '');
                 var $uu = $('#unit_user_' + uuId);

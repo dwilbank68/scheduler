@@ -69,7 +69,9 @@ class Unit < ActiveRecord::Base
       uu_queue = unit_users.map do |uu|
         user = uu.user
         { :id => uu.id,
+          :name => user.name,
           :start_time_formatted => uu.start_time_formatted,
+          :end_time => uu.end_time,
           :end_time_formatted => uu.end_time_formatted,
           :duration => uu.duration,
           :duration_string => uu.duration_hrs_min,

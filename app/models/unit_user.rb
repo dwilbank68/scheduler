@@ -7,8 +7,8 @@ class UnitUser < ActiveRecord::Base
   after_commit :update_total_time
   after_destroy :update_total_time
 
-  # default_scope {order('created_at ASC')}
-  default_scope {order('end_time ASC')}
+  default_scope {order('created_at ASC')}
+  # default_scope {order('end_time ASC')} # this seems to give an out-of-order queue when an earlier uu's duration (and therefore the end_time) is INCREASED
 
   def duration_hrs_min
     # "#{self.duration / 60} hrs #{self.duration % 60} min"

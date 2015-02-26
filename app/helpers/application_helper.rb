@@ -22,4 +22,8 @@ module ApplicationHelper
     }
   end
 
+  def blue_outline(unit)
+    unit.notes && unit.notes.length > 0 ? " blue-glow-outline" : ""
+  end
+
 end

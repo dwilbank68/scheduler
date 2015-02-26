@@ -31,6 +31,7 @@
 //= require intlTelInput
 
 //= require jquery.transit.min
+//= require handlebars-v3.0.0
 //= require_tree .
 
 $(document).ready(function() {

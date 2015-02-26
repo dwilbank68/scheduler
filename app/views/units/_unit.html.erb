@@ -10,8 +10,8 @@
             <div class="col-xs-2"><i id="lock-pos-<%= unit.id %>" class="fa fa-lock"></i></div>
         </div>
         <div class="spacer"></div>
-        <div class="row border-bottom">
-            <div class="col-xs-12"><%= image_tag(unit.unit_pic.fullsize.url, :class => 'img-rounded unit-image') if unit.unit_pic? %></div>
+        <div class="row border-bottom" id="image-<%= unit.id %>">
+            <div class="col-xs-12"><%= image_tag(unit.unit_pic.fullsize.url, :class => 'img-rounded unit-image' + blue_outline(unit)) if unit.unit_pic? %></div>
         </div>
         <div class="spacer"></div>
         <div class="row">
@@ -30,6 +30,7 @@
             <div class="col-xs-5 quicksand-reg txt-right    white-glow spaced tiny est-time-of-completion-label">est time of completion</div>
         </div>
       <div>
+        <div id="refresh-unit-<%= unit.id %>"       class="refresh"><span class="fa fa-refresh white-glow-dim"></span></div>
         <div id="new-user-for-unit-<%= unit.id %>" class="white-glow-dim microgramma spaced txt-centered">add to queue</div>
         <div id="disable-unit-<%= unit.id %>"       class="toggle"><span class="fa fa-toggle-on white-glow-dim"></span></div>
       </div>
@@ -53,6 +54,15 @@
         </div>
         <div id="activate-unit-<%= unit.id %>" class="toggle"><span class="fa fa-toggle-off red-glow"></span></div>
      </div>
+
+
+     <!--unit notes overlay-->
+
+     <div id="unit-notes-overlay-<%= unit.id %>" class="container unit-notes-overlay blue-glow quicksand-reg">
+       <!--<div class="row blue-glow quicksand-reg"><%#= unit.notes %></div>-->
+       <%= best_in_place unit, :notes, :as => :textarea, :place_holder => '>' %>
+     </div>
+
 
 
     <!--unit user queue-->
@@ -151,14 +161,33 @@
 <script>
     $(document).ready(function(){
 
-        $('#unit_<%= unit.id %>').draggable();
-        $('#unit_<%= unit.id %>').offset({ top:<%= unit.pos_y %>, left:<%= unit.pos_x %> });
-        $('#unit_user_form_<%= unit.id %>').hide();
+        var $unit = $('#unit_<%= unit.id %>');
+        $unit.draggable();
+        $unit.offset({ top:<%= unit.pos_y %>, left:<%= unit.pos_x %> });
+
+        var $unitOverlay = $('#unit-overlay-<%= unit.id %>');
+        var $form = $('#unit_user_form_<%= unit.id %>');
+        $form.hide();
+
+
+        // if user hovers over a unit, (and the red overlay is not present),
+        // fade in the notes field
+
+        $unit.hover(
+            function(){
+                if($unitOverlay.is(':hidden')) {
+                    $('#unit-notes-overlay-<%= unit.id %>').fadeIn();
+                }
+            },
+            function() {
+                if($unitOverlay.is(':hidden')) {
+                    $('#unit-notes-overlay-<%= unit.id %>').fadeOut();
+                }
+            }
+        );
 
         // click 'new unituser' button on the unit, you get a modal form, which creates a new unituser in the queue
         $('#new-user-for-unit-<%= unit.id %>').on('click', function(){
-
-            var $form = $('#unit_user_form_<%= unit.id %>');
 
             // detach form from machine unit and reattach it to non-blurring layer, which is z-index 2
             $('#non-blur-layer').append($form);
@@ -237,8 +266,8 @@
         // if user clicks lock icon, x-y coordinates are sent to the database
 
         $('#lock-pos-<%= unit.id %>').on('click', function() {
-            var top = parseInt($('#unit_<%= unit.id %>').css('top'));
-            var left = parseInt($('#unit_<%= unit.id %>').css('left'));
+            var top = parseInt($unit.css('top'));
+            var left = parseInt($unit.css('left'));
             var posString = left + 'x' + top
             $.ajax({
                 type: "PUT",
@@ -248,7 +277,7 @@
 //                data: JSON.stringify(posString),
                 data: JSON.stringify({ 'position' : posString }),
                 success: function(){
-                    var $header = $('#unit_<%= unit.id %>').find($('.unit-header > div'));
+                    var $header = $unit.find($('.unit-header > div'));
                     $header.addClass('pulse');
                     setTimeout(function() { $header.removeClass('pulse'); }, 500);
                 }
@@ -269,6 +298,7 @@
 
         $("#disable-unit-<%= unit.id %>").on('click', function() {
             console.log('disable');
+            $('#unit-notes-overlay-<%= unit.id %>').fadeOut();
             $.ajax({
                 type: "PUT",
                 dataType: 'json',
@@ -276,7 +306,7 @@
                 contentType: 'application/json',
                 data: JSON.stringify({ 'state' : 'disabled', 'user_disabler' : '<%= current_user.name %>'}),
                 success: function(){
-                   $('#unit-overlay-<%= unit.id %>').removeClass('hidden');
+                   $unitOverlay.removeClass('hidden');
                    $('#activate-unit-<%= unit.id %> span').removeClass('fa-toggle-on');
                    $('#activate-unit-<%= unit.id %> span').addClass('fa-toggle-off');
                    $('#unit-disabled-by-<%= unit.id %>').html('by ' + '<%= current_user.name %>' + ' -- ' + moment().format('MMM D, hh:mm A'));
@@ -297,14 +327,161 @@
                 contentType: 'application/json',
                 data: JSON.stringify({ 'state' : 'active', 'user_disabler' : ''}),//, 'note': ''}),
                 success: function(){
-                    $('#unit-overlay-<%= unit.id %>').addClass('hidden');
+                    $unitOverlay.addClass('hidden');
                     $('#activate-unit-<%= unit.id %> span').addClass('fa-toggle-on');
                     $('#activate-unit-<%= unit.id %> span').removeClass('fa-toggle-off');
                 }
             });
         })
 
+        // refresh button GETs current queue from the server and refreshes the DOM
+
+        $('#refresh-unit-<%= unit.id %> span').hover(
+            function() { $(this).toggleClass('fa-spin') }
+        );
+
+        $("#refresh-unit-<%= unit.id %>").on('click', function() {
+            console.log('refresh');
+            refreshUnit(<%= unit.id %>);
+        })
 
     });
+
+    ///////////////////////////////////////// functions /////////////////////////////////////
+
+    var refreshUnit = function (id) {
+        getReportStatus(id).done( function(result) {
+            console.log('result["uu_queue"] is ' + JSON.stringify( result['uu_queue'], null, '  '));
+            var $unitUserUL = $('#unit-user-ul-' + id);
+//            console.log($unitUserUL);
+            $unitUserUL.empty();
+            var source = $("#uu-template").html();
+            var template = Handlebars.compile(source);
+            if(result['uu_queue'] != "[]") {
+                var queue = result['uu_queue'];
+                for (var i = 0; i < queue.length; i++) {
+                    var context = {
+                        id:         queue[i]['uuId'],
+                        name:       queue[i]['name'],
+                        img:        queue[i]['img'],
+                        email:      queue[i]['email'],
+                        email2:     queue[i]['email2'],
+                        phone:      queue[i]['phone'],
+                        phone2:     queue[i]['phone2'],
+                        start:      queue[i]['start'],
+                        duration:   queue[i]['duration'],
+                        endHidden:  queue[i]['end_time'],
+                        end:        queue[i]['end_time_formatted'],
+                        note:       queue[i]['note']
+                    };
+                    //                console.log('context is ' + context);
+                    var html = template(context);
+                    console.log('html is ' + html);
+                    $unitUserUL.append(html);
+                }
+            }
+        });
+//        $.ajax({
+//            url: "/units/<%#= unit.id %>/report_status",
+//            type: "GET",
+//            dataType: "json",
+//            success: function(data) {
+
+//                  var $unitUserUL = $('#unit-user-ul-' + <%#= unit.id %>);
+//                  console.log($unitUserUL);
+//                  $unitUserUL.empty();
+//                  rebuild the unit_user queue based on retrieved data
+//                  <ul id="unit-user-ul-<%#= unit.id %>">
+//                  <#% unit.unit_users.each do |unituser| %>
+//                  <#%= render :partial => '/unitusers/unit_user', :locals => { user:unituser.user, unit:unit, unituser: unituser }%>
+//                  <#% end %>
+//                  </ul>
+//            },
+//            error: function() { console.log("ajax error in call to report_status") }
+//        });
+
+    };
+
+    var getReportStatus = function(id) {
+        return $.ajax({
+            url: "/units/" + id + "/report_status",
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+
+            },
+            error: function() { console.log("ajax error in call to report_status") }
+        });
+    }
+
+
 </script>
 
+<!--//////////////////////////////// handlebars ///////////////////////////////////-->
+
+<script id="uu-template" type="text/x-handlebars-template">
+  <li class="unit_user" id="unit_user_{{ id }}">
+    <div class="uu-wrapper">
+      <div class="container unit-user">
+
+        <div class="row border-bottom">
+          <div class="col-xs-12 microgramma-bold larger name spaced">{{name}}<span class="tiny quicksand-reg">({{id}})</span></div>
+        </div>
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+        <div class="row">
+          <div class="col-xs-3"><img src="{{img}}" alt="Profile profile picture fix 2" class="img-rounded uu-avatar"/></div>
+          <div class="col-xs-9">
+            <div class="container">
+              <div class="row"> <div class="col-xs-10 quicksand-reg email  white-glow smaller">{{email}}</div> </div>
+              <div class="row"> <div class="col-xs-10 quicksand-reg email2 white-glow smaller">{{email2}}</div> </div>
+              <div class="row"> <div class="col-xs-10 quicksand-reg phone  white-glow smaller">{{phone}}</div> </div>
+              <div class="row"> <div class="col-xs-10 quicksand-reg phone2 white-glow smaller">{{phone2}}</div> </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="spacer"></div>
+
+        <div class="row">
+          <div class="col-xs-3 microgramma white-glow lowered spaced">BEG</div>
+          <div class="col-xs-9 quicksand-reg white-glow txt-centered" id="start_time_{{id}}">{{start}}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-3 microgramma white-glow lowered spaced" id="duration_{{id}}">DUR</div>
+          <div class="col-xs-9 quicksand-reg bip-duration-field white-glow txt-centered">
+            <!-- #hrs_min is a method in the unit_user class - returns a formatted duration string -->
+            <!--<#% if current_user == user %>-->
+                <!--<%#= best_in_place [unit, unituser], :duration, :inner_class => "duration-input", :as => :input, :data => {:unit_duration => unit.duration}, :display_as => :duration_hrs_min %>-->
+            <!--<#% else %>-->
+                <%#= unituser.duration_hrs_min %>{{{duration}}}
+            <!--<%# end %>-->
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-3 microgramma white-glow lowered spaced">END</div>
+          <div class="col-xs-9 quicksand-reg white-glow txt-centered" id="end_time_{{id}}">{{end}}</div>
+
+          <!--<div class="col-xs-9 quicksand-reg white-glow txt-centered hidden-end-times" id="end-time-hidden-<%#= unituser.id %>"><%#= unituser.end_time.in_time_zone(user.timezone) if unituser.end_time %></div>-->
+          <div class="col-xs-9 quicksand-reg white-glow txt-centered hidden-end-times" id="end-time-hidden-{{id}}">{{endHidden}}</div>
+        </div>
+
+        <div>
+          <div class="note quicksand-reg white-glow">{{note}}
+            <%#= best_in_place [unit, unituser], :note, :as => :textarea, :place_holder => 'note' %>
+          </div>
+        </div>
+
+        <div class="txt-centered">
+          <%# if current_user == user %>
+              <hr class="unit-user-hr"/>
+              <%#= link_to "delete", [unit, unituser], method: :delete, class: 'gold-glow microgramma spaced uu-delete', data: {confirm: 'Are you sure?'}, remote: true %>
+          <%# end %>
+        </div>
+
+      </div>
+    </div>
+  </li>
+</script>

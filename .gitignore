@@ -21,6 +21,7 @@
 # Ignore application configuration
 
 config/application.yml
+/config/application.yml
 
 # Ignore carrierwave images
 public/uploads
