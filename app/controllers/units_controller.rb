@@ -48,6 +48,11 @@ class UnitsController < ApplicationController
       if params['unit']['note'] && @unit.update({ note: params['unit']['note'] })
         format.json {respond_with_bip(@unit) }
       end
+
+      if params['unit']['notes'] && @unit.update({ notes: params['unit']['notes'] })
+        format.json {respond_with_bip(@unit) }
+      end
+
     end
 
   end
@@ -86,7 +91,7 @@ class UnitsController < ApplicationController
   private ########################
 
   def unit_params
-    params.require(:unit).permit(:name, :screen_name, :unit_pic, :unit_pic_cache )
+    params.require(:unit).permit(:name, :screen_name, :unit_pic, :unit_pic_cache, :notes, :contact_flags )
   end
 
 end

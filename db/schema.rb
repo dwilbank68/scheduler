@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150220022816) do
+ActiveRecord::Schema.define(version: 20150224230542) do
 
   create_table "unit_users", force: true do |t|
     t.integer  "unit_id"
@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 20150220022816) do
   add_index "unit_users", ["user_id"], name: "index_unit_users_on_user_id"
 
   create_table "units", force: true do |t|
-    t.string   "name"
     t.string   "screen_name"
     t.string   "position"
     t.string   "imagePath"
@@ -41,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150220022816) do
     t.text     "note"
     t.string   "user_disabler"
     t.datetime "when_disabled"
+    t.text     "notes"
   end
 
   create_table "users", force: true do |t|
