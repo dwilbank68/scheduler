@@ -65,26 +65,30 @@ class Unit < ActiveRecord::Base
       }
     else
       logger.info('-------------in unit#report_status, duration NOT equals zero')
-      min = duration
+      # min = duration
       uu_queue = unit_users.map do |uu|
         user = uu.user
-        { :id => uu.id,
+        { :unitId => unit.id,
+          :id => uu.id,
           :name => user.name,
           :start_time_formatted => uu.start_time_formatted,
           :end_time => uu.end_time,
           :end_time_formatted => uu.end_time_formatted,
+          :end_time_hidden => uu.end_time.to_s, #because in js, the UTC became a Z, and new Date(end_time) would fail
           :duration => uu.duration,
           :duration_string => uu.duration_hrs_min,
           :img => user.avatar.profile.url,
-          :email =>  user.formatted_email1,
-          :email2 => user.formatted_email2,
-          :phone =>  user.formatted_phone1,
-          :phone2 => user.formatted_phone2,
+          :email =>  user.email,
+          :emailFormatted =>  user.formatted_email1,
+          :email2Formatted => user.formatted_email2,
+          :phoneFormatted =>  user.formatted_phone1,
+          :phone2Formatted => user.formatted_phone2,
           :note => uu.note }
       end
-      @data = { :time_available => time_available,
+      @data = {
+                :time_available => time_available,
                 :time_available_string => "this will be replaced with a countdown",
-                :duration => min,
+                :duration => duration,
                 :uu_queue => uu_queue
       }
     end
