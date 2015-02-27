@@ -172,7 +172,6 @@
 
         // if user hovers over a unit, (and the red overlay is not present),
         // fade in the notes field
-
         $unit.hover(
             function(){
                 if($unitOverlay.is(':hidden')) {
@@ -214,15 +213,6 @@
                     unit_available_string = moment(data['time_available']).format('MMM D, hh:mm A');
 
                     $('.uu-form-start-time').html(unit_available_string);
-//                  var $unitUserUL = $('#unit-user-ul-' + <%#= unit.id %>);
-//                  console.log($unitUserUL);
-//                  $unitUserUL.empty();
-//                  rebuild the unit_user queue based on retrieved data
-//                  <ul id="unit-user-ul-<%#= unit.id %>">
-//                  <#% unit.unit_users.each do |unituser| %>
-//                  <#%= render :partial => '/unitusers/unit_user', :locals => { user:unituser.user, unit:unit, unituser: unituser }%>
-//                  <#% end %>
-//                  </ul>
                 },
                 error: function() { console.log("ajax error in call to report_status") }
             });
@@ -234,7 +224,7 @@
             // zero out the notes field
             $('.note-field:visible').val("");
 
-            // Set up listener to convert duration (in minutes) into a convenient hrs and minutes string
+            // Set up a listener to convert duration (in minutes) into a convenient hrs and minutes string
             // With every input change on the unit_user form, the duration field updates, and the end_time field updates
 
             var min, dur;
@@ -351,7 +341,8 @@
 
     var refreshUnit = function (id) {
         getReportStatus(id).done( function(result) {
-            console.log('result["uu_queue"] is ' + JSON.stringify( result['uu_queue'], null, '  '));
+//            console.log('result is ' + JSON.stringify( result, null, '  '));
+//            console.log('result["uu_queue"] is ' + JSON.stringify( result['uu_queue'], null, '  '));
             var $unitUserUL = $('#unit-user-ul-' + id);
 //            console.log($unitUserUL);
             $unitUserUL.empty();
@@ -361,44 +352,27 @@
                 var queue = result['uu_queue'];
                 for (var i = 0; i < queue.length; i++) {
                     var context = {
-                        id:         queue[i]['uuId'],
-                        name:       queue[i]['name'],
-                        img:        queue[i]['img'],
-                        email:      queue[i]['email'],
-                        email2:     queue[i]['email2'],
-                        phone:      queue[i]['phone'],
-                        phone2:     queue[i]['phone2'],
-                        start:      queue[i]['start'],
-                        duration:   queue[i]['duration'],
-                        endHidden:  queue[i]['end_time'],
-                        end:        queue[i]['end_time_formatted'],
-                        note:       queue[i]['note']
+                        unitId:                 queue[i]['unitId'],
+                        id:                     queue[i]['id'],
+                        name:                   queue[i]['name'],
+                        img:                    queue[i]['img'],
+                        email:                  queue[i]['emailFormatted'],
+                        email2:                 queue[i]['email2Formatted'],
+                        phone:                  queue[i]['phoneFormatted'],
+                        phone2:                 queue[i]['phone2Formatted'],
+                        start:                  queue[i]['start'],
+                        start_time_formatted:   queue[i]['start_time_formatted'],
+                        duration_string:        queue[i]['duration_string'],
+                        endHidden:              queue[i]['end_time_hidden'],
+                        end_time_formatted:     queue[i]['end_time_formatted'],
+                        note:                   queue[i]['note'],
+                        current_user_name:      current_user_name
                     };
-                    //                console.log('context is ' + context);
                     var html = template(context);
-                    console.log('html is ' + html);
                     $unitUserUL.append(html);
                 }
             }
         });
-//        $.ajax({
-//            url: "/units/<%#= unit.id %>/report_status",
-//            type: "GET",
-//            dataType: "json",
-//            success: function(data) {
-
-//                  var $unitUserUL = $('#unit-user-ul-' + <%#= unit.id %>);
-//                  console.log($unitUserUL);
-//                  $unitUserUL.empty();
-//                  rebuild the unit_user queue based on retrieved data
-//                  <ul id="unit-user-ul-<%#= unit.id %>">
-//                  <#% unit.unit_users.each do |unituser| %>
-//                  <#%= render :partial => '/unitusers/unit_user', :locals => { user:unituser.user, unit:unit, unituser: unituser }%>
-//                  <#% end %>
-//                  </ul>
-//            },
-//            error: function() { console.log("ajax error in call to report_status") }
-//        });
 
     };
 
@@ -445,7 +419,7 @@
 
         <div class="row">
           <div class="col-xs-3 microgramma white-glow lowered spaced">BEG</div>
-          <div class="col-xs-9 quicksand-reg white-glow txt-centered" id="start_time_{{id}}">{{start}}</div>
+          <div class="col-xs-9 quicksand-reg white-glow txt-centered" id="start_time_{{id}}">{{start_time_formatted}}</div>
         </div>
 
         <div class="row">
@@ -455,30 +429,29 @@
             <!--<#% if current_user == user %>-->
                 <!--<%#= best_in_place [unit, unituser], :duration, :inner_class => "duration-input", :as => :input, :data => {:unit_duration => unit.duration}, :display_as => :duration_hrs_min %>-->
             <!--<#% else %>-->
-                <%#= unituser.duration_hrs_min %>{{{duration}}}
+                <%#= unituser.duration_hrs_min %>{{{duration_string}}}
             <!--<%# end %>-->
           </div>
         </div>
 
         <div class="row">
           <div class="col-xs-3 microgramma white-glow lowered spaced">END</div>
-          <div class="col-xs-9 quicksand-reg white-glow txt-centered" id="end_time_{{id}}">{{end}}</div>
-
-          <!--<div class="col-xs-9 quicksand-reg white-glow txt-centered hidden-end-times" id="end-time-hidden-<%#= unituser.id %>"><%#= unituser.end_time.in_time_zone(user.timezone) if unituser.end_time %></div>-->
+          <div class="col-xs-9 quicksand-reg white-glow txt-centered" id="end_time_{{id}}">{{end_time_formatted}}</div>
           <div class="col-xs-9 quicksand-reg white-glow txt-centered hidden-end-times" id="end-time-hidden-{{id}}">{{endHidden}}</div>
         </div>
 
         <div>
-          <div class="note quicksand-reg white-glow">{{note}}
+          <div class="note quicksand-reg blue-glow">{{note}}
             <%#= best_in_place [unit, unituser], :note, :as => :textarea, :place_holder => 'note' %>
           </div>
         </div>
 
         <div class="txt-centered">
-          <%# if current_user == user %>
+          {{#if_eq name current_user_name}}
               <hr class="unit-user-hr"/>
+              <a class="gold-glow microgramma spaced uu-delete" href="/units/{{unitId}}/unit_users/{{id}}">delete</a>
               <%#= link_to "delete", [unit, unituser], method: :delete, class: 'gold-glow microgramma spaced uu-delete', data: {confirm: 'Are you sure?'}, remote: true %>
-          <%# end %>
+          {{/if_eq}}
         </div>
 
       </div>

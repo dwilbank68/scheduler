@@ -121,6 +121,8 @@
 
 $(document).ready(function() {
 
+    current_user_name = '<%= current_user.name %>';
+
     $('#clock').jsclock(); //http://www.tcpweb.com.br/JS-Clock/
 
     var $user_form = $('#user-edit-form');
@@ -163,10 +165,10 @@ $(document).ready(function() {
         var $unitUserEndTimes = $("div[id^='end-time-hidden']");
         for(var i=0; i<$unitUserEndTimes.length; i++) {
             var endTimeStr = $unitUserEndTimes[i].innerHTML.replace(/-/g,"/");
+//            console.log("endTimeStr is " + endTimeStr);
             var endTime = moment(new Date(endTimeStr));
             var now = moment();
             console.log('endTime is ' + endTime);
-            console.log('now is     ' + now);
             if(now.isAfter(endTime)) {
                 var uuId = $unitUserEndTimes[i].id.replace( /^\D+/g, '');
                 var $uu = $('#unit_user_' + uuId);
