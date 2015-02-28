@@ -129,7 +129,7 @@ $(document).ready(function() {
     $('#overlay').hide();
 
 
-    // the update user attributes form, triggered by "Edit Contact Preferences" in the upper right nav bar
+    // set listener on "Edit Contact Preferences" in the upper right nav bar
     <% if current_user %>
         $('#<%= current_user.id %>').on('click', function(){
         if($('.signin').is(':visible')) {
@@ -152,11 +152,12 @@ $(document).ready(function() {
 
     // start all the countdowns on the units - showing time till unit is free
     startUnitCountdowns();
-    setInterval(activatePage,6000);
+    setInterval(updatePage,60000);
 });
 
-    var activatePage = function() {
-        cleanUpUnitUsers();
+    var updatePage = function() {
+//        cleanUpUnitUsers();
+        refreshAllUnits();
         adjustCountdownColors();
     };
 
@@ -168,7 +169,7 @@ $(document).ready(function() {
 //            console.log("endTimeStr is " + endTimeStr);
             var endTime = moment(new Date(endTimeStr));
             var now = moment();
-            console.log('endTime is ' + endTime);
+//            console.log('endTime is ' + endTime);
             if(now.isAfter(endTime)) {
                 var uuId = $unitUserEndTimes[i].id.replace( /^\D+/g, '');
                 var $uu = $('#unit_user_' + uuId);
@@ -195,7 +196,10 @@ $(document).ready(function() {
             var countdownText = $($countdowns[i]).find('span').text();
             var countdownStripped = countdownText.replace(/:/g, '');
             var countdownInt = parseInt(countdownStripped, 10);
-            if( countdownInt <= 500) {
+            if(countdownText == "00:00:00" || countdownText == "--:--:--") {
+                $($countdowns[i]).removeClass('red-glow');
+                $($countdowns[i]).addClass('gold-glow');
+            } else if( countdownInt <= 500) {
                 $($countdowns[i]).removeClass('gold-glow');
                 $($countdowns[i]).addClass('red-glow');
             }

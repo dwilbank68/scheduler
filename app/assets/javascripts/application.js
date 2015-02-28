@@ -32,6 +32,7 @@
 
 //= require jquery.transit.min
 //= require handlebars-v3.0.0
+//= require jquery.jeditable.mini
 //= require_tree .
 
 $(document).ready(function() {
