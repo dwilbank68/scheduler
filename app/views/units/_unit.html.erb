@@ -188,6 +188,9 @@
         // click 'new unituser' button on the unit, you get a modal form, which creates a new unituser in the queue
         $('#new-user-for-unit-<%= unit.id %>').on('click', function(){
 
+            // refresh queue to show any possible unseen unit-users ahead of you in line
+            refreshAllUnits();
+
             // detach form from machine unit and reattach it to non-blurring layer, which is z-index 2
             $('#non-blur-layer').append($form);
 
@@ -324,7 +327,8 @@
             });
         })
 
-        // refresh button GETs current queue from the server and refreshes the DOM
+        // Refresh button GETs current queue from the server and refreshes the DOM.
+        // Note that inline editing will no longer work, until the browser is refreshed
 
         $('#refresh-unit-<%= unit.id %> span').hover(
             function() { $(this).toggleClass('fa-spin') }
@@ -338,6 +342,16 @@
     });
 
     ///////////////////////////////////////// functions /////////////////////////////////////
+
+    var refreshAllUnits = function() {
+        var allUnitInts = arrayOfUnitIDInts();
+        allUnitInts.each(function() { refreshUnit(this); })
+
+    };
+
+    var arrayOfUnitIDInts = function () {
+        return $('.unit.ui-draggable').map(function() { return this.id.replace( /^\D+/g, '');});//.get();
+    };
 
     var refreshUnit = function (id) {
         getReportStatus(id).done( function(result) {
@@ -368,8 +382,27 @@
                         note:                   queue[i]['note'],
                         current_user_name:      current_user_name
                     };
+                    console.log('context is ' + queue[i]['id']);
                     var html = template(context);
                     $unitUserUL.append(html);
+
+                    // inline editing no longer works (in js), so refresh page if they try to do so
+                    $('.refresh-warning').click(
+                        function(){ location.reload(); }
+                    );
+
+                    // All this disabled until I have time to get inline editing working in javascript
+                    // target duration field
+                    //var dur_field = $('#unit_user_' + queue[i]['id']).find('.bip-duration-field');
+
+                    // target note field
+                    //var note_field = $('#unit_user_' + queue[i]['id']).find('.note');
+
+                    // attach listener to duration field for inline editing
+                    //dur_field.editable('/units/'+ queue[i]['unitId'] + '/unit_users/' + queue[i]['id'], {method: 'PUT'});
+
+                    // attach listener to note field for inline editing
+                    //note_field.editable('/units/'+ queue[i]['unitId'] + '/unit_users/' + queue[i]['id'], {method: 'PUT'});
                 }
             }
         });
@@ -424,7 +457,7 @@
 
         <div class="row">
           <div class="col-xs-3 microgramma white-glow lowered spaced" id="duration_{{id}}">DUR</div>
-          <div class="col-xs-9 quicksand-reg bip-duration-field white-glow txt-centered">
+          <div class="col-xs-9 quicksand-reg bip-duration-field white-glow txt-centered refresh-warning">
             <!-- #hrs_min is a method in the unit_user class - returns a formatted duration string -->
             <!--<#% if current_user == user %>-->
                 <!--<%#= best_in_place [unit, unituser], :duration, :inner_class => "duration-input", :as => :input, :data => {:unit_duration => unit.duration}, :display_as => :duration_hrs_min %>-->
@@ -441,7 +474,8 @@
         </div>
 
         <div>
-          <div class="note quicksand-reg blue-glow">{{note}}
+          <div class="note quicksand-reg blue-glow refresh-warning">
+            {{note}}
             <%#= best_in_place [unit, unituser], :note, :as => :textarea, :place_holder => 'note' %>
           </div>
         </div>
@@ -449,7 +483,7 @@
         <div class="txt-centered">
           {{#if_eq name current_user_name}}
               <hr class="unit-user-hr"/>
-              <a class="gold-glow microgramma spaced uu-delete" href="/units/{{unitId}}/unit_users/{{id}}">delete</a>
+              <a class="gold-glow microgramma spaced uu-delete" data-confirm="Are you sure?" data-method="delete" data-remote="true" href="/units/{{unitId}}/unit_users/{{id}}" rel="nofollow">delete</a>
               <%#= link_to "delete", [unit, unituser], method: :delete, class: 'gold-glow microgramma spaced uu-delete', data: {confirm: 'Are you sure?'}, remote: true %>
           {{/if_eq}}
         </div>

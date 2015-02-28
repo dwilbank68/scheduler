@@ -46,6 +46,7 @@ class UnitsController < ApplicationController
       end
 
       if params['unit']['note'] && @unit.update({ note: params['unit']['note'] })
+        @unit.update({ note: "#" }) if @unit.note == "" # problems occur if note is empty
         format.json {respond_with_bip(@unit) }
       end
 
