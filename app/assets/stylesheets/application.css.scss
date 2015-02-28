@@ -17,6 +17,7 @@
  *= require_self
  */
 
+@import "reset";
 @import "bootstrap";
 @import "../fonts/font";
 @import "signin";
@@ -399,12 +400,19 @@ li { list-style-type: none; }
 .unit {
   position: absolute;
   display: inline-block;
+  height: 265px;
+
+
+
+}
+
+.unit-body {
   width: 220px;
   height: 255px;
   border: solid white 1px;
   -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+     -moz-border-radius: 10px;
+          border-radius: 10px;
 }
 
 .unit-header > div {
@@ -444,7 +452,7 @@ li { list-style-type: none; }
 
 .toggle {
   left: 167px;
-  top: 250px;
+  top: 252px;
   position: absolute;
   border-bottom: 1px solid rgb(100, 100, 100);
   border-right:  1px solid rgb(100, 100, 100);
@@ -503,7 +511,7 @@ div[id*='new-user-for-unit'] {
   position: absolute;
   height: 23px;
   width: 119px;
-  bottom: -23px;
+  bottom: -12px;
   left: 49px;
   padding-top: 3px;
   border-radius: 0px 0px 7px 7px;
@@ -535,13 +543,6 @@ div[id*='new-user-for-unit'] {
 
 }
 
-.inactive {
-
-}
-
-.needs-service {
-
-}
 
 .pulse {
   -webkit-animation: pulse .5s infinite linear;
@@ -939,8 +940,8 @@ li {
 
 .user-queue {
   position: relative;
-  left: -38px;
-  top: 278px;
+  left:   3px;
+  top:   24px;
 }
 
 //////////////////////////////////////////////////
@@ -963,19 +964,7 @@ div.complete {
 
 /******************** Queue styling **********************/
 
-//table {
-//  table-layout:fixed;
-//  margin-left: 5px;
-//  margin-right: 5px;
-//  margin-top: 10px;
-//}
-
 .icon {
   display: inline-block;
   width: 10px;
 }
-
-//.colon {
-//  display: inline-block;
-//  width: 6px;
-//}

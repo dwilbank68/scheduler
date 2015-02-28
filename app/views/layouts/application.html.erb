@@ -197,6 +197,7 @@ $(document).ready(function() {
             var countdownStripped = countdownText.replace(/:/g, '');
             var countdownInt = parseInt(countdownStripped, 10);
             if(countdownText == "00:00:00" || countdownText == "--:--:--") {
+                $($countdowns[i]).find('span').text('--:--:--');
                 $($countdowns[i]).removeClass('red-glow');
                 $($countdowns[i]).addClass('gold-glow');
             } else if( countdownInt <= 500) {

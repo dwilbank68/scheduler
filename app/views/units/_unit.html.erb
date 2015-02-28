@@ -1,7 +1,7 @@
  <!--from units/index.html.erb-->
 
  <%= div_for unit do %>
-    <div class="container unit">
+    <div class="container unit-body">
         <div class="row unit-header">
             <div class="col-xs-2">
               <%= link_to '', unit, remote: true, class: 'fa fa-trash-o', method: :delete %>
@@ -35,7 +35,7 @@
         <div id="disable-unit-<%= unit.id %>"       class="toggle"><span class="fa fa-toggle-on white-glow-dim"></span></div>
       </div>
       <div class="spacer"></div>
-    </div> <!-- end unit -->
+    </div> <!-- end unit-body -->
 
 
     <!--unit state overlay-->
