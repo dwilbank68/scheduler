@@ -27,8 +27,6 @@
 
 $link-color: #666;
 
-
-
 .nav {
   background: rgba(0, 0, 0, 0.5);
 }
@@ -39,7 +37,6 @@ $link-color: #666;
 
 #clock, #timezone {
   width: 100px;
-
 }
 
 #clock {
@@ -143,11 +140,6 @@ input .update-user {
 
 a { text-decoration: none; }
 
-//.btn.active, .btn:active {
-//  background-color: #F00;
-//}
-
-
 
 /////////////// Global Style //////////////
 
@@ -167,9 +159,7 @@ input {
 
 .light-blue { color: #6DD6E3; }
 
-.grayed-out {
-  color: gray;
-}
+.grayed-out { color: gray; }
 
 .black { color: black; display: inline-block;}
 
@@ -285,9 +275,6 @@ input {
   }
 }
 
-///////////////////////////////
-
-
 /////////// Fonts /////////////
 
 .arame-bold {
@@ -349,7 +336,6 @@ input {
   margin-top: -50px;
   margin-left: -100px;
 }
-/////////////////////////////////////////////////
 
 .user-info { margin-top: 9px; }
 
@@ -401,9 +387,6 @@ li { list-style-type: none; }
   position: absolute;
   display: inline-block;
   height: 265px;
-
-
-
 }
 
 .unit-body {
@@ -488,8 +471,6 @@ li { list-style-type: none; }
   overflow: hidden;
 }
 
-
-
 .remaining-label {
   margin-top: 4px;
 }
@@ -523,7 +504,6 @@ div[id*='new-user-for-unit'] {
     0px 0px 12px #E99200,
     0px 0px 24px #975A00;
   }
-  
 }
 
 .unit-overlay {
@@ -540,7 +520,6 @@ div[id*='new-user-for-unit'] {
   -moz-box-shadow: 0px 0px 41px 1px rgba(240,0,0,1);
   box-shadow: 0px 0px 41px 1px rgba(240,0,0,1);
   z-index: 88;
-
 }
 
 
@@ -583,15 +562,9 @@ div[id*='new-user-for-unit'] {
   height: 100%;
   width: 100%;
   position: fixed;
-//  z-index: 1;
 }
 
 #non-blur-layer {
-//  top: 0px;
-//  left: 0px;
-//  height: 100%;
-//  width: 100%;
-//  position: fixed;
   z-index: 2;
 }
 
@@ -798,10 +771,6 @@ div[id*='new-user-for-unit'] {
   }
 }
 
-/////////////////////////////////////////////
-
-
-
 /////////////////// unit-user ///////////////////
 
   /// form ///
@@ -856,11 +825,6 @@ div[id*='new-user-for-unit'] {
     display:none;
   }
 
-  ////////////
-
-
-
-
 li {
   padding-bottom: 1px;
 }
@@ -891,8 +855,6 @@ li {
     margin: 0;
   }
 
-
-
   .name {
     width: 200px;
     background-color: transparent;
@@ -913,7 +875,6 @@ li {
 
   .bip-duration-field {
     display: inline-block;
-//    width: 40px;
   }
 
   //best_in_place field
@@ -933,7 +894,6 @@ li {
   }
 
 }
-/////////////////end unit-user ///////////////////
 
 
 ////////////////// user-queue ////////////////////
@@ -944,14 +904,10 @@ li {
   top:   24px;
 }
 
-//////////////////////////////////////////////////
-
 
 div.remaining {
     margin-top: 3px;
 }
-
-
 
 div.complete {
     margin-top: 22px;
