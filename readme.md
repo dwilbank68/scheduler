@@ -15,8 +15,7 @@ In our case, the machines were high-end video tape machines -- but **SchedulerX*
 
 In short, you put yourself in a queue to use the machine you want, and all members of the queue are notified when it is their turn.
 
-A quick video tutorial will be available at [www.davidwilbanks.net](www.davidwilbanks.net)
-in early March 2015.
+A quick video tutorial is available at [www.davidwilbanks.net](www.davidwilbanks.net).
 
 ###Features
 
