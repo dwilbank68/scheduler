@@ -22,16 +22,11 @@ class Unit < ActiveRecord::Base
       self.reload
       time_avail = self.unit_users.last.end_time
     end
-    # puts "*"*30
-    # puts "unit_users.count for unit #{self.id} is #{unit_users.count}"
-    puts "----------------self.unit_users.count is returning " + self.unit_users.count.to_s
-    puts "----------------calculated_time_available is returning " + time_avail.to_s
-    # puts "*"*30
+
     time_avail
   end
 
   def duration_hrs_min
-    # "#{self.duration / 60} hrs #{self.duration % 60} min"
     hrsmin = "<span>#{self.duration / 60}</span><span class='smaller relative raised'>hrs</span> <span>#{self.duration % 60}</span><span class='smaller relative raised'>min</span>"
     hrsmin.html_safe
   end
@@ -44,7 +39,6 @@ class Unit < ActiveRecord::Base
       obj["start_time"] = uu.start_time_formatted
       obj["end_time"] = uu.end_time_formatted
       obj["duration"] = uu.duration_hrs_min
-      # puts obj.inspect
       new_arr << obj
     end
     new_arr
@@ -92,7 +86,7 @@ class Unit < ActiveRecord::Base
                 :uu_queue => uu_queue
       }
     end
-    @data#.to_json
+    @data
   end
 
   def self.report_unit_statuses
