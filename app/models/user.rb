@@ -33,24 +33,13 @@ class User < ActiveRecord::Base
     # @twilio_client.account.sms.messages.create( # deprecated
     @twilio_client.account.messages.create( :from => "+1#{twilio_phone_number}", :to => self.phone, :body => msg ) if self.contact_flags[5] == '1'
     @twilio_client.account.messages.create( :from => "+1#{twilio_phone_number}", :to => self.phone2, :body => msg ) if self.contact_flags[7] == '1'
-    # puts "-twilio-"*20
-    # puts "#{msg} was sent"
-    # puts "-twilio-"*20
+
   end
 
   # this overrides the current user's timezone until I get everything fixed to handle timezones
   def timezone
     "US/Pacific"
   end
-
-  # def formatted_phone(number) #US Numbers only, for now
-  #   if number
-  #     digits = number.gsub(/\D/, '')
-  #     "#{digits[0]} (#{digits[1,3]}) #{digits[4,3]}-#{digits[7,4]}"
-  #   else
-  #     "- - - - - - - - - - - - -"
-  #   end
-  # end
 
   def formatted_email1
     if self.email && self.contact_flags[0] == "1"
