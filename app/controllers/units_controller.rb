@@ -6,8 +6,7 @@ class UnitsController < ApplicationController
 
   def index
     @units = Unit.all
-    # @user = User.last #until current_user arrives with Devise
-    @user = current_user #until current_user arrives with Devise
+    @user = current_user
     @unit_user = UnitUser.new
   end
 
@@ -89,7 +88,7 @@ class UnitsController < ApplicationController
 
   end
 
-  private ########################
+  private
 
   def unit_params
     params.require(:unit).permit(:name, :screen_name, :unit_pic, :unit_pic_cache, :notes, :contact_flags )
