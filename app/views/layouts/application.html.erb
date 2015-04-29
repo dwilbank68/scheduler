@@ -6,7 +6,7 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
-  <!--<meta http-equiv="refresh" content="30">-->
+  <meta http-equiv="refresh" content="300">   <!-- until I get realtime push updates working -->
 </head>
 <body>
 
@@ -145,7 +145,6 @@ $(document).ready(function() {
             $('#overlay').fadeIn();
             // bring in the form, which SHOULD BE Z-INDEX 3
             $user_form.fadeIn().css({top:($(window).height()/2)-107, left:($(window).width()/2)-200, zIndex:999});
-//            var contactFlags = '<%#= current_user.contact_flags %>'.split('');
         }
         });
     <% end %>
@@ -155,117 +154,115 @@ $(document).ready(function() {
     setInterval(updatePage,60000);
 });
 
-    var updatePage = function() {
+var updatePage = function() {
 //        cleanUpUnitUsers();
-        refreshAllUnits();
-        adjustCountdownColors();
-    };
+    refreshAllUnits();
+    adjustCountdownColors();
+};
 
-    // remove unit-users once their end time is reached
-    var cleanUpUnitUsers = function() {
-        var $unitUserEndTimes = $("div[id^='end-time-hidden']");
-        for(var i=0; i<$unitUserEndTimes.length; i++) {
-            var endTimeStr = $unitUserEndTimes[i].innerHTML.replace(/-/g,"/");
+// remove unit-users once their end time is reached
+var cleanUpUnitUsers = function() {
+    var $unitUserEndTimes = $("div[id^='end-time-hidden']");
+    for(var i=0; i<$unitUserEndTimes.length; i++) {
+        var endTimeStr = $unitUserEndTimes[i].innerHTML.replace(/-/g,"/");
 //            console.log("endTimeStr is " + endTimeStr);
-            var endTime = moment(new Date(endTimeStr));
-            var now = moment();
+        var endTime = moment(new Date(endTimeStr));
+        var now = moment();
 //            console.log('endTime is ' + endTime);
-            if(now.isAfter(endTime)) {
-                var uuId = $unitUserEndTimes[i].id.replace( /^\D+/g, '');
-                var $uu = $('#unit_user_' + uuId);
-                var siblings = $uu.siblings('.unit_user').length;
-                console.log("siblings length is " + siblings);
-                var $unit = $uu.closest('.unit');
-                console.log("$unit is " + $unit);
-                $uu.fadeOut(function(){ $uu.remove()});
-                if(siblings === 0) {
-                    console.log("siblings apparently equals 0");
-                    $unit.find('.time-remaining').html("--:--:--");
-                    $unit.find('.time-remaining').removeClass('red-glow');
-                    $unit.find('.time-remaining').addClass('gold-glow');
-                    $unit.find('.est-time-of-completion').html("Unit Available");
-                }
+        if(now.isAfter(endTime)) {
+            var uuId = $unitUserEndTimes[i].id.replace( /^\D+/g, '');
+            var $uu = $('#unit_user_' + uuId);
+            var siblings = $uu.siblings('.unit_user').length;
+            console.log("siblings length is " + siblings);
+            var $unit = $uu.closest('.unit');
+            console.log("$unit is " + $unit);
+            $uu.fadeOut(function(){ $uu.remove()});
+            if(siblings === 0) {
+                console.log("siblings apparently equals 0");
+                $unit.find('.time-remaining').html("--:--:--");
+                $unit.find('.time-remaining').removeClass('red-glow');
+                $unit.find('.time-remaining').addClass('gold-glow');
+                $unit.find('.est-time-of-completion').html("Unit Available");
             }
         }
-    };
+    }
+};
 
-    // turn unit countdowns red once they fall below 00:05:00
-    var adjustCountdownColors = function() {
-        var $countdowns = $('.time-remaining');
-        for(var i=0; i<$countdowns.length; i++) {
-            var countdownText = $($countdowns[i]).find('span').text();
-            var countdownStripped = countdownText.replace(/:/g, '');
-            var countdownInt = parseInt(countdownStripped, 10);
-            if(countdownText == "00:00:00" || countdownText == "--:--:--") {
-                $($countdowns[i]).find('span').text('--:--:--');
-                $($countdowns[i]).removeClass('red-glow');
-                $($countdowns[i]).addClass('gold-glow');
-            } else if( countdownInt <= 500) {
-                $($countdowns[i]).removeClass('gold-glow');
-                $($countdowns[i]).addClass('red-glow');
+// turn unit countdowns red once they fall below 00:05:00
+var adjustCountdownColors = function() {
+    var $countdowns = $('.time-remaining');
+    for(var i=0; i<$countdowns.length; i++) {
+        var countdownText = $($countdowns[i]).find('span').text();
+        var countdownStripped = countdownText.replace(/:/g, '');
+        var countdownInt = parseInt(countdownStripped, 10);
+        if(countdownText == "00:00:00" || countdownText == "--:--:--") {
+            $($countdowns[i]).find('span').text('--:--:--');
+            $($countdowns[i]).removeClass('red-glow');
+            $($countdowns[i]).addClass('gold-glow');
+        } else if( countdownInt <= 500) {
+            $($countdowns[i]).removeClass('gold-glow');
+            $($countdowns[i]).addClass('red-glow');
+        }
+    }
+};
+
+var startUnitCountdowns = function() {
+    console.log('startUnitCountdowns is running');
+    $.ajax({
+        url: "/units/report_unit_statuses",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+        unit_arr = data;
+        for(var i=0; i<unit_arr.length; i++) {
+            var id = unit_arr[i]['id'];
+            var endTime = unit_arr[i]['time_available'];
+            var endTimeMoment = moment(endTime);
+            var $countdown = $('#unit_' + id).find($('.time-remaining'));
+            if(endTime === null) {
+                $countdown.html("<span>--:--:--</span>");
+            } else {
+                $countdown.countdown('destroy');
+                $countdown.countdown({ until: endTimeMoment.toDate(), compact: true });
             }
         }
-    };
+        },
+        error: function() { console.log("ajax error in startUnitCountdowns") }
+    });
+};
 
-    var startUnitCountdowns = function() {
-        console.log('startUnitCountdowns is running');
+var prepareUserForm = function() {
+    $("#phone").intlTelInput();
+    $("#phone2").intlTelInput();
+    // create an array of flags which tells which pieces of contact data are going to be active and visible
+    // e.g., 0,1,1,0,0,0,1,1 or 1,1,1,1,0,0,0,0,
 
-        $.ajax({
-            url: "/units/report_unit_statuses",
-            type: "GET",
-            dataType: "json",
-            success: function(data) {
-            unit_arr = data;
-            for(var i=0; i<unit_arr.length; i++) {
-                //  console.log(unit_arr[i]);
-                var id = unit_arr[i]['id'];
-                var endTime = unit_arr[i]['time_available'];
-                var endTimeMoment = moment(endTime);
+    var contactFlags = '<%= current_user.contact_flags %>'.split('');
 
-                if(endTime === null) {
-                    $('#unit_' + id).find($('.time-remaining')).html("<span>--:--:--</span>");
-                } else {
-                    $('#unit_' + id).find($('.time-remaining')).countdown({ until: endTimeMoment.toDate(), compact: true });
-                }
+    // loop through all contact buttons and set event listeners
+    $('.contact-switch').each(function(i,el){
+        console.log(i + ' ' + el);
+        $(el).on('click', function() {
+            if( contactFlags[i] == "1"){
+                contactFlags[i] = "0";
+                switchGlowOff(el);
+            } else {
+                contactFlags[i] = "1";
+                switchGlowOn(el);
             }
-            },
-            error: function() { console.log("ajax error in startUnitCountdowns") }
-        });
-    };
+            $('#contact-flags-' + <%= current_user.id %>).val(contactFlags.join(''));
+        })
+    });
+};
 
-    var prepareUserForm = function() {
-        $("#phone").intlTelInput();
-        $("#phone2").intlTelInput();
-        // create an array of flags which tells which pieces of contact data are going to be active and visible
-        // e.g., 0,1,1,0,0,0,1,1 or 1,1,1,1,0,0,0,0,
+var switchGlowOn = function(el) {
+    $(el).removeClass('grayed-out');
+    $(el).addClass('gold-glow');
+};
 
-        var contactFlags = '<%= current_user.contact_flags %>'.split('');
-
-        // loop through all contact buttons and set event listeners
-        $('.contact-switch').each(function(i,el){
-            console.log(i + ' ' + el);
-            $(el).on('click', function() {
-                if( contactFlags[i] == "1"){
-                    contactFlags[i] = "0";
-                    switchGlowOff(el);
-                } else {
-                    contactFlags[i] = "1";
-                    switchGlowOn(el);
-                }
-                $('#contact-flags-' + <%= current_user.id %>).val(contactFlags.join(''));
-            })
-        });
-
-    };
-
-    var switchGlowOn = function(el) {
-        $(el).removeClass('grayed-out');
-        $(el).addClass('gold-glow');
-    };
-
-    var switchGlowOff = function(el) {
-        $(el).addClass('grayed-out');
-        $(el).removeClass('gold-glow');
-    };
+var switchGlowOff = function(el) {
+    $(el).addClass('grayed-out');
+    $(el).removeClass('gold-glow');
+};
 
 </script>

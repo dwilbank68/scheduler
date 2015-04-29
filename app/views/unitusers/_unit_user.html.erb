@@ -39,7 +39,6 @@
         <div class="row">
           <div class="col-xs-3 microgramma white-glow lowered spaced" id="duration_<%= unituser.id %>">DUR</div>
           <div class="col-xs-9 quicksand-reg bip-duration-field white-glow txt-centered">
-            <!-- #hrs_min is a method in the unit_user class - returns a formatted duration string -->
             <% if current_user == user %>
                 <%= best_in_place [unit, unituser], :duration, :inner_class => "duration-input", :as => :input, :data => {:unit_duration => unit.duration}, :display_as => :duration_hrs_min %>
             <% else %>
@@ -51,7 +50,6 @@
         <div class="row">
           <div class="col-xs-3 microgramma white-glow lowered spaced">END</div>
           <div class="col-xs-9 quicksand-reg white-glow txt-centered" id="end_time_<%= unituser.id %>">       <%= unituser.end_time.in_time_zone(user.timezone).strftime('%b %e, %l:%M %p') if unituser.end_time %></div>
-          <!--<div class="col-xs-9 quicksand-reg white-glow txt-centered hidden-end-times" id="end-time-hidden-<%#= unituser.id %>"><%#= unituser.end_time.in_time_zone(user.timezone)                             if unituser.end_time %></div>-->
           <div class="col-xs-9 quicksand-reg white-glow txt-centered hidden-end-times" id="end-time-hidden-<%= unituser.id %>"><%= unituser.end_time if unituser.end_time %></div>
         </div>
 
@@ -60,6 +58,8 @@
             <%= best_in_place [unit, unituser], :note, :as => :textarea, :place_holder => 'note' %>
           </div>
         </div>
+
+        <!-- Delete Button -->
 
         <div class="txt-centered">
           <% if current_user == user %>

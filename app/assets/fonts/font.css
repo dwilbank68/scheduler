@@ -84,3 +84,13 @@
     font-url('PFMechanicaAProBold.ttf') format('truetype'),
     font-url('PFMechanicaAProBold.svg#PFMechanicaAProBold') format('svg');
 }
+
+@font-face {
+    font-family: 'GruppoRegular';
+    src: font-url('GruppoRegular.eot');
+    src: font-url('GruppoRegular.eot') format('embedded-opentype'),
+    font-url('GruppoRegular.woff2') format('woff2'),
+    font-url('GruppoRegular.woff') format('woff'),
+    font-url('GruppoRegular.ttf') format('truetype'),
+    font-url('GruppoRegular.svg#GruppoRegular') format('svg');
+}
