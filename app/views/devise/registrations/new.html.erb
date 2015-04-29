@@ -1,5 +1,5 @@
-<div class="col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2 well signup arame-bold">
-  <h2>Sign up</h2>
+<div class="col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2 well signup gruppo">
+  <h2 class="txt-centered">Sign up</h2>
 
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= f.error_notification %>
@@ -11,17 +11,18 @@
         <%= f.input :email2,                required: true,                  label: false, placeholder: 'email (optional)',                             :input_html => { :class => 'quicksand-reg', :style => 'width: 330px' } %>
         <%= f.input :phone,                 required: true,                  label: false, placeholder: 'phone for receiving text messages',            :input_html => { :class => 'quicksand-reg', :style => 'width: 330px', :id => 'phone' } %>
         <%= f.input :phone2,                required: true,                  label: false, placeholder: 'phone for receiving text messages (optional)', :input_html => { :class => 'quicksand-reg', :style => 'width: 330px', :id => 'phone2' } %>
-        <%= f.input :password,              required: true,                  label: false, placeholder: 'password',                                     :input_html => { :class => 'quicksand-reg', :style => 'width: 330px' }, hint: ("#{@minimum_password_length} characters minimum" if @validatable) %>
+        <%= f.input :password,              required: true,                  label: false, placeholder: 'password (' + @minimum_password_length.to_s + ' character minimum)', :input_html => { :class => 'quicksand-reg', :style => 'width: 330px' }  %>
         <%= f.input :password_confirmation, required: true,                  label: false, placeholder: 'password confirmation',                        :input_html => { :class => 'quicksand-reg', :style => 'width: 330px' } %>
         <%= f.hidden_field :contact_flags, :value => '11000000' %>
       </div>
-
+        <div class="spacer"></div>
       <div class="form-actions">
         <%= f.button :submit, "Sign up" %>
       </div>
   <% end %>
-
-  <%= render "devise/shared/links" %>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+  <div class="devise-shared-links"><%= render "devise/shared/links" %></div>
 </div>
 
 <script>
