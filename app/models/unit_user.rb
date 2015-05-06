@@ -2,16 +2,12 @@ class UnitUser < ActiveRecord::Base
   belongs_to :user
   belongs_to :unit
 
-  # validates_uniqueness_of :user_id, scope: :unit_id
-
   after_commit :update_total_time
   after_destroy :update_total_time
 
   default_scope {order('created_at ASC')}
-  # default_scope {order('end_time ASC')} # this seems to give an out-of-order queue when an earlier uu's duration (and therefore the end_time) is INCREASED
 
   def duration_hrs_min
-    # "#{self.duration / 60} hrs #{self.duration % 60} min"
     hrsmin = "<span>#{self.duration / 60}</span><span class='smaller relative raised'>hrs</span> <span>#{self.duration % 60}</span><span class='smaller relative raised'>min</span>"
     hrsmin.html_safe
   end
@@ -34,10 +30,6 @@ class UnitUser < ActiveRecord::Base
 
   private
 
-
-# TODO - move this into unit.rb because it belongs there, right? But they're triggered by UnitUser after_commit... ???
-
-  # this happens after every unit_user create, update, or destroy
   def update_total_time
     @unit = self.unit
     @unit.update(:duration => get_total_time, :time_available => @unit.calculated_time_available )
@@ -49,14 +41,4 @@ class UnitUser < ActiveRecord::Base
     total_queue_duration
   end
 
-
-
 end
-
-
-
-# curl -X POST https://api.twilio.com/2010-04-01/Accounts/ACd7c0591256b00094cf9f60c41b7a5d51/SMS/Messages.json \
-#     -u ACd7c0591256b00094cf9f60c41b7a5d51:edc5cd8e9f6164cf6dbd0fa0735a1014 \
-#     --data-urlencode "From=+14246723527" \
-#     --data-urlencode "To=+18186489466" \
-#     --data-urlencode 'Body=VTR 44 will be available in 5 minutes. Press 1 to confirm, or press 0 to remove yourself from the queue.'

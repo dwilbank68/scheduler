@@ -40,6 +40,7 @@ $link-color: #666;
   margin-left: 8px;
 }
 
+
 .nav {
   background: rgba(0, 0, 0, 0.5);
 }
@@ -153,11 +154,6 @@ input .update-user {
 
 a { text-decoration: none; }
 
-//.btn.active, .btn:active {
-//  background-color: #F00;
-//}
-
-
 
 /////////////// Global Style //////////////
 
@@ -177,9 +173,7 @@ input {
 
 .light-blue { color: #6DD6E3; }
 
-.grayed-out {
-  color: gray;
-}
+.grayed-out { color: gray; }
 
 .black { color: black; display: inline-block;}
 
@@ -298,9 +292,6 @@ input {
   }
 }
 
-///////////////////////////////
-
-
 /////////// Fonts /////////////
 
 .quicksand-bold {
@@ -352,7 +343,6 @@ input {
   margin-top: -50px;
   margin-left: -100px;
 }
-/////////////////////////////////////////////////
 
 .user-info { margin-top: 9px; }
 
@@ -526,8 +516,6 @@ div.disable {
   overflow: hidden;
 }
 
-
-
 .remaining-label {
   margin-top: 4px;
 }
@@ -545,6 +533,25 @@ input { background: transparent; }
 }
 
 
+div[id*='new-user-for-unit'] {
+  color: white;
+  position: absolute;
+  height: 23px;
+  width: 119px;
+  bottom: -12px;
+  left: 49px;
+  padding-top: 3px;
+  border-radius: 0px 0px 7px 7px;
+  border: 1px solid gray;
+  
+  &:hover {
+    color: #feed00; display:inline-block;
+    text-shadow: 0px 0px 6px #DAA400,
+    0px 0px 12px #E99200,
+    0px 0px 24px #975A00;
+  }
+}
+
 
 .unit-overlay {
   position: absolute;
@@ -560,7 +567,6 @@ input { background: transparent; }
   -moz-box-shadow: 0px 0px 41px 1px rgba(240,0,0,1);
   box-shadow: 0px 0px 41px 1px rgba(240,0,0,1);
   z-index: 88;
-
 }
 
 .fa-plus-square {
@@ -584,15 +590,9 @@ input { background: transparent; }
   height: 100%;
   width: 100%;
   position: fixed;
-//  z-index: 1;
 }
 
 #non-blur-layer {
-//  top: 0px;
-//  left: 0px;
-//  height: 100%;
-//  width: 100%;
-//  position: fixed;
   z-index: 2;
 }
 
@@ -799,10 +799,6 @@ input { background: transparent; }
   }
 }
 
-/////////////////////////////////////////////
-
-
-
 /////////////////// unit-user ///////////////////
 
   /// form ///
@@ -858,11 +854,6 @@ input { background: transparent; }
     display:none;
   }
 
-  ////////////
-
-
-
-
 li {
   padding-bottom: 1px;
 }
@@ -893,8 +884,6 @@ li {
     margin: 0;
   }
 
-
-
   .name {
     width: 200px;
     background-color: transparent;
@@ -915,7 +904,6 @@ li {
 
   .bip-duration-field {
     display: inline-block;
-//    width: 40px;
   }
 
   //best_in_place field
@@ -935,7 +923,6 @@ li {
   }
 
 }
-/////////////////end unit-user ///////////////////
 
 
 ////////////////// user-queue ////////////////////
@@ -946,14 +933,10 @@ li {
   top:  0px;
 }
 
-//////////////////////////////////////////////////
-
 
 div.remaining {
     margin-top: 3px;
 }
-
-
 
 div.complete {
     margin-top: 22px;
