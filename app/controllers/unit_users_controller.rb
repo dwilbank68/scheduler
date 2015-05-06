@@ -3,7 +3,6 @@ class UnitUsersController < ApplicationController
 
   before_action :find_user, except: [:edit, :update]
   before_action :find_unituser, only: [:update, :destroy, :show]
-  # before_action :authenticate_user!
 
   def create
     @unit = Unit.find(params[:unit_id])
@@ -59,15 +58,13 @@ class UnitUsersController < ApplicationController
           end
         end
 
-        # format.json {respond_with_bip(@unituser) } # got rid of this and mimicked the functionality in the ajax callback
+        # replaced format.json {respond_with_bip(@unituser) } with the same functionality in the ajax callback
         format.json { render :json => {:unit_duration => @unit.duration_hrs_min,
                                        :unit_user_duration => @unituser.duration_hrs_min,
-                                       # :unit_user_end => @unituser.end_time.in_time_zone(@unituser.user.timezone).strftime('%b %e, %l:%M %p'),
                                        :unit_user_end => @unituser.end_time_formatted,
                                        :unit_user_queue => @unit.unit_users_time_formatted }
         }
       else
-        # format.html { render :action => 'edit' }
         format.json { respond_with_bip(@unituser) }
       end
     end
@@ -116,7 +113,6 @@ class UnitUsersController < ApplicationController
   end
 
 
-# - - - - - - - - -
   private
 
   # sends email & text (Sendgrid & Twilio)
@@ -138,7 +134,5 @@ class UnitUsersController < ApplicationController
   def unit_user_params
     params.require(:unit_user).permit(:duration, :note, :id, :unit_id, :user_id)
   end
-
-
 
 end

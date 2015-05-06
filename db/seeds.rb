@@ -1,26 +1,6 @@
 require 'faker'
 
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
-####### UNITS #######
-
-# t.string :name
-# t.string :screen_name
-# t.string :position
-# t.string :imagePath
-# t.string :state
-# t.integer :duration, :default => 0 # minutes
-# t.timestamp :time_available
-#
-# t.timestamps
-
 machine_names = ['vtr32', 'vtr33', 'vtr35', 'vtr37', 'vtr38']
 machine_screen_names = ['VTR 32', 'VTR 33', 'VTR 35', 'VTR 37', 'VTR 38']
 machine_positions = ['13x56', '242x57', '478x51', '717x50', '965x107']
@@ -37,17 +17,6 @@ machine_names.each_with_index do |name, idx|
 end
 
 
-
-####### USERS #######
-
-# t.string   "name"
-# t.string   "phone"
-# t.string   "phone2"
-# t.string   "email"
-# t.string   "email2"
-# t.string   "sms"
-# t.string   "role"
-# t.string   "image"
 User.destroy_all
 10.times do
   user = User.new(
@@ -60,25 +29,3 @@ User.destroy_all
   user.save
 end
 
-
-
-####### UNIT_USERS #######
-
-# t.integer  "unit_id"
-# t.integer  "user_id"
-# t.datetime "start_time"
-# t.integer  "duration",   default: 5
-# t.text     "note"
-
-# UnitUser.destroy_all
-# 8.times do
-#  unit_user = UnitUser.new(
-#     unit_id:    Unit.all.sample.id,
-#     user_id:    User.all.sample.id,
-#     start_time: Time.now,
-#     duration:   rand(0..480),
-#     note:       Faker::Lorem.sentence(rand(0..8))
-#  )
-#   unit_user.save
-#
-# end

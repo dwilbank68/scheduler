@@ -8,7 +8,6 @@ var $countdown = $unit.find('.time-remaining');
     $unit.find('.user-queue > ul').append("<%= escape_javascript(render(:partial => 'unitusers/unit_user', locals: { unituser: @uu, user:@user, unit:unit })) %>");
 
     // update both fields on the parent unit
-//    $countdown.html("<%#= escape_javascript(min_to_hrs_min(unit.duration)) %>");
     $countdown.removeClass('red-glow');
     $countdown.addClass('gold-glow');
     $unit.find('.est-time-of-completion').html('<%= @uu.end_time.in_time_zone(@uu.user.timezone).strftime('%b %e, %l:%M %p') %>');
@@ -26,7 +25,6 @@ var $countdown = $unit.find('.time-remaining');
     $('.unit_user_form').fadeOut();
 
     // remove old countdown before attaching new countdown
-//    $('#unit_' + <%#= params[:unit_id] %>).find($('.time-remaining')).countdown('destroy');
     $countdown.countdown('destroy');
     startUnitCountdowns();
 <% else %>
