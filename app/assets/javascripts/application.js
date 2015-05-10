@@ -48,11 +48,6 @@ $(document).ready(function() {
     $(document).keyup(function(e) {
         if(e.which == 27) {
             removeDarkBlurOverlay();
-            //$('#blur-layer').removeClass('blur-in');
-            //$('#blur-layer').addClass('blur-out');
-            //$('#overlay').fadeOut();
-            //$('.unit_user_form').fadeOut();
-            //$('#user-edit-form').fadeOut();
         }
     });
 
