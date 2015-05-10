@@ -638,6 +638,12 @@ input { background: transparent; }
   margin-top: 100px;
 }
 
+.edit-user-link {
+  border: 1px solid gray;
+  padding: 1px 10px;
+  border-radius: 8px;
+}
+
 #user-edit-form, #new-unit-form {
   width: 500px;
   color: white;

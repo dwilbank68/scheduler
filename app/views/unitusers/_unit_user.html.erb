@@ -64,7 +64,6 @@
 
         <div class="txt-centered">
           <% if current_user == user %>
-              <hr class="unit-user-hr"/>
               <%= link_to "delete", [unit, unituser], method: :delete, class: 'gold-glow microgramma spaced uu-delete', data: {confirm: 'Are you sure?'}, remote: true %>
           <% end %>
         </div>
