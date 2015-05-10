@@ -37,7 +37,7 @@ class UnitUser < ActiveRecord::Base
   end
 
   def get_total_time
-    logger.info('----------------unit_user#get_total_time is triggered, returning ' + total_queue_duration.to_s)
+    #logger.info('----------------unit_user#get_total_time is triggered, returning ' + total_queue_duration.to_s)
     @unit.unit_users.pluck(:duration).sum
   end
 
