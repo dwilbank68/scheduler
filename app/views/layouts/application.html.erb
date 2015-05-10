@@ -178,6 +178,7 @@
     // set current values for all Unit countdown displays
     // this function receives a complete JSON dump as its argument from updatePage()
     var startUnitCountdowns = function(data) {
+        console.log('startUnitCountdowns is running');
         unit_arr = data;
         for(var i=0; i < unit_arr.length; i++) {
             var id = unit_arr[i]['id'];
@@ -185,6 +186,7 @@
             var endTimeMoment = moment(endTime);
             var $countdown = $('#time-remaining-' + id);
             if(endTime === null) {
+                $countdown.countdown('destroy');
                 $countdown.html("<span>--:--:--</span>");
             } else {
                 $countdown.countdown('destroy');
@@ -281,6 +283,7 @@
             id = unitUsers[i]['id'];
             setListenerOnDurationEditBtn(id);
             setListenersOnDurationField(id);
+            setListenersOnNoteField(id);
         }
     };
 
@@ -321,9 +324,10 @@
     // this function is triggered by setListenersOnUnitUsers()
     var setListenersOnDurationField = function(id) {
         var $durField = $('#uu-dur-' + id);
-        var $button = $('#submit-dur-' + id);
+        $durField.tooltip({ content:"enter number of minutes, i.e. for 2 hours, enter 120. Hit shift-return to submit" });
         if ($durField.hasClass('listening')) return false;
 
+        var $button = $('#submit-dur-' + id);
         var durVal;
 
         $durField.off();
@@ -342,8 +346,37 @@
             console.log('blurred');
             $(this).val(durVal);
         });
+        $durField.addClass('listening');
 //        $durField.on('keyup', null, 'Shift+return', function() { $button.click() });
     };
+
+    // this function is triggered by setListenersOnUnitUsers()
+    var setListenersOnNoteField = function(id) {
+        var $noteField = $('#uu-note-' + id);
+        if ($noteField.hasClass('listening')) return false;
+
+        $noteField.bind('keydown', 'Shift+return', function() {
+            var noteText = $(this).val();
+            console.log('submitting?');
+            $.ajax({
+                url: '/unit_users/' + id + '/update_note',
+                type: 'PUT',
+                data: 'note=' + noteText,
+                success: function(data) {
+                    console.log('data coming back is ' + JSON.stringify(data));
+                    $noteField.val(data['note']);
+                    $noteField.blur();
+                }
+            })
+        });
+//        $noteField.on('focus', function() {
+//            if ($(this).val() == "click to edit") {
+//                $(this).val('');
+//            }
+//        });
+        $noteField.addClass('listening');
+    };
+
 
     // checks to see if user is in the middle of an edit
     // (really just checks to see if any edit field is in a focus state)
@@ -351,20 +384,6 @@
         var durationEditInProgress = $('input.uu-duration-edit:focus').length > 0;
         var noteEditInProgress = $('textarea.uu-note-edit:focus').length > 0;
         return durationEditInProgress || noteEditInProgress;
-    };
-
-    var submitUnitUserNoteChanges = function(id) {
-        noteText = $('#uu-note-' + id).val();
-        $.ajax({
-            url: '/unit_users/' + id + '/update_note',
-            type: 'PUT',
-            data: 'note=' + noteText,
-            success: function(data) {
-                console.log('data returned from submitUnitUserNoteChanges is ' + JSON.stringify(data));
-                $('#uu-note-' + id).val(data).blur();
-                //updatePage();
-            }
-        });
     };
 
     var prepareUserForm = function() {
