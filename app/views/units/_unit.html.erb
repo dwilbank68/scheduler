@@ -10,7 +10,7 @@
               <%= link_to '', unit, remote: true, class: 'fa fa-trash-o', method: :delete %>
             </div>
 
-            <div class="col-xs-8 unit-name microgramma-bold txt-centered larger spaced3-6"><%= unit.screen_name %></div>
+            <div class="col-xs-8 unit-name                                                                           microgramma-bold txt-centered larger spaced3-6"><%= unit.screen_name %></div>
 
           <!-- Lock Position Button -->
 
@@ -112,7 +112,10 @@
             </div>
             <div class="spacer"></div>
             <div class="row">
-                <div class="col-xs-12 blue-glow txt-centered quicksand-reg" id="contact-pref-notice-<%= unit.id %>">To change your contact choices, click 'Edit Contact Preferences' in the Navigation Bar</div>
+                <div class="col-xs-12 blue-glow txt-centered quicksand-reg" id="contact-pref-notice-<%= unit.id %>">
+                  <p>Contact preferences are set per user - not per job.</p><p>To update your prefs, click 'Edit Contact Preferences' in the Navigation Bar</p>
+                  <p>or <span class="edit-user-link">here</span></p>
+                </div>
             </div>
             <div class="container time-input">
             <div class='row'>
@@ -172,24 +175,16 @@
 
         // click 'new unituser' button on the unit, you get a modal form, which creates a new unituser in the queue
         $('#new-user-for-unit-<%= unit.id %>').on('click', function(){
-            // refresh queue to show any possible unseen unit-users ahead of you in line
-            //refreshAllUnits();
-
             // detach form from machine unit and reattach it to non-blurring layer, which is z-index 2
             $('#non-blur-layer').append($form);
-
             // blur the container which holds all the machines ( z-index 0)
             $('#blur-layer').removeClass('blur-out').addClass('blur-in');
-
             // bring in the tinted overlay to prevent click-through
             $('#overlay').fadeIn();
-
             // bring in the form, at a higher z-index
-            $($form).fadeIn().css({top:($(window).height()/2)-107, left:($(window).width()/2)-200, zIndex:3});
-
+            $($form).fadeIn().css({top:($(window).height()/2)-281, left:($(window).width()/2)-200, zIndex:3});
             // AJAX call to server to get unit's time_available field, or Time.now if the field is nil
             var unit_available, unit_available_string;
-
             $.ajax({
                 url: "/units/<%= unit.id %>/report_status",
                 type: "GET",
@@ -216,25 +211,18 @@
             var min, dur;
 
             $('.numeric:visible').on('input', function() {
-
                 // grab the minutes integer from the duration box
                 min = $('.numeric:visible').val();
-
                 // create a formatted hrs minutes duration string
                 dur = parseInt(min/60) + ' hrs ' + (min % 60) + ' min' ;
-
                 // insert that string into the field below
                 $('.formatted-duration:visible').html(dur);
-
                 var startMoment = moment(unit_available);
-
                 // end time is calculated by adding minutes to the start time
                 var endMoment = startMoment.add(min, 'minutes');
-
                 // end time is inserted in the appropriate field
                 $('.formatted-end-time:visible').html(endMoment.format('MMM D, hh:mm A'));
             });
-
         });
 
 

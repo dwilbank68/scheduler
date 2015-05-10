@@ -47,13 +47,15 @@ $(document).ready(function() {
     // for closing forms with esc key
     $(document).keyup(function(e) {
         if(e.which == 27) {
-            $('#blur-layer').removeClass('blur-in');
-            $('#blur-layer').addClass('blur-out');
-            $('#overlay').fadeOut();
-            $('.unit_user_form').fadeOut();
-            $('#user-edit-form').fadeOut();
+            removeDarkBlurOverlay();
+            //$('#blur-layer').removeClass('blur-in');
+            //$('#blur-layer').addClass('blur-out');
+            //$('#overlay').fadeOut();
+            //$('.unit_user_form').fadeOut();
+            //$('#user-edit-form').fadeOut();
         }
     });
+
 
     Handlebars.registerHelper('if_eq', function(a, b, opts) {
         if(a == b) // Or === depending on your needs

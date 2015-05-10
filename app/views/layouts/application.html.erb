@@ -45,7 +45,7 @@
 <div id="overlay"></div>
 
 <div id="non-blur-layer">
-  <div class="container microgramma-bold spaced" id="user-edit-form">
+  <div class="container gruppo spaced" id="user-edit-form">
     <div class="row">
       <div class="col-xs-12 spaced3-6 txt-centered"> <h2>Contact Preferences</h2> </div>
     </div>
@@ -94,7 +94,7 @@
                 </div>
             <% end %>
             <div class="row border-bottom">
-              <div class="col-xs-6 microgramma spaced white-glow-dim"> <%= f.file_field :avatar %> </div>
+              <div class="col-xs-6 gruppo spaced white-glow-dim"> <%= f.file_field :avatar %> </div>
             </div>
             <%= f.hidden_field :avatar_cache %>
             <%= f.input :contact_flags, :as => :hidden, :input_html => { :value => current_user.contact_flags, :id => 'contact-flags-' + current_user.id.to_s } %>
@@ -122,7 +122,6 @@
 
         $('#clock').jsclock(); //http://www.tcpweb.com.br/JS-Clock/
 
-        var $user_form = $('#user-edit-form');
         $('#overlay').hide();
 
         // set listener on "Edit Contact Preferences" in the upper right nav bar
@@ -131,24 +130,54 @@
             if($('.signin').is(':visible')) {
                 console.log("not gonna show two forms at the same time, sir");
             } else {
-                prepareUserForm();
-                // detach form from machine unit and reattach it to non-blurring layer, which is z-index 2
-                $('#non-blur-layer').append($user_form);
-                // blur the container which holds all the machines ( z-index 0)
-                $('#blur-layer').removeClass('blur-out');
-                $('#blur-layer').addClass('blur-in');
-                // bring in the tinted overlay to prevent click-through
-                $('#overlay').fadeIn();
-                // bring in the form, which SHOULD BE Z-INDEX 3
-                $user_form.fadeIn().css({top:($(window).height()/2)-107, left:($(window).width()/2)-200, zIndex:999});
+                fadeInUserForm();
+//                prepareUserForm();
+//                // detach form from machine unit and reattach it to non-blurring layer, which is z-index 2
+//                $('#non-blur-layer').append($user_form);
+//                // blur the container which holds all the machines ( z-index 0)
+//                $('#blur-layer').removeClass('blur-out');
+//                $('#blur-layer').addClass('blur-in');
+//                // bring in the tinted overlay to prevent click-through
+//                $('#overlay').fadeIn();
+//                // bring in the form, which SHOULD BE Z-INDEX 3
+//                $user_form.fadeIn().css({top:($(window).height()/2)-171, left:($(window).width()/2)-250, zIndex:999});
             }
         });
+
+        $('.edit-user-link').on('click', function(){
+            removeDarkBlurOverlay();
+            fadeInUserForm();
+        });
+
+
         <% end %>
 
         // start all the countdowns on the units - showing the times until unit is free
         updatePage();
         setInterval(updatePage,15000);
     });
+
+
+    var removeDarkBlurOverlay = function () {
+        $('#blur-layer').removeClass('blur-in').addClass('blur-out');
+        $('#overlay, .unit_user_form, #user-edit-form').fadeOut();
+        //$('.unit_user_form').fadeOut();
+        //$('#user-edit-form').fadeOut();
+    };
+
+    var fadeInUserForm = function () {
+        prepareUserForm();
+        var $user_form = $('#user-edit-form');
+        // detach form from machine unit and reattach it to non-blurring layer, which is z-index 2
+        $('#non-blur-layer').append($user_form);
+        // blur the container which holds all the machines ( z-index 0)
+        $('#blur-layer').removeClass('blur-out');
+        $('#blur-layer').addClass('blur-in');
+        // bring in the tinted overlay to prevent click-through
+        $('#overlay').fadeIn();
+        // bring in the form, which SHOULD BE Z-INDEX 3
+        $user_form.fadeIn().css({top:($(window).height()/2)-171, left:($(window).width()/2)-250, zIndex:999});
+    };
 
     var updatePage = function() {
 //        refreshAllUnits();
@@ -201,7 +230,6 @@
             var endTimeFormatted = data[i]['end_time_formatted'];
             $('#unit-time-complete-' + id).text(endTimeFormatted);
         }
-
     };
 
 
@@ -274,7 +302,6 @@
             }
         }
     };
-
 
     var setListenersOnUnitUsers = function(data) {
         var unitUsers = getUnitUsers(data);
