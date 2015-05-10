@@ -35,6 +35,8 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
 
+gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
+
 gem 'momentjs-rails', '>= 2.8.1', :github => 'derekprior/momentjs-rails'
 # gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 

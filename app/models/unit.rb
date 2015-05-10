@@ -89,6 +89,17 @@ class Unit < ActiveRecord::Base
     @data
   end
 
+  def end_time_formatted
+    # defaults to the first user's timezone (currently PST)
+    # fix this later with a view helper/decorator/whatever
+    user = User.first
+    if self.time_available
+      self.time_available.in_time_zone(user.timezone).strftime('%b %e, %l:%M %p')
+    else
+      "Unit Available"
+    end
+  end
+
   def self.report_unit_statuses
     u_times = Unit.all.map do |u|
       { :id => u.id, :state => u.state, :duration => u.duration, :time_available => u.time_available || ""}

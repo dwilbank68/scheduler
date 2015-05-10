@@ -8,8 +8,9 @@ class UnitUser < ActiveRecord::Base
   default_scope {order('created_at ASC')}
 
   def duration_hrs_min
-    hrsmin = "<span>#{self.duration / 60}</span><span class='smaller relative raised'>hrs</span> <span>#{self.duration % 60}</span><span class='smaller relative raised'>min</span>"
-    hrsmin.html_safe
+    # hrsmin = "<span>#{self.duration / 60}</span><span class='smaller relative raised'>hrs</span> <span>#{self.duration % 60}</span><span class='smaller relative raised'>min</span>"
+    # hrsmin.html_safe
+    (self.duration / 60).to_s + ' hrs ' + (self.duration % 60).to_s + ' min'
   end
 
   def start_time_formatted # as a local time string
@@ -36,9 +37,8 @@ class UnitUser < ActiveRecord::Base
   end
 
   def get_total_time
-    total_queue_duration = @unit.unit_users.pluck(:duration).sum
-    logger.info('----------------unit#get_total_time is triggered, returning ' + total_queue_duration.to_s)
-    total_queue_duration
+    logger.info('----------------unit_user#get_total_time is triggered, returning ' + total_queue_duration.to_s)
+    @unit.unit_users.pluck(:duration).sum
   end
 
 end

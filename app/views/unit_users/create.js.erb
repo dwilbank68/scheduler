@@ -1,17 +1,10 @@
 var $unit = $('#unit_' + <%= params[:unit_id] %>);
-var $countdown = $unit.find('.time-remaining');
 
 <% if @uu.save %>
     <%  unit = Unit.find( params[:unit_id] )%>
 
     // add unit_user to the queue
     $unit.find('.user-queue > ul').append("<%= escape_javascript(render(:partial => 'unitusers/unit_user', locals: { unituser: @uu, user:@user, unit:unit })) %>");
-
-    // update both fields on the parent unit
-    $countdown.removeClass('red-glow');
-    $countdown.addClass('gold-glow');
-    $unit.find('.est-time-of-completion').html('<%= @uu.end_time.in_time_zone(@uu.user.timezone).strftime('%b %e, %l:%M %p') %>');
-
 
     $('#blur-layer').removeClass('blur-in');
 
@@ -24,9 +17,7 @@ var $countdown = $unit.find('.time-remaining');
 
     $('.unit_user_form').fadeOut();
 
-    // remove old countdown before attaching new countdown
-    $countdown.countdown('destroy');
-    startUnitCountdowns();
+    updatePage();
 <% else %>
    alert('error' <%= @uu.errors.full_messages %>);
 <% end %>

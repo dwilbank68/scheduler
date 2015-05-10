@@ -22,20 +22,7 @@
         $('#end_time_'   +uu_queue_arr[i]['id']).html(uu_queue_arr[i]['end_time_formatted']);
     }
 
-    // wipe out old unit countdown and then
-    $('#unit_' + <%= params[:unit_id] %>).find($('.time-remaining')).countdown('destroy');
-
-    // update all unit countdowns
-    for(var i=0; i<unit_arr_arr.length; i++) {
-        var id = unit_arr_arr[i]['id'];
-        var endTime = unit_arr_arr[i]['time_available'];
-        if(endTime === "") {
-            $('#unit_' + id).find($('.time-remaining')).html("<span>--:--:--</span>");
-        } else {
-            var endTimeMoment = moment(endTime);
-            $('#unit_' + id).find($('.time-remaining')).countdown({ until: endTimeMoment.toDate(), compact: true });
-        }
-    }
+    updatePage();
 
 
 

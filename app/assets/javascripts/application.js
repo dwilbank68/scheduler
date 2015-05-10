@@ -33,6 +33,9 @@
 //= require jquery.transit.min
 //= require handlebars-v3.0.0
 //= require jquery.jeditable.mini
+//= require underscore-min
+//= require jquery.hotkeys-0.7.9.min
+//= require jquery.elastic.source.js
 //= require_tree .
 
 $(document).ready(function() {
