@@ -280,6 +280,7 @@
         for(var i = 0; i < unitUsers.length; i++) {
             id = unitUsers[i]['id'];
             setListenerOnDurationEditBtn(id);
+            setListenersOnDurationField(id);
         }
     };
 
@@ -296,7 +297,7 @@
     };
 
     // listen for duration edit button clicks
-    // this app is triggered by setListenersOnUnitUsers()
+    // this function is triggered by setListenersOnUnitUsers()
     var setListenerOnDurationEditBtn = function(id) {
         var $button = $('#submit-dur-' + id);
         if ($button.hasClass('listening')) return false;
@@ -315,7 +316,33 @@
             });
             $button.addClass('listening');
         })
+    };
 
+    // this function is triggered by setListenersOnUnitUsers()
+    var setListenersOnDurationField = function(id) {
+        var $durField = $('#uu-dur-' + id);
+        var $button = $('#submit-dur-' + id);
+        if ($durField.hasClass('listening')) return false;
+
+        var durVal;
+
+        $durField.off();
+        // return key submits your new duration value
+        $durField.on('keyup', function (e) {
+            if (e.which == 13) {
+                $button.click();
+            }
+        });
+        $durField.on('focus', function() {
+            console.log('focused');
+            durVal = $(this).val();
+            $(this).val('');
+        });
+        $durField.on('blur', function() {
+            console.log('blurred');
+            $(this).val(durVal);
+        });
+//        $durField.on('keyup', null, 'Shift+return', function() { $button.click() });
     };
 
     // checks to see if user is in the middle of an edit
