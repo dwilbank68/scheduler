@@ -37,10 +37,11 @@
         </div>
 
         <div class="row">
-          <div class="col-xs-3 microgramma white-glow lowered spaced" id="duration_<%= unituser.id %>">DUR</div>
-          <div class="col-xs-9 quicksand-reg bip-duration-field white-glow txt-centered">
+          <div class="col-xs-3 microgramma   white-glow lowered spaced dur" id="duration_<%= unituser.id %>">DUR</div>
+          <div class="col-xs-9 quicksand-reg txt-centered">
             <% if current_user == user %>
-                <%= best_in_place [unit, unituser], :duration, :inner_class => "duration-input", :as => :input, :data => {:unit_duration => unit.duration}, :display_as => :duration_hrs_min %>
+                <input type="text" class='uu-duration-edit white-glow' id="uu-dur-<%= unituser.id %>" value="<%= unituser.duration_hrs_min %>"/>
+                <span id='submit-dur-<%= unituser.id %>' class="submit-dur-button glyphicon glyphicon-unchecked"></span>
             <% else %>
                 <%= unituser.duration_hrs_min %>
             <% end %>
@@ -48,18 +49,19 @@
         </div>
 
         <div class="row">
-          <div class="col-xs-3 microgramma white-glow lowered spaced">END</div>
-          <div class="col-xs-9 quicksand-reg white-glow txt-centered" id="end_time_<%= unituser.id %>">       <%= unituser.end_time.in_time_zone(user.timezone).strftime('%b %e, %l:%M %p') if unituser.end_time %></div>
-          <div class="col-xs-9 quicksand-reg white-glow txt-centered hidden-end-times" id="end-time-hidden-<%= unituser.id %>"><%= unituser.end_time if unituser.end_time %></div>
+          <div class="col-xs-3 microgramma white-glow lowered spaced end">END</div>
+          <div class="col-xs-9 quicksand-reg white-glow txt-centered end" id="end_time_<%= unituser.id %>">       <%= unituser.end_time.in_time_zone(user.timezone).strftime('%b %e, %l:%M %p') if unituser.end_time %></div>
+          <!--<div class="col-xs-9 quicksand-reg white-glow txt-centered hidden-end-times" id="end-time-hidden-<%#= unituser.id %>"><%#= unituser.end_time if unituser.end_time %></div>-->
         </div>
 
         <div>
-          <div class="note quicksand-reg blue-glow">
-            <%= best_in_place [unit, unituser], :note, :as => :textarea, :place_holder => 'note' %>
+          <div class="row note quicksand-reg blue-glow">
+            <textarea cols="20" class='col-xs-12 uu-note-edit quicksand-reg blue-glow' id="uu-note-<%= unituser.id %>" value="<%= unituser.note %>"></textarea>
+            <div id='submit-note-<%= unituser.id %>' class="col-xs-12 submit-note-button"></div>
           </div>
         </div>
 
-        <!-- Delete Button -->
+        <!-- Delete UnitUser Button -->
 
         <div class="txt-centered">
           <% if current_user == user %>
@@ -75,36 +77,36 @@
 
 <script>
     // if user changes the duration of their unit_user,
-    $('.best_in_place').bind("ajax:success", function (event, data, status, xhr) {
-
-        // target which unit_user was clicked
-        var uuid = this.id.match(/\d+/)[0];
-        var $unit_user_clicked = $('#unit_user_' + uuid);
-
-        // target its parent unit
-        var $unit_to_update = $unit_user_clicked.closest($('.unit'));
-
-        // grab the whole queue of that unit
-        var unit_users = JSON.parse(data)['unit_user_queue'];
-
-        // update the end time of the unit_user
-        $('#end_time_' + uuid).html(JSON.parse(data)['unit_user_end']);
-
-        // update the unit's total duration field
-        $unit_to_update.find($('.time-remaining')).html(JSON.parse(data)['unit_duration']);
-
-        // refresh all unit_users start and end times
-        for(var i=0; i<unit_users.length; i++) {
-            $('#start_time_' + unit_users[i]["id"] ).html(unit_users[i]["start_time"]);
-            $('#end_time_' + unit_users[i]["id"] ).html(unit_users[i]["end_time"]);
-            $unit_to_update.find($('.est-time-of-completion')).html(unit_users[i]["end_time"]);
-            $('#best_in_place_unit_user_' + unit_users[i]["id"] + '_duration').html(unit_users[i]["duration"]);
-        }
-
-        // wipe out old unit countdown and start a new one with the new info
-        $unit_to_update.find($('.time-remaining')).countdown('destroy');
-        startUnitCountdowns();
-
-    });
+//    $('.best_in_place').bind("ajax:success", function (event, data, status, xhr) {
+//
+//        // target which unit_user was clicked
+//        var uuid = this.id.match(/\d+/)[0];
+//        var $unit_user_clicked = $('#unit_user_' + uuid);
+//
+//        // target its parent unit
+//        var $unit_to_update = $unit_user_clicked.closest($('.unit'));
+//
+//        // grab the whole queue of that unit
+//        var unit_users = JSON.parse(data)['unit_user_queue'];
+//
+//        // update the end time of the unit_user
+//        $('#end_time_' + uuid).html(JSON.parse(data)['unit_user_end']);
+//
+//        // update the unit's total duration field
+//        $unit_to_update.find($('.time-remaining')).html(JSON.parse(data)['unit_duration']);
+//
+//        // refresh all unit_users start and end times
+//        for(var i=0; i<unit_users.length; i++) {
+//            $('#start_time_' + unit_users[i]["id"] ).html(unit_users[i]["start_time"]);
+//            $('#end_time_' + unit_users[i]["id"] ).html(unit_users[i]["end_time"]);
+//            $unit_to_update.find($('.est-time-of-completion')).html(unit_users[i]["end_time"]);
+//            $('#best_in_place_unit_user_' + unit_users[i]["id"] + '_duration').html(unit_users[i]["duration"]);
+//        }
+//
+//        // wipe out old unit countdown and start a new one with the new info
+//        $unit_to_update.find($('.time-remaining')).countdown('destroy');
+//        updatePage();
+//
+//    });
 
 </script>

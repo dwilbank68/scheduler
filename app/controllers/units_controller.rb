@@ -22,6 +22,11 @@ class UnitsController < ApplicationController
   def edit
   end
 
+  def show
+    @unit = Unit.find(params[:id])
+    render json: @unit, location: @unit
+  end
+
   def new
     render :layout => "devise"
   end
@@ -32,25 +37,33 @@ class UnitsController < ApplicationController
     respond_to do |format|
 
       format.html do
+        logger.info("---------------------format.html--- params is " + params.to_s)
+
         if params['position'] && @unit.update({ position: params['position'] })
           respond_with(@unit.to_json)
         end
 
         if params['state'] && @unit.update({ state: params['state'], user_disabler: params['user_disabler'] })
-          logger.info('--------------------------------- unit state is changing')
-          @unit.update({ :note => '' }) if @unit.state == "active"
-          @unit.update({ :when_disabled => Time.now }) if @unit.state == "disabled"
+          # @unit.update({ :note => '' }) if @unit.state == "active"
           respond_with(@unit.to_json)
         end
       end
 
-      if params['unit']['note'] && @unit.update({ note: params['unit']['note'] })
-        @unit.update({ note: "#" }) if @unit.note == "" # problems occur if note is empty
+      if params['unit']['notes'] && @unit.update({ notes: params['unit']['notes'] })
         format.json {respond_with_bip(@unit) }
       end
 
-      if params['unit']['notes'] && @unit.update({ notes: params['unit']['notes'] })
-        format.json {respond_with_bip(@unit) }
+      format.json do
+        logger.info("---------------------format.json--- params is " + params.to_s)
+        @unit.update(unit_params)
+        if @unit.state == "disabled"
+          @unit.update({ :when_disabled => Time.now })
+        elsif @unit.state == "active"
+          @unit.update({ :when_disabled => nil })
+        else
+          raise "unknown unit state"
+        end
+        render json: @unit
       end
 
     end
@@ -60,7 +73,7 @@ class UnitsController < ApplicationController
   def destroy
     @unit = Unit.find(params[:id])
     if @unit.destroy
-
+      flash[:message] = "unit deleted"
     else
       flash[:error] = "unit not removed"
     end
@@ -80,18 +93,23 @@ class UnitsController < ApplicationController
     u_times = Unit.all.map do |u|
       { :id => u.id, :state => u.state, :duration => u.duration, :time_available => u.time_available }
     end
-
     respond_to do |format|
       format.html { render nothing: true }
       format.js { respond_with(u_times) }
     end
+  end
 
+  def unit_statuses
+    @units = Unit.all
+    @units = Unit.includes(:unit_users)
+    render json: @units
+    #respond_with @units
   end
 
   private
 
   def unit_params
-    params.require(:unit).permit(:name, :screen_name, :unit_pic, :unit_pic_cache, :notes, :contact_flags )
+    params.require(:unit).permit(:name, :screen_name, :unit_pic, :unit_pic_cache, :notes, :contact_flags, :state, :user_disabler )
   end
 
 end

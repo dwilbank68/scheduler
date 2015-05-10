@@ -19,61 +19,49 @@
             </div>
 
         </div>
+
         <div class="spacer"></div>
         <div class="row border-bottom" id="image-<%= unit.id %>">
-            <div class="col-xs-12"><%= image_tag(unit.unit_pic.fullsize.url, :class => 'img-rounded unit-image') if unit.unit_pic? %></div>
+          <div class="disable-msg-panel col-xs-12 red-glow-no-bg txt-centered" id="disable-msg-panel-<%= unit.id %>">
+            <div class="pfmech"><i class="fa fa-angle-double-left"></i> DISABLED BY <i class="fa fa-angle-double-right"></i></div>
+            <div class="pfmech9" id="disable-msg-<%= unit.id %>">Madeline - Nov 22 25:35 AM</div>
+          </div>
+            <div class="col-xs-12 pic-background-"><%= image_tag(unit.unit_pic.fullsize.url, :class => 'img-rounded unit-image') if unit.unit_pic? %></div>
         </div>
-        <div class="row border-bottom">
+        <div id="unit-notes-<%= unit.id %>" class="row border-bottom">
           <div class="col-xs-12 blue-glow quicksand-reg">
             <%= best_in_place unit, :notes, :as => :textarea, :place_holder => '>' %>
           </div>
         </div>
         <div class="spacer"></div>
         <div class="row">
-            <div class="col-xs-7 pfmech                    gold-glow spaced time-remaining"><div><span>stand by</span></div> </div>
-            <div class="col-xs-5 quicksand-reg txt-right  white-glow spaced tiny remaining-label">remaining</div>
+            <div id="time-remaining-<%= unit.id %>" class="col-xs-7 pfmech                    gold-glow spaced time-remaining"><div><span>stand by</span></div> </div>
+            <div id="unit-remaining-<%= unit.id %>" class="col-xs-5 quicksand-reg txt-right  white-glow spaced tiny remaining-label">remaining</div>
         </div>
-        <div class="row border-bottom spacer"></div>
-        <div class="row border-bottom">
-            <div class="col-xs-7 quicksand-reg white-glow est-time-of-completion">
+        <div class="row border-bottom spacer spacer-<%= unit.id %>"></div>
+        <div id="unit-time-avail-<%= unit.id %>" class="row border-bottom">
+            <div id="unit-time-complete-<%= unit.id %>" class="col-xs-7 quicksand-reg white-glow est-time-of-completion">
               <% if unit.duration > 0 %>
                 <%= unit.time_available.in_time_zone(current_user.timezone).strftime('%b %e, %l:%M %p') if unit.time_available %>
               <% else %>
                 Unit Available
               <% end %>
             </div>
-            <div class="col-xs-5 quicksand-reg txt-right    white-glow spaced tiny est-time-of-completion-label">est time of completion</div>
+            <div id="unit-time-complete-label-<%= unit.id %>" class="col-xs-5 quicksand-reg txt-right    white-glow spaced tiny est-time-of-completion-label">est time of completion</div>
         </div>
-      <div class="spacer border-bottom no-sides"></div>
-      <div class="row no-sides">
+      <div class="spacer spacer-<%= unit.id %> border-bottom no-sides"></div>
+      <div id="unit-bottom-<%= unit.id %>" class="row unit-bottom border-gray">
         <div class="col-xs-1 col-xs-offset-1 refresh">
-           <div id="refresh-unit-<%= unit.id %>"       class="refresh"><span class="fa fa-refresh white-glow-dim"></span></div>
+           <!--<div id="refresh-unit-<%#= unit.id %>"       class="refresh"><span class="fa fa-refresh white-glow-dim"></span></div>-->
         </div>
-        <div class="col-xs-8 new-uu-button">
-            <div id="new-user-for-unit-<%= unit.id %>" class="white-glow-dim microgramma spaced txt-centered">add to queue</div>
+        <div id="new-uu-button-<%= unit.id %>" class="col-xs-8 new-uu-button">
+            <div id="new-user-for-unit-<%= unit.id %>" class="white-glow-dim microgramma spaced txt-centered border-gray">add to queue</div>
         </div>
         <div class="col-xs-2 disable">
-            <div id="disable-unit-<%= unit.id %>"       class="toggle"><span class="fa fa-toggle-on white-glow-dim"></span></div>
+            <div id="toggle-unit-<%= unit.id %>"><span class="fa fa-toggle-on white-glow-dim"></span></div>
         </div>
       </div>
     </div> <!-- end unit-body -->
-
-    <!--unit state overlay-->
-
-     <div class="container unit-overlay txt-centered <%= unit_overlay_classes(unit) %>" id="unit-overlay-<%= unit.id %>">
-        <div class="row red-glow-no-bg microgramma-bold spaced larger out-of-service">
-            <div class="col-xs-12 out-of-service">Disabled</div>
-        </div>
-       <div class="row red-glow-no-bg quicksand-reg">
-         <div class="col-xs-12" id="unit-disabled-by-<%= unit.id %>">by <%= unit.user_disabler %> -- <%= unit.when_disabled.in_time_zone(current_user.timezone).strftime('%b %e, %l:%M %p') if unit.when_disabled %></div>
-       </div>
-        <div class="row note quicksand-reg red-glow-no-bg">
-            <div class="col-xs-12 unit-note">
-              <%= best_in_place unit, :note, :as => :textarea, :place_holder => 'note' %>
-            </div>
-        </div>
-        <div id="activate-unit-<%= unit.id %>" class="toggle-overlay-off"><span class="fa fa-toggle-off red-glow-no-bg"></span></div>
-     </div>
 
      <!--unit user queue-->
 
@@ -176,26 +164,22 @@
         $unit.draggable();
         $unit.offset({ top:<%= unit.pos_y %>, left:<%= unit.pos_x %> });
 
-        var $unitOverlay = $('#unit-overlay-<%= unit.id %>');
         var $form = $('#unit_user_form_<%= unit.id %>');
         $form.hide();
 
-        sizeOverlay($unitBody, $unitOverlay); // make the red overlay match the size of the unit box
         // do not know why I have to set a timeout here
-        setTimeout(sizeOverlay, 5000, $unitBody, $unitOverlay);
+        // setTimeout(sizeOverlay, 5000, $unitBody, $unitOverlay);
 
         // click 'new unituser' button on the unit, you get a modal form, which creates a new unituser in the queue
         $('#new-user-for-unit-<%= unit.id %>').on('click', function(){
-
             // refresh queue to show any possible unseen unit-users ahead of you in line
-            refreshAllUnits();
+            //refreshAllUnits();
 
             // detach form from machine unit and reattach it to non-blurring layer, which is z-index 2
             $('#non-blur-layer').append($form);
 
             // blur the container which holds all the machines ( z-index 0)
-            $('#blur-layer').removeClass('blur-out');
-            $('#blur-layer').addClass('blur-in');
+            $('#blur-layer').removeClass('blur-out').addClass('blur-in');
 
             // bring in the tinted overlay to prevent click-through
             $('#overlay').fadeIn();
@@ -265,7 +249,6 @@
                 dataType: 'json',
                 url: '/units/<%= unit.id %>',
                 contentType: 'application/json',
-//                data: JSON.stringify(posString),
                 data: JSON.stringify({ 'position' : posString }),
                 success: function(){
                     var $header = $unit.find($('.unit-header > div'));
@@ -283,62 +266,50 @@
         });
 
 
-        // if user deactivates the unit, an  overlay is applied
-        // and the 'state' column in the database is updated
+        // if user deactivates the unit, glowing red disabled styling is applied
+        // and the 'state', 'user_disabler', and 'when_disabled' columns in the database are updated
 
-        $("#disable-unit-<%= unit.id %>").on('click', function() {
-            console.log('disable');
-            var unitHeight = $('#unit_<%= unit.id %> .unit-body').height();
-//            console.log("unitHeight is " + unitHeight);
-            $.ajax({
-                type: "PUT",
-                dataType: 'json',
-                url: '/units/<%= unit.id %>',
-                contentType: 'application/json',
-                data: JSON.stringify({ 'state' : 'disabled', 'user_disabler' : '<%= current_user.name %>'}),
-                success: function(){
-                   $unitOverlay.height(unitHeight);
-                   $unitOverlay.removeClass('hidden');
-                   $('#activate-unit-<%= unit.id %> span').removeClass('fa-toggle-on');
-                   $('#activate-unit-<%= unit.id %> span').addClass('fa-toggle-off');
-                   $('#unit-disabled-by-<%= unit.id %>').html('by ' + '<%= current_user.name %>' + ' -- ' + moment().format('MMM D, hh:mm A'));
+        $('#toggle-unit-<%= unit.id %>').on('click', function() {
+            $.get('/units/<%= unit.id %>', function (data) {
+                var sendObj = {};
+                if ( data['state'] == "active" ) {
+                    sendObj = { 'state' : 'disabled', 'user_disabler' : '<%= current_user.name %>'};
+                } else { // if data['state'] is 'disabled'
+                    sendObj = { 'state' : 'active', 'user_disabler' : '' };
                 }
+                $.ajax({
+                    type: "PUT",
+                    dataType: 'json',
+                    url: '/units/<%= unit.id %>',
+                    contentType: 'application/json',
+                    data: JSON.stringify(sendObj),
+                    success: function(data) {
+                        if (data['state'] == "active") {
+//                            enableUnit(<%= unit.id %>);
+                            enableUnit(data['id']);
+                        } else if (data['state'] == "disabled") {
+                            disableUnit(data['id'], data['user_disabler'], data['when_disabled']);
+                        };
+                    },
+                    error: function() { console.log('ajax error receiving data from units#update'); }
+                })
             });
+
         });
 
 
-        // if user reactivates the unit, the blocking overlay is removed
-        // and the 'state' column in the database is updated
-
-        $("#activate-unit-<%= unit.id %>").on('click', function() {
-            console.log('activate');
-            $.ajax({
-                type: "PUT",
-                dataType: 'json',
-                url: '/units/<%= unit.id %>',
-                contentType: 'application/json',
-                data: JSON.stringify({ 'state' : 'active', 'user_disabler' : ''}),//, 'note': ''}),
-                success: function(){
-                    $unitOverlay.addClass('hidden');
-                    $('#activate-unit-<%= unit.id %> span').addClass('fa-toggle-on');
-                    $('#activate-unit-<%= unit.id %> span').removeClass('fa-toggle-off');
-                }
-            });
-        })
-
         // Refresh button GETs current queue from the server and refreshes the DOM.
-        // Note that inline editing will no longer work, until the browser is refreshed
 
-        var $refreshButton = $("#refresh-unit-<%= unit.id %>");
-
-        $refreshButton.find('span').hover(
-            function() { $(this).toggleClass('fa-spin') }
-        );
-
-        $refreshButton.on('click', function() {
-            console.log('refresh');
-            refreshUnit(<%= unit.id %>);
-        })
+//        var $refreshButton = $("#refresh-unit-<%= unit.id %>");
+//
+//        $refreshButton.find('span').hover(
+//            function() { $(this).toggleClass('fa-spin') }
+//        );
+//
+//        $refreshButton.on('click', function() {
+//            console.log('refresh');
+//            refreshUnit(<%= unit.id %>);
+//        })
 
     });
 
@@ -353,80 +324,94 @@
         return $('.unit.ui-draggable').map(function() { return this.id.replace( /^\D+/g, '');});//.get();
     };
 
-    var refreshUnit = function (id) {
-        startUnitCountdowns();
-        getReportStatus(id).done( function(result) {
-//            console.log('result is ' + JSON.stringify( result, null, '  '));
-//            console.log('result["uu_queue"] is ' + JSON.stringify( result['uu_queue'], null, '  '));
-            var $unitUserUL = $('#unit-user-ul-' + id);
-//            console.log($unitUserUL);
-            $unitUserUL.empty();
-            var source = $("#uu-template").html();
-            var template = Handlebars.compile(source);
-            if(result['uu_queue'] != "[]") {
-                var queue = result['uu_queue'];
-                for (var i = 0; i < queue.length; i++) {
-                    var context = {
-                        unitId:                 queue[i]['unitId'],
-                        id:                     queue[i]['id'],
-                        name:                   queue[i]['name'],
-                        img:                    queue[i]['img'],
-                        email:                  queue[i]['emailFormatted'],
-                        email2:                 queue[i]['email2Formatted'],
-                        phone:                  queue[i]['phoneFormatted'],
-                        phone2:                 queue[i]['phone2Formatted'],
-                        start:                  queue[i]['start'],
-                        start_time_formatted:   queue[i]['start_time_formatted'],
-                        duration_string:        queue[i]['duration_string'],
-                        endHidden:              queue[i]['end_time_hidden'],
-                        end_time_formatted:     queue[i]['end_time_formatted'],
-                        note:                   queue[i]['note'],
-                        current_user_name:      current_user_name
-                    };
-                    console.log('context is ' + queue[i]['id']);
-                    var html = template(context);
-                    $unitUserUL.append(html);
+//    var refreshUnit = function (id) {
+//        updatePage();
+//        getReportStatus(id).done( function(result) {
+////            console.log('result is ' + JSON.stringify( result, null, '  '));
+////            console.log('result["uu_queue"] is ' + JSON.stringify( result['uu_queue'], null, '  '));
+//            var $unitUserUL = $('#unit-user-ul-' + id);
+////            console.log($unitUserUL);
+//            $unitUserUL.empty();
+//            var source = $("#uu-template").html();
+//            var template = Handlebars.compile(source);
+//            if(result['uu_queue'] != "[]") {
+//                var queue = result['uu_queue'];
+//                for (var i = 0; i < queue.length; i++) {
+//                    var context = {
+//                        unitId:                 queue[i]['unitId'],
+//                        id:                     queue[i]['id'],
+//                        name:                   queue[i]['name'],
+//                        img:                    queue[i]['img'],
+//                        email:                  queue[i]['emailFormatted'],
+//                        email2:                 queue[i]['email2Formatted'],
+//                        phone:                  queue[i]['phoneFormatted'],
+//                        phone2:                 queue[i]['phone2Formatted'],
+//                        start:                  queue[i]['start'],
+//                        start_time_formatted:   queue[i]['start_time_formatted'],
+//                        duration_string:        queue[i]['duration_string'],
+//                        endHidden:              queue[i]['end_time_hidden'],
+//                        end_time_formatted:     queue[i]['end_time_formatted'],
+//                        note:                   queue[i]['note'],
+//                        current_user_name:      current_user_name
+//                    };
+//                    var html = template(context);
+//                    $unitUserUL.append(html);
+//
+//                }
+//            }
+//        });
+//
+//    };
 
-                    // inline editing no longer works (in js), so refresh page if they try to do so
-                    $('.refresh-warning').click(
-                        function(){ location.reload(); }
-                    );
-
-                    // All this disabled until I have time to get inline editing working in javascript
-                    // target duration field
-                    //var dur_field = $('#unit_user_' + queue[i]['id']).find('.bip-duration-field');
-
-                    // target note field
-                    //var note_field = $('#unit_user_' + queue[i]['id']).find('.note');
-
-                    // attach listener to duration field for inline editing
-                    //dur_field.editable('/units/'+ queue[i]['unitId'] + '/unit_users/' + queue[i]['id'], {method: 'PUT'});
-
-                    // attach listener to note field for inline editing
-                    //note_field.editable('/units/'+ queue[i]['unitId'] + '/unit_users/' + queue[i]['id'], {method: 'PUT'});
-                }
-            }
-        });
-
+    var disableUnit = function(id, disabler, when_disabled) {
+        $('#unit_' + id + ' > .container').addClass('unit-body-disabled');
+        $('#unit_' + id).find('.unit-header').addClass('unit-header-disabled');
+        $('#toggle-unit-' + id + ' span').removeClass('fa-toggle-on').addClass('fa-toggle-off red-glow-no-bg');
+        $('#image-' + id).addClass('dull-red-bg border-bottom-red');
+        $('#image-' + id + ' img').addClass('faded-pic');
+        $('#unit-notes-' + id + ', .spacer-' + id).addClass('border-bottom-red');
+        $('#unit-notes-' + id + ' > div').addClass('red-glow');
+        $('#refresh-unit-' + id + ' > span').addClass('red-glow');
+        $('#unit-bottom-' + id).addClass('border-red');
+        $('#unit-time-avail-' + id +
+            ', #time-remaining-' + id +
+            ', #unit-remaining-' + id +
+            ', #new-user-for-unit-' + id +
+            ', #refresh-unit-' + id).slideUp();
+        $('#disable-msg-panel-' + id).slideDown();
+        $('#disable-msg-' + id).text(disabler + ' - ' + moment(when_disabled).format('MMMM D, h:mm A'));
     };
 
-    var getReportStatus = function(id) {
-        return $.ajax({
-            url: "/units/" + id + "/report_status",
-            type: "GET",
-            dataType: "json",
-            success: function(data) {
-
-            },
-            error: function() { console.log("ajax error in call to report_status") }
-        });
-    }
-
-    var sizeOverlay = function (unitbody, overlay) {
-            var unitHeight = unitbody.height();
-//            console.log("unitHeight is " + unitHeight);
-            overlay.height(unitHeight);
+    var enableUnit = function(id) {
+        $('#unit_' + id + ' > .container').removeClass('unit-body-disabled');
+        $('#unit_' + id).find('.unit-header').removeClass('unit-header-disabled');
+        $('#toggle-unit-' + id + ' span').addClass('fa-toggle-on').removeClass('fa-toggle-off red-glow-no-bg');
+        $('#image-' + id).removeClass('dull-red-bg border-bottom-red');
+        $('#image-' + id + ' img').removeClass('faded-pic');
+        $('#unit-notes-' + id + ', .spacer-' + id).removeClass('border-bottom-red');
+        $('#unit-notes-' + id + ' > div').removeClass('red-glow');
+        $('#refresh-unit-' + id + ' > span').removeClass('red-glow');
+        $('#unit-bottom-' + id).removeClass('border-red');
+        $('#unit-time-avail-' + id +
+            ', #time-remaining-' + id +
+            ', #unit-remaining-' + id +
+            ', #new-user-for-unit-' + id +
+            ', #refresh-unit-' + id).slideDown();
+        $('#disable-msg-panel-' + id).slideUp();
+        $('#disable-msg-' + id).text('');
     };
+
+//    var getReportStatus = function(id) {
+//        return $.ajax({
+//            url: "/units/" + id + "/report_status",
+//            type: "GET",
+//            dataType: "json",
+//            success: function(data) {
+//
+//            },
+//            error: function() { console.log("ajax error in call to report_status") }
+//        });
+//    };
 
 </script>
 
@@ -457,40 +442,33 @@
         <div class="spacer"></div>
 
         <div class="row">
-          <div class="col-xs-3 microgramma white-glow lowered spaced">BEG</div>
-          <div class="col-xs-9 quicksand-reg white-glow txt-centered" id="start_time_{{id}}">{{start_time_formatted}}</div>
+          <div class="col-xs-3 microgramma white-glow lowered spaced beg">BEG</div>
+          <div class="col-xs-9 quicksand-reg white-glow txt-centered beg" id="start_time_{{id}}">{{start_time_formatted}}</div>
         </div>
 
         <div class="row">
-          <div class="col-xs-3 microgramma white-glow lowered spaced" id="duration_{{id}}">DUR</div>
-          <div class="col-xs-9 quicksand-reg bip-duration-field white-glow txt-centered refresh-warning">
-            <!-- #hrs_min is a method in the unit_user class - returns a formatted duration string -->
-            <!--<#% if current_user == user %>-->
-                <!--<%#= best_in_place [unit, unituser], :duration, :inner_class => "duration-input", :as => :input, :data => {:unit_duration => unit.duration}, :display_as => :duration_hrs_min %>-->
-            <!--<#% else %>-->
-                <%#= unituser.duration_hrs_min %>{{{duration_string}}}
-            <!--<%# end %>-->
+          <div class="col-xs-3 microgramma   white-glow lowered spaced dur" id="duration_{{id}}">DUR</div>
+          <div class="col-xs-9">
+            <input type="text" class='uu-duration-edit quicksand-reg white-glow' id="uu-dur-{{id}}" value=""/>
+            <span id='submit-dur-{{id}}' class="submit-dur-button glyphicon glyphicon-unchecked"></span>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-xs-3 microgramma white-glow lowered spaced">END</div>
-          <div class="col-xs-9 quicksand-reg white-glow txt-centered" id="end_time_{{id}}">{{end_time_formatted}}</div>
-          <div class="col-xs-9 quicksand-reg white-glow txt-centered hidden-end-times" id="end-time-hidden-{{id}}">{{endHidden}}</div>
+          <div class="col-xs-3 microgramma white-glow lowered spaced end">END</div>
+          <div class="col-xs-9 quicksand-reg white-glow txt-centered end" id="end_time_{{id}}">{{end_time_formatted}}</div>
+          <!--<div class="col-xs-9 quicksand-reg white-glow txt-centered hidden-end-times" id="end-time-hidden-{{id}}">{{endHidden}}</div>-->
         </div>
 
         <div>
-          <div class="note quicksand-reg blue-glow refresh-warning">
-            {{note}}
-            <%#= best_in_place [unit, unituser], :note, :as => :textarea, :place_holder => 'note' %>
-          </div>
+          <textarea cols="18" class='uu-note-edit quicksand-reg blue-glow' id="uu-note-{{id}}"></textarea>
+          <span id='submit-note-{{id}}' class="submit-note-button glyphicon glyphicon-unchecked"></span>
         </div>
 
         <div class="txt-centered">
           {{#if_eq name current_user_name}}
               <hr class="unit-user-hr"/>
               <a class="gold-glow microgramma spaced uu-delete" data-confirm="Are you sure?" data-method="delete" data-remote="true" href="/units/{{unitId}}/unit_users/{{id}}" rel="nofollow">delete</a>
-              <%#= link_to "delete", [unit, unituser], method: :delete, class: 'gold-glow microgramma spaced uu-delete', data: {confirm: 'Are you sure?'}, remote: true %>
           {{/if_eq}}
         </div>
 

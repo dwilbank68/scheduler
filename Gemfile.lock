@@ -5,6 +5,13 @@ GIT
     momentjs-rails (2.9.0)
       railties (>= 3.1)
 
+GIT
+  remote: git://github.com/rails-api/active_model_serializers.git
+  revision: ece43f344a765ba81a37c8fb993ac4d5c34ff921
+  specs:
+    active_model_serializers (0.10.0.rc1)
+      activemodel (>= 4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -270,6 +277,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers!
   best_in_place (~> 3.0.1)
   better_errors
   binding_of_caller
