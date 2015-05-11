@@ -423,14 +423,8 @@
         <div class="row">
           <div class="col-xs-3 microgramma   white-glow lowered spaced dur" id="duration_{{id}}">DUR</div>
           <div class="col-xs-9 quicksand-reg txt-centered">
-            <% if current_user == user %>
-                <input type="text" class='uu-duration-edit white-glow' id="uu-dur-{{id}}" value=""/>
-                <span id='submit-dur-{{id}}' class="submit-dur-button glyphicon glyphicon-unchecked"></span>
-            <% else %>
-                <div class="white-glow uu-duration-edit white-glow" id="uu-dur-{{id}}">
-                 
-                </div>
-            <% end %>
+            <input type="text" class='uu-duration-edit white-glow' id="uu-dur-{{id}}" value=""/>
+            <span id='submit-dur-{{id}}' class="submit-dur-button glyphicon glyphicon-unchecked"></span>
           </div>
         </div>
 
