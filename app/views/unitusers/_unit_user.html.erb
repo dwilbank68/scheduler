@@ -43,7 +43,9 @@
                 <input type="text" class='uu-duration-edit white-glow' id="uu-dur-<%= unituser.id %>" value="<%= unituser.duration_hrs_min %>"/>
                 <span id='submit-dur-<%= unituser.id %>' class="submit-dur-button glyphicon glyphicon-unchecked"></span>
             <% else %>
-                <%= unituser.duration_hrs_min %>
+                <div class="white-glow">
+                  <%= unituser.duration_hrs_min %>
+                </div>
             <% end %>
           </div>
         </div>
