@@ -91,23 +91,23 @@
             <div id="contact-display-<%= unit.id %>">
             <div class="row border-bottom">
                 <div class="col-xs-8 quicksand-reg white-glow"><%= current_user.email %></div>
-                <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email1_vis] %> email1-visible-display">visible</div>
-                <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email1_act] %> email1-active-display">active</div>
+                <div class="col-xs-2 quicksand-reg txt-right contact-light email1-visible-display">visible</div>
+                <div class="col-xs-2 quicksand-reg txt-right contact-light email1-active-display">active</div>
             </div>
             <div class="row border-bottom">
                 <div class="col-xs-8 quicksand-reg white-glow"><%= current_user.email2 %></div>
-                <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email2_vis] %> email2-visible-display">visible</div>
-                <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email2_act] %> email2-active-display">active</div>
+                <div class="col-xs-2 quicksand-reg txt-right contact-light email2-visible-display">visible</div>
+                <div class="col-xs-2 quicksand-reg txt-right contact-light email2-active-display">active</div>
             </div>
             <div class="row border-bottom">
                 <div class="col-xs-8 quicksand-reg white-glow"><%= formatted_phone(current_user.phone) %></div>
-                <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone1_vis] %> phone1-visible-display">visible</div>
-                <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone1_act] %> phone1-active-display">active</div>
+                <div class="col-xs-2 quicksand-reg txt-right contact-light phone1-visible-display">visible</div>
+                <div class="col-xs-2 quicksand-reg txt-right contact-light phone1-active-display">active</div>
             </div>
             <div class="row border-bottom">
                 <div class="col-xs-8 quicksand-reg white-glow"><%= formatted_phone(current_user.phone2) %></div>
-                <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone2_vis] %> phone2-visible-display">visible</div>
-                <div class="col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone2_act] %> phone2-active-display">active</div>
+                <div class="col-xs-2 quicksand-reg txt-right contact-light phone2-visible-display">visible</div>
+                <div class="col-xs-2 quicksand-reg txt-right contact-light phone2-active-display">active</div>
             </div>
             </div>
             <div class="spacer"></div>
@@ -170,7 +170,7 @@
         var $form = $('#unit_user_form_<%= unit.id %>');
         $form.hide();
 
-        // do not know why I have to set a timeout here
+        // do not know why I set a timeout here
         // setTimeout(sizeOverlay, 5000, $unitBody, $unitOverlay);
 
         // click 'new unituser' button on the unit, you get a modal form, which creates a new unituser in the queue
@@ -284,20 +284,6 @@
             });
 
         });
-
-
-        // Refresh button GETs current queue from the server and refreshes the DOM.
-
-//        var $refreshButton = $("#refresh-unit-<%= unit.id %>");
-//
-//        $refreshButton.find('span').hover(
-//            function() { $(this).toggleClass('fa-spin') }
-//        );
-//
-//        $refreshButton.on('click', function() {
-//            console.log('refresh');
-//            refreshUnit(<%= unit.id %>);
-//        })
 
     });
 

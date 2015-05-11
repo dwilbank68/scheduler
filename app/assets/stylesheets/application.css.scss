@@ -404,6 +404,10 @@ li { list-style-type: none; }
 
 .current-avatar-label { top: 10px; }
 
+.contact-switch:hover, .fa-toggle-on, .fa-toggle-off {
+  cursor: pointer;
+}
+
 ////////////////////// unit /////////////////////
 
 .unit {
@@ -506,6 +510,7 @@ div.new-uu-button {
   padding: 0px;
   top: -1px;
   left: 9px;
+  :hover { cursor: pointer; }
 }
 
 div.disable {
@@ -619,7 +624,7 @@ input { background: transparent; }
   margin-top: 5px;
 } // for the user edit form
 
-.email1-visible, .email1-active, .email2-visible, .email2-active, .name-visible, .name-active,
+.email1-visible, .email1-active, .email2-visible, .email2-active, .name-visible,
 .phone1-visible, .phone1-active, .phone2-visible, .phone2-active {
   border: double 3px gray;
   border-radius: 3px;
