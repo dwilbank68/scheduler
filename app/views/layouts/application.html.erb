@@ -23,7 +23,7 @@
     <% if current_user %>
         <div class="quicksand-light spaced white-glow-dim" id="name-display"><%= current_user.name %></div>
         <%= image_tag(current_user.avatar.tiny.url) if current_user.avatar? %>
-        <button id="<%= current_user.id %>" class="header-button quicksand-light spaced white-glow-dim">Edit Contact Preferences</button>
+        <button id="edit-contact-preferences-link-<%= current_user.id %>" class="header-button quicksand-light spaced white-glow-dim">Edit Contact Preferences</button>
         <%= link_to edit_user_registration_path, class: 'btn btn-primary btn-sm' do %>
             <span class="glyphicon glyphicon-user"></span>
         <% end %>
@@ -55,8 +55,7 @@
             <div class="row border-bottom">
               <div class="col-xs-1"></div>
               <div class="col-xs-7"><%= f.input :name, label: false, placeholder: 'name', input_html: { :style => 'width: 260px'} %></div>
-              <div class="col-xs-2 quicksand-reg txt-right gold-glow                                        name-visible">visible</div>
-              <div class="col-xs-2 quicksand-reg txt-right gold-glow                                        name-active">- - - -</div>
+              <div class="col-xs-4 quicksand-reg txt-centered gold-glow                                  name-visible">always visible</div>
             </div>
             <div class="row border-bottom">
               <div class="col-xs-1"><i class="fa fa-envelope-o"></i></div>
@@ -83,7 +82,8 @@
               <div class="contact-switch col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone2_act] %> phone2-active">active</div>
             </div>
             <div class="row border-bottom">
-              <div class="col-xs-12"><%= f.input :timezone, :collection => ActiveSupport::TimeZone.all, :label_method => :to_s, :value_method => :name, :include_blank => false %></div>
+              <div class="col-xs-12"><%= f.input :timezone, :collection => ActiveSupport::TimeZone.all, :label_method => :to_s, :value_method => :name, :selected => "Pacific Time (US & Canada)", :include_blank => false %>
+              </div>
             </div>
             <div class="spacer"></div>
             <div class="spacer"></div>
@@ -103,6 +103,7 @@
             </div>
             <div class="spacer"></div>
             <div class="txt-centered spaced"><%= f.button :submit, :class => 'update-user spaced' %></div>
+            <div class="txt-centered spaced" id="contact-prefs-submit-button">Update Prefs</div>
             <div class="spacer"></div>
         <% end %>
     <% end %>
@@ -118,65 +119,80 @@
 
     $(document).ready(function() {
 
-        current_user_name = '<%= current_user.name %>';
+        NUM_OF_CONTACT_LIGHTS = 8;
 
-        $('#clock').jsclock(); //http://www.tcpweb.com.br/JS-Clock/
-
-        $('#overlay').hide();
+        // make textareas stretch to fit content
+        $('.uu-note-edit').elastic();
 
         // set listener on "Edit Contact Preferences" in the upper right nav bar
         <% if current_user %>
-        $('#<%= current_user.id %>').on('click', function(){
-            if($('.signin').is(':visible')) {
-                console.log("not gonna show two forms at the same time, sir");
-            } else {
+            $('#edit-contact-preferences-link-<%= current_user.id %>').on('click', function(){
                 fadeInUserForm();
-//                prepareUserForm();
-//                // detach form from machine unit and reattach it to non-blurring layer, which is z-index 2
-//                $('#non-blur-layer').append($user_form);
-//                // blur the container which holds all the machines ( z-index 0)
-//                $('#blur-layer').removeClass('blur-out');
-//                $('#blur-layer').addClass('blur-in');
-//                // bring in the tinted overlay to prevent click-through
-//                $('#overlay').fadeIn();
-//                // bring in the form, which SHOULD BE Z-INDEX 3
-//                $user_form.fadeIn().css({top:($(window).height()/2)-171, left:($(window).width()/2)-250, zIndex:999});
-            }
-        });
+            });
 
-        $('.edit-user-link').on('click', function(){
-            removeDarkBlurOverlay();
-            fadeInUserForm();
-        });
+            $('.edit-user-link').on('click', function(){
+                removeDarkBlurOverlay();
+                updateUsersGfx();
+                fadeInUserForm();
+            });
 
+            $('#contact-prefs-submit-button').on('click', function() {
+                var contactsObj = {
+                    'name': $('#user_name').val(),
+                    'email': $('#user_email').val(),
+                    'email2': $('#email2').val(),
+                    'phone': $('#phone').val(),
+                    'phone2': $('#phone2').val(),
+                    'timezone': $('#user_timezone').val(),
+                    'avatar': $('#avatar').val(),
+                    'avatar_cache': $('#avatar_cache').val(),
+                    'contact_flags': $('#contact-flags-<%= current_user.id %>').val()
+                };
+                $.ajax({
+                    url: '/users/' + <%= current_user.id %> + '/update_contact_prefs',
+                    type: 'PUT',
+                    dataType: 'json',
+                    data: contactsObj,
+                    success: function(data) {
+                        updateUsersGfx();
+                    },
+                    error: function(error) {
+                        console.log(JSON.stringify(error));
+                    }
+                });
+
+                fadeOutUserForm();
+                updatePage();
+            });
 
         <% end %>
 
         // start all the countdowns on the units - showing the times until unit is free
         updatePage();
+        updateUsersGfx();
         setInterval(updatePage,15000);
     });
-
 
     var removeDarkBlurOverlay = function () {
         $('#blur-layer').removeClass('blur-in').addClass('blur-out');
         $('#overlay, .unit_user_form, #user-edit-form').fadeOut();
-        //$('.unit_user_form').fadeOut();
-        //$('#user-edit-form').fadeOut();
     };
 
     var fadeInUserForm = function () {
-        prepareUserForm();
         var $user_form = $('#user-edit-form');
         // detach form from machine unit and reattach it to non-blurring layer, which is z-index 2
         $('#non-blur-layer').append($user_form);
         // blur the container which holds all the machines ( z-index 0)
-        $('#blur-layer').removeClass('blur-out');
-        $('#blur-layer').addClass('blur-in');
+        $('#blur-layer').removeClass('blur-out').addClass('blur-in');
         // bring in the tinted overlay to prevent click-through
         $('#overlay').fadeIn();
         // bring in the form, which SHOULD BE Z-INDEX 3
         $user_form.fadeIn().css({top:($(window).height()/2)-171, left:($(window).width()/2)-250, zIndex:999});
+    };
+
+    var fadeOutUserForm = function () {
+        $('#blur-layer').addClass('blur-out').removeClass('blur-in');
+        $('#overlay, #user-edit-form').fadeOut();
     };
 
     var updatePage = function() {
@@ -192,16 +208,18 @@
                     startUnitCountdowns(data);
                     updateUnitTimeCompleteFields(data);
                     adjustCountdownColors(data);
-                    cleanUpUnitUsers(data);
+                    removeExpiredUnitUsers(data);
                     updateUnitUsers(data);
                     markDisabledUnits(data);
                     setListenersOnUnitUsers(data);
                 }
             },
             error: function () {
-                'ajax error in #updatePage'
+                console.log('ajax error in #updatePage');
             }
         })
+        // make new textareas stretch to fit content
+        $('.uu-note-edit').elastic();
     };
 
     // set current values for all Unit countdown displays
@@ -257,7 +275,7 @@
 
     // remove unit-users once their end time is reached
     // this function receives a complete JSON dump as its argument from updatePage()
-    var cleanUpUnitUsers = function(data) {
+    var removeExpiredUnitUsers = function(data) {
         // get list of unitUsersIds from database
         var unitUsers = getUnitUsers(data);
         var unitUserIds = _.pluck(unitUsers,'id');
@@ -406,43 +424,103 @@
 
 
     // checks to see if user is in the middle of an edit
-    // (really just checks to see if any edit field is in a focus state)
     var editInProgress = function () {
         var durationEditInProgress = $('input.uu-duration-edit:focus').length > 0;
         var noteEditInProgress = $('textarea.uu-note-edit:focus').length > 0;
-        return durationEditInProgress || noteEditInProgress;
+        var contactEditInProgress = $('#user-edit-form').is(':visible');
+        return durationEditInProgress || noteEditInProgress || contactEditInProgress;
     };
 
-    var prepareUserForm = function() {
-        $("#phone").intlTelInput();
-        $("#phone2").intlTelInput();
-        // create an array of flags which tells which pieces of contact data are going to be active and visible
-        // e.g., 0,1,1,0,0,0,1,1 or 1,1,1,1,0,0,0,0,
 
-        var contactFlags = '<%= current_user.contact_flags %>'.split('');
-
-        // loop through all contact buttons and set event listeners
-        $('.contact-switch').each(function(i,el){
-            console.log(i + ' ' + el);
-            $(el).on('click', function() {
-                if( contactFlags[i] == "1"){
-                    contactFlags[i] = "0";
-                    switchGlowOff(el);
-                } else {
-                    contactFlags[i] = "1";
-                    switchGlowOn(el);
-                }
-                $('#contact-flags-' + <%= current_user.id %>).val(contactFlags.join(''));
-            })
+    var setListenersOnContactSwitches = function () {
+        $.ajax({
+            url: '/users/' + <%= current_user.id %> + '/update_contact_prefs',
+            type: 'GET',
+            dataType: 'json',
+            data: contactsObj,
+            success: function(data) {
+                console.log(JSON.stringify("data-contact_flags is " + data['contact_flags']));
+                updateUsersGfx();
+            },
+            error: function(error) {
+                console.log(JSON.stringify(error));
+            }
         });
+    }
+
+    var updateUsersGfx = function() {
+        $.ajax({
+            url: '/users/get_users',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                setContactLightStates(data);
+                prepareUserForm(data);
+            },
+            error: function() { console.log('error calling /users/get_data'); }
+        })
     };
 
-    var switchGlowOn = function(el) {
-        $(el).removeClass('grayed-out').addClass('gold-glow');
-    };
+                            var prepareUserForm = function(data) {
+                                $("#phone").intlTelInput();
+                                $("#phone2").intlTelInput();
+                                // create an array of flags which tells which pieces of contact data are going to be active and visible
+                                // e.g., 0,1,1,0,0,0,1,1 or 1,1,1,1,0,0,0,0,
 
-    var switchGlowOff = function(el) {
-        $(el).addClass('grayed-out').removeClass('gold-glow');
-    };
+                                var contactFlags;
+                                for( var i=0; i < data.length; i++) {
+                                    if (<%= current_user.id %> == data[i]['id'])  contact_flags = data[i]['contact_flags'];
+                                }
+                                contactFlags = contact_flags.split('');
+                                // loop through all contact buttons and set event listeners
+                                $('.contact-switch').each(function(i,el){
+                                    $(el).off();
+                                    $(el).on('click', function() {
+                                        if( contactFlags[i] == "1"){
+                                            contactFlags[i] = "0";
+                                            $('#contact-flags-' + <%= current_user.id %>).val(contactFlags.join(''));
+                                            if ($('#contact-flags-' + <%= current_user.id %>).val()[i] == "0" ) {
+                                                switchGlowOff(el);
+                                            }
+                                        } else if(contactFlags[i] == "0") {
+                                            contactFlags[i] = "1";
+                                            $('#contact-flags-' + <%= current_user.id %>).val(contactFlags.join(''));
+                                            if ($('#contact-flags-' + <%= current_user.id %>).val()[i] == "1" ) {
+                                                switchGlowOn(el);
+                                            }
+                                        } else {
+                                            console.log('this are going awry');
+                                        }
+                                    })
+                                });
+                            };
+
+                            var setContactLightStates = function(data) {
+                                //get current_user's contact flags from database
+                                console.log(JSON.stringify(data));
+                                var contact_flags;
+                                for( var i=0; i < data.length; i++) {
+                                    if (<%= current_user.id %> == data[i]['id'])  contact_flags = data[i]['contact_flags'];
+                                }
+
+                                var contactFlagsArr = contact_flags.split('');
+
+                                var num = NUM_OF_CONTACT_LIGHTS;
+                                $('.contact-light').each(function(i, el) {
+                                    if(contactFlagsArr[i % num] == "1") {
+                                        switchGlowOn($(el));
+                                    } else if(contactFlagsArr[i % num] == "0") {
+                                        switchGlowOff($(el));
+                                    }
+                                })
+                            };
+
+                                                    var switchGlowOn = function(el) {
+                                                        $(el).removeClass('grayed-out').addClass('gold-glow');
+                                                    };
+
+                                                    var switchGlowOff = function(el) {
+                                                        $(el).addClass('grayed-out').removeClass('gold-glow');
+                                                    };
 
 </script>

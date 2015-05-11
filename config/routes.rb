@@ -11,8 +11,11 @@ Rails.application.routes.draw do
   get 'units/report_unit_statuses' => 'units#report_unit_statuses'
   get 'units/unit_statuses' => 'units#unit_statuses'
 
+  get 'users/get_users' => 'users#get_users'
+
   put 'unit_users/:id/update_duration' => 'unit_users#update_duration'
   put 'unit_users/:id/update_note' => 'unit_users#update_note'
+  put '/users/:id/update_contact_prefs' => 'users#update_contact_prefs'
 
   resources :users
 

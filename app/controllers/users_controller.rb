@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   # before_action :authenticate_user!
   before_action :get_unit, except: [:index, :create, :edit, :new, :update, :show]
-  before_action :get_user
+  before_action :get_user, except: [:get_users]
 
   def index
     @users = User.all
@@ -24,15 +24,35 @@ class UsersController < ApplicationController
   end
 
   def update
-
     if current_user.update(user_params)
       flash[:notice] = "User information updated"
       redirect_to units_path
     else
       render "edit_user_path"
     end
-
   end
+
+  def get_users
+    @users = User.all
+    render json: @users
+  end
+
+  def update_contact_prefs
+    if @user.update({
+      :name => params['name'],
+      :email => params['email'],
+      :email2 => params['email2'],
+      :phone => params['phone'],
+      :phone2 => params['phone2'],
+      :timezone => params['timezone'],
+      :contact_flags => params['contact_flags']
+    })
+      render json: @user
+    else
+      render json: { error: 'user did not update' }
+    end
+  end
+
 end
 
 private

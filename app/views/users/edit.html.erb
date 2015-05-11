@@ -1,32 +1,33 @@
 
-<div class="row">
-  <div id="user-edit" class="col-sm-4 col-sm-offset-4 col-xs-12 bordered glow ">
-    <h1 class="ocra ">User Information</h1>
-    <%= simple_form_for @user, defaults: { input_html: { class: 'ocra', color: 'white' } } do |f| %>
-        <%= f.error_notification %>
-        <%= f.input :name, label: 'Screen Name', wrapper_html: { class: 'ocra' } %>
-        <%= f.input :email, label: 'Email' %>
-        <%= f.input :email2, label: 'Email - Alternate' %>
-        <%= f.input :phone, label: 'Phone', input_html: { id: 'phone' } %>
-        <%= f.input :phone2, label: 'Phone - Alternate', input_html: { id: 'phone2' } %>
-        <!--<input type="tel" id="phone">-->
-        <!--<input type="tel" id="phone2">-->
-        <%= f.error :base %>
-        <%= f.button :submit %>
-    <% end %>
+<!--<div class="row">-->
+  <!--<div id="user-edit" class="col-sm-4 col-sm-offset-4 col-xs-12 bordered glow ">-->
+    <!--<h1 class="ocra ">User Information</h1>-->
+    <!--<%#= simple_form_for @user, defaults: { input_html: { class: 'ocra', color: 'white' } } do |f| %>-->
+        <!--<%#= f.error_notification %>-->
+        <!--<%#= f.input :name, label: 'Screen Name', wrapper_html: { class: 'ocra' } %>-->
+        <!--<%#= f.input :email, label: 'Email' %>-->
+        <!--<%#= f.input :email2, label: 'Email - Alternate' %>-->
+        <!--<%#= f.input :phone, label: 'Phone', input_html: { id: 'phone' } %>-->
+        <!--<%#= f.input :phone2, label: 'Phone - Alternate', input_html: { id: 'phone2' } %>-->
+        <!--&lt;!&ndash;<input type="tel" id="phone">&ndash;&gt;-->
+        <!--&lt;!&ndash;<input type="tel" id="phone2">&ndash;&gt;-->
+        <!--<%#= f.error :base %>-->
+        <!--<%#= f.button :submit %>-->
+        <!--<button>Hey</button>-->
+    <!--<#% end %>-->
 
 
-  </div>
+  <!--</div>-->
 
-</div>
+<!--</div>-->
 
 
 
 <script>
-  $(document).ready(function() {
-      $('#overlay').hide();
-      $("#phone").intlTelInput();
-      $("#phone2").intlTelInput();
-  });
+//  $(document).ready(function() {
+//      $('#overlay').hide();
+//      $("#phone").intlTelInput();
+//      $("#phone2").intlTelInput();
+//  });
 </script>
 

@@ -43,6 +43,7 @@ $(document).ready(function() {
     $('#overlay').hide();
     $('#user-edit-form').hide();
     $('.best_in_place').best_in_place();
+    $('#clock').jsclock(); //http://www.tcpweb.com.br/JS-Clock/
 
     // for closing forms with esc key
     $(document).keyup(function(e) {
