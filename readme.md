@@ -5,7 +5,7 @@ by David Wilbanks
 
 
 
-...is my capstone project from the [bloc.io](http://www.bloc.io) **Full Stack Web Development** course
+...is my capstone project from the **Full Stack Web Development** course
 (and it will get a decent name when I think of one).
 
 
