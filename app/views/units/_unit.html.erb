@@ -170,8 +170,6 @@
         var $form = $('#unit_user_form_<%= unit.id %>');
         $form.hide();
 
-        // do not know why I set a timeout here
-        // setTimeout(sizeOverlay, 5000, $unitBody, $unitOverlay);
 
         // click 'new unituser' button on the unit, you get a modal form, which creates a new unituser in the queue
         $('#new-user-for-unit-<%= unit.id %>').on('click', function(){
@@ -289,53 +287,7 @@
 
     ///////////////////////////////////////// functions /////////////////////////////////////
 
-    var refreshAllUnits = function() {
-        var allUnitInts = arrayOfUnitIDInts();
-        allUnitInts.each(function() { refreshUnit(this); })
-    };
 
-    var arrayOfUnitIDInts = function () {
-        return $('.unit.ui-draggable').map(function() { return this.id.replace( /^\D+/g, '');});//.get();
-    };
-
-//    var refreshUnit = function (id) {
-//        updatePage();
-//        getReportStatus(id).done( function(result) {
-////            console.log('result is ' + JSON.stringify( result, null, '  '));
-////            console.log('result["uu_queue"] is ' + JSON.stringify( result['uu_queue'], null, '  '));
-//            var $unitUserUL = $('#unit-user-ul-' + id);
-////            console.log($unitUserUL);
-//            $unitUserUL.empty();
-//            var source = $("#uu-template").html();
-//            var template = Handlebars.compile(source);
-//            if(result['uu_queue'] != "[]") {
-//                var queue = result['uu_queue'];
-//                for (var i = 0; i < queue.length; i++) {
-//                    var context = {
-//                        unitId:                 queue[i]['unitId'],
-//                        id:                     queue[i]['id'],
-//                        name:                   queue[i]['name'],
-//                        img:                    queue[i]['img'],
-//                        email:                  queue[i]['emailFormatted'],
-//                        email2:                 queue[i]['email2Formatted'],
-//                        phone:                  queue[i]['phoneFormatted'],
-//                        phone2:                 queue[i]['phone2Formatted'],
-//                        start:                  queue[i]['start'],
-//                        start_time_formatted:   queue[i]['start_time_formatted'],
-//                        duration_string:        queue[i]['duration_string'],
-//                        endHidden:              queue[i]['end_time_hidden'],
-//                        end_time_formatted:     queue[i]['end_time_formatted'],
-//                        note:                   queue[i]['note'],
-//                        current_user_name:      current_user_name
-//                    };
-//                    var html = template(context);
-//                    $unitUserUL.append(html);
-//
-//                }
-//            }
-//        });
-//
-//    };
 
     var disableUnit = function(id, disabler, when_disabled) {
         $('#unit_' + id + ' > .container').addClass('unit-body-disabled');
@@ -375,17 +327,6 @@
         $('#disable-msg-' + id).text('');
     };
 
-//    var getReportStatus = function(id) {
-//        return $.ajax({
-//            url: "/units/" + id + "/report_status",
-//            type: "GET",
-//            dataType: "json",
-//            success: function(data) {
-//
-//            },
-//            error: function() { console.log("ajax error in call to report_status") }
-//        });
-//    };
 
 </script>
 
