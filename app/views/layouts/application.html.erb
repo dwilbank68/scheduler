@@ -59,7 +59,8 @@
             </div>
             <div class="row border-bottom">
               <div class="col-xs-1"><i class="fa fa-envelope-o"></i></div>
-              <div class="col-xs-7"> <%= f.input :email, label: false, placeholder: 'email', input_html: { :style => 'width: 260px' } %> </div>
+              <!--<div class="col-xs-7"> <%#= f.input :email, label: false, placeholder: 'email', input_html: { :style => 'width: 260px' } %> </div>-->
+              <div class="col-xs-7"> <p id="form-field-phone" class="quicksand-reg white-glow-dim"><%= current_user.email %></p> </div>
               <div class="contact-switch col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email1_vis] %> email1-visible">visible</div>
               <div class="contact-switch col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email1_act] %> email1-active">active</div>
             </div>
@@ -103,7 +104,6 @@
             </div>
             <div class="spacer"></div>
             <div class="txt-centered spaced"><%= f.button :submit, :class => 'update-user spaced' %></div>
-            <div class="txt-centered spaced" id="contact-prefs-submit-button">Update Prefs</div>
             <div class="spacer"></div>
         <% end %>
     <% end %>
@@ -136,38 +136,45 @@
                 fadeInUserForm();
             });
 
-            $('#contact-prefs-submit-button').on('click', function() {
+
+            $('.edit_user').on('submit', function(e) {
+                e.preventDefault();
                 var contactsObj = {
                     'name': $('#user_name').val(),
-                    'email': $('#user_email').val(),
                     'email2': $('#email2').val(),
                     'phone': $('#phone').val(),
                     'phone2': $('#phone2').val(),
                     'timezone': $('#user_timezone').val(),
-                    'avatar': $('#avatar').val(),
-                    'avatar_cache': $('#avatar_cache').val(),
                     'contact_flags': $('#contact-flags-<%= current_user.id %>').val()
                 };
+                $input = $('#user_avatar');
+                var formData = new FormData();
+                for (var key in contactsObj) {
+                    formData.append(key, contactsObj[key]);
+                }
+                formData.append('user[avatar]', $input[0].files[0]);
                 $.ajax({
-                    url: '/users/' + <%= current_user.id %> + '/update_contact_prefs',
-                    type: 'PUT',
-                    dataType: 'json',
-                    data: contactsObj,
-                    success: function(data) {
+                    url : '/users/3/update_contact_prefs',
+                    type: "PUT",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function () {
                         updateUsersGfx();
+                        fadeOutUserForm();
+                        updatePage();
                     },
-                    error: function(error) {
-                        console.log(JSON.stringify(error));
+                    error: function (jXHR, textStatus, errorThrown) {
+                        alert(errorThrown);
                     }
                 });
-
-                fadeOutUserForm();
-                updatePage();
             });
+
 
         <% end %>
 
-        // start all the countdowns on the units - showing the times until unit is free
+
         updatePage();
         updateUsersGfx();
         setInterval(updatePage,15000);
@@ -208,8 +215,9 @@
                     startUnitCountdowns(data);
                     updateUnitTimeCompleteFields(data);
                     adjustCountdownColors(data);
-                    removeExpiredUnitUsers(data);
-                    updateUnitUsers(data);
+                    refreshAllUnits(data);
+                    removeExpiredUnitUsers(data); // to be replaced with refreshAllUnits
+                    updateUnitUsers(data);        // to be replaced with refreshAllUnits
                     markDisabledUnits(data);
                     setListenersOnUnitUsers(data);
                 }
@@ -225,7 +233,6 @@
     // set current values for all Unit countdown displays
     // this function receives a complete JSON dump as its argument from updatePage()
     var startUnitCountdowns = function(data) {
-        console.log('startUnitCountdowns is running');
         unit_arr = data;
         for(var i=0; i < unit_arr.length; i++) {
             var id = unit_arr[i]['id'];
@@ -303,6 +310,52 @@
             $('#end_time_'   + unitUsersToUpdate[i]['id']).html(end);
             $('#uu-dur-'     + unitUsersToUpdate[i]['id']).val(dur);
             $('#uu-note-'    + unitUsersToUpdate[i]['id']).val(note);
+        }
+    };
+
+
+    var refreshAllUnits = function(data) {
+        for(var i = 0; i < data.length; i++) {
+//            console.log(data[i]);
+//            console.log(data[i]['id']);
+            refreshUnit(data[i]);
+        }
+
+    };
+
+    var refreshUnit = function (unit) {
+//        console.log(unit['id']);
+        var $unitUserUL = $('#unit-user-ul-' + unit['id']);
+//        console.log($unitUserUL);
+//        $unitUserUL.empty();
+        var source = $("#uu-template").html();
+        var template = Handlebars.compile(source);
+        console.log("unit id is " + unit['id']);
+        if(JSON.stringify(unit['unit_users']) != "[]") {
+            console.log(JSON.stringify( unit['unit_users'], null, '  '));
+//                var queue = result['uu_queue'];
+//                for (var i = 0; i < queue.length; i++) {
+//                    var context = {
+//                        unitId:                 queue[i]['unitId'],
+//                        id:                     queue[i]['id'],
+//                        name:                   queue[i]['name'],
+//                        img:                    queue[i]['img'],
+//                        email:                  queue[i]['emailFormatted'],
+//                        email2:                 queue[i]['email2Formatted'],
+//                        phone:                  queue[i]['phoneFormatted'],
+//                        phone2:                 queue[i]['phone2Formatted'],
+//                        start:                  queue[i]['start'],
+//                        start_time_formatted:   queue[i]['start_time_formatted'],
+//                        duration_string:        queue[i]['duration_string'],
+//                        endHidden:              queue[i]['end_time_hidden'],
+//                        end_time_formatted:     queue[i]['end_time_formatted'],
+//                        note:                   queue[i]['note'],
+//                        current_user_name:      current_user_name
+//                    };
+//                    var html = template(context);
+//                    $unitUserUL.append(html);
+//
+//                }
         }
     };
 
@@ -497,7 +550,6 @@
 
                             var setContactLightStates = function(data) {
                                 //get current_user's contact flags from database
-                                console.log(JSON.stringify(data));
                                 var contact_flags;
                                 for( var i=0; i < data.length; i++) {
                                     if (<%= current_user.id %> == data[i]['id'])  contact_flags = data[i]['contact_flags'];

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   put '/users/:id/update_contact_prefs' => 'users#update_contact_prefs'
 
   resources :users
+  # post '/users/:id' => 'users#update_contact_prefs'
 
    resources :units do
      resources :unit_users

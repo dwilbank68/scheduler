@@ -45,7 +45,8 @@ class UsersController < ApplicationController
       :phone => params['phone'],
       :phone2 => params['phone2'],
       :timezone => params['timezone'],
-      :contact_flags => params['contact_flags']
+      :contact_flags => params['contact_flags'],
+      :avatar => params['user']['avatar']
     })
       render json: @user
     else
