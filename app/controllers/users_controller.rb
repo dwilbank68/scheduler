@@ -40,7 +40,6 @@ class UsersController < ApplicationController
   def update_contact_prefs
     if @user.update({
       :name => params['name'],
-      :email => params['email'],
       :email2 => params['email2'],
       :phone => params['phone'],
       :phone2 => params['phone2'],

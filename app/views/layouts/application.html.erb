@@ -59,7 +59,6 @@
             </div>
             <div class="row border-bottom">
               <div class="col-xs-1"><i class="fa fa-envelope-o"></i></div>
-              <!--<div class="col-xs-7"> <%#= f.input :email, label: false, placeholder: 'email', input_html: { :style => 'width: 260px' } %> </div>-->
               <div class="col-xs-7"> <p id="form-field-phone" class="quicksand-reg white-glow-dim"><%= current_user.email %></p> </div>
               <div class="contact-switch col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email1_vis] %> email1-visible">visible</div>
               <div class="contact-switch col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email1_act] %> email1-active">active</div>
@@ -141,6 +140,7 @@
                 e.preventDefault();
                 var contactsObj = {
                     'name': $('#user_name').val(),
+                    'email': '<%= current_user.email %>',
                     'email2': $('#email2').val(),
                     'phone': $('#phone').val(),
                     'phone2': $('#phone2').val(),
@@ -330,7 +330,7 @@
 //        $unitUserUL.empty();
         var source = $("#uu-template").html();
         var template = Handlebars.compile(source);
-        console.log("unit id is " + unit['id']);
+//        console.log("unit id is " + unit['id']);
         if(JSON.stringify(unit['unit_users']) != "[]") {
             console.log(JSON.stringify( unit['unit_users'], null, '  '));
 //                var queue = result['uu_queue'];
