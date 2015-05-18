@@ -30,14 +30,13 @@ class UnitUsersController < ApplicationController
   end
 
   def show
-    respond_with @unituser
+
   end
 
   def destroy
     @unit = @unituser.unit
+    ex_unituser = @unituser
     idx_of_deleted = @unit.unit_users.index(@unituser)
-    #logger.info('------------------------ idx of deleted is ' + idx_of_deleted.to_s)
-    logger.info('------------------------ array after deletion idx of deleted is ' + idx_of_deleted.to_s)
     deleted_unitusers_name = @unituser.user.name
     if @unituser.destroy
       @unit.reload
@@ -56,28 +55,14 @@ class UnitUsersController < ApplicationController
           send_notifications(unituser,message)
         end
       end
-      @unit.reload
-      @data = @unit.report_status
-      #logger.info('------------------------in uu destroy, @data is ' + @data.to_s)
     else
        flash[:error] = "unit user not removed"
     end
 
-    @response = { :unit_user => @unituser,
-                  :data => @data,
-                  :unit_arr => Unit.report_unit_statuses
-              }.to_json
-
-    #logger.info('--------------------------------- @response is ' + @response )
-
-    respond_with(@response) do |format|
-       format.html { redirect_to @units }
-    end
-
+    head 204
   end
 
   def update_duration
-    # @unituser = UnitUser.find(params[:id])
     dur_minutes = params[:minutes].to_i
     end_time = @unituser.start_time + dur_minutes.minutes
 

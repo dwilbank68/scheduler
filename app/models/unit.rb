@@ -47,19 +47,13 @@ class Unit < ActiveRecord::Base
   def report_status
     unit = self
     if duration == 0
-      logger.info('-------------in unit#report_status, duration equals zero')
-      logger.info('-------------in unit#report_status, self.duration equals ' + self.duration.to_s)
-      logger.info('-------------in unit#report_status, self equals ' + self.inspect)
       self.reload
-      logger.info('-------------in unit20#report_status, unit.duration equals ' + unit.duration.to_s)
       @data = { :time_available => Time.now,
                 :time_available_string => "--:--:--",
                 :duration => 0,
                 :uu_queue => [].to_json
       }
     else
-      logger.info('-------------in unit#report_status, duration NOT equals zero')
-      # min = duration
       uu_queue = unit_users.map do |uu|
         user = uu.user
         { :unitId => unit.id,

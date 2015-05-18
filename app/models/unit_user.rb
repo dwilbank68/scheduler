@@ -8,8 +8,6 @@ class UnitUser < ActiveRecord::Base
   default_scope {order('created_at ASC')}
 
   def duration_hrs_min
-    # hrsmin = "<span>#{self.duration / 60}</span><span class='smaller relative raised'>hrs</span> <span>#{self.duration % 60}</span><span class='smaller relative raised'>min</span>"
-    # hrsmin.html_safe
     (self.duration / 60).to_s + ' hrs ' + (self.duration % 60).to_s + ' min'
   end
 
@@ -26,6 +24,30 @@ class UnitUser < ActiveRecord::Base
     queue = unit.unit_users
     idx = queue.index(self)
     queue[idx+1]
+  end
+
+  def name
+    self.user.name
+  end
+
+  def img
+    self.user.avatar.profile.url
+  end
+
+  def emailFormatted
+    self.user.formatted_email1
+  end
+
+  def email2Formatted
+    self.user.formatted_email2
+  end
+
+  def phoneFormatted
+    self.user.formatted_phone1
+  end
+
+  def phone2Formatted
+    self.user.formatted_phone2
   end
 
 
