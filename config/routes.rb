@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   # post '/users/:id' => 'users#update_contact_prefs'
 
    resources :units do
-     resources :unit_users
+     resources :unit_users, except: [:destroy, :new, :edit, :show]
    end
 
   resources :unit_users, only: [:update, :destroy]

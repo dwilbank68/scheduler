@@ -79,8 +79,6 @@ class UnitsController < ApplicationController
     else
       flash[:error] = "unit not removed"
     end
-
-
   end
 
   def report_status
@@ -102,10 +100,8 @@ class UnitsController < ApplicationController
   end
 
   def unit_statuses
-    @units = Unit.all
     @units = Unit.includes(:unit_users)
     render json: @units
-    #respond_with @units
   end
 
   private

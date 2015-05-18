@@ -338,12 +338,12 @@
       <div class="container unit-user">
 
         <div class="row border-bottom">
-          <div class="col-xs-12 microgramma-bold larger name spaced">{{name}}<span class="tiny quicksand-reg">({{id}})</span></div>
+          <div class="col-xs-12 microgramma-bold larger name spaced">{{name}}<span class="tiny quicksand-reg">({{id}})hb</span></div>
         </div>
         <div class="spacer"></div>
         <div class="spacer"></div>
         <div class="row">
-          <div class="col-xs-3"><img src="{{img}}" alt="Profile profile picture fix 2" class="img-rounded uu-avatar"/></div>
+          <div class="col-xs-3"><img src="{{img}}" alt="no pic" class="img-rounded uu-avatar"/></div>
           <div class="col-xs-9">
             <div class="container">
               <div class="row"> <div class="col-xs-10 quicksand-reg email  white-glow smaller">{{email}}</div> </div>
@@ -364,7 +364,7 @@
         <div class="row">
           <div class="col-xs-3 microgramma   white-glow lowered spaced dur" id="duration_{{id}}">DUR</div>
           <div class="col-xs-9 quicksand-reg txt-centered">
-            <input type="text" class='uu-duration-edit white-glow' id="uu-dur-{{id}}" value=""/>
+            <input type="text" class='uu-duration-edit white-glow' id="uu-dur-{{id}}" value="{{duration_string}}"/>
             <span id='submit-dur-{{id}}' class="submit-dur-button glyphicon glyphicon-unchecked"></span>
           </div>
         </div>
@@ -373,18 +373,16 @@
         <div class="row">
           <div class="col-xs-3 microgramma white-glow lowered spaced end">END</div>
           <div class="col-xs-9 quicksand-reg white-glow txt-centered end" id="end_time_{{id}}">{{end_time_formatted}}</div>
-          <!--<div class="col-xs-9 quicksand-reg white-glow txt-centered hidden-end-times" id="end-time-hidden-{{id}}">{{endHidden}}</div>-->
         </div>
 
-        <div>
-          <textarea cols="18" class='uu-note-edit quicksand-reg blue-glow' id="uu-note-{{id}}"></textarea>
-          <span id='submit-note-{{id}}' class="submit-note-button glyphicon glyphicon-unchecked"></span>
+        <div class="row note quicksand-reg blue-glow">
+          <textarea cols="20" class='col-xs-12 uu-note-edit quicksand-reg blue-glow' id="uu-note-{{id}}" placeholder="click to edit / shift-return to submit"></textarea>
         </div>
 
         <div class="txt-centered">
           {{#if_eq name current_user_name}}
               <hr class="unit-user-hr"/>
-              <a class="gold-glow microgramma spaced uu-delete" data-confirm="Are you sure?" data-method="delete" data-remote="true" href="/units/{{unitId}}/unit_users/{{id}}" rel="nofollow">delete</a>
+              <a id="delete-{{id}}" class="gold-glow microgramma spaced uu-delete" data-confirm="Are you sure?" rel="nofollow">delete</a>
           {{/if_eq}}
         </div>
 

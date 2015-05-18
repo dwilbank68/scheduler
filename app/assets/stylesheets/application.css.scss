@@ -20,6 +20,7 @@
 @import "reset";
 @import "bootstrap";
 @import "../fonts/font";
+@import "devise";
 @import "signin";
 @import "units_disabled";
 @import "flags";
@@ -856,8 +857,12 @@ input { background: transparent; }
   }
 
 #form-field-phone {
-  margin-top: 3px;
-  height: 8px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  height: 23px;
+  width: 260px;
+  border: 2px solid white;
+  padding-top: 1px;
 }
 
 li {

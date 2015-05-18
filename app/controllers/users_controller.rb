@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  respond_to :html, :js
+
   # before_action :authenticate_user!
   before_action :get_unit, except: [:index, :create, :edit, :new, :update, :show]
   before_action :get_user, except: [:get_users]
@@ -17,7 +19,6 @@ class UsersController < ApplicationController
   end
 
   def show
-
   end
 
   def new
