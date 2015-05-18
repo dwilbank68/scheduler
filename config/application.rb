@@ -3,7 +3,7 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 # uncomment the line below to use silenced log
-require File.dirname(__FILE__) + '/../lib/custom_logger.rb'
+# require File.dirname(__FILE__) + '/../lib/custom_logger.rb'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -13,7 +13,7 @@ module Scheduler
   class Application < Rails::Application
 
     # uncomment the line below to use silenced log
-    config.middleware.swap Rails::Rack::Logger, CustomLogger, :silenced => ["/units/unit_statuses"]
+    # config.middleware.swap Rails::Rack::Logger, CustomLogger, :silenced => ["/units/unit_statuses"]
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
