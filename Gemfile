@@ -9,6 +9,10 @@ group :development do
   gem 'pry'
 end
 
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+end
+
 group :production do
   gem 'pg'
   gem 'rails_12factor'
@@ -41,13 +45,10 @@ gem 'intl-tel-input-rails'
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
 
 gem 'momentjs-rails', '>= 2.8.1', :github => 'derekprior/momentjs-rails'
-# gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 
 gem 'jquery-ui-rails'
 gem 'best_in_place', '~> 3.0.1'
 
 gem 'twilio-ruby'
 
-# gem 'gon'
-# gem 'font-awesome-sass' didn't work
 
