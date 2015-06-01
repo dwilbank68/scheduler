@@ -447,15 +447,20 @@
         var $deleteButton = $('#delete-' + id);
         var $unitUser = $('#unit_user_' + id);
         if ($deleteButton.hasClass('listening')) return false;
-
+        
         $deleteButton.on('click', function () {
-            $.ajax({
-                url: '/unit_users/' + id,
-                type: 'DELETE',
-                success: function() { $unitUser.fadeOut() },
-                error: function() { console.log('error in deletion'); }
-            })
+            if(confirm('Are you sure?')) {
+                $.ajax({
+                    url: '/unit_users/' + id,
+                    type: 'DELETE',
+                    success: function() { $unitUser.fadeOut() },
+                    error: function() { console.log('error in deletion'); }
+                })
+            } else {
+                return false;
+            }
         });
+
         $deleteButton.addClass('listening');
     };
 

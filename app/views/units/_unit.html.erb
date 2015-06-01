@@ -376,13 +376,13 @@
         </div>
 
         <div class="row note quicksand-reg blue-glow">
-          <textarea cols="20" class='col-xs-12 uu-note-edit quicksand-reg blue-glow' id="uu-note-{{id}}" placeholder="click to edit / shift-return to submit"></textarea>
+          <textarea cols="20" class='col-xs-12 uu-note-edit quicksand-reg blue-glow' id="uu-note-{{id}}" placeholder="click to edit / shift-return to submit">{{note}}</textarea>
         </div>
 
         <div class="txt-centered">
           {{#if_eq name current_user_name}}
               <hr class="unit-user-hr"/>
-              <a id="delete-{{id}}" class="gold-glow microgramma spaced uu-delete" data-confirm="Are you sure?" rel="nofollow">delete</a>
+              <a id="delete-{{id}}" class="gold-glow microgramma spaced uu-delete"  rel="nofollow">delete</a>
           {{/if_eq}}
         </div>
 
