@@ -15,6 +15,7 @@
 /log/*.log
 /tmp
 
+
 .idea/
 .idea/*
 #/config/secrets.yml
@@ -27,4 +28,4 @@ config/application.yml
 public/uploads
 
 scheduler.log
-
+*.log
