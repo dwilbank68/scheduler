@@ -2,6 +2,8 @@ class UnitUser < ActiveRecord::Base
   belongs_to :user
   belongs_to :unit
 
+  validates :unit_id, :user_id, :presence => true, :numericality => {:only_integer => true}
+
   after_commit :update_total_time
   after_destroy :update_total_time
 
