@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150507144615) do
+ActiveRecord::Schema.define(version: 20150601043821) do
 
   create_table "unit_users", force: true do |t|
     t.integer  "unit_id"
@@ -69,6 +69,8 @@ ActiveRecord::Schema.define(version: 20150507144615) do
     t.string   "avatar"
     t.string   "timezone"
     t.string   "contact_flags"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

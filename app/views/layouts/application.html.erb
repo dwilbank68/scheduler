@@ -447,7 +447,8 @@
         var $deleteButton = $('#delete-' + id);
         var $unitUser = $('#unit_user_' + id);
         if ($deleteButton.hasClass('listening')) return false;
-        
+
+
         $deleteButton.on('click', function () {
             if(confirm('Are you sure?')) {
                 $.ajax({

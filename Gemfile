@@ -51,4 +51,6 @@ gem 'best_in_place', '~> 3.0.1'
 
 gem 'twilio-ruby'
 
-
+gem 'omniauth'
+gem "omniauth-google-oauth2"
+gem 'json'
