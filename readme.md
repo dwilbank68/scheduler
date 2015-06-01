@@ -7,6 +7,7 @@ by David Wilbanks
 will get a decent name when I think of one.
 
 
+
 The inspiration came about from a problem that arose at my previous job, when too many people were lining up to use too few machines.
 
 In our case, the machines were high-end video tape machines -- but **SchedulerX** could be used to schedule almost any other resource, from washing machines to graphic workstations, to telescopes.
