@@ -49,19 +49,15 @@ class UnitUser < ActiveRecord::Base
   def phoneFormatted
     self.user.formatted_phone1
   end
-<<<<<<< HEAD
-=======
-
-  def phone2Formatted
-    self.user.formatted_phone2
-  end
->>>>>>> 0aaec97fa6150cf2605e363a879d9e4021f382be
 
   def phone2Formatted
     self.user.formatted_phone2
   end
 
-<<<<<<< HEAD
+  def phone2Formatted
+    self.user.formatted_phone2
+  end
+  
 
   private
 
@@ -75,18 +71,5 @@ class UnitUser < ActiveRecord::Base
     @unit.unit_users.pluck(:duration).sum
   end
 
-=======
-  private
 
-  def update_total_time
-    @unit = self.unit
-    @unit.update(:duration => get_total_time, :time_available => @unit.calculated_time_available )
-  end
-
-  def get_total_time
-    #logger.info('----------------unit_user#get_total_time is triggered, returning ' + total_queue_duration.to_s)
-    @unit.unit_users.pluck(:duration).sum
-  end
-
->>>>>>> 0aaec97fa6150cf2605e363a879d9e4021f382be
 end
