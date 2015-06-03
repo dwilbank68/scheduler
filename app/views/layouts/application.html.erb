@@ -60,26 +60,26 @@
             <div class="row border-bottom">
               <div class="col-xs-1"><i class="fa fa-envelope-o"></i></div>
               <div class="col-xs-7"> <p id="form-field-email" class="quicksand-reg white-glow-dim"><%= current_user.email %></p> </div>
-              <div class="contact-switch col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email1_vis] %> email1-visible">visible</div>
-              <div class="contact-switch col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email1_act] %> email1-active">active</div>
+              <div class="contact-switch col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email1_vis] if current_user %> email1-visible">visible</div>
+              <div class="contact-switch col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email1_act] if current_user %> email1-active">active</div>
             </div>
             <div class="row border-bottom">
               <div class="col-xs-1"><i class="fa fa-envelope-o"></i></div>
               <div class="col-xs-7"> <%= f.input :email2, label: false, placeholder: 'alternate email', input_html: {id: 'email2', :style => 'width: 260px'} %> </div>
-              <div class="contact-switch col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email2_vis] %> email2-visible">visible</div>
-              <div class="contact-switch col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email2_act] %> email2-active">active</div>
+              <div class="contact-switch col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email2_vis] if current_user %> email2-visible">visible</div>
+              <div class="contact-switch col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email2_act] if current_user %> email2-active">active</div>
             </div>
             <div class="row border-bottom">
               <div class="col-xs-1"><i class="fa fa-phone-square"></i></div>
               <div class="col-xs-7"> <%= f.input :phone, label: false, placeholder: 'phone', input_html: {id: 'phone', :style => 'width: 260px'} %> </div>
-              <div class="contact-switch col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone1_vis] %> phone1-visible">visible</div>
-              <div class="contact-switch col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone1_act] %> phone1-active">active</div>
+              <div class="contact-switch col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone1_vis] if current_user %> phone1-visible">visible</div>
+              <div class="contact-switch col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone1_act] if current_user %> phone1-active">active</div>
             </div>
             <div class="row border-bottom">
               <div class="col-xs-1"><i class="fa fa-phone-square"></i></div>
               <div class="col-xs-7"> <%= f.input :phone2, label: false, placeholder: 'alternate phone', input_html: {id: 'phone2', :style => 'width: 260px'} %> </div>
-              <div class="contact-switch col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone2_vis] %> phone2-visible">visible</div>
-              <div class="contact-switch col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone2_act] %> phone2-active">active</div>
+              <div class="contact-switch col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone2_vis] if current_user %> phone2-visible">visible</div>
+              <div class="contact-switch col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:phone2_act] if current_user %> phone2-active">active</div>
             </div>
             <div class="row border-bottom">
               <div class="col-xs-12"><%= f.input :timezone, :collection => ActiveSupport::TimeZone.all, :label_method => :to_s, :value_method => :name, :selected => "Pacific Time (US & Canada)", :include_blank => false %>
