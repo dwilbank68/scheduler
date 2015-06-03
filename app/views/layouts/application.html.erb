@@ -59,7 +59,7 @@
             </div>
             <div class="row border-bottom">
               <div class="col-xs-1"><i class="fa fa-envelope-o"></i></div>
-              <div class="col-xs-7"> <p id="form-field-phone" class="quicksand-reg white-glow-dim"><%= current_user.email %></p> </div>
+              <div class="col-xs-7"> <p id="form-field-email" class="quicksand-reg white-glow-dim"><%= current_user.email %></p> </div>
               <div class="contact-switch col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email1_vis] %> email1-visible">visible</div>
               <div class="contact-switch col-xs-2 quicksand-reg txt-right <%= contact_colors(current_user)[:email1_act] %> email1-active">active</div>
             </div>
@@ -137,22 +137,24 @@
 
             $('.edit_user').on('submit', function(e) {
                 e.preventDefault();
+                var idToChange = $('form.edit_user').attr('id').match(/\d+/)[0];
                 var contactsObj = {
                     'name': $('#user_name').val(),
-                    'email': '<%= current_user.email %>',
+                    'email': $('#form-field-email').val(),
                     'email2': $('#email2').val(),
                     'phone': $('#phone').val(),
                     'phone2': $('#phone2').val(),
                     'timezone': $('#user_timezone').val(),
                     'contact_flags': $('#contact-flags-<%= current_user.id %>').val(),
-                    'user[avatar]': $('#user_avatar')[0].files[0]
+                    'user[avatar]': $('#user_avatar')[0].files[0],
+                    'id': idToChange
                 };
                 var formData = new FormData();
                 for (var key in contactsObj) {
                     formData.append(key, contactsObj[key]);
                 }
                 $.ajax({
-                    url : '/users/3/update_contact_prefs',
+                    url : '/users/'+idToChange+'/update_contact_prefs',
                     type: "PUT",
                     data: formData,
                     cache: false,
@@ -203,7 +205,13 @@
     };
 
     var updateNavBar = function(avatar) {
-        $('.user-info img').attr('src', avatar.avatar.tiny.url);
+        if ($('.user-info img').length) {
+            $('.user-info img').attr('src', avatar.avatar.tiny.url);
+        } else {
+            console.log('updateNavBar should be inserting an img element');
+            $('#name-display').after('<img>');
+            $('.user-info img').attr('src', avatar.avatar.tiny.url);
+        }
     };
 
     var updateFormAvatarThumbnail = function(avatar) {
@@ -461,7 +469,6 @@
                 return false;
             }
         });
-
         $deleteButton.addClass('listening');
     };
 
@@ -507,8 +514,8 @@
         console.log('prepareUserForm is called');
         $("#phone").intlTelInput();
         $("#phone2").intlTelInput();
-        var email = $('#form-field-phone').html();
-        $('#form-field-phone').on({
+        var email = $('#form-field-email').html();
+        $('#form-field-email').on({
             mouseenter: function() { $(this).html('primary email cannot be changed')},
             mouseleave: function() { $(this).html(email) }
         });
@@ -537,7 +544,7 @@
                         switchGlowOn(el);
                     }
                 } else {
-                    console.log('this are going awry');
+                    console.log('things are going awry');
                 }
             })
         });
