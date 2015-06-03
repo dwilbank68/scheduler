@@ -19,9 +19,6 @@ class User < ActiveRecord::Base
   validates :name, :phone, :email,
             :uniqueness => true
 
-  devise :database_authenticatable, :registerable, :confirmable, :timeoutable,# :omniauthable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
-
   mount_uploader :avatar, AvatarUploader
 
 
@@ -84,7 +81,8 @@ class User < ActiveRecord::Base
     unless user
         user = User.create(name: data["name"],
            email: data["email"],
-           password: Devise.friendly_token[0,20]
+           password: Devise.friendly_token[0,20],
+           contact_flags: '00000000'
         )
     end
     user
