@@ -6,6 +6,7 @@ module ApplicationHelper
       "#{digits[0]} (#{digits[1,3]}) #{digits[4,3]}-#{digits[7,4]}"
     else
       "- --- --------"
+    end
   end
 
   def unit_overlay_classes(unit)
